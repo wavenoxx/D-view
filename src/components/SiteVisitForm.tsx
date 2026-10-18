@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Check, 
   ChevronDown, 
@@ -16,6 +16,36 @@ interface SiteVisitFormProps {
   cityName?: string;
 }
 
+const CITY_QUERY_ALIASES: Record<string, string> = {
+  vizag: 'visakhapatnam',
+  visakhapatnam: 'visakhapatnam',
+  rajahmundry: 'rajahmundry',
+  rajamahendravaram: 'rajahmundry',
+  vijayawada: 'vijayawada-amaravati',
+  amaravati: 'vijayawada-amaravati',
+  'vijayawada-amaravati': 'vijayawada-amaravati',
+  guntur: 'guntur',
+  kakinada: 'kakinada',
+  nellore: 'nellore',
+  ongole: 'ongole',
+};
+
+const ALLOWED_REASON_LABELS: Record<string, string> = {
+  'children safety': 'Children Safety & Fall Protection',
+  'pigeon menace': 'Pigeon & Bird Barrier Protection',
+  'view & airflow': 'Unobstructed View & Natural Airflow',
+  'senior citizens': 'Senior Citizen Balcony Vertigo & Fall Safety',
+  'fire safety & escape': '60-Second Emergency Fire Escape Compliance',
+  'pet safety & freedom': 'Pet Balcony Safety & Containment',
+};
+
+const ALLOWED_REQUIREMENT_IDS = [
+  'BALCONY',
+  'WINDOWS',
+  'STAIRCASE / DUPLEX',
+  'FULL FLAT / VILLA',
+] as const;
+
 export default function SiteVisitForm({ defaultCitySlug = 'rajahmundry', cityName = 'Rajahmundry' }: SiteVisitFormProps) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -28,6 +58,37 @@ export default function SiteVisitForm({ defaultCitySlug = 'rajahmundry', cityNam
   const [connectGoogle, setConnectGoogle] = useState(false);
   const [consentAgreed, setConsentAgreed] = useState(true);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+
+    const requestedCity = params.get('city')?.trim().toLowerCase();
+    if (requestedCity) {
+      const resolvedCity = CITY_QUERY_ALIASES[requestedCity] || requestedCity;
+      if (ALL_LOCATIONS.some((loc) => loc.slug === resolvedCity)) {
+        setCity(resolvedCity);
+        setArea('');
+        setCustomArea('');
+      }
+    }
+
+    const requestedReason = params.get('reason')?.trim().toLowerCase();
+    if (requestedReason) {
+      const mappedReason = ALLOWED_REASON_LABELS[requestedReason];
+      if (mappedReason) {
+        setShowNote(true);
+        setNote(`Enquiry focus: ${mappedReason}`);
+      } else {
+        const upperReason = requestedReason.toUpperCase();
+        if ((ALLOWED_REQUIREMENT_IDS as readonly string[]).includes(upperReason)) {
+          setSelectedRequirements((prev) =>
+            prev.includes(upperReason) ? prev : [...prev, upperReason]
+          );
+        }
+      }
+    }
+  }, []);
 
   const activeCity = ALL_LOCATIONS.find(c => c.slug === city) || ALL_LOCATIONS[0];
   const cityAreas = activeCity.areas || [];
@@ -334,7 +395,7 @@ ${note ? `• Note: ${note}` : ''}`;
                     className="w-4 h-4 mt-0.5 rounded accent-[#16A34A] cursor-pointer flex-shrink-0"
                   />
                   <span>
-                    I agree that D-VIEW may share my project details with our verified installation expert in {activeCity.name} to schedule a site survey and quote via Call or WhatsApp. See the <a href="/about" className="underline hover:text-slate-900">Privacy Policy</a>.
+                    I agree that D-VIEW may share my project details with our verified installation expert in {activeCity.name} to schedule a site survey and quote via Call or WhatsApp. See the <a href="/privacy" className="underline hover:text-slate-900">Privacy Policy</a>.
                   </span>
                 </label>
               </div>

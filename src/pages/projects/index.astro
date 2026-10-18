@@ -73,7 +73,7 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
 
             <div class="px-6 pb-6">
               <a
-                href={`/locations/${project.citySlug}#book-visit`}
+                href={`/contact?city=${encodeURIComponent(project.citySlug)}#book-visit`}
                 class="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-colors shadow-sm"
               >
                 <span>Book Similar in {project.cityName}</span>

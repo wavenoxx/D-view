@@ -124,7 +124,8 @@ export default function Navbar({ currentSlug }: NavbarProps) {
               {solutionsDropdownOpen && (
                 <div className="absolute top-full mt-2 left-0 w-64 rounded-xl bg-white border border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in backdrop-blur-xl">
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
@@ -135,7 +136,8 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                     </span>
                   </a>
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
@@ -146,7 +148,8 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                     </span>
                   </a>
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
@@ -171,20 +174,20 @@ export default function Navbar({ currentSlug }: NavbarProps) {
 
             {/* 3. Projects */}
             <a 
-              href="#projects" 
+              href="/projects" 
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all"
             >
               <FolderKanban className="w-4 h-4 text-[#16A34A]" />
               <span>Projects</span>
             </a>
 
-            {/* 4. FAQ */}
+            {/* 4. About */}
             <a 
-              href="#faq" 
+              href="/about" 
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all"
             >
-              <HelpCircle className="w-4 h-4 text-[#16A34A]" />
-              <span>FAQ</span>
+              <ShieldCheck className="w-4 h-4 text-[#16A34A]" />
+              <span>About</span>
             </a>
 
             {/* 5. Direct Call */}
@@ -201,7 +204,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           {/* Right CTA Button: Emerald Green Button -> 'Book Free Site Visit ->' */}
           <div className="hidden lg:flex items-center">
             <a
-              href="#book-visit"
+              href="/contact#book-visit"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-extrabold text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-all duration-200 shadow-[0_4px_16px_rgba(124,255,58,0.35)] hover:shadow-[0_6px_22px_rgba(124,255,58,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>Book Free Site Visit</span>
@@ -219,7 +222,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
               <PhoneCall className="w-4 h-4" />
             </a>
             <a
-              href="#book-visit"
+              href="/contact#book-visit"
               className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-950 bg-[#7CFF3A]"
             >
               Free Visit
@@ -274,21 +277,21 @@ export default function Navbar({ currentSlug }: NavbarProps) {
               Solutions
             </div>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               • Balcony SS-316 Grills
             </a>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               • Window Grills
             </a>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
@@ -310,7 +313,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             </a>
 
             <a
-              href="#projects"
+              href="/projects"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
@@ -322,13 +325,13 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             </a>
 
             <a
-              href="#faq"
+              href="/about"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               <span className="flex items-center gap-2">
-                <HelpCircle className="w-4 h-4 text-[#16A34A]" />
-                FAQ
+                <ShieldCheck className="w-4 h-4 text-[#16A34A]" />
+                About
               </span>
               <ArrowRight className="w-4 h-4 text-slate-400" />
             </a>
@@ -337,7 +340,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           {/* Action CTA */}
           <div className="pt-2 border-t border-slate-200 space-y-2">
             <a
-              href="#book-visit"
+              href="/contact#book-visit"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#7CFF3A] text-slate-950 font-extrabold text-sm shadow-md"
             >

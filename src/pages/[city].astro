@@ -74,7 +74,7 @@ const subLocalities = location.subLocalities || [];
           <a href="#corridors" class="text-slate-600 hover:text-[#16A34A] transition">
             Applications
           </a>
-          <a href="#formula" class="text-slate-600 hover:text-[#16A34A] transition">
+          <a href="/about" class="text-slate-600 hover:text-[#16A34A] transition">
             About
           </a>
           <a href="/contact" class="text-slate-600 hover:text-[#16A34A] transition">
@@ -180,7 +180,7 @@ const subLocalities = location.subLocalities || [];
 
     {/* TIER 2: HORIZONTAL SLIDING VIEW (LEFT TO RIGHT SCROLLING CARDS) */}
     <div id="problem-solutions">
-      <HorizontalProblemSlider client:visible cityName={cityName} />
+      <HorizontalProblemSlider client:visible cityName={cityName} citySlug={slug} />
     </div>
 
     {/* INTERACTIVE 9:16 LIVE DRAG SLIDER */}
@@ -382,7 +382,7 @@ const subLocalities = location.subLocalities || [];
         </div>
         <div class="flex-shrink-0 w-full sm:w-auto">
           <a
-            href={`/contact?city=${slug}`}
+            href={`/contact?city=${slug}#book-visit`}
             class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white font-extrabold text-sm transition-all shadow-lg hover:-translate-y-0.5"
           >
             <span>Book Free Site Visit in {cityName}</span>

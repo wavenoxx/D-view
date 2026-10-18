@@ -627,6 +627,12 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
     spec: "G+18 Floodplain Panoramas | 100% Toddler Safe",
     cityId: "vijayawada"
   },
+  "HappyNest Amaravati": {
+    image: "/assets/corridors/vijayawada-happynest.jpg",
+    title: "Amaravati HappyNest (G+18)",
+    spec: "G+18 Floodplain Panoramas | 100% Toddler Safe",
+    cityId: "vijayawada"
+  },
   "Amaravati HappyNest (G+18)": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
@@ -748,6 +754,12 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
     cityId: "nellore"
   },
   "Podalakur Road": {
+    image: "/assets/corridors/nellore-podalakur.jpg",
+    title: "Podalakur Road & Kavali Belt",
+    spec: "Expanding Gated Communities | Pest Control",
+    cityId: "nellore"
+  },
+  "Podalakuru Road": {
     image: "/assets/corridors/nellore-podalakur.jpg",
     title: "Podalakur Road & Kavali Belt",
     spec: "Expanding Gated Communities | Pest Control",
@@ -1183,9 +1195,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
   // Helper to resolve active corridor asset for dynamic Tier 3 Hero
   const getActiveCorridorAsset = () => {
+    const defaultSub = activeSlide.subLocations[0];
     const q = (selectedCorridor || '').trim();
     if (!q) {
-      const defaultSub = activeSlide.subLocations[0];
       return {
         name: defaultSub?.name || activeSlide.name,
         title: defaultSub?.name || activeSlide.name,
@@ -1196,12 +1208,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
     const cleanQ = q.toLowerCase();
 
-    // 1. Direct or fuzzy lookup in CORRIDOR_ASSETS
+    // 1. Direct or fuzzy lookup in CORRIDOR_ASSETS scoped to current city
     for (const [key, val] of Object.entries(CORRIDOR_ASSETS)) {
+      if (val.cityId && val.cityId !== activeSlide.id) continue;
       const cleanKey = key.toLowerCase();
-      if (cleanKey === cleanQ || cleanKey.includes(cleanQ) || cleanQ.includes(cleanKey)) {
+      if (
+        cleanKey === cleanQ ||
+        (cleanQ.length >= 3 && (cleanKey.includes(cleanQ) || cleanQ.includes(cleanKey)))
+      ) {
         return {
-          name: q,
+          name: val.title || key,
           title: val.title || key,
           image: val.image,
           spec: val.spec
@@ -1212,7 +1228,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     // 2. Lookup in activeSlide.subLocations
     const subMatch = activeSlide.subLocations.find(s => {
       const cleanSub = s.name.toLowerCase();
-      return cleanSub === cleanQ || cleanSub.includes(cleanQ) || cleanQ.includes(cleanSub);
+      return (
+        cleanSub === cleanQ ||
+        (cleanQ.length >= 3 && (cleanSub.includes(cleanQ) || cleanQ.includes(cleanSub)))
+      );
     });
 
     if (subMatch) {
@@ -1224,18 +1243,36 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       };
     }
 
-    // 3. Fallback
+    // 3. Lookup in activeSlide.activeBelts
+    const beltMatch = activeSlide.activeBelts.find(b => {
+      const cleanBelt = b.toLowerCase();
+      return (
+        cleanBelt === cleanQ ||
+        (cleanQ.length >= 3 && (cleanBelt.includes(cleanQ) || cleanQ.includes(cleanBelt)))
+      );
+    });
+
+    if (beltMatch) {
+      return {
+        name: beltMatch,
+        title: beltMatch,
+        image: defaultSub?.image || activeSlide.heroImage,
+        spec: defaultSub?.tag || activeSlide.badge
+      };
+    }
+
+    // 4. Safe fallback to default validated corridor (never render raw untrusted query string)
     return {
-      name: q,
-      title: q,
-      image: activeSlide.subLocations[0]?.image || activeSlide.heroImage,
-      spec: activeSlide.badge
+      name: defaultSub?.name || activeSlide.name,
+      title: defaultSub?.name || activeSlide.name,
+      image: defaultSub?.image || activeSlide.heroImage,
+      spec: defaultSub?.tag || activeSlide.badge
     };
   };
 
   const activeCorridorAsset = getActiveCorridorAsset();
   const currentHeroImage = activeCorridorAsset.image;
-  const currentCorridorDisplayName = activeCorridorAsset.title || selectedCorridor || activeSlide.name;
+  const currentCorridorDisplayName = activeCorridorAsset.title || activeSlide.name;
 
   // Booking Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1622,10 +1659,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </p>
             <ul className="space-y-2.5 text-[11px] text-slate-700">
               <li>
-                <a href="/contact#faq" className="hover:text-[#16A34A] transition block font-medium">FAQ & Installation Queries</a>
+                <a href="/contact#book-visit" className="hover:text-[#16A34A] transition block font-medium">Installation Enquiries</a>
               </li>
               <li>
-                <a href="/about#maintenance" className="hover:text-[#16A34A] transition block font-medium">Care & Maintenance Guide</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">About Our Work</a>
               </li>
               <li>
                 <a href="/locations" className="hover:text-[#16A34A] transition block font-medium">Service Areas & Corridors</a>
@@ -1665,7 +1702,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a href="/solutions" className="hover:text-[#16A34A] transition block font-medium">Duplex & Staircase Safety Systems</a>
               </li>
               <li>
-                <a href="/about#warranty" className="hover:text-[#16A34A] transition block font-medium">10-Year Warranty Guide</a>
+                <a href="/privacy#legal" className="hover:text-[#16A34A] transition block font-medium">Warranty & Terms</a>
               </li>
               <li>
                 <a href="/solutions" className="hover:text-[#16A34A] transition block font-medium">All Engineering Services</a>
@@ -1683,16 +1720,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a href="/about" className="hover:text-[#16A34A] transition block font-medium">Our Story & Heritage</a>
               </li>
               <li>
-                <a href="/about#metallurgy" className="hover:text-[#16A34A] transition block font-medium">Certified SS-316 Marine Metallurgy</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">About Invisible Grills</a>
               </li>
               <li>
                 <a href="/projects" className="hover:text-[#16A34A] transition block font-medium">Lifestyle Project Gallery</a>
               </li>
               <li>
-                <a href="/about#standards" className="hover:text-[#16A34A] transition block font-medium">400 KG Tensile Material Standards</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">Materials & Approach</a>
               </li>
               <li>
-                <a href="/about#fire-safety" className="hover:text-[#16A34A] transition block font-medium">1-Minute Fire Escape Egress</a>
+                <a href="/contact" className="hover:text-[#16A34A] transition block font-medium">Ask a Safety Question</a>
               </li>
             </ul>
           </div>

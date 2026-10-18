@@ -179,10 +179,12 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
 
 interface HorizontalProblemSliderProps {
   cityName?: string;
+  citySlug?: string;
 }
 
 export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = ({
   cityName = 'Andhra Pradesh',
+  citySlug,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -361,7 +363,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
 
                   {/* Bottom Action CTA */}
                   <a
-                    href={`/contact?reason=${encodeURIComponent(card.category)}`}
+                    href={`/contact?${citySlug ? `city=${encodeURIComponent(citySlug)}&` : ''}reason=${encodeURIComponent(card.category)}#book-visit`}
                     className={`mt-3 w-full py-2 rounded-xl text-[11px] font-bold transition-all duration-300 text-center block shadow-sm cursor-pointer ${
                       isProblem
                         ? 'bg-rose-600 hover:bg-rose-700 text-white'
