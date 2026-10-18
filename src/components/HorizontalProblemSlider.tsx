@@ -33,11 +33,11 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'CHILDREN SAFETY',
     tag: '02 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% TODDLER FALL PROTECTION',
+    badge: '🛡️ TODDLER FALL PROTECTION',
     title: 'Children Freedom & Safety',
     subtitle: 'High-Tensile SS-316 @ 2" Safe Gap',
     image: '/images/after-child-safety.jpg',
-    description: 'Floor-to-ceiling high-tensile SS-316 vertical wire cables with strict 2-inch safe spacing. Zero horizontal footholds to climb. Supports >400 kg load per strand.',
+    description: 'Floor-to-ceiling high-tensile SS-316 vertical wire cables with strict 2-inch safe spacing. Zero horizontal footholds to climb. Engineered multi-strand high-tensile construction.',
     bullet: 'Toddlers explore and play freely right at the edge without fear.',
   },
 
@@ -60,7 +60,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'PIGEON MENACE',
     tag: '04 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% BIRD-FREE CLEAN HYGIENE',
+    badge: '🛡️ BIRD-FREE CLEAN HYGIENE',
     title: 'Zero Pigeon Menace',
     subtitle: 'Precision 50mm Structural Physical Barrier',
     image: '/images/after-pigeon-free.jpg',
@@ -88,11 +88,11 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     category: 'VIEW & AIRFLOW',
     tag: '06 • D-VIEW SOLUTION',
     badge: '🛡️ 99% AIRFLOW & 1-MIN FIRE ESCAPE',
-    title: '100% Open Air & Fire Safety',
+    title: 'Open Air & Fire Safety',
     subtitle: 'Unobstructed Panoramic Views',
     image: '/images/after-luxury-lounge.jpg',
     description: 'Ultra-slim vertical stainless steel cables preserve 99% optical transparency and river/coastal breeze. Fully severable in under 60 seconds with emergency cutters.',
-    bullet: 'Pure sunlight, complete airflow, and certified life-saving fire egress.',
+    bullet: 'Pure sunlight, complete airflow, and clear emergency fire egress.',
   },
 
   // 7. Old Age Problem
@@ -114,7 +114,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'SENIOR CITIZENS',
     tag: '08 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% PEACEFUL RETIREMENT & VERTIGO RELIEF',
+    badge: '🛡️ PEACEFUL RETIREMENT & VERTIGO RELIEF',
     title: 'Senior Comfort & Fall Protection',
     subtitle: 'Floor-to-Ceiling SS-316 High-Tension Barrier',
     image: '/images/after-elderly-peace.jpg',
@@ -145,8 +145,8 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     title: '60-Second Fire Escape System',
     subtitle: 'Instant Cable-Cut & Fire Brigade Ladder Evacuation',
     image: '/images/after-dview-fire-escape.jpg',
-    description: 'Unlike impenetrable welded iron cages, D-View SS-316 high-tension cables provide 400kg fall security daily, yet can be cleanly severed in under 60 seconds with emergency cutters. Fire brigade turntable ladders can easily reach and rescue families.',
-    bullet: 'Life-saving emergency balcony evacuation with certified quick-cut cable technology.',
+    description: 'Unlike impenetrable welded iron cages, D-View SS-316 high-tension cables provide robust fall security daily, yet can be cleanly severed in under 60 seconds with emergency cutters. Fire brigade turntable ladders can easily reach and rescue families.',
+    bullet: 'Life-saving emergency balcony evacuation with quick-cut cable capability.',
   },
 
   // 11. Pet Safety Problem
@@ -168,7 +168,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'PET SAFETY & FREEDOM',
     tag: '12 • D-VIEW SOLUTION',
-    badge: '🐾 100% SECURE PET FREEDOM & RELAXATION',
+    badge: '🐾 SECURE PET FREEDOM & RELAXATION',
     title: 'Safe Pet Balcony Living',
     subtitle: 'Relaxed Sunbathing & Unrestricted Peace of Mind',
     image: '/images/after-pet-freedom.jpg',
@@ -294,7 +294,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
               Why Install Invisible Grills? <span className="text-[#16A34A]">One Single Installation, Every Problem Solved.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">
-              A single modern installation solves all your major balcony challenges at once — guaranteeing 100% toddler safety, eliminating pigeon mess, preventing iron rust, and giving you crystal-clear open views without that caged feeling.
+              A single modern installation solves all your major balcony challenges at once — providing toddler fall safety, eliminating pigeon mess, preventing iron rust, and giving you crystal-clear open views without that caged feeling.
             </p>
           </div>
 

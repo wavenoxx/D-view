@@ -14,7 +14,7 @@ export const emotionalCards: EmotionalCard[] = [
     title: "Children Fall Safety",
     subtitle: "Fear to Complete Freedom",
     problem: "Balcony height vertigo & fall anxiety",
-    solution: "100% safe vertical SS-316 high-tensile cables",
+    solution: "Engineered vertical high-tensile cables",
     image: "/images/penthouse-safety-balcony-9x16.jpg", // Ready asset
     tag: "Child Protection"
   },

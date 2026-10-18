@@ -156,7 +156,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                       Window Grills
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      Zero-rust slim cables for open window ventilation
+                      Corrosion-resistant slim cables for open window ventilation
                     </span>
                   </a>
                   <a
@@ -168,7 +168,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                       High-Rise Elevation Grills
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      Structural &gt;400kg tensioned coastal elevation grills
+                      High-tensile tensioned stainless steel elevation grills
                     </span>
                   </a>
                 </div>

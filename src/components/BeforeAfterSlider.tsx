@@ -185,7 +185,7 @@ export default function BeforeAfterSlider({
           decoding="async"
         />
         <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-md border border-emerald-300 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold shadow-md z-10 pointer-events-none">
-          AFTER: 100% Safe
+          AFTER: Safe & Open
         </span>
 
         {/* BEFORE IMAGE (Problem - Clipped Top Layer) */}
@@ -254,7 +254,7 @@ export default function BeforeAfterSlider({
         <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-left">
           <p className="text-[10px] font-bold text-[#16A34A] uppercase tracking-wide">With D-VIEW</p>
           <p className="text-xs font-semibold text-emerald-900 mt-0.5">
-            100% child-safe SS-316 invisible protection
+            Engineered child-safe invisible protection
           </p>
         </div>
       </div>

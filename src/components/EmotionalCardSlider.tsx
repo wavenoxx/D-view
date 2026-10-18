@@ -6,7 +6,7 @@ const emotionalCards = [
     title: "Children Fall Safety",
     subtitle: "From Constant Fear to Complete Freedom",
     problem: "Fear of heights & balcony lockups",
-    solution: "100% child-safe vertical SS-316 tensioned cables",
+    solution: "Child-safe vertical stainless tensioned cables",
     image: "/assets/cards/child-mother-safety.jpg",
     tag: "Child Protection"
   },
@@ -30,7 +30,7 @@ const emotionalCards = [
   },
   {
     id: 4,
-    title: "100% Open Air & View",
+    title: "Open Air & Panoramic View",
     subtitle: "Unobstructed Daylight & Fresh Breeze",
     problem: "Dark, blocked, shadowy rooms",
     solution: "99% transparent marine-grade vertical wires",

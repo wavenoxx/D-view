@@ -51,20 +51,13 @@ const localBusinessSchema = {
   "priceRange": "₹₹",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Rajamahendravaram",
-    "addressRegion": "Andhra Pradesh",
     "addressCountry": "IN"
   },
   "areaServed": [
-    { "@type": "City", "name": "Visakhapatnam" },
-    { "@type": "City", "name": "Rajamahendravaram" },
-    { "@type": "City", "name": "Vijayawada" },
-    { "@type": "City", "name": "Guntur" },
-    { "@type": "City", "name": "Kakinada" },
-    { "@type": "City", "name": "Nellore" },
-    { "@type": "City", "name": "Ongole" }
+    { "@type": "AdministrativeArea", "name": "Karnataka" },
+    { "@type": "AdministrativeArea", "name": "Andhra Pradesh" }
   ],
-  "description": description || "Architectural high-tensile SS-316 invisible safety grills for luxury apartments, balcony child fall safety, pet security, and pigeon control with 10-year warranty."
+  "description": description || "Architectural high-tensile SS-316 & SS-304 invisible safety grills for apartments, balcony child fall safety, pet security, and pigeon control with 5-year warranty."
 };
 
 const faqSchema = faqs && faqs.length > 0 ? {

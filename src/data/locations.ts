@@ -98,10 +98,10 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     heroImage: '/assets/locations/rajahmundry-godavari-bridge.jpg',
     heroPosterImage: '/assets/locations/rajahmundry-godavari-bridge.jpg',
     heroImageAlt: 'Luxury high-rise apartment balcony in Rajahmundry overlooking the Godavari Arch Bridge with installed invisible safety grills',
-    keywordPings: ['Invisible Grills Rajahmundry', 'Godavari Arch Bridge View', 'Balcony Safety Morampudi', 'Pigeon Proof Balcony', '10-Year Warranty'],
+    keywordPings: ['Invisible Grills Rajahmundry', 'Godavari Arch Bridge View', 'Balcony Safety Morampudi', 'Pigeon Proof Balcony', '5-Year Warranty'],
     subLocalities: [
       { name: "Morampudi Residential Towers", image: "/assets/locations/sub/rajahmundry-morampudi.jpg", tag: "RIVER-VIEW BALCONY | FRESH RIVER BREEZE", path: "/safety-pillars/rajahmundry?corridor=Morampudi", desc: "High-rise apartment balcony looking out at open green residential layouts and fresh Godavari breeze through vertical wires." },
-      { name: "Godavari Arch Bridge Riverfront", image: "/assets/locations/rajahmundry-godavari-bridge.jpg", tag: "HISTORIC RIVER PANORAMA | 100% PIGEON SHIELD", path: "/safety-pillars/rajahmundry?corridor=Godavari%20Arch%20Bridge", desc: "Balcony view directly framing the yellow Godavari Arch Bridge and boats drifting on the water through transparent SS-316 wires." },
+      { name: "Godavari Arch Bridge Riverfront", image: "/assets/locations/rajahmundry-godavari-bridge.jpg", tag: "HISTORIC RIVER PANORAMA | PIGEON PROTECTION", path: "/safety-pillars/rajahmundry?corridor=Godavari%20Arch%20Bridge", desc: "Balcony view directly framing the yellow Godavari Arch Bridge and boats drifting on the water through transparent SS-316 wires." },
       { name: "Bommuru Gated Communities", image: "/assets/locations/sub/rajahmundry-bommuru.jpg", tag: "ZERO BIRD DROPPINGS | 2-INCH SAFE SPACING", path: "/safety-pillars/rajahmundry?corridor=Bommuru", desc: "Luxury society balcony view with pigeon-proof vertical safety wire screens." },
       { name: "Diwancheruvu & Lalacheruvu Hub", image: "/assets/locations/sub/rajahmundry-diwancheruvu.jpg", tag: "ELEVATED TOWERS | WIND & DUST SHIELD", path: "/safety-pillars/rajahmundry?corridor=Diwancheruvu", desc: "Elevated highway residential towers with clean sunlight penetration." },
       { name: "Vemagiri Riverfront Belts", image: "/assets/locations/sub/rajahmundry-vemagiri.jpg", tag: "RIVERBANK BALCONIES | ZERO FALL HAZARD", path: "/safety-pillars/rajahmundry?corridor=Vemagiri", desc: "Riverbank apartment terrace overlooking water streams through stainless-steel invisible grills." }
@@ -116,8 +116,8 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     technicalSubtitle: 'River-adjacent living demands high atmospheric moisture resilience paired with pigeon exclusion.',
     weatherChallenge: 'Daily river vapor and humid morning mist along the Godavari basin cause rapid corrosion on conventional mild-steel welded grills.',
     engineeringSolution: 'We specify SS-316 high-tensile marine-grade stainless steel cables enveloped in UV-stabilized transparent nylon sheath to eliminate moisture entrapment.',
-    recommendedGrade: 'SS-316 Marine Grade (Breaking tension > 400kg)',
-    corrosionAdvisory: 'While river air carries low salinity compared to the ocean, river mists and moisture cycles cause pitting on inferior SS-202/SS-304. SS-316 is selected for sustained tensile endurance.',
+    recommendedGrade: 'SS-316 Marine Grade (High-Tensile Multi-Strand)',
+    corrosionAdvisory: 'River mists and moisture cycles require durable stainless steel. Marine-grade SS-316 is recommended for high moisture endurance, with SS-304 options available for standard residential openings.',
     technicalSpecs: [
       { label: 'Recommended Cable', value: '2.5 mm / 3.0 mm SS-316', note: 'Multi-strand 7x7 core' },
       { label: 'Track System', value: '6063-T6 Architectural Grade', note: 'Anodized powder-coated matte black/silver' },
@@ -126,7 +126,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     ],
     
     areasHeadline: 'AREAS WE SERVE IN RAJAHMUNDRY & RAJAMAHENDRAVARAM',
-    areasSubtitle: 'Our certified installation teams offer free on-site digital measurement across all residential belts.',
+    areasSubtitle: 'On-site digital measurement and technical consultations can be coordinated across residential corridors.',
     areas: [
       { name: 'Morampudi', type: 'High-Rise Apartments & Gated Communities', highlight: 'Godavari bypass residential towers' },
       { name: 'Bommuru', type: 'Residential Enclaves & New Townships', highlight: 'G+5 to G+12 apartment balconies' },
@@ -182,7 +182,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'Will pigeons be able to enter through the grill wires?',
-        answer: 'No. Our standard wire spacing is set at 2 inches (50 mm), which strictly prevents pigeons and common birds from squeezing through while maintaining 99% visual transparency.'
+        answer: 'No. Our standard wire spacing is set at 2 inches (50 mm), which effectively deters pigeons and common birds while maintaining open visual transparency.'
       },
       {
         question: 'How is emergency evacuation handled in case of a fire?',
@@ -190,7 +190,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'How much does invisible grill installation cost in Rajahmundry?',
-        answer: 'Typical installations range between ₹135 to ₹185 per square foot depending on the selected wire thickness (2.0mm, 2.5mm, or 3.0mm), cable tensioning profile, and site height complexity.'
+        answer: 'Pricing depends on the selected wire thickness, structural span, anchoring track profile, and site height complexity. Exact costs are confirmed in an itemized written quotation following physical site measurement.'
       }
     ],
     
@@ -231,8 +231,8 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     technicalHeadline: 'BUILT FOR COASTAL LIVING & MARINE CORROSION RESISTANCE',
     technicalSubtitle: 'Visakhapatnam’s severe marine salinity demands rigorous metallurgical standards.',
     weatherChallenge: 'Airborne salt chlorides carried by Bay of Bengal breezes rapidly induce pitting and crevice corrosion on standard metals, causing structural failure.',
-    engineeringSolution: 'We deploy certified SS-316 Marine Grade wire ropes with elevated Molybdenum (2.0% - 3.0%) content, paired with heavy-duty anodized aluminum mounting tracks.',
-    recommendedGrade: 'Certified SS-316 Marine Grade (Strictly Coastal Compliant)',
+    engineeringSolution: 'We deploy SS-316 Marine Grade wire ropes with molybdenum content for coastal resistance, paired with heavy-duty anodized aluminum mounting tracks.',
+    recommendedGrade: 'SS-316 Marine Grade (Recommended for Coastal Belts)',
     corrosionAdvisory: 'SS 316 is selected where enhanced corrosion resistance is required, particularly for demanding coastal environments like Vizag beach belts. Regular freshwater wipe-downs preserve optimal luster.',
     technicalSpecs: [
       { label: 'Alloy Composition', value: 'SS-316 (16-18% Cr, 10-14% Ni, 2-3% Mo)', note: 'Molybdenum addition counters chloride pitting' },
@@ -262,7 +262,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         propertyType: '18th Floor Sea-Facing Balcony',
         wireSpec: '3.0mm SS-316 Marine Grade',
         areaSqFt: 145,
-        highlight: 'Full Bay of Bengal panorama preserved; zero rust after monsoon sea-spray.',
+        highlight: 'Full Bay of Bengal panorama preserved; strong corrosion resistance after monsoon sea-spray.',
         image: '/assets/corridors/vizag-yendada.jpg'
       },
       {
@@ -272,7 +272,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         propertyType: 'G+15 High-Rise Apartment',
         wireSpec: '2.5mm SS-316 Coastal Grade',
         areaSqFt: 96,
-        highlight: 'Child safety certified for toddler play area with 2-inch wire intervals.',
+        highlight: 'Child safety protection for toddler play area with 2-inch wire intervals.',
         image: '/assets/corridors/vizag-madhurawada.jpg'
       },
       {
@@ -293,8 +293,8 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         answer: 'D-VIEW utilizes SS-316 marine-grade stainless steel containing 2-3% Molybdenum, specifically engineered to withstand coastal salt air. We provide a documented warranty against structural corrosion.'
       },
       {
-        question: 'Can invisible grills withstand cyclone winds in Visakhapatnam?',
-        answer: 'Yes. Our high-tensile 316 cables have a breaking threshold exceeding 400 kg per strand. Unlike glass partitions or heavy metal sheets that create wind-sail resistance, invisible grills let 98% of high-speed winds flow cleanly through without structural strain.'
+        question: 'Can invisible grills withstand coastal winds in Visakhapatnam?',
+        answer: 'Yes. Our high-tensile stainless steel cables are tensioned across structural mounting tracks. Unlike solid partitions or heavy metal sheets that create wind-sail resistance, slim invisible grills let coastal winds flow cleanly through without structural strain.'
       },
       {
         question: 'Are these grills safe for high-rises above 20 floors in Madhurawada?',
@@ -307,7 +307,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     ],
     
     seoTitle: 'Premium Invisible Grills in Visakhapatnam | D-VIEW Solutions',
-    seoDescription: 'Marine-grade SS-316 invisible grills in Visakhapatnam (Vizag). Engineered for RK Beach & Rushikonda coastal conditions. 100% view preservation & high-rise child safety.',
+    seoDescription: 'High-grade stainless steel invisible grills in Visakhapatnam (Vizag). Engineered for RK Beach & Rushikonda coastal conditions. Unblocked view preservation & high-rise child safety.',
     keywords: ['invisible grills in visakhapatnam', 'invisible grills vizag', 'balcony safety grills madhurawada', 'coastal invisible grill rushikonda']
   },
 
@@ -328,8 +328,8 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     keywordPings: ['Invisible Grills Vijayawada', 'Amaravati HappyNest Grills', 'Benz Circle Towers', 'High-Rise Balcony Safety', 'Prakasam Barrage View'],
     subLocalities: [
       { name: "Benz Circle & Bandar Road Towers", image: "/assets/locations/sub/vijayawada-benzcircle.jpg", tag: "BENZ CIRCLE TOWERS | SKYLINE PANORAMA", path: "/safety-pillars/vijayawada?corridor=Benz%20Circle", desc: "Prestigious urban towers overlooking the city center with thermal-stabilized tension cables." },
-      { name: "HappyNest Amaravati High-Rises", image: "/assets/locations/sub/vijayawada-happynest.jpg", tag: "GOVERNMENT HIGH-RISE | 18TH-FLOOR TODDLER LOCKDOWN", path: "/safety-pillars/vijayawada?corridor=HappyNest%20Amaravati", desc: "High-floor G+18 towers in Amaravati capital corridor with 100% fall protection and open river breeze." },
-      { name: "Moghalrajpuram Residential Hub", image: "/assets/locations/sub/vijayawada-moghalrajpuram.jpg", tag: "CENTRAL RESIDENTIAL | 100% PIGEON FREE", path: "/safety-pillars/vijayawada?corridor=Moghalrajpuram", desc: "Complete pigeon exclusion and child security for established residential communities." },
+      { name: "HappyNest Amaravati High-Rises", image: "/assets/locations/sub/vijayawada-happynest.jpg", tag: "HIGH-RISE LIVING | 18TH-FLOOR TODDLER SAFETY", path: "/safety-pillars/vijayawada?corridor=HappyNest%20Amaravati", desc: "High-floor G+18 towers in Amaravati capital corridor with engineered fall protection and open river breeze." },
+      { name: "Moghalrajpuram Residential Hub", image: "/assets/locations/sub/vijayawada-moghalrajpuram.jpg", tag: "CENTRAL RESIDENTIAL | EFFECTIVE PIGEON BARRIER", path: "/safety-pillars/vijayawada?corridor=Moghalrajpuram", desc: "Effective pigeon barrier and child security for established residential communities." },
       { name: "Gunadala Hill-Facing Enclaves", image: "/assets/locations/sub/vijayawada-gunadala.jpg", tag: "HILL-FACING TOWERS | CYCLONIC WIND SHIELD", path: "/safety-pillars/vijayawada?corridor=Gunadala", desc: "Hillside apartment terraces overlooking Mary Matha shrine ridge with stainless steel cables." },
       { name: "Kanuru & Poranki Penthouse Living", image: "/assets/locations/sub/vijayawada-kanuru.jpg", tag: "EXPANSION TOWNSHIPS | 2-INCH SAFE SPACING", path: "/safety-pillars/vijayawada?corridor=Kanuru", desc: "Modern residential gated township balconies protected with high-tensile SS-316 cables." },
       { name: "Tadepalli & Krishna Riverfront", image: "/assets/locations/sub/vijayawada-tadepalli.jpg", tag: "KRISHNA RIVERFRONT | UNBLOCKED BARRAGE VIEW", path: "/safety-pillars/vijayawada?corridor=Tadepalli", desc: "Cooling Krishna river breezes preserved without obstructive traditional metal grilles." }
@@ -343,9 +343,9 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     technicalHeadline: 'ENGINEERED FOR URBAN HIGH-RISES & SUMMER HEAT',
     technicalSubtitle: 'Vijayawada’s extreme summer heat cycles and 15+ floor towers require high thermal and tension stability.',
     weatherChallenge: 'Temperatures reaching 45°C+ cause thermal expansion issues in ordinary plastic-coated wires, leading to slackening and sagging over time.',
-    engineeringSolution: 'D-VIEW utilizes pre-stretched aerospace-grade 7x7 stainless cable cores with high-temperature polyamide coating that maintains uniform tension in extreme summers.',
-    recommendedGrade: 'SS-316 High-Tensile Core with Thermal Stabilization',
-    corrosionAdvisory: 'Inland urban pollution and riverfront humidity create environmental oxidation. SS-316 provides superior durability over commercial interior-grade steels.',
+    engineeringSolution: 'D-VIEW utilizes pre-stretched high-tensile 7x7 stainless cable cores with durable polyamide coating that maintains uniform tension in extreme summers.',
+    recommendedGrade: 'SS-316 & SS-304 Options Available',
+    corrosionAdvisory: 'Inland urban pollution and riverfront humidity create environmental oxidation. We offer SS-316 and SS-304 grades tailored to your location and exposure.',
     technicalSpecs: [
       { label: 'Core Wire', value: '316 Marine Stainless Steel (7x7 Strand)', note: 'Pre-stretched to eliminate cable sag' },
       { label: 'Thermal Resistance', value: '-20°C to +85°C Polyamide Coating', note: 'No melting, fading or yellowing in 45°C summers' },
@@ -384,7 +384,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         propertyType: 'Duplex Penthouse Balcony',
         wireSpec: '3.0mm SS-316 High-Tensile',
         areaSqFt: 190,
-        highlight: 'Prakasam Barrage view preserved 100%; passed structural safety inspection.',
+        highlight: 'Prakasam Barrage view preserved with complete structural safety.',
         image: '/assets/corridors/vijayawada-benzcircle.jpg'
       },
       {
@@ -414,12 +414,12 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'How fast can a site measurement and installation be completed in Vijayawada?',
-        answer: 'Our local Vijayawada team provides site measurements within 24 hours of booking. Following quotation approval, standard balcony installation is completed in 4 to 6 hours.'
+        answer: 'Site visits can be arranged within 48 hours after confirmation, subject to location and availability. Following quotation approval, standard balcony installation is scheduled promptly.'
       }
     ],
     
     seoTitle: 'Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions',
-    seoDescription: 'Certified SS-316 invisible safety grills for apartments in Vijayawada, Benz Circle & Amaravati HappyNest towers. Krishna river views & child safety.',
+    seoDescription: 'Stainless steel invisible safety grills for apartments in Vijayawada, Benz Circle & Amaravati HappyNest towers. Krishna river views & child safety.',
     keywords: ['invisible grills vijayawada', 'balcony invisible grills amaravati', 'safety grills benz circle', 'invisible grills mangalagiri']
   },
 
@@ -433,17 +433,17 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     tagline: 'Living Spaces Without Fear & Without Cages',
     emotionHook: 'Mana Kakinada coastal palm & port breeze view invisible grills valla asalu block avvakunda entha fresh ga undo!',
     heroHeadline: 'INVISIBLE GRILLS IN KAKINADA',
-    heroSubhead: 'Slim stainless steel cables for balconies and windows in Kakinada designed for uncompromised coastal views, sea breeze and certified anti-rust safety.',
+    heroSubhead: 'Slim stainless steel cables for balconies and windows in Kakinada designed for uncompromised coastal views, sea breeze and corrosion-resistant safety.',
     heroImage: '/assets/locations/kakinada.jpg',
     heroPosterImage: '/assets/locations/kakinada.jpg',
     heroImageAlt: 'Coastal residential balcony in Kakinada with installed invisible safety grills overlooking port coastline and palm canopies',
     keywordPings: ['Invisible Grills Kakinada', 'Sarpavaram High-Rise', 'Vakalapudi Port Balcony', 'Marine Grade SS-316', 'Coastal Rust Shield'],
     subLocalities: [
-      { name: "Sarpavaram Gated Enclaves", image: "/assets/locations/sub/kakinada-sarpavaram.jpg", tag: "GATED APARTMENTS | 100% PIGEON EXCLUSION", path: "/safety-pillars/kakinada?corridor=Sarpavaram", desc: "Modern family apartment balconies with permanent bird barrier and crystal daylight." },
-      { name: "Vakalapudi Beachfront Corridor", image: "/assets/locations/sub/kakinada-vakalapudi.jpg", tag: "COASTAL LIGHTHOUSE BELT | SS-316 MARINE GRADE", path: "/safety-pillars/kakinada?corridor=Vakalapudi", desc: "Direct coastal sea breeze flows freely while ensuring absolute toddler fall prevention." },
+      { name: "Sarpavaram Gated Enclaves", image: "/assets/locations/sub/kakinada-sarpavaram.jpg", tag: "GATED APARTMENTS | EFFECTIVE PIGEON BARRIER", path: "/safety-pillars/kakinada?corridor=Sarpavaram", desc: "Modern family apartment balconies with effective bird barrier and crystal daylight." },
+      { name: "Vakalapudi Beachfront Corridor", image: "/assets/locations/sub/kakinada-vakalapudi.jpg", tag: "COASTAL LIGHTHOUSE BELT | SS-316 MARINE GRADE", path: "/safety-pillars/kakinada?corridor=Vakalapudi", desc: "Direct coastal sea breeze flows freely while ensuring toddler fall protection." },
       { name: "Madhavapatnam Corridors", image: "/assets/locations/sub/kakinada-madhavapatnam.jpg", tag: "EXPANSION RESIDENCES | CHILD FALL BARRIER", path: "/safety-pillars/kakinada?corridor=Madhavapatnam", desc: "G+5 residential balcony safety with seamless floor-to-ceiling invisible lines." },
       { name: "Ramanayyapeta Prime Residences", image: "/assets/locations/sub/kakinada-ramanayyapeta.jpg", tag: "CENTRAL RESIDENTIAL | SENIOR VERTIGO RELIEF", path: "/safety-pillars/kakinada?corridor=Ramanayyapeta", desc: "Zero pigeon roosting and full peace of mind for seniors and young families." },
-      { name: "Jagannaickpur Historic Belt", image: "/assets/locations/sub/kakinada-jagannaickpur.jpg", tag: "HISTORIC PORT BELT | 10-YR ANTI-RUST WARRANTY", path: "/safety-pillars/kakinada?corridor=Jagannaickpur", desc: "Port-adjacent residential living with corrosion-proof SS-316 stainless cables." }
+      { name: "Jagannaickpur Historic Belt", image: "/assets/locations/sub/kakinada-jagannaickpur.jpg", tag: "HISTORIC PORT BELT | 5-YEAR WARRANTY", path: "/safety-pillars/kakinada?corridor=Jagannaickpur", desc: "Port-adjacent residential living with corrosion-resistant stainless cables." }
     ],
     
     landmarkHeadline: 'COASTAL LIVING. OPEN VIEWS. MODERN SAFETY.',
@@ -483,7 +483,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         propertyType: '6th Floor Coastal Balcony',
         wireSpec: '3.0mm SS-316 Marine Grade',
         areaSqFt: 105,
-        highlight: 'Coastal sea breeze flows freely while ensuring absolute fall prevention.',
+        highlight: 'Coastal sea breeze flows freely while ensuring reliable fall protection.',
         image: '/assets/corridors/kakinada-vakalapudi.jpg'
       },
       {
@@ -501,11 +501,11 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     faqs: [
       {
         question: 'How do invisible grills fare in Kakinada coastal weather?',
-        answer: 'Because Kakinada is a coastal city with high salt moisture, D-VIEW exclusively provides SS-316 marine-grade stainless steel with protective coatings to deliver maximum rust resistance.'
+        answer: 'For coastal cities like Kakinada with high salt moisture, D-VIEW recommends SS-316 marine-grade stainless steel with protective coatings to deliver maximum corrosion resistance, while SS-304 is also available for standard requirements.'
       },
       {
         question: 'Can the wires be damaged by pets or birds?',
-        answer: 'No. The SS-316 cables have a breaking tension of over 400 kg and the clear nylon coating resists scratching and biting from cats or dogs.'
+        answer: 'No. The high-tensile stainless steel cables have strong breaking tension and the clear nylon coating resists scratching and biting from cats or dogs.'
       },
       {
         question: 'Does installation require drilling into window tiles?',
@@ -514,7 +514,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     ],
     
     seoTitle: 'Invisible Grills in Kakinada | SS-316 Balcony Safety | D-VIEW',
-    seoDescription: 'High-grade SS-316 invisible safety grills in Kakinada. Coastal-resistant, child-safe, pigeon-proof balconies. Free site visits in Sarpavaram & Vakalapudi.',
+    seoDescription: 'High-grade stainless steel invisible safety grills in Kakinada. Coastal-resistant, child-safe, pigeon-resistant balconies. Site visits in Sarpavaram & Vakalapudi.',
     keywords: ['invisible grills kakinada', 'balcony invisible grills kakinada', 'ss 316 grills sarpavaram', 'pigeon barrier grills kakinada']
   },
 
@@ -528,14 +528,14 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     tagline: 'Living Spaces Without Fear & Without Cages',
     emotionHook: 'Mana Guntur high-rise skyline view invisible grills valla asalu block avvakunda entha safe & open ga undo!',
     heroHeadline: 'INVISIBLE GRILLS IN GUNTUR',
-    heroSubhead: 'Slim stainless steel cables for balconies and windows in Guntur designed for uncompromised horizon views, dust resistance and 100% fall protection.',
+    heroSubhead: 'Slim stainless steel cables for balconies and windows in Guntur designed for uncompromised horizon views, dust resistance and reliable fall protection.',
     heroImage: '/assets/locations/guntur.jpg',
     heroPosterImage: '/assets/locations/guntur.jpg',
     heroImageAlt: 'Luxury apartment balcony in Guntur overlooking city horizon and Kondaveedu landscape at sunset with installed invisible safety grills',
     keywordPings: ['Invisible Grills Guntur', 'Brodipet High-Rises', 'Arundelpet Balcony Safety', 'Kondaveedu Horizon', 'Toddler Anti-Climb Spacing'],
     subLocalities: [
       { name: "Brodipet Central Residences", image: "/assets/locations/sub/guntur-brodipet.jpg", tag: "CENTRAL LUXURY | ZERO PIGEON ROOSTING", path: "/safety-pillars/guntur?corridor=Brodipet", desc: "Core city residential apartment balconies upgraded from rusted bars to invisible lines." },
-      { name: "Arundelpet High-Floor Towers", image: "/assets/locations/sub/guntur-arundelpet.jpg", tag: "URBAN DISTRICT | 100% TODDLER SECURITY", path: "/safety-pillars/guntur?corridor=Arundelpet", desc: "Apartment balcony safety systems maintaining natural daylight and open city views." },
+      { name: "Arundelpet High-Floor Towers", image: "/assets/locations/sub/guntur-arundelpet.jpg", tag: "URBAN DISTRICT | TODDLER FALL PROTECTION", path: "/safety-pillars/guntur?corridor=Arundelpet", desc: "Apartment balcony safety systems maintaining natural daylight and open city views." },
       { name: "Amaravati Road Corridors", image: "/assets/locations/sub/guntur-amaravatiroad.jpg", tag: "LUXURY TOWNSHIPS | UNBLOCKED HILL HORIZONS", path: "/safety-pillars/guntur?corridor=Amaravati%20Road", desc: "G+12 township balcony installations with tested SS-316 high-tensile wire rope." },
       { name: "Namburu Gated Enclaves", image: "/assets/locations/sub/guntur-namburu.jpg", tag: "INSTITUTIONAL BELT | 2-INCH SAFE SPACING", path: "/safety-pillars/guntur?corridor=Namburu", desc: "Gated community villa and apartment terrace child protection systems." },
       { name: "Kaza Growth Corridor", image: "/assets/locations/sub/guntur-kaza.jpg", tag: "EXPRESSWAY TOWERS | AERODYNAMIC WIND PASS", path: "/safety-pillars/guntur?corridor=Kaza", desc: "Terrace and balcony safety engineered to allow natural high winds to pass safely." }
@@ -588,7 +588,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
         propertyType: 'Master Bedroom Balcony',
         wireSpec: '2.0mm SS-316',
         areaSqFt: 78,
-        highlight: '100% pigeon-free balcony with zero restriction on natural daylight.',
+        highlight: 'Pigeon-free balcony with zero restriction on natural daylight.',
         image: '/assets/corridors/guntur-brodipet.jpg'
       }
     ],
@@ -623,16 +623,16 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     tagline: 'Living Spaces Without Fear & Without Cages',
     emotionHook: 'Mana Penna riverfront sunset view invisible grills valla asalu block avvakunda entha serene ga undo!',
     heroHeadline: 'INVISIBLE GRILLS IN NELLORE',
-    heroSubhead: 'Slim stainless steel cables for balconies and windows in Nellore designed for uncompromised Penna river views, fresh air and certified elder & child safety.',
+    heroSubhead: 'Slim stainless steel cables for balconies and windows in Nellore designed for uncompromised Penna river views, fresh air and reliable elder & child safety.',
     heroImage: '/assets/locations/nellore.jpg',
     heroPosterImage: '/assets/locations/nellore.jpg',
     heroImageAlt: 'Modern high-rise balcony in Nellore overlooking Penna river and barrage with installed invisible safety grills',
     keywordPings: ['Invisible Grills Nellore', 'Magunta Layout Flats', 'Balaji Nagar Balcony Safety', 'Penna Riverfront View', 'Fire Escape Safety'],
     subLocalities: [
       { name: "Magunta Layout Premium Balconies", image: "/assets/locations/sub/nellore-maguntalayout.jpg", tag: "PREMIUM COLONY | PENNA SUNSET PRESERVATION", path: "/safety-pillars/nellore?corridor=Magunta%20Layout", desc: "Luxury apartment balconies preserving Penna river sunset views without dark iron cages." },
-      { name: "Balaji Nagar Central Enclave", image: "/assets/locations/sub/nellore-balajinagar.jpg", tag: "URBAN RESIDENTIAL | 100% PIGEON SHIELD", path: "/safety-pillars/nellore?corridor=Balaji%20Nagar", desc: "Pigeon protection and toddler safety across multi-storey central residential enclaves." },
+      { name: "Balaji Nagar Central Enclave", image: "/assets/locations/sub/nellore-balajinagar.jpg", tag: "URBAN RESIDENTIAL | PIGEON PROTECTION", path: "/safety-pillars/nellore?corridor=Balaji%20Nagar", desc: "Pigeon protection and toddler safety across multi-storey central residential enclaves." },
       { name: "Dargamitta High-Rise Towers", image: "/assets/locations/sub/nellore-dargamitta.jpg", tag: "ESTABLISHED ZONE | MODERN FACADE UPGRADE", path: "/safety-pillars/nellore?corridor=Dargamitta", desc: "Balcony modernization with invisible structural stainless steel wire cables." },
-      { name: "Vedayapalem High-Rise Living", image: "/assets/locations/sub/nellore-vedayapalem.jpg", tag: "HIGH-RISE BELT | CERTIFIED FALL PROTECTION", path: "/safety-pillars/nellore?corridor=Vedayapalem", desc: "Certified fall protection for children and seniors across high-floor towers." },
+      { name: "Vedayapalem High-Rise Living", image: "/assets/locations/sub/nellore-vedayapalem.jpg", tag: "HIGH-RISE BELT | RELIABLE FALL PROTECTION", path: "/safety-pillars/nellore?corridor=Vedayapalem", desc: "Fall protection for children and seniors across high-floor towers." },
       { name: "Podalakuru Road Gated Belts", image: "/assets/locations/sub/nellore-podalakur.jpg", tag: "GROWTH CORRIDOR | MARINE SS-316 RESILIENCE", path: "/safety-pillars/nellore?corridor=Podalakuru%20Road", desc: "Gated community apartment installations with UV-coated anti-corrosion cabling." }
     ],
     
@@ -645,17 +645,17 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     technicalSubtitle: 'Nellore’s coastal proximity and river plain require durable, anti-corrosive stainless steel.',
     weatherChallenge: 'Tropical heat coupled with coastal humidity creates conditions for metal oxidation on unprotected surfaces.',
     engineeringSolution: 'SS-316 high-tensile wire rope coated with UV-resistant nylon, secured to rigid 6063-T6 aluminum tracks.',
-    recommendedGrade: 'SS-316 Marine Grade Wire',
+    recommendedGrade: 'SS-316 & SS-304 Options Available',
     corrosionAdvisory: 'With proximity to coastal breezes, SS-316 provides essential resistance against environmental corrosion.',
     technicalSpecs: [
-      { label: 'Wire Grade', value: 'SS-316 Marine Stainless Steel', note: 'Superior to SS-202/304 in humidity' },
-      { label: 'Tensile Strength', value: '> 400 kg Breaking Tension', note: 'Certified safe for adult impacts' },
+      { label: 'Wire Grade', value: 'SS-316 & SS-304 Options Available', note: 'Tailored for environmental resistance' },
+      { label: 'Tensile Strength', value: 'High Tensile Breaking Tension', note: 'Engineered for fall protection' },
       { label: 'Coating', value: 'Clear Polyamide Protective Sheath', note: 'Gentle on hands and pet paws' },
       { label: 'Anchors', value: 'Heavy Duty 316 Stainless Steel', note: 'Precision tensioning turnbuckles' }
     ],
     
     areasHeadline: 'AREAS WE SERVE IN NELLORE',
-    areasSubtitle: 'Free on-site measurements across Magunta Layout, Balaji Nagar, and Podalakuru Road.',
+    areasSubtitle: 'Site visits coordinated across Magunta Layout, Balaji Nagar, and Podalakuru Road.',
     areas: [
       { name: 'Magunta Layout', type: 'Prime Residential Colony', highlight: 'Luxury apartment balcony safety' },
       { name: 'Balaji Nagar', type: 'Central Enclave', highlight: 'Pigeon protection & child security' },
@@ -695,16 +695,16 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'How do invisible grills compare to traditional balcony safety nets?',
-        answer: 'While nylon safety nets provide temporary bird control, they sag, fade, and degrade under UV sunlight within 2-3 years. SS-316 invisible grills are permanent, architectural fixtures with 10+ years of structural life.'
+        answer: 'While nylon safety nets provide temporary bird control, they sag, fade, and degrade under UV sunlight within 2-3 years. SS-316 invisible grills are permanent, architectural fixtures with long-term structural life.'
       },
       {
         question: 'What is the standard warranty on invisible grills in Nellore?',
-        answer: 'D-VIEW provides a 5 to 10-year warranty covering material defects and structural cable integrity for SS-316 marine-grade installations.'
+        answer: 'D-VIEW provides a 5-year warranty covering material defects and structural cable integrity; coverage and conditions confirmed in written quotation.'
       }
     ],
     
     seoTitle: 'Invisible Grills in Nellore | Balcony Safety Solutions | D-VIEW',
-    seoDescription: 'SS-316 invisible safety grills for apartments in Nellore. Magunta Layout, Balaji Nagar & Dargamitta. Child-safe, pigeon-proof, Penna river views.',
+    seoDescription: 'Stainless steel invisible safety grills for apartments in Nellore. Magunta Layout, Balaji Nagar & Dargamitta. Child-safe, pigeon-resistant, Penna river views.',
     keywords: ['invisible grills in nellore', 'balcony safety grills magunta layout', 'pigeon barrier grills nellore', 'safety grills balaji nagar']
   },
 
@@ -716,15 +716,15 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     district: 'Prakasam',
     badge: 'ARCHITECTURAL PROTECTION · ONGOLE (PRAKASAM)',
     tagline: 'Living Spaces Without Fear & Without Cages',
-    emotionHook: 'Bhagyanagar & Lawyerpet high-rises lo open breeze view asalu block avvakunda pillalu mariyu peddavallaki 100% safety!',
+    emotionHook: 'Bhagyanagar & Lawyerpet high-rises lo open breeze view asalu block avvakunda pillalu mariyu peddavallaki complete safety!',
     heroHeadline: 'INVISIBLE GRILLS IN ONGOLE',
-    heroSubhead: 'Slim stainless steel cables for balconies and windows in Ongole designed for uncompromised panoramic views, natural airflow and certified high-rise protection.',
+    heroSubhead: 'Slim stainless steel cables for balconies and windows in Ongole designed for uncompromised panoramic views, natural airflow and reliable high-rise protection.',
     heroImage: '/assets/locations/ongole.jpg',
     heroPosterImage: '/assets/locations/ongole.jpg',
     heroImageAlt: 'Modern high-rise apartment balcony in Ongole overlooking Kurnool Road corridor with installed invisible safety grills',
     keywordPings: ['Invisible Grills Ongole', 'Bhagyanagar High-Rises', 'Lawyerpet Balcony Safety', 'Kurnool Road Towers', 'Child & Pet Shield'],
     subLocalities: [
-      { name: "Bhagyanagar Prime High-Rises", image: "/assets/corridors/ongole-bhagyanagar.jpg", tag: "PRIME RESIDENTIAL | 100% UNBLOCKED PANORAMA", path: "/safety-pillars/ongole?corridor=Bhagyanagar", desc: "Luxury apartments in Bhagyanagar with uncompromised fall protection and full cross-ventilation." },
+      { name: "Bhagyanagar Prime High-Rises", image: "/assets/corridors/ongole-bhagyanagar.jpg", tag: "PRIME RESIDENTIAL | UNBLOCKED PANORAMA", path: "/safety-pillars/ongole?corridor=Bhagyanagar", desc: "Luxury apartments in Bhagyanagar with uncompromised fall protection and full cross-ventilation." },
       { name: "Lawyerpet Central Residences", image: "/assets/corridors/ongole-lawyerpet.jpg", tag: "CENTRAL ENCLAVE | TODDLER & PIGEON SHIELD", path: "/safety-pillars/ongole?corridor=Lawyerpet", desc: "Central high-floor balconies secured with precision 2-inch marine-grade vertical cables." },
       { name: "Kurnool Road Growth Belt", image: "/assets/corridors/ongole-kurnoolroad.jpg", tag: "HIGHWAY TOWERS | HIGH-TENSION RESILIENCE", path: "/safety-pillars/ongole?corridor=Kurnool%20Road", desc: "Fast-developing luxury societies along Kurnool road protected against falls and bird nesting." },
       { name: "Santhapet Established Zone", image: "/assets/corridors/ongole-santhapet.jpg", tag: "MODERN FACADE | ZERO IRON CAGE EFFECT", path: "/safety-pillars/ongole?corridor=Santhapet", desc: "Eliminating rusted iron bars with sleek architectural invisible safety wiring." },
@@ -739,18 +739,18 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     technicalHeadline: 'ENGINEERED FOR PRAKASAM INLAND WEATHER & HIGH-FLOOR WINDS',
     technicalSubtitle: 'Ongole’s seasonal heat and dry dust demand premium anti-static, marine SS-316 cabling.',
     weatherChallenge: 'Inland summer heat and dust winds accelerate wear on traditional painted iron grills.',
-    engineeringSolution: 'SS-316 high-tensile multi-strand stainless steel wires anchored to rigid 6063-T6 aluminum tracks with 10-year rust warranty.',
-    recommendedGrade: 'SS-316 Marine Grade Wire',
+    engineeringSolution: 'High-tensile multi-strand stainless steel wires anchored to rigid 6063-T6 aluminum tracks with 5-year warranty.',
+    recommendedGrade: 'SS-316 & SS-304 Options Available',
     corrosionAdvisory: 'High-tensile SS-316 wire coated with transparent nylon resists oxidation and remains maintenance-free.',
     technicalSpecs: [
-      { label: 'Wire Grade', value: 'SS-316 Marine Grade Stainless Steel', note: 'Certified 100% rust-free' },
-      { label: 'Tensile Strength', value: '> 400 kg Breaking Tension', note: 'Impact certified for adult containment' },
+      { label: 'Wire Grade', value: 'SS-316 & SS-304 Options Available', note: 'Corrosion resistant stainless steel' },
+      { label: 'Tensile Strength', value: 'High Tensile Breaking Tension', note: 'Engineered for fall protection' },
       { label: 'Spacing', value: '2-Inch (50mm) Safe Spacing', note: 'Zero footholds for children or pigeons' },
       { label: 'Track System', value: '6063-T6 Structural Aluminum', note: 'Heavy-duty concealed anchors' }
     ],
     
     areasHeadline: 'AREAS WE SERVE IN ONGOLE',
-    areasSubtitle: 'Free on-site measurements across Bhagyanagar, Lawyerpet, Kurnool Road Belt, and Santhapet.',
+    areasSubtitle: 'Site visits coordinated across Bhagyanagar, Lawyerpet, Kurnool Road Belt, and Santhapet.',
     areas: [
       { name: 'Bhagyanagar', type: 'Prime Residential Colony', highlight: 'Luxury high-rise apartment balcony safety' },
       { name: 'Lawyerpet', type: 'Central Residential Belt', highlight: 'Pigeon protection & toddler fall security' },
@@ -786,7 +786,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     faqs: [
       {
         question: 'How fast can invisible grills be installed in Ongole?',
-        answer: 'D-VIEW provides same-day or next-day on-site measurement in Ongole across Bhagyanagar, Lawyerpet, and Kurnool Road. Fabrication and installation are typically completed within 24 to 48 hours.'
+        answer: 'Site visits in Ongole can be arranged within 48 hours after confirmation, subject to location and availability. Installation timelines are confirmed upon quotation approval.'
       },
       {
         question: 'Can invisible grills stop pigeons in Ongole apartments?',
@@ -794,12 +794,12 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'What warranty is offered in Ongole?',
-        answer: 'We provide a 5 to 10-year warranty covering material integrity and anti-rust performance on certified SS-316 marine-grade wires.'
+        answer: 'We provide a 5-year warranty covering material integrity and structural cable performance; coverage and conditions confirmed in written quotation.'
       }
     ],
     
     seoTitle: 'Invisible Grills in Ongole | Balcony Safety Solutions | D-VIEW',
-    seoDescription: 'SS-316 invisible safety grills in Ongole. Bhagyanagar, Lawyerpet & Kurnool Road. Child safety, pigeon protection, 10-year warranty. Free measurement.',
+    seoDescription: 'Stainless steel invisible safety grills in Ongole. Bhagyanagar, Lawyerpet & Kurnool Road. Child safety, pigeon protection, 5-year warranty. Site visit coordination.',
     keywords: ['invisible grills in ongole', 'balcony safety grills bhagyanagar', 'invisible grills lawyerpet', 'safety grills kurnool road ongole']
   }
 };
