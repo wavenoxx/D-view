@@ -561,8 +561,11 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                         isSubmitting ? 'opacity-80 cursor-wait' : 'cursor-pointer'
                       }`}
                     >
-                      {isSubmitting ? 'Preparing WhatsApp...' : 'Confirm Free Site Visit Booking'}
+                      {isSubmitting ? 'Preparing WhatsApp Draft...' : 'Request Site Visit via WhatsApp →'}
                     </button>
+                    <p className="text-center text-[10px] text-slate-500 mt-2">
+                      Opening WhatsApp prepares a draft; tap Send in WhatsApp to share with D-VIEW.
+                    </p>
                   </form>
 
                   {/* WhatsApp QR Code side */}
