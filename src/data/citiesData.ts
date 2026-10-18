@@ -15,7 +15,7 @@ export const citiesData: CityConfig[] = [
   {
     id: "vizag",
     name: "Visakhapatnam",
-    tagline: "Unblocked Vizag Views, 101% Breathtaking & Secure",
+    tagline: "Unblocked Vizag Views, Breathtaking & Secure",
     subline: "RK Beach to Kailasagiri - Experience ocean horizon vistas with zero safety compromise.",
     landmark: "RK Beach & Kailasagiri Hilltop View",
     heroImage: "/assets/locations/vizag-novotel-straight.jpg",

@@ -245,7 +245,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
     landmarkDesc: 'Luxury apartment balcony framing Kondaveedu ridge skyline and Guntur urban expanse through floor-to-ceiling SS-316 invisible wire cables.',
     heroImage: '/images/dashboard/dashboard-guntur.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-guntur-9x16.jpg?v=tier1_fresh',
-    activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Belt (900+ listings)'],
+    activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Growth Corridor'],
     weatherChallenge: 'Heavy dry winds carrying abrasive dust particulates that erode and dull conventional iron bars.',
     weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain lifelong shine.',
     safetyText: 'Meticulous Fall Security for Apartments & Villas • Anti-Dust Smooth Nylon Coating • Zero-Climb Intervals',
