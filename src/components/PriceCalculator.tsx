@@ -78,11 +78,13 @@ export default function PriceCalculator({ defaultCitySlug = 'visakhapatnam', cit
   const isWidthWarning = width > 35;
   const isHeightWarning = height > 15;
 
+  const normalizedPhone = phone.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '');
+
   // Prepare pre-filled WhatsApp message
   const createWhatsAppUrl = () => {
     const message = `Hello D-VIEW Solutions!
 I calculated an estimate on your website for my balcony:
-- City: ${modalCityObj.name}
+${name.trim() ? `- Name: ${name.trim()}\n` : ''}${normalizedPhone ? `- Mobile: +91 ${normalizedPhone}\n` : ''}- City: ${modalCityObj.name}
 - Dimensions: ${width} ft (W) × ${height} ft (H)
 - Total Area: ${totalArea} sq.ft
 - Wire Thickness: ${selectedThicknessObj.label}
@@ -106,15 +108,20 @@ Please arrange a Free On-Site Digital Measurement visit.`;
     })
     .then((url) => setQrCodeDataUrl(url))
     .catch((err) => console.error('QR code generation error', err));
-  }, [isModalOpen, width, height, thickness, selectedCity, modalCity]);
+  }, [isModalOpen, width, height, thickness, selectedCity, modalCity, name, phone]);
 
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!phone || phone.length < 10) {
+    if (!name.trim()) {
+      alert('Please enter your name');
+      return;
+    }
+    if (!/^[6-9]\d{9}$/.test(normalizedPhone)) {
       alert('Please enter a valid 10-digit mobile number');
       return;
     }
     setIsSubmitted(true);
+    window.open(createWhatsAppUrl(), '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -500,9 +507,9 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                 <div className="w-16 h-16 rounded-full bg-emerald-50 border border-[#16A34A] flex items-center justify-center mx-auto text-[#16A34A]">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900">Site Visit Confirmed!</h3>
+                <h3 className="text-2xl font-black text-slate-900">WhatsApp Estimate Ready</h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you <strong className="text-slate-900">{name}</strong>. Our certified <strong className="text-[#16A34A]">{modalCityObj.name}</strong> installation team will contact you at <strong className="text-slate-900">{phone}</strong> to confirm your complimentary laser measurement visit.
+                  Thank you <strong className="text-slate-900">{name}</strong>. Your <strong className="text-[#16A34A]">{modalCityObj.name}</strong> balcony estimate draft is ready. Open WhatsApp and tap Send to share your details (<strong className="text-slate-900">+91 {normalizedPhone}</strong>) with D-VIEW.
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
                   <a

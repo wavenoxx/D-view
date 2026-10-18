@@ -40,12 +40,14 @@ const cityName = location.cityName || location.name;
 const heroImage = location.heroImage;
 const heroPoster = location.heroPosterImage || location.heroImage;
 const subLocalities = location.subLocalities || [];
+// Multiple aliases render identical content: identify one canonical city URL.
+const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' : location.slug;
 ---
 
 <Layout
   title={`D-VIEW Invisible Safety | ${cityName} SS-316 Balcony Grills`}
   description={`Engineered SS-316 invisible safety grills across ${cityName}. Living spaces without fear & without cages. 100% fall protection, child & pet safety with 10-year warranty.`}
-  canonicalUrl={`https://dviewsolutions.com/${slug}`}
+  canonicalUrl={`https://www.dviewsolutions.com/${primaryCitySlug}`}
   cityName={cityName}
   ogImage={heroImage}
   preloadHeroImage={heroImage}

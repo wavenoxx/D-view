@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode';
 import { 
   ShieldCheck, Phone, CheckCircle2, X, 
   Flame, Baby, Cat, HeartHandshake, Eye, Sparkles, 
@@ -1300,6 +1301,22 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     return encodeURIComponent(msg);
   };
 
+  // Generate the prefilled enquiry QR locally instead of sending lead details
+  // to a third-party QR image API via a public request URL.
+  const [whatsAppQrDataUrl, setWhatsAppQrDataUrl] = useState('');
+  useEffect(() => {
+    let active = true;
+    const whatsappUrl = `https://wa.me/916281620716?text=${getWhatsAppMessage()}`;
+    QRCode.toDataURL(whatsappUrl, {
+      width: 140,
+      margin: 1,
+      color: { dark: '#0F172A', light: '#FFFFFF' }
+    })
+      .then(dataUrl => { if (active) setWhatsAppQrDataUrl(dataUrl); })
+      .catch(() => { if (active) setWhatsAppQrDataUrl(''); });
+    return () => { active = false; };
+  }, [customerName, customerPhone, selectedHub, currentCorridorDisplayName]);
+
   // Society Proof Filter State
   const [societyFilter, setSocietyFilter] = useState<string>(activeSlide.id);
 
@@ -1754,8 +1771,8 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <span>dviewsolutions32@gmail.com</span>
               </a>
               <div className="pt-2 text-[10px] text-slate-500">
-                <span className="text-slate-800 font-semibold block">🏢 Registered Head Office:</span>
-                Rajamahendravaram, Andhra Pradesh, India.
+                <span className="text-slate-800 font-semibold block">📍 Regional Service Base:</span>
+                Rajamahendravaram, Andhra Pradesh, India (Doorstep On-Site Service).
               </div>
             </div>
           </div>
@@ -2778,25 +2795,47 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Dynamic WhatsApp QR Code */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center mt-3">
                 <div className="w-32 h-32 mx-auto bg-white p-2 rounded-xl flex items-center justify-center border border-slate-200 shadow-sm">
-                  <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wa.me/916281620716?text=${getWhatsAppMessage()}`} 
-                    alt="WhatsApp QR Code"
-                    className="w-full h-full object-contain"
-                  />
+                  {whatsAppQrDataUrl ? (
+                    <img
+                      src={whatsAppQrDataUrl}
+                      alt="QR code for opening the prefilled D-VIEW WhatsApp enquiry"
+                      className="w-full h-full object-contain"
+                      width="140"
+                      height="140"
+                    />
+                  ) : (
+                    <span className="text-[10px] text-slate-500">QR code loading</span>
+                  )}
                 </div>
                 <span className="block text-[11px] text-slate-600 font-medium mt-2">
-                  Scan with camera to launch WhatsApp booking instantly
+                  Scan with camera to open pre-filled WhatsApp enquiry draft
                 </span>
               </div>
 
               <a 
                 href={`https://wa.me/916281620716?text=${getWhatsAppMessage()}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (!customerName.trim()) {
+                    e.preventDefault();
+                    alert('Please enter your name');
+                    return;
+                  }
+                  const cleanPhone = customerPhone.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '');
+                  if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+                    e.preventDefault();
+                    alert('Please enter a valid 10-digit mobile number');
+                    return;
+                  }
+                }}
                 className="w-full bg-[#16A34A] hover:bg-emerald-700 text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider block text-center shadow-lg mt-3 transition"
               >
                 Send Details via WhatsApp Directly →
               </a>
+              <p className="text-center text-[10px] text-slate-500 mt-1">
+                Opens WhatsApp with your draft message; tap Send in WhatsApp to share with D-VIEW.
+              </p>
 
             </div>
 

@@ -10,7 +10,7 @@ interface DynamicQRCodeProps {
 export default function DynamicQRCode({ locationSlug, cityName }: DynamicQRCodeProps) {
   const [pageQrUrl, setPageQrUrl] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
-  const [currentUrl, setCurrentUrl] = useState<string>(`https://dviewsolutions.com/locations/${locationSlug}`);
+  const [currentUrl, setCurrentUrl] = useState<string>(`https://www.dviewsolutions.com/locations/${locationSlug}`);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

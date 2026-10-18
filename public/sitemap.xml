@@ -1,246 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+  <!-- Canonical public pages only; alias and duplicate location templates are intentionally excluded. -->
   <url>
-    <loc>https://dviewsolutions.com/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Core Pages -->
-  <url>
-    <loc>https://dviewsolutions.com/solutions/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/projects/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/solutions/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/projects/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/about/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/locations/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/contact/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Primary City Landing Pages (Andhra Pradesh Hubs) -->
-  <url>
-    <loc>https://dviewsolutions.com/visakhapatnam/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/about/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/vizag/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/contact/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/rajahmundry/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/privacy/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/rajamahendravaram/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/sitemap/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/vijayawada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/visakhapatnam/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/rajahmundry/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/vijayawada-amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/vijayawada/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/guntur/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/guntur/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/kakinada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/kakinada/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/nellore/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.dviewsolutions.com/nellore/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/ongole/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Location Hub Pages -->
-  <url>
-    <loc>https://dviewsolutions.com/locations/visakhapatnam/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/ongole/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/vizag/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/visakhapatnam/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/rajahmundry/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/rajahmundry/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/rajamahendravaram/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/vijayawada/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/vijayawada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/guntur/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/kakinada/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/vijayawada-amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/nellore/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
   <url>
-    <loc>https://dviewsolutions.com/locations/guntur/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/locations/kakinada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/locations/nellore/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/locations/ongole/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Safety Pillars & Engineering Proof Pages -->
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/visakhapatnam/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/vizag/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/rajahmundry/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/rajamahendravaram/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/vijayawada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/vijayawada-amaravati/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/guntur/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/kakinada/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/nellore/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dviewsolutions.com/safety-pillars/ongole/</loc>
-    <lastmod>2026-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://www.dviewsolutions.com/safety-pillars/ongole/</loc>
+    <lastmod>2026-10-18</lastmod>
   </url>
 </urlset>
