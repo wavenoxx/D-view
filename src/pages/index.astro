@@ -1,21 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import DViewWebsite from '../components/DViewWebsite.tsx';
-
-const homeFaqs = [
-  {
-    question: "What are SS-316 invisible safety grills?",
-    answer: "SS-316 invisible safety grills are architectural high-tensile marine-grade stainless steel cable systems spaced at 2 inches that provide 100% fall protection and pigeon prevention without obstructing views or airflow."
-  },
-  {
-    question: "Which cities in Andhra Pradesh does D-VIEW serve?",
-    answer: "D-VIEW actively serves Visakhapatnam, Rajamahendravaram, Vijayawada, Guntur, Kakinada, Nellore, and Ongole with same-day laser measurements and certified high-rise installations."
-  },
-  {
-    question: "Do invisible grills rust in coastal humidity or river mists?",
-    answer: "D-VIEW exclusively installs aerospace-grade SS-316 infused with 2.5% Molybdenum core alloy and high-temperature nylon sheath, backed by an official 10-year replacement warranty against rust and corrosion."
-  }
-];
 ---
 
 <Layout
@@ -27,13 +12,7 @@ const homeFaqs = [
   preloadHeroImage="/images/dashboard/dashboard-visakhapatnam.jpg"
   hideFloatingButtons={true}
   showIntroAnimation={true}
-  faqs={homeFaqs}
 >
-  {/* Visually hidden Semantic H1 for Search Engine Topical Indexing */}
-  <h1 class="sr-only">
-    D-VIEW Solutions — Certified SS-316 Marine-Grade Invisible Balcony Grills in Andhra Pradesh
-  </h1>
-
   {/* Main Dashboard with 7 Cities Showcase, Warranty Trust, and Regional Corridors */}
   <DViewWebsite client:load tier="tier1" />
 </Layout>

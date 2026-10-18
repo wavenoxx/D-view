@@ -29,11 +29,13 @@ import { ALL_LOCATIONS } from '../../data/locations';
         </p>
       </div>
 
-      {/* 6 Location Hub Cards */}
+      {/* 7 Location Hub Cards */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {ALL_LOCATIONS.map((loc) => (
+        {ALL_LOCATIONS.map((loc) => {
+          const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
+          return (
           <a
-            href={`/locations/${loc.slug}`}
+            href={`/${canonicalSlug}`}
             class="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1"
           >
             <div>
@@ -41,7 +43,7 @@ import { ALL_LOCATIONS } from '../../data/locations';
               <div class="relative h-60 overflow-hidden">
                 <img
                   src={loc.heroImage}
-                  alt={`D-VIEW Invisible Grills ${loc.name}`}
+                  alt={loc.heroImageAlt || `D-VIEW Invisible Grills ${loc.name}`}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.02]"
                   loading="lazy"
                 />
@@ -98,14 +100,15 @@ import { ALL_LOCATIONS } from '../../data/locations';
               </div>
             </div>
           </a>
-        ))}
+        );
+        })}
       </div>
 
       {/* Free Site Visit Callout */}
       <div class="mt-16 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 rounded-3xl border border-emerald-200 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
           Need a Custom Multi-Balcony Consultation?
-        </h3>
+        </h2>
         <p class="text-sm text-slate-600 mb-6 max-w-xl mx-auto font-normal">
           Our central Andhra Pradesh engineering team will connect you with your city's senior technician within 2 hours.
         </p>

@@ -88,16 +88,19 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                     7 Andhra Pradesh Hubs
                   </div>
                   <div className="mt-1 space-y-1">
-                    {ALL_LOCATIONS.map((loc) => (
+                    {ALL_LOCATIONS.map((loc) => {
+                      const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
+                      return (
                       <a
                         key={loc.slug}
-                        href={`/locations/${loc.slug}`}
+                        href={`/${canonicalSlug}`}
                         className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-slate-700 hover:bg-emerald-50 hover:text-[#16A34A] transition-all"
                       >
                         <span>{loc.name}</span>
                         <span className="text-[10px] text-slate-400">{loc.district}</span>
                       </a>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -253,10 +256,11 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             <div className="grid grid-cols-2 gap-1.5">
               {ALL_LOCATIONS.map((loc) => {
                 const isActive = loc.slug === currentSlug;
+                const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
                 return (
                   <a
                     key={loc.slug}
-                    href={`/locations/${loc.slug}`}
+                    href={`/${canonicalSlug}`}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left truncate transition-colors ${
                       isActive

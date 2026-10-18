@@ -45,14 +45,13 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
 ---
 
 <Layout
-  title={`D-VIEW Invisible Safety | ${cityName} SS-316 Balcony Grills`}
-  description={`Engineered SS-316 invisible safety grills across ${cityName}. Living spaces without fear & without cages. 100% fall protection, child & pet safety with 10-year warranty.`}
+  title={location.seoTitle || `D-VIEW Invisible Safety | ${cityName} SS-316 Balcony Grills`}
+  description={location.seoDescription || `Engineered SS-316 invisible safety grills across ${cityName}. Living spaces without fear & without cages. 100% fall protection, child & pet safety with 10-year warranty.`}
   canonicalUrl={`https://www.dviewsolutions.com/${primaryCitySlug}`}
   cityName={cityName}
   ogImage={heroImage}
   preloadHeroImage={heroImage}
   keywords={location.keywords}
-  faqs={location.faqs || []}
 >
   <main class="min-h-screen bg-white text-slate-900">
     {/* TOP BRAND NAVIGATION BAR MATCHING REFERENCE SCREENSHOT */}
@@ -110,7 +109,7 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
             {/* 100% Full-bleed background image with unobstructed center */}
             <img
               src={heroPoster}
-              alt={`D-VIEW Invisible Safety in ${cityName}`}
+              alt={location.heroImageAlt || `D-VIEW Invisible Safety in ${cityName}`}
               class="w-full h-full object-cover object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
               loading="eager"
               fetchpriority="high"
@@ -293,7 +292,7 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
             <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
               <span class="text-2xl mt-0.5">💧</span>
               <div>
-                <h4 class="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h4>
+                <h3 class="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h3>
                 <p class="text-xs text-slate-600 mt-1">{location.weatherChallenge}</p>
               </div>
             </div>
@@ -301,7 +300,7 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
             <div class="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-300">
               <span class="text-2xl mt-0.5">🛡️</span>
               <div>
-                <h4 class="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h4>
+                <h3 class="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h3>
                 <p class="text-xs text-slate-700 mt-1">{location.engineeringSolution}</p>
               </div>
             </div>
@@ -351,7 +350,7 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
               <div class="inline-flex items-center gap-2 bg-[#16A34A] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-2">
                 Marine Metallurgy Armor
               </div>
-              <h4 class="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h4>
+              <h3 class="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h3>
               <p class="text-xs text-slate-200 mt-1 leading-relaxed">
                 Infused with 2.5% Molybdenum core alloy, preventing salt-spray pitting, river-fog oxidation, and thermal slackening across {cityName}.
               </p>

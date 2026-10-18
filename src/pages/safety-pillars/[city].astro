@@ -33,7 +33,6 @@ interface Props {
 }
 
 const { location, slug } = Astro.props;
-const corridorParam = Astro.url.searchParams.get('corridor') || undefined;
 const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' : location.slug;
 
 const CITY_SEO: Record<string, { title: string; description: string; canonical: string }> = {
@@ -75,19 +74,14 @@ const CITY_SEO: Record<string, { title: string; description: string; canonical: 
 };
 
 const cityMeta = CITY_SEO[location.slug] || CITY_SEO['visakhapatnam'];
-const pageTitle = corridorParam 
-  ? `SS-316 Invisible Grills in ${location.name} | ${corridorParam} Balcony Safety | D-View`
-  : cityMeta.title;
-const pageDesc = corridorParam
-  ? `Certified SS-316 Marine Grade invisible safety grills for ${corridorParam} residences in ${location.name}. 100% unblocked panoramic view, 10-year warranty, child & pet fall protection.`
-  : cityMeta.description;
-// Query parameters do not produce independently prerendered Astro pages.
+// Query parameters (?corridor=...) do not produce independently prerendered Astro static pages;
+// consolidate static HTML canonicals to the primary city safety-pillars route.
 const canonicalUrl = `https://www.dviewsolutions.com/safety-pillars/${primaryCitySlug}`;
 ---
 
 <Layout
-  title={pageTitle}
-  description={pageDesc}
+  title={cityMeta.title}
+  description={cityMeta.description}
   canonicalUrl={canonicalUrl}
   cityName={location.name}
   ogImage={location.heroImage}
@@ -95,5 +89,5 @@ const canonicalUrl = `https://www.dviewsolutions.com/safety-pillars/${primaryCit
   keywords={location.keywords}
   faqs={location.faqs || []}
 >
-  <DViewWebsite client:load initialCitySlug={slug} initialCorridor={corridorParam} tier="tier3" />
+  <DViewWebsite client:load initialCitySlug={slug} tier="tier3" faqs={location.faqs || []} />
 </Layout>

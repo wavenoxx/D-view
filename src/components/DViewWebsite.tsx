@@ -44,7 +44,7 @@ export interface LocationSlide {
 export const CITIES_SLIDES: LocationSlide[] = [
   {
     id: 'vizag',
-    locationPath: '/locations/vizag',
+    locationPath: '/visakhapatnam',
     slug: 'visakhapatnam',
     name: 'Visakhapatnam',
     cityShort: 'VIZAG',
@@ -109,7 +109,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'rajahmundry',
-    locationPath: '/locations/rajahmundry',
+    locationPath: '/rajahmundry',
     slug: 'rajahmundry',
     name: 'Rajamahendravaram',
     cityShort: 'RAJAHMUNDRY',
@@ -167,7 +167,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'vijayawada',
-    locationPath: '/locations/vijayawada',
+    locationPath: '/vijayawada',
     slug: 'vijayawada-amaravati',
     name: 'Vijayawada & Amaravati',
     cityShort: 'VIJAYAWADA',
@@ -232,7 +232,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'guntur',
-    locationPath: '/locations/guntur',
+    locationPath: '/guntur',
     slug: 'guntur',
     name: 'Guntur',
     cityShort: 'GUNTUR',
@@ -290,7 +290,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'kakinada',
-    locationPath: '/locations/kakinada',
+    locationPath: '/kakinada',
     slug: 'kakinada',
     name: 'Kakinada',
     cityShort: 'KAKINADA',
@@ -348,7 +348,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'nellore',
-    locationPath: '/locations/nellore',
+    locationPath: '/nellore',
     slug: 'nellore',
     name: 'Nellore',
     cityShort: 'NELLORE',
@@ -406,7 +406,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'ongole',
-    locationPath: '/locations/ongole',
+    locationPath: '/ongole',
     slug: 'ongole',
     name: 'Ongole',
     cityShort: 'ONGOLE',
@@ -1116,6 +1116,7 @@ interface DViewWebsiteProps {
   initialCitySlug?: string;
   initialCorridor?: string;
   tier?: 'tier1' | 'tier2' | 'tier3';
+  faqs?: { question: string; answer: string }[];
 }
 
 export const WARRANTY_BADGES = [
@@ -1145,14 +1146,19 @@ export const WARRANTY_BADGES = [
   }
 ];
 
-export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 'tier1' }: DViewWebsiteProps) {
+export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 'tier1', faqs }: DViewWebsiteProps) {
   const getIndexFromSlug = (slug?: string) => {
     if (!slug) return 0;
-    const clean = slug.toLowerCase();
+    const clean = slug.toLowerCase().trim();
+    if (clean === 'rajamahendravaram') return CITIES_SLIDES.findIndex(s => s.id === 'rajahmundry');
+    if (clean === 'amaravati' || clean === 'vijayawada-amaravati') return CITIES_SLIDES.findIndex(s => s.id === 'vijayawada');
+    if (clean === 'vizag' || clean === 'visakhapatnam') return CITIES_SLIDES.findIndex(s => s.id === 'vizag');
     const idx = CITIES_SLIDES.findIndex(
       s => s.locationPath.replace('/', '').replace('locations/', '') === clean || 
            s.slug === clean || 
            s.id === clean || 
+           s.name.toLowerCase().includes(clean) ||
+           s.slug.includes(clean) ||
            clean.includes(s.id)
     );
     return idx >= 0 ? idx : 0;
@@ -1274,6 +1280,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
   const activeCorridorAsset = getActiveCorridorAsset();
   const currentHeroImage = activeCorridorAsset.image;
   const currentCorridorDisplayName = activeCorridorAsset.title || activeSlide.name;
+
+  // Client-side document title synchronization when ?corridor= parameter is present on Tier 3
+  useEffect(() => {
+    if (typeof window !== 'undefined' && tier === 'tier3') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('corridor') && currentCorridorDisplayName) {
+        document.title = `SS-316 Invisible Grills in ${activeSlide.name} | ${currentCorridorDisplayName} Balcony Safety | D-View`;
+      }
+    }
+  }, [tier, activeSlide.name, currentCorridorDisplayName]);
 
   // Booking Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1495,7 +1511,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
                 <Droplets className="w-6 h-6 text-[#16A34A] shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h4>
+                  <h3 className="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h3>
                   <p className="text-xs text-slate-600 mt-1">{activeSlide.weatherChallenge}</p>
                 </div>
               </div>
@@ -1503,7 +1519,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-300">
                 <ShieldCheck className="w-6 h-6 text-[#16A34A] shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h4>
+                  <h3 className="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h3>
                   <p className="text-xs text-slate-700 mt-1">{activeSlide.weatherSolution}</p>
                 </div>
               </div>
@@ -1556,7 +1572,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <div className="inline-flex items-center gap-2 bg-[#16A34A] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-2">
                   Marine Metallurgy Armor
                 </div>
-                <h4 className="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h4>
+                <h3 className="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h3>
                 <p className="text-xs text-slate-200 mt-1 leading-relaxed">
                   Infused with 2.5% Molybdenum core alloy, preventing salt-spray pitting, river-fog oxidation, and thermal slackening across {activeSlide.name}.
                 </p>
@@ -1636,9 +1652,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <ShieldCheck className="w-3.5 h-3.5 text-[#16A34A]" />
               <span>100% Free Doorstep Engineering Survey</span>
             </div>
-            <h4 className="text-xl sm:text-2xl font-bold text-slate-900">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
               Precision Laser Measurement & Genuine SS-316 Sample Verification
-            </h4>
+            </h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-2xl leading-relaxed">
               Our certified technicians visit your balcony with digital laser meters, genuine SS-316 cable cross-section samples, and provide accurate on-spot pricing with zero sales pressure.
             </p>
@@ -1800,7 +1816,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4 text-[11px]">
             {/* Vizag */}
-            <a href="/locations/vizag" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/visakhapatnam" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Visakhapatnam (Vizag)</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1811,7 +1827,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Rajahmundry */}
-            <a href="/locations/rajahmundry" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/rajahmundry" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Rajamahendravaram</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1822,7 +1838,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Vijayawada */}
-            <a href="/locations/vijayawada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/vijayawada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Vijayawada & Amaravati</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1833,7 +1849,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Guntur */}
-            <a href="/locations/guntur" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/guntur" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Guntur Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1844,7 +1860,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Kakinada */}
-            <a href="/locations/kakinada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/kakinada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Kakinada Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1855,7 +1871,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Nellore */}
-            <a href="/locations/nellore" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/nellore" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Nellore Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1866,7 +1882,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Ongole */}
-            <a href="/locations/ongole" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/ongole" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Ongole Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1994,14 +2010,24 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               alt="D-VIEW Invisible Grills & Safety Solutions" 
               className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
             />
-            {/* Prominently Highlighted Brand Slogan Badge */}
-            <div className="hidden lg:flex items-center pl-3 border-l-2 border-emerald-500/40">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm">
-                <span className="text-[#16A34A] font-extrabold">—</span>
-                <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                <span className="text-[#16A34A] font-extrabold">—</span>
-              </span>
-            </div>
+            {/* Prominently Highlighted Brand Slogan Badge (Primary visible H1 on Tier 1 Homepage across Mobile & Desktop) */}
+            {tier === 'tier1' ? (
+              <h1 className="flex items-center pl-2 sm:pl-3 border-l-2 border-emerald-500/40 m-0">
+                <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[8px] sm:text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm leading-tight text-center max-w-[135px] sm:max-w-none sm:whitespace-nowrap">
+                  <span className="hidden sm:inline text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                  <span className="text-slate-900 font-extrabold tracking-wider sm:tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                  <span className="hidden sm:inline text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                </span>
+              </h1>
+            ) : (
+              <div className="hidden lg:flex items-center pl-3 border-l-2 border-emerald-500/40">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm">
+                  <span className="text-[#16A34A] font-extrabold">—</span>
+                  <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                  <span className="text-[#16A34A] font-extrabold">—</span>
+                </span>
+              </div>
+            )}
           </a>
         </div>
 
@@ -2125,14 +2151,14 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                   Tier 1: City Showcase Slides
                 </a>
                 <a 
-                  href={`/locations/${activeSlide.id}`}
+                  href={activeSlide.locationPath}
                   onClick={() => setIsMenuOpen(false)}
                   className="block hover:text-[#16A34A] transition"
                 >
                   Tier 2: {activeSlide.name} Corridors
                 </a>
                 <a 
-                  href={`/safety-pillars/${activeSlide.id}`}
+                  href={`/safety-pillars/${activeSlide.slug === 'vijayawada-amaravati' ? 'vijayawada' : activeSlide.slug}`}
                   onClick={() => setIsMenuOpen(false)}
                   className="block hover:text-[#16A34A] transition text-[#16A34A]"
                 >
@@ -2198,15 +2224,15 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     {slide.name}
                   </div>
 
-                  {/* Line 2: Semantic H1 Headline */}
-                  <h1 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
+                  {/* Line 2: Semantic H2 Headline */}
+                  <h2 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
                     Invisible Grills in <span className="text-[#7CFF3A]">{slide.cityShort}</span>
-                  </h1>
-
-                  {/* Line 3: Semantic H2 / Subline */}
-                  <h2 className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
-                    {slide.subline || "SS-316 Marine Grade Invisible Grills for 100% Balcony Safety & Open Views."}
                   </h2>
+
+                  {/* Line 3: Subline Paragraph */}
+                  <p className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
+                    {slide.subline || "SS-316 Marine Grade Invisible Grills for 100% Balcony Safety & Open Views."}
+                  </p>
                 </div>
 
               </div>
@@ -2344,7 +2370,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {activeSlide.subLocations.map((corridor, idx) => (
                 <a
                   key={idx}
-                  href={`/safety-pillars/${activeSlide.id}?corridor=${encodeURIComponent(corridor.name)}`}
+                  href={`/safety-pillars/${activeSlide.slug === 'vijayawada-amaravati' ? 'vijayawada' : activeSlide.slug}?corridor=${encodeURIComponent(corridor.name)}`}
                   className="group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col hover:shadow-xl cursor-pointer"
                 >
                   {/* High-Definition Sunlit Balcony Visual - 100% CLEAN & UNOBSTRUCTED */}
@@ -2441,7 +2467,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Top Back Link & Focused Corridor Badge */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <a 
-                  href={`/locations/${activeSlide.id}`} 
+                  href={activeSlide.locationPath} 
                   className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-200 hover:text-white transition group font-medium drop-shadow"
                 >
                   <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition" />
@@ -2616,9 +2642,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                               </span>
                             )}
                           </div>
-                          <h4 className="text-base font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1 leading-snug">
+                          <h3 className="text-base font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1 leading-snug">
                             {proj.societyName}
-                          </h4>
+                          </h3>
                           <div className="flex items-center gap-1.5 text-[10px] text-[#16A34A] font-semibold mb-2">
                             <span>🛡</span>
                             <span>{proj.installationType}</span>
@@ -2677,12 +2703,12 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                   FREQUENTLY ASKED QUESTIONS
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-extrabold uppercase text-slate-900 mt-2">
-                  Architectural Safety Insights
+                  Architectural Safety Insights ({activeSlide.name})
                 </h2>
               </div>
 
               <div className="space-y-4">
-                {FAQS.map((faq, i) => (
+                {(faqs && faqs.length > 0 ? faqs.map(f => ({ q: f.question, a: f.answer })) : FAQS).map((faq, i) => (
                   <div key={i} className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
                     <h3 className="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
                       <HelpCircle className="w-4 h-4 text-[#16A34A] shrink-0" />
