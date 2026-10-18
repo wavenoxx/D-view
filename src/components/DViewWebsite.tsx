@@ -52,28 +52,28 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mainTitle: 'THE INVISIBLE THRESHOLD — VIZAG',
     subline: 'Balcony & Window Invisible Grills. Unobstructed RK Beach Panoramas.',
     microCue: 'Tap anywhere to explore Vizag corridors & pricing',
-    badge: 'Coastal Marine Line SS-316',
+    badge: 'Coastal Stainless Line SS-316 Option',
     emotionHook: 'Mana Vizag sea coast view invisible grills valla asalu block avvakunda entha luxury ga undo!',
     landmarkDesc: 'Luxury penthouse interior balcony framing RK Beach coastal waves and Kailasagiri hillside through vertical SS-316 cables.',
     heroImage: '/images/dashboard/dashboard-visakhapatnam.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-visakhapatnam-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Madhurawada (27-Floor High-Rises)', 'Yendada', 'Rushikonda', 'PM Palem', 'Anandapuram', 'Pendurthi', 'Gajuwaka'],
     weatherChallenge: "Vizag's high-salinity salt-air and marine damp humidity rapidly corrode cheap iron or low-grade steel wires within months.",
-    weatherSolution: 'Marine Grade SS-316 and SS-304 options engineered for corrosion resistance.',
-    safetyText: 'Toddler & Child Fall Protection • Pigeon Barrier • Coastal Stainless Cable Protection',
-    keywordPings: ['Invisible Grills Vizag', 'Balcony Safety Madhurawada', 'SS-316 Marine Grade', 'Toddler Fall Protection', 'Rushikonda Ocean Views'],
+    weatherSolution: 'SS-316 and SS-304 options engineered for corrosion resistance.',
+    safetyText: 'Balcony Safety Barrier • Bird Deterrent • Coastal Stainless Cable Option',
+    keywordPings: ['Invisible Grills Vizag', 'Balcony Safety Madhurawada', 'SS-316 Stainless Steel', 'Balcony Safety Barrier', 'Rushikonda Ocean Views'],
     subLocations: [
       {
         name: 'Madhurawada (27-Floor High-Rises)',
         elevation: '25th-Floor Penthouse Balcony View',
-        tag: '25TH-FLOOR PENTHOUSE | 27 TOWERS LOCKDOWN',
+        tag: '25TH-FLOOR PENTHOUSE | HIGH-RISE SPECIFICATION',
         desc: '25th-floor penthouse balcony looking through vertical SS-316 wires at high-rise valley towers (like MVV The Grand) surrounded by green coastal hills.',
         image: '/assets/locations/sub/vizag-madhurawada.png'
       },
       {
         name: 'Yendada Sea-Facing Corridor',
         elevation: 'High-Altitude Bay Panoramas',
-        tag: 'HIGH-ALTITUDE BAY PANORAMA | MARINE-GRADE SS-316',
+        tag: 'HIGH-ALTITUDE BAY PANORAMA | SS-316 SPECIFICATION',
         desc: 'Wide balcony perspective facing the deep coastal ocean shoreline through crisp, transparent safety cables.',
         image: '/assets/locations/sub/vizag-yendada.png'
       },
@@ -87,7 +87,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'PM Palem (Cricket Stadium Road)',
         elevation: 'Gated Community High-Rises',
-        tag: 'GATED COMMUNITY HIGH-RISE | ZERO-CLIMB TODDLER SAFE',
+        tag: 'GATED COMMUNITY HIGH-RISE | VERTICAL SAFETY BARRIER',
         desc: 'Modern gated community high-rise elevation looking towards mountain ridges through 2-inch safe spaced cables.',
         image: '/assets/locations/sub/vizag-pmpalem.png'
       },
@@ -138,15 +138,15 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Godavari Arch Bridge Riverfront',
         elevation: 'Historic River Panorama',
-        tag: 'ICONIC HERITAGE VIEW | PIGEON BARRIER',
+        tag: 'ICONIC HERITAGE VIEW | BIRD DETERRENT',
         desc: 'Balcony view directly framing the yellow Godavari Arch Bridge and boats drifting on the water through transparent SS-316 wires.',
         image: '/assets/locations/rajahmundry-godavari-bridge.jpg'
       },
       {
         name: 'Bommuru Gated Communities',
         elevation: 'Mid & High-Rise Apartments',
-        tag: 'ZERO BIRD DROPPINGS | 2-INCH SAFE SPACING',
-        desc: 'Luxury society balcony view with pigeon-proof vertical safety wire screens.',
+        tag: 'BIRD DETERRENT | 2-INCH SPACING',
+        desc: 'Apartment balcony concept with vertical safety wire spacing.',
         image: '/assets/locations/sub/rajahmundry-bommuru.png'
       },
       {
@@ -182,8 +182,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mobileHeroImage: '/images/dashboard/dashboard-vijayawada-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Benz Circle', 'Moghalrajpuram', 'Gunadala', 'Kanuru', 'Poranki', 'Amaravati HappyNest (G+18)', 'Tadepalli'],
     weatherChallenge: 'Intense summer thermal expansion and high-velocity wind gusts on skyscraper floors above 15 levels.',
-    weatherSolution: 'High-tensile multi-strand core cables engineered for high load per strand with thermal compensation.',
-    safetyText: 'Skyscraper High-Rise Fall Security • HappyNest & Riverside Balcony Safety • High-Tensile Stainless Cable',
+    weatherSolution: 'Multi-strand core cables engineered for uniform tension with thermal compensation.',
+    safetyText: 'Skyscraper High-Rise Fall Security • HappyNest & Riverside Balcony Safety • Multi-Strand Stainless Cable',
     keywordPings: ['Invisible Grills Vijayawada', 'Amaravati HappyNest Grills', 'Benz Circle Towers', 'High-Rise Balcony Safety', 'Prakasam Barrage View'],
     subLocations: [
       {
@@ -197,7 +197,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
         name: 'Amaravati HappyNest (G+18)',
         elevation: 'G+18 IT & Gov Housing Enclave',
         tag: 'High-Rise Engineered',
-        desc: 'Precision 50mm vertical wire spacing delivering toddler fall security for HappyNest apartments.',
+        desc: 'Precision 50mm vertical wire spacing providing balcony barrier layout for high-rise apartments.',
         image: '/assets/corridors/vijayawada-happynest.jpg'
       },
       {
@@ -210,8 +210,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Gunadala & Ramavarappadu',
         elevation: 'Premium Gated Societies',
-        tag: 'High Tensile Cable Load',
-        desc: 'Multi-strand core cables withstand body impacts and heavy leaning without slackening.',
+        tag: 'Multi-Strand Cable Load',
+        desc: 'Multi-strand core cables designed for balcony boundary containment when properly tensioned.',
         image: '/assets/corridors/vijayawada-gunadala.jpg'
       },
       {
@@ -224,8 +224,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Tadepalli Riverside Towers',
         elevation: 'Krishna Riverfront Penthouses',
-        tag: 'River Humidity Proof',
-        desc: 'Marine grade SS-316 cables chemically immune to Krishna river vapor mist and monsoon rains.',
+        tag: 'River Humidity Resistant',
+        desc: 'SS-316 cables formulated for resistance to Krishna river vapor mist and monsoon rains.',
         image: '/assets/corridors/vijayawada-tadepalli.jpg'
       }
     ]
@@ -247,9 +247,9 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mobileHeroImage: '/images/dashboard/dashboard-guntur-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Growth Corridor'],
     weatherChallenge: 'Heavy dry winds carrying abrasive dust particulates that erode and dull conventional iron bars.',
-    weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain lifelong shine.',
-    safetyText: 'Meticulous Fall Security for Apartments & Villas • Anti-Dust Smooth Nylon Coating • Zero-Climb Intervals',
-    keywordPings: ['Invisible Grills Guntur', 'Brodipet High-Rises', 'Arundelpet Balcony Safety', 'Kondaveedu Horizon', 'Toddler Anti-Climb Spacing'],
+    weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain durable clarity.',
+    safetyText: 'Meticulous Fall Security for Apartments & Villas • Anti-Dust Smooth Nylon Coating • Vertical Safety Intervals',
+    keywordPings: ['Invisible Grills Guntur', 'Brodipet High-Rises', 'Arundelpet Balcony Safety', 'Kondaveedu Horizon', 'Vertical Safe Spacing'],
     subLocations: [
       {
         name: 'Brodipet High-End Residencies',
@@ -261,8 +261,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Arundelpet Modern Towers',
         elevation: 'High-Density Residential Hub',
-        tag: 'Zero-Climb Spacing',
-        desc: 'Vertical 2-inch intervals with zero horizontal footing prevent climbing hazards completely.',
+        tag: 'Vertical Safety Spacing',
+        desc: 'Vertical 2-inch intervals with no horizontal footholds help deter climbing.',
         image: '/assets/corridors/guntur-arundelpet.jpg'
       },
       {
@@ -294,33 +294,33 @@ export const CITIES_SLIDES: LocationSlide[] = [
     slug: 'kakinada',
     name: 'Kakinada',
     cityShort: 'KAKINADA',
-    categoryTag: 'MARINE GRADE SS-316 CORRIDOR',
+    categoryTag: 'COASTAL CORRIDOR SPECIFICATION',
     mainTitle: "KAKINADA'S COASTAL SHIELD",
-    subline: 'Permanent rust immunity against salty coastal sea breezes.',
+    subline: 'Corrosion-resistant stainless steel for coastal sea breezes.',
     microCue: 'Tap anywhere to view Kakinada coastal specs & pricing',
     badge: 'Deepwater Port & Coastal Corridor',
-    emotionHook: 'Uppu gaali thupattu pattakunda, high-grade Marine wire security tho lifetime durability!',
-    landmarkDesc: 'Coastal apartment balcony framing Vakalapudi Lighthouse and palm shoreline with marine-grade SS-316 wires.',
+    emotionHook: 'Uppu gaali thupattu pattakunda, high-grade stainless wire security tho durable protection!',
+    landmarkDesc: 'Coastal apartment balcony framing Vakalapudi Lighthouse and palm shoreline with SS-316 wires.',
     heroImage: '/images/dashboard/dashboard-kakinada.jpg',
     mobileHeroImage: '/images/dashboard/dashboard-kakinada-9x16.jpg',
     activeBelts: ['Sarpavaram', 'Madhavapatnam', 'Ramanayyapeta', 'Vakalapudi', 'Jagannaickpur'],
     weatherChallenge: 'Aggressive industrial port emissions mixed with salty maritime mist causing pitting corrosion.',
     weatherSolution: 'Corrosion-resistant SS-316 and SS-304 stainless steel options engineered for coastal exposure.',
-    safetyText: 'Corrosion Resistance Against Marine Port Emissions • Child & Pet Containment • Unblocked Sea Breeze',
-    keywordPings: ['Invisible Grills Kakinada', 'Sarpavaram High-Rise', 'Vakalapudi Port Balcony', 'Marine Grade SS-316', 'Coastal Rust Shield'],
+    safetyText: 'Corrosion Resistance Against Coastal Port Emissions • Child & Pet Containment • Unblocked Sea Breeze',
+    keywordPings: ['Invisible Grills Kakinada', 'Sarpavaram High-Rise', 'Vakalapudi Port Balcony', 'SS-316 Option', 'Coastal Rust Shield'],
     subLocations: [
       {
         name: 'Vakalapudi Port & Lighthouse Corridor',
         elevation: 'Sea-Front Balcony Residences',
-        tag: 'Marine-Grade Alloy',
-        desc: 'Direct view of Vakalapudi lighthouse protected with Molybdenum-infused SS-316 for lifetime rust immunity.',
+        tag: 'SS-316 Stainless Steel',
+        desc: 'Direct view of Vakalapudi lighthouse protected with molybdenum-infused SS-316 for enhanced coastal corrosion resistance.',
         image: '/assets/corridors/kakinada-vakalapudi.jpg'
       },
       {
         name: 'Sarpavaram High-Rise Towers',
         elevation: 'Gated Residential Colonies',
-        tag: 'Toddler Lockdown Safe',
-        desc: 'Ensures absolute fall containment up to the highest floors while allowing sea breeze in.',
+        tag: 'Balcony Safety Barrier',
+        desc: 'Designed as a reliable fall safety barrier across upper floors while allowing sea breeze in.',
         image: '/assets/corridors/kakinada-sarpavaram.jpg'
       },
       {
@@ -377,7 +377,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Balaji Nagar Elevated Residencies',
         elevation: 'High-Floor Family Apartments',
-        tag: 'High Tensile Cable Strength',
+        tag: 'Multi-Strand Cable Strength',
         desc: 'Solid cable structural reassurance preventing vertigo and loss-of-balance fears.',
         image: '/assets/corridors/nellore-balajinagar.jpg'
       },
@@ -421,14 +421,14 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mobileHeroImage: '/images/dashboard/dashboard-ongole-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Bhagyanagar', 'Lawyerpet', 'Kurnool Road Belt', 'Santhapet', 'Mangamuru Road', 'Housing Board Colony'],
     weatherChallenge: 'Inland summer heat and dry highway dust wearing down traditional painted grills and causing frequent rust.',
-    weatherSolution: 'High-tensile wire rope (SS-316 & SS-304 options) coated with UV-resistant transparent nylon sheath and heavy-duty 6063-T6 aluminum tracks.',
+    weatherSolution: 'Multi-strand wire rope (SS-316 & SS-304 options) coated with UV-resistant transparent nylon sheath and heavy-duty 6063-T6 aluminum tracks.',
     safetyText: 'Prakasam High-Tension Cable System • Zero Cage Feeling • High-Rise Fall Containment',
     keywordPings: ['Invisible Grills Ongole', 'Bhagyanagar High-Rises', 'Lawyerpet Balcony Safety', 'Kurnool Road Towers', 'Child & Pet Shield'],
     subLocations: [
       {
         name: 'Bhagyanagar Prime High-Rises',
         elevation: 'High-Floor Balconies',
-        tag: 'Toddler Fall Protection',
+        tag: 'Balcony Safety Barrier',
         desc: 'Uncompromised skyline views and reliable fall protection for children and families.',
         image: '/assets/corridors/ongole-bhagyanagar.jpg'
       },
@@ -442,8 +442,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Kurnool Road Growth Belt',
         elevation: 'Highway High-Rise Towers',
-        tag: 'High-Tension Tensile Strength',
-        desc: 'Calibrated tension turnbuckles and high-load cables ensuring zero sag and lifetime durability.',
+        tag: 'Multi-Strand Tension',
+        desc: 'Calibrated tension turnbuckles and stainless cables maintaining uniform tension and long-term performance.',
         image: '/assets/corridors/ongole-kurnoolroad.jpg'
       },
       {
@@ -513,13 +513,13 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "PM Palem": {
     image: "/assets/corridors/vizag-pmpalem.jpg",
     title: "PM Palem (Cricket Stadium Road)",
-    spec: "Gated Community High-Rise | Toddler Safe",
+    spec: "Gated Community High-Rise | Safety Barrier",
     cityId: "vizag"
   },
   "PM Palem (Cricket Stadium Road)": {
     image: "/assets/corridors/vizag-pmpalem.jpg",
     title: "PM Palem (Cricket Stadium Road)",
-    spec: "Gated Community High-Rise | Toddler Safe",
+    spec: "Gated Community High-Rise | Safety Barrier",
     cityId: "vizag"
   },
   "Anandapuram": {
@@ -563,19 +563,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Godavari Arch Bridge": {
     image: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     title: "Godavari Arch Bridge Riverfront",
-    spec: "Iconic Heritage View | Pigeon Barrier",
+    spec: "Iconic Heritage View | Bird Deterrent",
     cityId: "rajahmundry"
   },
   "Godavari Arch Bridge Riverfront": {
     image: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     title: "Godavari Arch Bridge Riverfront",
-    spec: "Iconic Heritage View | Pigeon Barrier",
+    spec: "Iconic Heritage View | Bird Deterrent",
     cityId: "rajahmundry"
   },
   "Bommuru": {
     image: "/assets/corridors/rajahmundry-bommuru.jpg",
     title: "Bommuru Gated Communities",
-    spec: "Zero Bird Droppings | 2-Inch Safe Spacing",
+    spec: "Bird Deterrent | 2-Inch Spacing",
     cityId: "rajahmundry"
   },
   "Bommuru Gated Communities": {
@@ -625,19 +625,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Amaravati HappyNest": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
-    spec: "G+18 Floodplain Panoramas | Toddler Safe",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
     cityId: "vijayawada"
   },
   "HappyNest Amaravati": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
-    spec: "G+18 Floodplain Panoramas | Toddler Safe",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
     cityId: "vijayawada"
   },
   "Amaravati HappyNest (G+18)": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
-    spec: "G+18 Floodplain Panoramas | Toddler Safe",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
     cityId: "vijayawada"
   },
   "Moghalrajpuram": {
@@ -649,7 +649,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Gunadala": {
     image: "/assets/corridors/vijayawada-gunadala.jpg",
     title: "Gunadala & Ramavarappadu",
-    spec: "Premium Gated Societies | High-Tensile Load",
+    spec: "Premium Gated Societies | Multi-Strand Load",
     cityId: "vijayawada"
   },
   "Kanuru": {
@@ -675,7 +675,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Arundelpet": {
     image: "/assets/corridors/guntur-arundelpet.jpg",
     title: "Arundelpet Modern Towers",
-    spec: "High-Density Residential Hub | Zero-Climb",
+    spec: "High-Density Residential Hub | Vertical Cables",
     cityId: "guntur"
   },
   "Amaravati Road": {
@@ -701,19 +701,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Vakalapudi": {
     image: "/assets/corridors/kakinada-vakalapudi.jpg",
     title: "Vakalapudi Port & Lighthouse Corridor",
-    spec: "Sea-Front Balcony Residences | Marine-Grade Alloy",
+    spec: "Sea-Front Balcony Residences | SS-316 Stainless Steel",
     cityId: "kakinada"
   },
   "Sarpavaram": {
     image: "/assets/corridors/kakinada-sarpavaram.jpg",
     title: "Sarpavaram High-Rise Towers",
-    spec: "Gated Residential Colonies | Toddler Lockdown",
+    spec: "Gated Residential Colonies | Safety Barrier",
     cityId: "kakinada"
   },
   "Madhavapatnam": {
     image: "/assets/corridors/kakinada-madhavapatnam.jpg",
     title: "Madhavapatnam Residential Hub",
-    spec: "Family Window & Balcony Safety | Bird Barrier",
+    spec: "Family Window & Balcony Safety | Bird Deterrent",
     cityId: "kakinada"
   },
   "Ramanayyapeta": {
@@ -739,7 +739,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Balaji Nagar": {
     image: "/assets/corridors/nellore-balajinagar.jpg",
     title: "Balaji Nagar Elevated Residencies",
-    spec: "High-Floor Family Apartments | High-Tensile Strength",
+    spec: "High-Floor Family Apartments | Multi-Strand Strength",
     cityId: "nellore"
   },
   "Dargamitta": {
@@ -770,19 +770,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Bhagyanagar": {
     image: "/assets/corridors/ongole-bhagyanagar.jpg",
     title: "Bhagyanagar Prime High-Rises",
-    spec: "Prime Residential | Toddler Fall Protection",
+    spec: "Prime Residential | Balcony Safety Barrier",
     cityId: "ongole"
   },
   "Lawyerpet": {
     image: "/assets/corridors/ongole-lawyerpet.jpg",
     title: "Lawyerpet Central Residences",
-    spec: "Central Society Living | Pigeon Barrier",
+    spec: "Central Society Living | Bird Deterrent",
     cityId: "ongole"
   },
   "Kurnool Road": {
     image: "/assets/corridors/ongole-kurnoolroad.jpg",
     title: "Kurnool Road Growth Belt",
-    spec: "Highway High-Rise Towers | High-Tension SS-316",
+    spec: "Highway High-Rise Towers | SS-316 Option",
     cityId: "ongole"
   },
   "Kurnool Road Belt": {
@@ -829,7 +829,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'MVV GV The Grand',
     corridor: 'Madhurawada',
     floor: '25th-Floor Penthouse',
-    specs: '2.5mm Marine SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'Unblocked Hilltop & Valley View',
     image: '/assets/locations/sub/vizag-madhurawada.png',
     layoutTag: 'High-Rise Balcony',
@@ -842,11 +842,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Sanskriti Bayfront',
     corridor: 'Rushikonda',
     floor: 'Sea-Facing Tower (14th Floor)',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'Marine Grade Coating | Pet & Child Safety',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Stainless Steel Option | Pet & Child Safety',
     image: '/assets/locations/sub/vizag-rushikonda.png',
     layoutTag: 'Coastal Elevation',
-    layoutNote: 'Marine-grade alloy selected for coastal salt-air exposure and unobstructed ocean sightlines.'
+    layoutNote: 'Stainless steel cable option selected for coastal salt-air exposure and unobstructed ocean sightlines.'
   },
   {
     id: 'oceanus-towers',
@@ -855,11 +855,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Oceanus Towers',
     corridor: 'Yendada',
     floor: '18th-Floor Coastal Flat',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'Pigeon Barrier & Coastal Bay Protection',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Bird Deterrent & Coastal Bay Protection',
     image: '/assets/locations/sub/vizag-yendada.png',
     layoutTag: 'Bayfront Balcony',
-    layoutNote: 'Effective pigeon barrier without blocking morning daylight or cross-ventilation.'
+    layoutNote: 'Bird deterrent layout without blocking morning daylight or cross-ventilation.'
   },
 
   // Rajamahendravaram Hub
@@ -870,7 +870,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Godavari Riverfront Enclave',
     corridor: 'Morampudi',
     floor: '12th-Floor Riverfront Balcony',
-    specs: '2.5mm Marine SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'River-Breeze Balcony | 5-Year Warranty',
     image: '/assets/locations/sub/rajahmundry-morampudi.png',
     layoutTag: 'Riverfront Enclave',
@@ -883,7 +883,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Sri Krishna Gated Society',
     corridor: 'Bommuru',
     floor: 'Duplex Terrace & Balcony',
-    specs: '2.5mm Virgin SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'Child Safety Protection | 2-Inch Spacing',
     image: '/assets/locations/sub/rajahmundry-bommuru.png',
     layoutTag: 'Gated Community',
@@ -898,7 +898,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Amaravati HappyNest (Tower 3)',
     corridor: 'Amaravati (G+18)',
     floor: '16th-Floor High-Rise Unit',
-    specs: 'SS-316 2.5mm Marine Grade',
+    specs: 'SS-316 2.5mm Option',
     highlight: 'High-Rise Safety System | Quick-Cut Egress',
     image: '/assets/corridors/vijayawada-happynest.jpg',
     layoutTag: 'High-Rise Elevation',
@@ -911,7 +911,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Tadepalli Riverside Residences',
     corridor: 'Tadepalli',
     floor: '10th-Floor Riverbank Flat',
-    specs: '2.5mm Marine SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'River Mist Protection | SS-316 Metallurgy',
     image: '/assets/corridors/vijayawada-tadepalli.jpg',
     layoutTag: 'Riverbank Balcony',
@@ -924,7 +924,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Benz Circle Skyscraper Residences',
     corridor: 'Benz Circle',
     floor: '15th-Floor Skyscraper Elevation',
-    specs: '3.0mm Heavy-Duty SS-316',
+    specs: '3.0mm Heavy-Duty SS-316 Option',
     highlight: 'High Wind-Load Resistance | Skyline View',
     image: '/assets/corridors/vijayawada-benzcircle.jpg',
     layoutTag: 'Urban High-Rise',
@@ -939,7 +939,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Brodipet Heights',
     corridor: 'Brodipet',
     floor: '14th-Floor Luxury Flat',
-    specs: '2.5mm High-Tensile SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'Inland Wind Resistance & Child Safety',
     image: '/assets/corridors/guntur-brodipet.jpg',
     layoutTag: 'Urban Apartment',
@@ -954,11 +954,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Vakalapudi Port View Towers',
     corridor: 'Vakalapudi Port Corridor',
     floor: '11th-Floor Port Harbor Flat',
-    specs: '2.5mm Marine Grade SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'Coastal Salinity Resistance | Port Panoramas',
     image: '/assets/corridors/kakinada-vakalapudi.jpg',
     layoutTag: 'Port Corridor',
-    layoutNote: 'Corrosion-resistant marine alloy preserving views of shipping channels and coastal horizons.'
+    layoutNote: 'Corrosion-resistant stainless alloy preserving views of shipping channels and coastal horizons.'
   },
 
   // Nellore Hub
@@ -969,8 +969,8 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Magunta Layout Luxury Flats',
     corridor: 'Magunta Layout',
     floor: '8th-Floor Riverfront View',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'High-Tensile Fall Protection',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Balcony Safety Barrier',
     image: '/assets/corridors/nellore-magunta.jpg',
     layoutTag: 'Riverfront View',
     layoutNote: 'River breeze stays unblocked while providing reliable fall safety for balconies.'
@@ -984,7 +984,7 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Bhagyanagar Skyline Enclave',
     corridor: 'Bhagyanagar',
     floor: '9th-Floor Balcony View',
-    specs: '2.5mm Marine SS-316',
+    specs: '2.5mm SS-316 Option',
     highlight: 'Open Air Circulation & Fall Safety',
     image: '/assets/corridors/ongole-bhagyanagar.jpg',
     layoutTag: 'Skyline Balcony',
@@ -998,11 +998,11 @@ export const PROBLEM_SOLVERS = [
     icon: Baby,
     title: "Children's Safety",
     tagline: 'High-Rise Balcony Safety',
-    badge: 'HIGH-TENSILE CABLE | HIGH-RISE BALCONY SAFETY',
+    badge: 'MULTI-STRAND CABLE | BALCONY SAFETY BARRIER',
     desc: 'Anti-fall protective coverage for high-rise elevations. Chinna pillalu unna elevations bayam lekunda safe setup.',
     teluguDesc: 'Chinna pillalu unna elevations bayam lekunda safe coverage.',
     image: '/assets/pillars/children-safety.png',
-    stat: 'HIGH TENSILE'
+    stat: 'MULTI-STRAND'
   },
   {
     icon: Cat,
@@ -1039,8 +1039,8 @@ export const PROBLEM_SOLVERS = [
     title: '1-Minute Emergency Fire Escape',
     tagline: 'Life Saving Egress Speed',
     badge: '60 SEC CUT ESCAPE | LIFE SAVING EGRESS SPEED',
-    desc: 'Unlike welded iron cages that trap families during fires, high-tension wires can be severed in under 60 seconds with emergency cutters.',
-    teluguDesc: 'Box type traditional iron mesh fixed ga untayi, fire accident time lo escape avvalem. Mana high-tensile wire setup lo standard cutter tho 1-minute lo easy wires cut chesi safe escape avvachu!',
+    desc: 'Unlike welded iron cages that trap families during fires, tensioned stainless cables can be severed quickly with standard wire cutters during emergencies.',
+    teluguDesc: 'Box type traditional iron mesh fixed ga untayi, fire accident time lo escape avvalem. Mana stainless wire setup lo standard cutter tho easy ga wires cut chesi safe escape avvachu!',
     image: '/assets/pillars/fire-escape.png',
     stat: '60 SEC CUT ESCAPE'
   },
@@ -1059,19 +1059,19 @@ export const PROBLEM_SOLVERS = [
 export const FAQS = [
   {
     q: "Can invisible grills really support a child's weight or adult impact?",
-    a: "Yes. D-VIEW uses high-tensile multi-strand wire ropes (SS-316 marine-grade or SS-304 standard-grade) engineered for structural safety. Spaced precisely at 2-inch intervals, they provide reliable fall protection for children and families."
+    a: "Yes. D-VIEW uses multi-strand stainless steel wire ropes (SS-316 and SS-304 options) specified for balcony barrier safety. Spaced precisely at 2-inch intervals with rigid track tensioning, they are designed as a dependable balcony safety barrier."
   },
   {
     q: "How does SS-316 prevent rust in coastal areas like Vizag and Kakinada?",
-    a: "SS-316 is a marine-grade alloy containing molybdenum for superior corrosion resistance in high-salinity coastal environments like Vizag and Kakinada. For inland or standard urban balconies, durable SS-304 options are also available."
+    a: "SS-316 contains molybdenum for enhanced corrosion resistance in high-humidity and coastal environments like Vizag and Kakinada. For inland or standard urban balconies, durable SS-304 options are also available."
   },
   {
     q: "How is emergency fire escape handled compared to iron grates?",
-    a: "Welded iron bars require heavy gas cutters or angle grinders, creating death traps during high-rise fires. In contrast, D-VIEW invisible grills can be severed with standard emergency manual wire cutters in under 60 seconds."
+    a: "Welded iron bars require heavy gas cutters or angle grinders, creating severe hazards during high-rise fires. In contrast, D-VIEW invisible grills can be severed with standard emergency manual wire cutters in under 60 seconds."
   },
   {
     q: "Will pigeons and birds still be able to enter my balcony?",
-    a: "No. The 2-inch (50 mm) vertical wire spacing physically prevents pigeons and common birds from squeezing into your balcony space, permanently solving droppings and nesting issues without dark nylon netting."
+    a: "No. The 2-inch (50 mm) vertical wire spacing effectively deters pigeons and common birds from squeezing into your balcony space, preventing droppings and nesting issues without dark nylon netting."
   }
 ];
 
@@ -1128,7 +1128,7 @@ export const WARRANTY_BADGES = [
   },
   {
     icon: Lock,
-    title: 'High-Tensile Cable Engineering',
+    title: 'Multi-Strand Cable Engineering',
     highlight: 'Protective Coated Multi-Strand',
     desc: 'Multi-strand stainless steel cables encased in transparent protective nylon sheath for structural durability and fall safety across high-rise balconies.'
   },
@@ -1141,8 +1141,8 @@ export const WARRANTY_BADGES = [
   {
     icon: Droplets,
     title: 'Corrosion-Resistant Metallurgy',
-    highlight: 'Marine & Urban Grades',
-    desc: 'High-grade stainless steel cables (SS-316 marine grade and SS-304 standard grade) selected to suit coastal salinity and urban environments.'
+    highlight: 'SS-316 & SS-304 Options',
+    desc: 'Stainless steel cable options (SS-316 and SS-304 options) selected to suit coastal and inland urban environments.'
   }
 ];
 
@@ -1514,7 +1514,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           
           <div className="lg:col-span-7 space-y-6">
             <span className="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold block">
-              SS-316 METALLURGY TRUST & GUARANTEES
+              SS-316 & SS-304 METALLURGY SPECIFICATIONS
             </span>
             <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight break-words">
               Specific Weather Shield ({activeSlide.name})
@@ -1559,7 +1559,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-center">
-                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">HIGH TENSILE</span>
+                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">MULTI-STRAND</span>
                 <span className="text-[10px] uppercase tracking-wider text-slate-700 font-semibold block mt-0.5">
                   Multi-Strand Construction
                 </span>
@@ -1585,13 +1585,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-wider shadow-lg">
                   <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
-                  Corrosion-Resistant Marine Grade
+                  Corrosion-Resistant Stainless Option
                 </span>
               </div>
 
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="inline-flex items-center gap-2 bg-[#16A34A] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-2">
-                  Marine Metallurgy Armor
+                  Stainless Metallurgy Option
                 </div>
                 <h3 className="text-lg font-bold text-white">SS-316 Molybdenum Alloy</h3>
                 <p className="text-xs text-slate-200 mt-1 leading-relaxed">
@@ -1600,7 +1600,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <div className="mt-3 flex items-center gap-2 pt-2 border-t border-white/20 text-[10px] text-slate-200 font-mono">
                   <span className="text-emerald-400">● SS-316 / SS-304</span>
                   <span>•</span>
-                  <span>High-Tensile</span>
+                  <span>Multi-Strand</span>
                   <span>•</span>
                   <span>UV Polyamide Sheath</span>
                 </div>
@@ -1655,7 +1655,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-[#16A34A] font-medium">
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> Quality Tested
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> Material Options
                   </span>
                   <span className="text-slate-500 text-[10px] uppercase tracking-wider">
                     D-View Specification
@@ -1809,7 +1809,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </a>
               <div className="pt-2 text-[10px] text-slate-500">
                 <span className="text-slate-800 font-semibold block">📍 Service Coordination:</span>
-                Andhra Pradesh & Regional Service Coordination (Doorstep On-Site Measurement).
+                Operating in Bengaluru; regional expansion planning for Andhra Pradesh corridors.
               </div>
             </div>
           </div>
@@ -1917,7 +1917,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <div className="p-3 rounded-xl border border-emerald-300 bg-emerald-50/60 flex flex-col justify-between">
               <div>
                 <span className="font-black text-slate-900 text-[11px] block">Need Free Measurement?</span>
-                <span className="text-[10px] text-slate-600 block mt-0.5">Site visits can be arranged within 48 hours after confirmation, subject to location and availability.</span>
+                <span className="text-[10px] text-slate-600 block mt-0.5">Site visits and consultations coordinated upon enquiry, subject to location availability.</span>
               </div>
               <a href="tel:+916281620716" className="mt-2 text-[10px] font-black text-[#16A34A] hover:underline flex items-center gap-1">
                 <span>Call Now</span>
@@ -1935,7 +1935,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           {/* Left: Region Flag */}
           <div className="flex items-center gap-2 font-medium text-slate-700">
             <span className="text-base leading-none">🇮🇳</span>
-            <span>India • Andhra Pradesh</span>
+            <span>India • Bengaluru & AP Corridors</span>
           </div>
 
           {/* Right: Sitemap, Legal & Privacy, Cookies */}
@@ -2723,7 +2723,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Closing Tagline in Telugu */}
               <div className="mt-14 text-center p-6 rounded-2xl bg-emerald-50 border border-emerald-200 max-w-4xl mx-auto shadow-sm">
                 <p className="text-emerald-950 font-semibold text-sm sm:text-base italic">
-                  "Okke Okka Balcony Installation... Enno High-Alert Safety Problems Nundi Mee Intiki Life-Time Premium Protection!"
+                  "Okke Okka Balcony Installation... Enno Safety Problems Nundi Mee Intiki Reliable Long-Term Protection!"
                 </p>
               </div>
 

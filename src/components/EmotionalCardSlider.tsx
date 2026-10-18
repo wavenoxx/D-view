@@ -24,7 +24,7 @@ const emotionalCards = [
     title: "Zero Pigeon Droppings",
     subtitle: "Say Goodbye to Balcony Dirt & Disease",
     problem: "Nasty bird droppings & contaminated spaces",
-    solution: "50mm precision gap stops pigeons permanently",
+    solution: "50mm precision gap deters pigeons and birds",
     image: "/assets/cards/pigeon-free-hygiene.jpg",
     tag: "Hygienic Living"
   },
@@ -33,7 +33,7 @@ const emotionalCards = [
     title: "Open Air & Panoramic View",
     subtitle: "Unobstructed Daylight & Fresh Breeze",
     problem: "Dark, blocked, shadowy rooms",
-    solution: "99% transparent marine-grade vertical wires",
+    solution: "99% transparent stainless steel vertical wires",
     image: "/assets/cards/unblocked-air-view.jpg",
     tag: "Panoramic View"
   }

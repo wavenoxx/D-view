@@ -14,7 +14,7 @@ export const emotionalCards: EmotionalCard[] = [
     title: "Children Fall Safety",
     subtitle: "Fear to Complete Freedom",
     problem: "Balcony height vertigo & fall anxiety",
-    solution: "Engineered vertical high-tensile cables",
+    solution: "Engineered vertical stainless cables",
     image: "/images/penthouse-safety-balcony-9x16.jpg", // Ready asset
     tag: "Child Protection"
   },
@@ -32,7 +32,7 @@ export const emotionalCards: EmotionalCard[] = [
     title: "Zero Pigeon Infestation",
     subtitle: "Hygienic Balcony Living",
     problem: "Unhygienic droppings & nesting mess",
-    solution: "50mm precision gap stops pigeons permanently",
+    solution: "50mm precision gap deters pigeons and birds",
     image: "/images/kakinada-coastal-balcony-canal.jpg",
     tag: "Hygienic Living"
   },
@@ -41,7 +41,7 @@ export const emotionalCards: EmotionalCard[] = [
     title: "99% Unblocked Air & Horizon",
     subtitle: "Breathe Pure Coastal Air",
     problem: "Dark, blocked, shadowy rooms",
-    solution: "Marine-grade SS-316 transparency",
+    solution: "SS-316 stainless steel transparency",
     image: "/images/vizag-penthouse-terrace-wide.jpg",
     tag: "Panoramic Freedom"
   }

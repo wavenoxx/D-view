@@ -374,7 +374,7 @@ ${note ? `• Note: ${note}` : ''}`;
                         rows={2}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
-                        placeholder="e.g. 5th floor sea view, toddler safety, need installation by this weekend..."
+                        placeholder="e.g. 5th floor sea view, balcony child safety, need installation by this weekend..."
                         className="w-full px-3.5 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-[#16A34A]"
                       ></textarea>
                     </div>

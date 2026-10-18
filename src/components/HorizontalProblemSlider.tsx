@@ -24,7 +24,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     title: 'Children Fall Hazard',
     subtitle: 'Low Railings & Unprotected Open Ledges',
     image: '/images/before-child-danger.jpg',
-    description: 'Low open railings cause constant panic for parents. Toddlers can easily drag a chair or slip through wide gaps. One misstep can be fatal.',
+    description: 'Low open railings cause constant panic for parents. Young children can drag a chair or slip through wide gaps. One misstep can be fatal.',
     bullet: 'Parents keep balcony doors locked in permanent fear.',
   },
   // 2. Children Solution
@@ -33,12 +33,12 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'CHILDREN SAFETY',
     tag: '02 • D-VIEW SOLUTION',
-    badge: '🛡️ TODDLER FALL PROTECTION',
+    badge: '🛡️ BALCONY SAFETY BARRIER',
     title: 'Children Freedom & Safety',
-    subtitle: 'High-Tensile SS-316 @ 2" Safe Gap',
+    subtitle: 'SS-316 Stainless Option @ 2" Safe Gap',
     image: '/images/after-child-safety.jpg',
-    description: 'Floor-to-ceiling high-tensile SS-316 vertical wire cables with strict 2-inch safe spacing. Zero horizontal footholds to climb. Engineered multi-strand high-tensile construction.',
-    bullet: 'Toddlers explore and play freely right at the edge without fear.',
+    description: 'Floor-to-ceiling SS-316 vertical wire cables with 2-inch safe spacing. Vertical design with no horizontal footholds to climb. Multi-strand construction for balcony containment.',
+    bullet: 'Provides reliable boundary protection across open balcony elevations.',
   },
 
   // 3. Pigeon Problem
@@ -294,7 +294,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
               Why Install Invisible Grills? <span className="text-[#16A34A]">One Single Installation, Every Problem Solved.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">
-              A single modern installation solves all your major balcony challenges at once — providing toddler fall safety, eliminating pigeon mess, preventing iron rust, and giving you crystal-clear open views without that caged feeling.
+              A single modern installation addresses major balcony concerns at once — providing balcony fall safety, bird deterrence, rust resistance, and open views without that caged feeling.
             </p>
           </div>
 

@@ -58,10 +58,10 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     pillars: [
       {
         id: "children-safety",
-        title: "CHILDREN FALL PROTECTION",
-        problem: "25th-floor penthouse balcony vertigo and toddler climbing hazards.",
-        solution: "Floor-to-ceiling high-tensile SS-316 cables with zero ladder-effect.",
-        specKey: "HIGH_TENSILE_SPEC"
+        title: "BALCONY FALL SAFETY BARRIER",
+        problem: "25th-floor penthouse balcony vertigo and climbing hazards.",
+        solution: "Floor-to-ceiling SS-316 cables with vertical safety design.",
+        specKey: "MULTI_STRAND_SPEC"
       },
       {
         id: "pets-safety",
@@ -102,21 +102,21 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "MVV GV The Grand (Madhurawada)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "25th-Floor Penthouse",
         note: "Valley breeze passes freely with zero vertigo risk for kids."
       },
       {
         societyName: "Sanskriti Bayfront (Rushikonda)",
-        installationType: "SS-316 2.5mm Molybdenum Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "14th-Floor Sea Facing",
         note: "Zero decay from coastal salt spray."
       },
       {
         societyName: "Oceanus Towers (Yendada)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "18th-Floor Coastal Flat",
         note: "Effective bird droppings prevention without blocking morning sunrise."
@@ -147,7 +147,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "children-safety",
         title: "CHILDREN FALL PROTECTION",
         problem: "Riverbank high-rise balconies with loose railings causing fall risks.",
-        solution: "Floor-to-ceiling high-tensile cables with tamper-proof anchoring.",
+        solution: "Floor-to-ceiling stainless steel cables with secure anchoring.",
         specKey: "HIGH_TENSILE_SPEC"
       },
       {
@@ -166,9 +166,9 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
       },
       {
         id: "pigeons-safety",
-        title: "EFFECTIVE PIGEON BARRIER",
+        title: "EFFECTIVE BIRD DETERRENT",
         problem: "Heavy Godavari river pigeon colonies nesting on balcony ledges.",
-        solution: "Effective pigeon barrier while maintaining open river breeze cross-ventilation.",
+        solution: "Effective bird deterrent while maintaining open river breeze cross-ventilation.",
         specKey: "BIRD_SHIELD_SS316"
       },
       {
@@ -189,7 +189,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Godavari Riverfront Enclave (Morampudi)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "12th-Floor Riverfront Balcony",
         note: "Continuous river humidity tested. Zero corrosion with 99% clear river sightline."
@@ -269,14 +269,14 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Amaravati HappyNest (Tower 3)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "16th-Floor High-Rise Unit",
         note: "Complies with fire safety norms with clean 60-second emergency cutter escape."
       },
       {
         societyName: "Tadepalli Riverside Residences",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "10th-Floor Riverbank Flat",
         note: "Krishna river mist protection with strong corrosion resistance and open riverfront views."
@@ -314,7 +314,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "children-safety",
         title: "CHILDREN FALL PROTECTION",
         problem: "High-wind gusts and elevation risks across Brodipet and Arundelpet apartments.",
-        solution: "Heavy-duty multi-strand stainless steel cables engineered for high-tensile load capacity.",
+        solution: "Heavy-duty multi-strand stainless steel cables engineered for balcony safety.",
         specKey: "HIGH_TENSILE_SPEC"
       },
       {
@@ -335,7 +335,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "pigeons-safety",
         title: "ANTI-PIGEON MESH",
         problem: "Urban pigeon nesting and droppings on apartment AC ledges and balconies.",
-        solution: "Clean vertical wire barrier blocking pigeons permanently.",
+        solution: "Clean vertical wire barrier effectively deterring pigeons.",
         specKey: "BIRD_SHIELD_SS316"
       },
       {
@@ -356,7 +356,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Brodipet Heights (Guntur)",
-        installationType: "SS-316 2.5mm High-Tensile Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "14th-Floor Luxury Flat",
         note: "Withstands strong gusts from Kondaveedu hills with zero wire vibration."
@@ -387,7 +387,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "children-safety",
         title: "CHILDREN FALL PROTECTION",
         problem: "High-floor coastal apartment balconies exposing children to fall hazards.",
-        solution: "Floor-to-ceiling high-tensile SS-316 cables.",
+        solution: "Floor-to-ceiling SS-316 cables.",
         specKey: "HIGH_TENSILE_SPEC"
       },
       {
@@ -429,14 +429,14 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Vakalapudi Port View Towers (Kakinada)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "11th-Floor Port Harbor Flat",
         note: "Full view of lighthouse and shipping vessels with lasting corrosion resistance."
       },
       {
         societyName: "Ramanayyapeta Elite Enclave (Kakinada)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "High-Rise Balconies",
         note: "Pigeon shield and open sky living with complete safety."
@@ -465,10 +465,10 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     pillars: [
       {
         id: "children-safety",
-        title: "CHILDREN FALL PROTECTION",
-        problem: "High-rise balcony elevations posing toddler fall risks.",
-        solution: "Multi-strand high-tensile break-resistant stainless cables.",
-        specKey: "HIGH_TENSILE_SPEC"
+        title: "BALCONY FALL SAFETY BARRIER",
+        problem: "High-rise balcony elevations posing fall risks.",
+        solution: "Multi-strand break-resistant stainless cables.",
+        specKey: "MULTI_STRAND_SPEC"
       },
       {
         id: "pets-safety",
@@ -488,7 +488,7 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "pigeons-safety",
         title: "PIGEON AND PEST EXCLUSION",
         problem: "River mist and birds causing unhygienic balcony droppings.",
-        solution: "Physical 2-inch safe spacing blocking birds completely.",
+        solution: "Physical 2-inch safe spacing deterring birds.",
         specKey: "BIRD_SHIELD_SS316"
       },
       {
@@ -509,10 +509,10 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Magunta Layout Luxury Flats (Nellore)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "8th-Floor Riverfront View",
-        note: "Penna river breeze stays unblocked while toddlers play safely."
+        note: "Penna river breeze stays unblocked while maintaining safe edge boundaries."
       }
     ],
     contactSpecs: {
@@ -538,10 +538,10 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     pillars: [
       {
         id: "children-safety",
-        title: "BHAGYANAGAR & LAWYERPET TODDLER FALL PREVENTION",
+        title: "BHAGYANAGAR & LAWYERPET BALCONY FALL SAFETY",
         problem: "Low balcony railings creating dangerous fall hazards in multi-floor apartments.",
         solution: "Floor-to-ceiling SS-316 vertical wire cables with strict 2-inch safe spacing.",
-        specKey: "SS316_HIGH_TENSION"
+        specKey: "SS316_MULTI_STRAND"
       },
       {
         id: "old-age-safety",
@@ -554,14 +554,14 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
         id: "pigeons-safety",
         title: "ZERO PIGEON NESTING & UNHYGIENIC DROPPINGS",
         problem: "Wild pigeons nesting on AC ledges and balconies along highway belts.",
-        solution: "Precision 50mm vertical physical barrier preventing bird entry permanently.",
+        solution: "Precision 50mm vertical physical barrier effectively deterring bird entry.",
         specKey: "BIRD_SHIELD_SS316"
       },
       {
         id: "fire-escape",
         title: "1-MINUTE EMERGENCY RAPID FIRE ESCAPE",
         problem: "Welded iron window and balcony grilles forming inescapable fire hazards.",
-        solution: "High-tensile cables quickly severable in emergencies with safety wire cutters.",
+        solution: "Stainless steel cables quickly severable in emergencies with safety wire cutters.",
         specKey: "1_MIN_SAFE_FIRE_EGRESS"
       },
       {
@@ -575,10 +575,10 @@ export const safetyGrillData: Record<string, CitySafetyGrillConfig> = {
     completedProjects: [
       {
         societyName: "Bhagyanagar Skyline Enclave (Ongole)",
-        installationType: "SS-316 2.5mm Marine Grade",
+        installationType: "SS-316 2.5mm Option",
         status: "Design Specification",
         floor: "9th-Floor Balcony",
-        note: "Engineered toddler safety with uninterrupted open hill & city view."
+        note: "Engineered balcony safety barrier with uninterrupted open hill & city view."
       }
     ],
     contactSpecs: {

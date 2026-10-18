@@ -14,44 +14,44 @@ export interface MaterialOption {
 }
 
 const MATERIAL_OPTIONS: MaterialOption[] = [
-  // SS 316 (Marine Grade)
+  // SS 316
   {
     id: '316-2.5',
     grade: 'SS 316',
     thickness: '2.5 mm',
-    label: 'SS 316 (Marine Grade) - 2.5 mm High Tensile (Recommended)',
+    label: 'SS-316 Stainless Steel - 2.5 mm (Recommended for Coastal Humidity)',
   },
   {
     id: '316-3.0',
     grade: 'SS 316',
     thickness: '3.0 mm',
-    label: 'SS 316 (Marine Grade) - 3.0 mm Heavy Duty',
+    label: 'SS-316 Stainless Steel - 3.0 mm (Heavy Duty)',
   },
   {
     id: '316-2.0',
     grade: 'SS 316',
     thickness: '2.0 mm',
-    label: 'SS 316 (Marine Grade) - 2.0 mm Standard',
+    label: 'SS-316 Stainless Steel - 2.0 mm (Standard)',
   },
 
-  // SS 304 (Standard Grade)
+  // SS 304
   {
     id: '304-2.5',
     grade: 'SS 304',
     thickness: '2.5 mm',
-    label: 'SS 304 (Standard Grade) - 2.5 mm High Tensile',
+    label: 'SS-304 Stainless Steel - 2.5 mm (Standard Balcony)',
   },
   {
     id: '304-3.0',
     grade: 'SS 304',
     thickness: '3.0 mm',
-    label: 'SS 304 (Standard Grade) - 3.0 mm Heavy Duty',
+    label: 'SS-304 Stainless Steel - 3.0 mm (Heavy Duty)',
   },
   {
     id: '304-2.0',
     grade: 'SS 304',
     thickness: '2.0 mm',
-    label: 'SS 304 (Standard Grade) - 2.0 mm Economy',
+    label: 'SS-304 Stainless Steel - 2.0 mm (Economy)',
   },
 ];
 
@@ -212,15 +212,15 @@ Please share quotation details and confirm site-visit availability for my locati
               onChange={(e) => setSelectedMaterialId(e.target.value)}
               className="w-full appearance-none px-3 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-bold text-xs sm:text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white cursor-pointer pr-8"
             >
-              <optgroup label="── SS 316 Marine Grade (Rust-Proof) ──">
-                <option value="316-2.5">SS 316 (Marine Grade) - 2.5 mm High Tensile (Recommended)</option>
-                <option value="316-3.0">SS 316 (Marine Grade) - 3.0 mm Heavy Duty</option>
-                <option value="316-2.0">SS 316 (Marine Grade) - 2.0 mm Standard</option>
+              <optgroup label="── SS-316 Stainless Steel (Coastal Recommended) ──">
+                <option value="316-2.5">SS-316 Stainless Steel - 2.5 mm (Recommended for Coastal Humidity)</option>
+                <option value="316-3.0">SS-316 Stainless Steel - 3.0 mm (Heavy Duty)</option>
+                <option value="316-2.0">SS-316 Stainless Steel - 2.0 mm (Standard)</option>
               </optgroup>
-              <optgroup label="── SS 304 Standard Grade ──">
-                <option value="304-2.5">SS 304 (Standard Grade) - 2.5 mm High Tensile</option>
-                <option value="304-3.0">SS 304 (Standard Grade) - 3.0 mm Heavy Duty</option>
-                <option value="304-2.0">SS 304 (Standard Grade) - 2.0 mm Economy</option>
+              <optgroup label="── SS-304 Stainless Steel (Standard Inland) ──">
+                <option value="304-2.5">SS-304 Stainless Steel - 2.5 mm (Standard Balcony)</option>
+                <option value="304-3.0">SS-304 Stainless Steel - 3.0 mm (Heavy Duty)</option>
+                <option value="304-2.0">SS-304 Stainless Steel - 2.0 mm (Economy)</option>
               </optgroup>
             </select>
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-[10px]">▼</span>

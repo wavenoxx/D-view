@@ -168,7 +168,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                       High-Rise Elevation Grills
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      High-tensile tensioned stainless steel elevation grills
+                      Multi-strand tensioned stainless steel elevation grills
                     </span>
                   </a>
                 </div>

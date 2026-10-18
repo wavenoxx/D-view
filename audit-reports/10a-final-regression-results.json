@@ -1,0 +1,3183 @@
+{
+  "timestamp": "2026-10-18T19:31:17.302Z",
+  "routesCount": 41,
+  "viewportsCount": 12,
+  "totalTests": 492,
+  "mob03Evaluation": {
+    "/": {
+      "normalMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "bodyScrollWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "scrolledMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "normalScreenshot": "mob03-final-home-normal-412x915.png",
+      "scrolledScreenshot": "mob03-final-home-scrolled-412x915.png",
+      "status": "PASS"
+    },
+    "/visakhapatnam": {
+      "normalMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "bodyScrollWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "scrolledMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "normalScreenshot": "mob03-final-visakhapatnam-normal-412x915.png",
+      "scrolledScreenshot": "mob03-final-visakhapatnam-scrolled-412x915.png",
+      "status": "PASS"
+    },
+    "/vijayawada": {
+      "normalMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "bodyScrollWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "scrolledMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "normalScreenshot": "mob03-final-vijayawada-normal-412x915.png",
+      "scrolledScreenshot": "mob03-final-vijayawada-scrolled-412x915.png",
+      "status": "PASS"
+    },
+    "/about": {
+      "normalMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "bodyScrollWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "scrolledMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "normalScreenshot": "mob03-final-about-normal-412x915.png",
+      "scrolledScreenshot": "mob03-final-about-scrolled-412x915.png",
+      "status": "PASS"
+    },
+    "/contact": {
+      "normalMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "bodyScrollWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "scrolledMetrics": {
+        "innerWidth": 412,
+        "scrollWidth": 412,
+        "clientWidth": 412,
+        "horizontalOverflow": 0
+      },
+      "normalScreenshot": "mob03-final-contact-normal-412x915.png",
+      "scrolledScreenshot": "mob03-final-contact-scrolled-412x915.png",
+      "status": "PASS"
+    }
+  },
+  "calculatorTests": {},
+  "seoMetaIntegrity": [
+    {
+      "route": "/",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/about",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/contact",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/guntur",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/kakinada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/guntur",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/kakinada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/nellore",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/ongole",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/rajahmundry",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/rajamahendravaram",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/vijayawada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/vijayawada-amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/visakhapatnam",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/locations/vizag",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/nellore",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/ongole",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/privacy",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/projects",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/rajahmundry",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/rajamahendravaram",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/guntur",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/kakinada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/nellore",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/ongole",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/rajahmundry",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/rajamahendravaram",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/vijayawada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/vijayawada-amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/visakhapatnam",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/safety-pillars/vizag",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/sitemap",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/solutions",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/vijayawada",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/vijayawada-amaravati",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/visakhapatnam",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    },
+    {
+      "route": "/vizag",
+      "hasTitle": true,
+      "hasCanonical": true,
+      "hasH1": true
+    }
+  ],
+  "forbiddenTextFindings": [],
+  "testCasesSummary": {
+    "pass": 492,
+    "fail": 0
+  },
+  "routeResults": [
+    {
+      "route": "/",
+      "title": "D-VIEW Solutions | Engineered Invisible Safety Grills",
+      "canonical": "https://www.dviewsolutions.com/",
+      "h1": "—\nINVISIBLE GRILLS & SAFETY SOLUTIONS\n—",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "title": "About D-VIEW Solutions | Balcony Safety Engineering",
+      "canonical": "https://www.dviewsolutions.com/about",
+      "h1": "ARCHITECTURAL SAFETY.\nUNCOMPROMISED VISTAS.",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/amaravati",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "title": "Contact D-VIEW Solutions | Free Site Measurement Helpline",
+      "canonical": "https://www.dviewsolutions.com/contact",
+      "h1": "CONNECT WITH D-VIEW SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/guntur",
+      "title": "Invisible Grills in Guntur | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/guntur",
+      "h1": "INVISIBLE GRILLS IN GUNTUR",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/kakinada",
+      "title": "Invisible Grills in Kakinada | Balcony Safety | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/kakinada",
+      "h1": "INVISIBLE GRILLS IN KAKINADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations",
+      "title": "Regional Architectural Safety Corridors | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/locations",
+      "h1": "Find D-VIEW Safety\nSolutions Near You",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/amaravati",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/guntur",
+      "title": "Invisible Grills in Guntur | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/guntur",
+      "h1": "INVISIBLE GRILLS IN GUNTUR",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/kakinada",
+      "title": "Invisible Grills in Kakinada | Balcony Safety | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/kakinada",
+      "h1": "INVISIBLE GRILLS IN KAKINADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/nellore",
+      "title": "Invisible Grills in Nellore | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/nellore",
+      "h1": "INVISIBLE GRILLS IN NELLORE",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/ongole",
+      "title": "Invisible Grills in Ongole | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/ongole",
+      "h1": "INVISIBLE GRILLS IN ONGOLE",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/rajahmundry",
+      "title": "Premium Invisible Grills in Rajahmundry | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/rajahmundry",
+      "h1": "INVISIBLE GRILLS IN RAJAHMUNDRY",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/rajamahendravaram",
+      "title": "Premium Invisible Grills in Rajahmundry | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/rajahmundry",
+      "h1": "INVISIBLE GRILLS IN RAJAHMUNDRY",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/vijayawada",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/vijayawada-amaravati",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/visakhapatnam",
+      "title": "Premium Invisible Grills in Visakhapatnam | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/visakhapatnam",
+      "h1": "INVISIBLE GRILLS IN VIZAG",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/locations/vizag",
+      "title": "Premium Invisible Grills in Visakhapatnam | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/visakhapatnam",
+      "h1": "INVISIBLE GRILLS IN VIZAG",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/nellore",
+      "title": "Invisible Grills in Nellore | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/nellore",
+      "h1": "INVISIBLE GRILLS IN NELLORE",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/ongole",
+      "title": "Invisible Grills in Ongole | Balcony Safety Solutions | D-VIEW",
+      "canonical": "https://www.dviewsolutions.com/ongole",
+      "h1": "INVISIBLE GRILLS IN ONGOLE",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/privacy",
+      "title": "Legal & Privacy Policy | Cookies | D-VIEW Invisible Grills",
+      "canonical": "https://www.dviewsolutions.com/privacy",
+      "h1": "LEGAL, PRIVACY & COOKIES",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/projects",
+      "title": "Architectural Design Concepts & Layouts | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/projects",
+      "h1": "BALCONY SAFETY\nDESIGN SPECIFICATIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/rajahmundry",
+      "title": "Premium Invisible Grills in Rajahmundry | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/rajahmundry",
+      "h1": "INVISIBLE GRILLS IN RAJAHMUNDRY",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/rajamahendravaram",
+      "title": "Premium Invisible Grills in Rajahmundry | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/rajahmundry",
+      "h1": "INVISIBLE GRILLS IN RAJAHMUNDRY",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/amaravati",
+      "title": "SS-316 Invisible Grills in Vijayawada & Amaravati | Balcony Safety for Benz Circle, HappyNest | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/vijayawada",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/guntur",
+      "title": "SS-316 Invisible Grills in Guntur | Balcony Safety for Brodipet, Arundelpet | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/guntur",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/kakinada",
+      "title": "SS-316 & SS-304 Invisible Grills in Kakinada | Balcony Safety for Vakalapudi, Sarpavaram | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/kakinada",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/nellore",
+      "title": "SS-316 Invisible Grills in Nellore | Balcony Safety for Magunta Layout, Balaji Nagar | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/nellore",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/ongole",
+      "title": "SS-316 Invisible Grills in Ongole | Balcony Safety for Bhagyanagar, Lawyerpet, Kurnool Road | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/ongole",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/rajahmundry",
+      "title": "SS-316 Invisible Grills in Rajahmundry | Balcony Safety for Morampudi, Bommuru | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/rajahmundry",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/rajamahendravaram",
+      "title": "SS-316 Invisible Grills in Rajahmundry | Balcony Safety for Morampudi, Bommuru | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/rajahmundry",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/vijayawada",
+      "title": "SS-316 Invisible Grills in Vijayawada & Amaravati | Balcony Safety for Benz Circle, HappyNest | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/vijayawada",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/vijayawada-amaravati",
+      "title": "SS-316 Invisible Grills in Vijayawada & Amaravati | Balcony Safety for Benz Circle, HappyNest | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/vijayawada",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/visakhapatnam",
+      "title": "SS-316 Invisible Grills in Visakhapatnam | Balcony Safety for Madhurawada, Rushikonda, Yendada | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/visakhapatnam",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/safety-pillars/vizag",
+      "title": "SS-316 Invisible Grills in Visakhapatnam | Balcony Safety for Madhurawada, Rushikonda, Yendada | D-View",
+      "canonical": "https://www.dviewsolutions.com/safety-pillars/visakhapatnam",
+      "h1": "THE 6-PILLAR PROBLEM-SOLVER SOLUTIONS",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/sitemap",
+      "title": "Website Sitemap | D-VIEW Solutions Invisible Grills",
+      "canonical": "https://www.dviewsolutions.com/sitemap",
+      "h1": "WEBSITE SITEMAP",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/solutions",
+      "title": "Luxury Invisible Grills & Balcony Safety Solutions | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/solutions",
+      "h1": "ARCHITECTURAL INVISIBLE GRILLS\nWITHOUT COMPROMISE",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/vijayawada",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/vijayawada-amaravati",
+      "title": "Invisible Grills in Vijayawada & Amaravati | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/vijayawada",
+      "h1": "INVISIBLE GRILLS IN VIJAYAWADA",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/visakhapatnam",
+      "title": "Premium Invisible Grills in Visakhapatnam | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/visakhapatnam",
+      "h1": "INVISIBLE GRILLS IN VIZAG",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "route": "/vizag",
+      "title": "Premium Invisible Grills in Visakhapatnam | D-VIEW Solutions",
+      "canonical": "https://www.dviewsolutions.com/visakhapatnam",
+      "h1": "INVISIBLE GRILLS IN VIZAG",
+      "forbiddenFound": [],
+      "viewports": [
+        {
+          "viewport": "320x568-iphone-se1",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "360x800-galaxy-s8",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "375x667-iphone-se2",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "390x844-iphone-13",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "393x852-pixel-7",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "412x915-galaxy-s20-mob03",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "428x926-iphone-max",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "480x854-phablet",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "768x1024-ipad-portrait",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "820x1180-ipad-air",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1024x1366-ipad-pro",
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1440x900-desktop-ref",
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ]
+    }
+  ]
+}

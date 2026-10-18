@@ -51,13 +51,14 @@ const localBusinessSchema = {
   "priceRange": "₹₹",
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Bengaluru",
+    "addressRegion": "Karnataka",
     "addressCountry": "IN"
   },
   "areaServed": [
-    { "@type": "AdministrativeArea", "name": "Karnataka" },
-    { "@type": "AdministrativeArea", "name": "Andhra Pradesh" }
+    { "@type": "AdministrativeArea", "name": "Karnataka" }
   ],
-  "description": description || "Architectural high-tensile SS-316 & SS-304 invisible safety grills for apartments, balcony child fall safety, pet security, and pigeon control with 5-year warranty."
+  "description": description || "Architectural SS-316 & SS-304 invisible safety grills for apartments, balcony child fall safety deterrence, pet security, and pigeon deterrence with 5-year warranty."
 };
 
 const faqSchema = faqs && faqs.length > 0 ? {

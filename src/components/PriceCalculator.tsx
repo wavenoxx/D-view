@@ -29,37 +29,37 @@ export interface MaterialOption {
 const MATERIAL_OPTIONS: MaterialOption[] = [
   {
     value: '316-2.5mm',
-    label: 'SS-316 (Marine Grade) - 2.5 mm High-Tensile (Recommended)',
+    label: 'SS-316 Stainless Steel - 2.5 mm (Recommended for Coastal Humidity)',
     grade: 'SS-316',
-    description: 'Marine-grade alloy for coastal salinity and high-rise balconies.'
+    description: 'Corrosion-resistant alloy suitable for coastal and humid corridors.'
   },
   {
     value: '316-3.0mm',
-    label: 'SS-316 (Marine Grade) - 3.0 mm Heavy Duty',
+    label: 'SS-316 Stainless Steel - 3.0 mm (Heavy Duty)',
     grade: 'SS-316',
-    description: 'Heavy-duty cable core engineered for high wind exposure.'
+    description: 'Heavy-duty cable core for large openings and high wind exposure.'
   },
   {
     value: '316-2.0mm',
-    label: 'SS-316 (Marine Grade) - 2.0 mm Standard',
+    label: 'SS-316 Stainless Steel - 2.0 mm (Standard)',
     grade: 'SS-316',
-    description: 'Standard multi-strand core with transparent protective nylon coating.'
+    description: 'Standard multi-strand cable with transparent protective nylon coating.'
   },
   {
     value: '304-2.5mm',
-    label: 'SS-304 (Standard Grade) - 2.5 mm High-Tensile',
+    label: 'SS-304 Stainless Steel - 2.5 mm (Standard Balcony)',
     grade: 'SS-304',
-    description: 'Durable stainless steel cable core for non-coastal urban balconies.'
+    description: 'Durable stainless steel cable core for standard urban balconies.'
   },
   {
     value: '304-3.0mm',
-    label: 'SS-304 (Standard Grade) - 3.0 mm Heavy Duty',
+    label: 'SS-304 Stainless Steel - 3.0 mm (Heavy Duty)',
     grade: 'SS-304',
     description: 'Heavy-duty standard grade cable core for wider openings.'
   },
   {
     value: '304-2.0mm',
-    label: 'SS-304 (Standard Grade) - 2.0 mm Economy',
+    label: 'SS-304 Stainless Steel - 2.0 mm (Economy)',
     grade: 'SS-304',
     description: 'Economy grade wire cable for sheltered openings.'
   }
