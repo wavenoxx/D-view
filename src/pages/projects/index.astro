@@ -40,6 +40,9 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
                 <img 
                   src={project.image} 
                   alt={`${project.title} - ${project.locality}`} 
+                  width="640"
+                  height="360"
+                  decoding="async"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />

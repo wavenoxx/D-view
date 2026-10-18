@@ -186,9 +186,40 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
   cityName = 'Andhra Pradesh',
   citySlug,
 }) => {
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check prefers-reduced-motion
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(media.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    media.addEventListener('change', handler);
+    return () => media.removeEventListener('change', handler);
+  }, []);
+
+  // Track viewport visibility with IntersectionObserver
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === 'undefined') {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
   const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
@@ -201,7 +232,6 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Fast, snappy easeOut curve for responsive modern sliding
       const ease = 1 - Math.pow(1 - progress, 3);
       el.scrollLeft = startLeft + distance * ease;
 
@@ -213,35 +243,48 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     requestAnimationFrame(animate);
   };
 
-  // Smooth 1-second auto-sliding interval (1s)
+  const scrollNext = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardWidth = el.firstElementChild?.clientWidth || 310;
+    const step = cardWidth + 24;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft >= maxScroll - 25) {
+      smoothScrollTo(0, 350);
+    } else {
+      smoothScrollTo(el.scrollLeft + step, 280);
+    }
+  };
+
+  const scrollPrev = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardWidth = el.firstElementChild?.clientWidth || 310;
+    const step = cardWidth + 24;
+    if (el.scrollLeft <= 25) {
+      smoothScrollTo(el.scrollWidth - el.clientWidth, 350);
+    } else {
+      smoothScrollTo(el.scrollLeft - step, 280);
+    }
+  };
+
+  // Safe, readable 4500ms auto-sliding interval; paused when off-screen, focused, or reduced motion preferred
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !isInView || prefersReducedMotion) return;
 
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const el = scrollRef.current;
-        const cardWidth = el.firstElementChild?.clientWidth || 310;
-        const step = cardWidth + 24;
-        const maxScroll = el.scrollWidth - el.clientWidth;
-
-        // Loop smoothly when reaching the end
-        if (el.scrollLeft >= maxScroll - 25) {
-          smoothScrollTo(0, 350);
-        } else {
-          smoothScrollTo(el.scrollLeft + step, 280);
-        }
-      }
-    }, 1000); // Snappy 1-second auto-slide interval
+      scrollNext();
+    }, 4500);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, isInView, prefersReducedMotion]);
 
   return (
-    <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
+    <section ref={sectionRef} className="w-full overflow-hidden bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="mb-8">
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold tracking-widest uppercase mb-2 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
@@ -254,13 +297,39 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
               A single modern installation solves all your major balcony challenges at once — guaranteeing 100% toddler safety, eliminating pigeon mess, preventing iron rust, and giving you crystal-clear open views without that caged feeling.
             </p>
           </div>
+
+          {/* Manual Carousel Controls */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              aria-label="Previous safety problem slide"
+              className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-[#16A34A] text-slate-700 hover:text-[#16A34A] shadow-sm transition cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              aria-label="Next safety problem slide"
+              className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-[#16A34A] text-slate-700 hover:text-[#16A34A] shadow-sm transition cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding & Interactive Pause */}
+        {/* 12 Horizontal Cards Container with Accessible Pause and Focus Capture */}
         <div
           ref={scrollRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => {
             if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);

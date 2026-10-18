@@ -212,9 +212,32 @@ export default function BeforeAfterSlider({
           className="absolute top-0 bottom-0 w-0.5 bg-white shadow-xl pointer-events-none z-20"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border-2 border-[#16A34A] shadow-2xl transition-transform ${
-            isDragging ? 'scale-110 ring-4 ring-emerald-400/40' : ''
-          }`}>
+          <div
+            role="slider"
+            tabIndex={0}
+            aria-valuenow={Math.round(sliderPos)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Balcony before and after installation comparison slider"
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                setSliderPos((prev) => Math.max(0, prev - 5));
+              } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                setSliderPos((prev) => Math.min(100, prev + 5));
+              } else if (e.key === 'Home') {
+                e.preventDefault();
+                setSliderPos(0);
+              } else if (e.key === 'End') {
+                e.preventDefault();
+                setSliderPos(100);
+              }
+            }}
+            className={`pointer-events-auto absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border-2 border-[#16A34A] shadow-2xl transition-transform cursor-ew-resize focus:outline-none focus:ring-4 focus:ring-emerald-400/60 ${
+              isDragging ? 'scale-110 ring-4 ring-emerald-400/40' : ''
+            }`}
+          >
             ⇄
           </div>
         </div>

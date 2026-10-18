@@ -38,6 +38,15 @@ export default function Navbar({ currentSlug }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const activeLocation = ALL_LOCATIONS.find(loc => loc.slug === currentSlug);
 
   return (
@@ -216,25 +225,27 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
             <a
               href="tel:+916281620716"
               className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-[#16A34A]"
-              aria-label="Call Direct"
+              aria-label="Call D-VIEW Helpline +91 62816 20716"
             >
               <PhoneCall className="w-4 h-4" />
             </a>
             <a
               href="/contact#book-visit"
-              className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-950 bg-[#7CFF3A]"
+              className="hidden min-[380px]:inline-flex px-3 py-1.5 rounded-lg text-xs font-bold text-slate-950 bg-[#7CFF3A]"
             >
               Free Visit
             </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 hover:text-[#16A34A]"
+              className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 hover:text-[#16A34A] cursor-pointer"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -245,7 +256,12 @@ export default function Navbar({ currentSlug }: NavbarProps) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/98 border-b border-slate-200 px-4 pt-4 pb-6 space-y-4 backdrop-blur-2xl shadow-xl">
+        <div
+          id="mobile-nav-drawer"
+          role="region"
+          aria-label="Mobile Navigation Drawer"
+          className="lg:hidden bg-white/98 border-b border-slate-200 px-4 pt-4 pb-6 space-y-4 backdrop-blur-2xl shadow-xl"
+        >
           
           {/* City Selection in Mobile Drawer */}
           <div className="bg-slate-50 rounded-xl p-3 border border-slate-200">

@@ -8,6 +8,7 @@ interface Props {
   cityName?: string;
   ogImage?: string;
   preloadHeroImage?: string;
+  preloadMobileHeroImage?: string;
   keywords?: string[];
   hideFloatingButtons?: boolean;
   showIntroAnimation?: boolean;
@@ -21,6 +22,7 @@ const {
   cityName = 'Andhra Pradesh',
   ogImage = '/assets/locations/vizag-novotel-straight.jpg',
   preloadHeroImage,
+  preloadMobileHeroImage,
   keywords = ['invisible grills andhra pradesh', 'balcony safety solutions', 'ss 316 invisible grills', 'coastal balcony safety'],
   hideFloatingButtons = false,
   showIntroAnimation = false,
@@ -121,9 +123,14 @@ const faqSchema = faqs && faqs.length > 0 ? {
     <meta name="twitter:image:alt" content={title} />
 
     <!-- High-Priority LCP Hero Image Preload for Mobile Core Web Vitals -->
-    {preloadHeroImage && (
+    {preloadMobileHeroImage && preloadHeroImage ? (
+      <>
+        <link rel="preload" as="image" href={preloadMobileHeroImage} media="(max-width: 768px)" fetchpriority="high" />
+        <link rel="preload" as="image" href={preloadHeroImage} media="(min-width: 769px)" fetchpriority="high" />
+      </>
+    ) : preloadHeroImage ? (
       <link rel="preload" as="image" href={preloadHeroImage} fetchpriority="high" />
-    )}
+    ) : null}
 
     <!-- Google Font: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

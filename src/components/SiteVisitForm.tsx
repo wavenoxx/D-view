@@ -171,12 +171,14 @@ ${note ? `• Note: ${note}` : ''}`;
 
               {/* YOUR NAME */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                <label htmlFor="site-visit-name" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                   YOUR NAME <span className="text-[#16A34A]">*</span>
                 </label>
                 <input
+                  id="site-visit-name"
                   type="text"
                   required
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Arjun Mehta"
@@ -186,7 +188,7 @@ ${note ? `• Note: ${note}` : ''}`;
 
               {/* MOBILE NUMBER */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                <label htmlFor="site-visit-phone" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                   MOBILE NUMBER <span className="text-[#16A34A]">*</span>
                 </label>
                 <div className="flex rounded-xl overflow-hidden border border-slate-300 focus-within:border-[#16A34A] focus-within:ring-1 focus-within:ring-[#16A34A] transition-colors bg-slate-50">
@@ -194,8 +196,10 @@ ${note ? `• Note: ${note}` : ''}`;
                     +91
                   </div>
                   <input
+                    id="site-visit-phone"
                     type="tel"
                     required
+                    autoComplete="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="98765 43210"
@@ -208,11 +212,12 @@ ${note ? `• Note: ${note}` : ''}`;
               {/* CITY & AREA / LOCALITY */}
               <div className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  <label htmlFor="site-visit-city" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                     SELECT CITY HUB <span className="text-[#16A34A]">*</span>
                   </label>
                   <div className="relative">
                     <select
+                      id="site-visit-city"
                       value={city}
                       onChange={(e) => {
                         setCity(e.target.value);
@@ -232,11 +237,12 @@ ${note ? `• Note: ${note}` : ''}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  <label htmlFor="site-visit-area" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                     AREA / LOCALITY <span className="text-[#16A34A]">*</span>
                   </label>
                   <div className="relative">
                     <select
+                      id="site-visit-area"
                       required
                       value={area}
                       onChange={(e) => setArea(e.target.value)}
@@ -259,6 +265,7 @@ ${note ? `• Note: ${note}` : ''}`;
 
                   {area === 'other' && (
                     <input
+                      id="site-visit-custom-area"
                       type="text"
                       required
                       value={customArea}
@@ -332,9 +339,9 @@ ${note ? `• Note: ${note}` : ''}`;
                   ) : (
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold text-[#16A34A] uppercase tracking-wider">
+                        <label htmlFor="site-visit-note" className="text-xs font-bold text-[#16A34A] uppercase tracking-wider">
                           YOUR NOTE (OPTIONAL)
-                        </span>
+                        </label>
                         <button
                           type="button"
                           onClick={() => {
@@ -347,6 +354,7 @@ ${note ? `• Note: ${note}` : ''}`;
                         </button>
                       </div>
                       <textarea
+                        id="site-visit-note"
                         rows={2}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}

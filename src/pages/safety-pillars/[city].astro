@@ -88,6 +88,7 @@ const canonicalUrl = `https://www.dviewsolutions.com/safety-pillars/${primaryCit
   preloadHeroImage={location.heroImage}
   keywords={location.keywords}
   faqs={location.faqs || []}
+  hideFloatingButtons={true}
 >
   <DViewWebsite client:load initialCitySlug={slug} tier="tier3" faqs={location.faqs || []} />
 </Layout>

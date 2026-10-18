@@ -1333,6 +1333,19 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     return () => { active = false; };
   }, [customerName, customerPhone, selectedHub, currentCorridorDisplayName]);
 
+  // Close drawer or modal on Escape key press
+  useEffect(() => {
+    if (!isMenuOpen && !isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (isModalOpen) setIsModalOpen(false);
+        if (isMenuOpen) setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen, isModalOpen]);
+
   // Society Proof Filter State
   const [societyFilter, setSocietyFilter] = useState<string>(activeSlide.id);
 
@@ -1499,7 +1512,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <span className="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold block">
               SS-316 METALLURGY TRUST & GUARANTEES
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight break-words">
               Specific Weather Shield ({activeSlide.name})
             </h2>
             
@@ -1558,6 +1571,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 src={activeSlide.heroImage} 
                 alt={`D-VIEW SS-316 Weather Shield in ${activeSlide.name}`} 
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="320"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
               
@@ -1992,50 +2009,67 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* ========================================================= */}
       {/* 1. TOP MINIMAL NAVIGATION HEADER                          */}
       {/* ========================================================= */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-3.5 px-4 sm:px-12 flex items-center justify-between pointer-events-auto transition-all">
+      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 px-4 sm:px-12 flex items-center justify-between pointer-events-auto transition-all">
         
         {/* Left: Thin menu mark `= MENU` and brand title `D-VIEW INVISIBLE SAFETY` */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <button
             type="button"
             onClick={() => setIsMenuOpen(true)}
-            className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-slate-700 hover:text-[#16A34A] transition cursor-pointer font-bold"
+            aria-label="Open Navigation Menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="dview-side-drawer"
+            className="flex items-center gap-2 py-2 text-xs uppercase tracking-[0.25em] text-slate-700 hover:text-[#16A34A] transition cursor-pointer font-bold"
           >
             <span className="text-base leading-none">=</span> MENU
           </button>
 
-          <a href="/" className="flex items-center gap-3 group">
-            <img 
-              src="/images/d-view-logo-horizontal.png" 
-              alt="D-VIEW Invisible Grills & Safety Solutions" 
-              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
-            />
-            {/* Prominently Highlighted Brand Slogan Badge (Primary visible H1 on Tier 1 Homepage across Mobile & Desktop) */}
-            {tier === 'tier1' ? (
-              <h1 className="flex items-center pl-2 sm:pl-3 border-l-2 border-emerald-500/40 m-0">
-                <span className="inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[8px] sm:text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm leading-tight text-center max-w-[135px] sm:max-w-none sm:whitespace-nowrap">
-                  <span className="hidden sm:inline text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
-                  <span className="text-slate-900 font-extrabold tracking-wider sm:tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                  <span className="hidden sm:inline text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+          {tier === 'tier1' ? (
+            <h1 className="m-0 flex items-center">
+              <a href="/" className="flex items-center gap-3 group">
+                <img 
+                  src="/images/d-view-logo-horizontal.png" 
+                  alt="D-VIEW Invisible Grills & Safety Solutions" 
+                  width="160"
+                  height="40"
+                  decoding="async"
+                  className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                />
+                <span className="sr-only xl:not-sr-only xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
+                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                    <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                  </span>
                 </span>
-              </h1>
-            ) : (
-              <div className="hidden lg:flex items-center pl-3 border-l-2 border-emerald-500/40">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm">
+              </a>
+            </h1>
+          ) : (
+            <a href="/" className="flex items-center gap-3 group">
+              <img 
+                src="/images/d-view-logo-horizontal.png" 
+                alt="D-VIEW Invisible Grills & Safety Solutions" 
+                width="160"
+                height="40"
+                decoding="async"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div className="hidden xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
                   <span className="text-[#16A34A] font-extrabold">—</span>
                   <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
                   <span className="text-[#16A34A] font-extrabold">—</span>
                 </span>
               </div>
-            )}
-          </a>
+            </a>
+          )}
         </div>
 
         {/* Middle: 6 Cities Quick Navigation Dropdown */}
         <div className="relative group hidden md:block">
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold uppercase tracking-wider hover:bg-[#16A34A] hover:text-white transition cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold uppercase tracking-wider hover:bg-[#16A34A] hover:text-white transition cursor-pointer shadow-sm"
           >
             <span>📍 Explore 7 City Hubs</span>
             <span className="text-[10px]">▼</span>
@@ -2058,20 +2092,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
         </div>
 
         {/* Right: Direct concierge telephone `+91 62816 20716` and `CONTACT US` */}
-        <div className="flex items-center gap-6 sm:gap-8 text-xs uppercase tracking-[0.2em] text-slate-700 font-semibold">
+        <div className="flex items-center gap-4 sm:gap-8 text-xs uppercase tracking-[0.2em] text-slate-700 font-semibold">
           <button
             type="button"
             onClick={() => handleOpenBooking()}
-            className="hidden sm:inline-block hover:text-[#16A34A] transition cursor-pointer text-slate-700"
+            className="hidden sm:inline-block py-2 hover:text-[#16A34A] transition cursor-pointer text-slate-700"
           >
             CONTACT US
           </button>
           
           <a
             href="tel:+916281620716"
-            className="text-slate-900 hover:text-[#16A34A] transition flex items-center gap-1.5"
+            aria-label="Call D-VIEW Helpline +91 62816 20716"
+            className="text-slate-900 hover:text-[#16A34A] transition flex items-center gap-1.5 p-2 sm:p-0"
           >
-            <Phone className="w-3.5 h-3.5 text-[#16A34A] stroke-[2]" />
+            <Phone className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-[#16A34A] stroke-[2]" />
             <span className="hidden sm:inline text-slate-800 font-bold">+91 62816 20716</span>
           </a>
         </div>
@@ -2087,7 +2122,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             className="fixed inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setIsMenuOpen(false)}
           />
-          <div className="relative w-full max-w-sm bg-white border-r border-slate-200 h-full p-8 z-10 flex flex-col justify-between overflow-y-auto shadow-2xl">
+          <div
+            id="dview-side-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site Navigation Menu"
+            className="relative w-full max-w-sm bg-white border-r border-slate-200 h-full p-6 sm:p-8 z-10 flex flex-col justify-between overflow-y-auto shadow-2xl"
+          >
             
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-slate-200">
@@ -2096,6 +2137,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     <img 
                       src="/images/d-view-logo-horizontal.png" 
                       alt="D-VIEW Invisible Safety Grills" 
+                      width="160"
+                      height="40"
+                      decoding="async"
                       className="h-8 w-auto object-contain" 
                     />
                   </a>
@@ -2108,7 +2152,8 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <button 
                   type="button"
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-slate-500 hover:text-slate-900 p-1 cursor-pointer"
+                  aria-label="Close Navigation Menu"
+                  className="text-slate-500 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100 cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -2146,21 +2191,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a 
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition"
+                  className="block py-1 hover:text-[#16A34A] transition"
                 >
                   Tier 1: City Showcase Slides
                 </a>
                 <a 
                   href={activeSlide.locationPath}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition"
+                  className="block py-1 hover:text-[#16A34A] transition"
                 >
                   Tier 2: {activeSlide.name} Corridors
                 </a>
                 <a 
                   href={`/safety-pillars/${activeSlide.slug === 'vijayawada-amaravati' ? 'vijayawada' : activeSlide.slug}`}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition text-[#16A34A]"
+                  className="block py-1 hover:text-[#16A34A] transition text-[#16A34A]"
                 >
                   Tier 3: 6-Pillar Proofs & Pricing
                 </a>
@@ -2179,17 +2224,17 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       )}
 
       {/* ==================================================================== */}
-      {/* TIER 1: MAIN DASHBOARD (100vh FULL-SCREEN SNAP-SCROLL SLIDES)         */}
+      {/* TIER 1: MAIN DASHBOARD (FULL-SCREEN CITY SHOWCASE SLIDES)            */}
       {/* ==================================================================== */}
       {tier === 'tier1' && (
-        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-slate-50">
+        <main className="min-h-screen w-full bg-slate-50">
           
           {/* 6 CITIES SLIDES: 100% IMMERSIVE FULL SCREEN COVERAGE */}
           {CITIES_SLIDES.map((slide, idx) => (
             <section
               key={slide.id}
               id={`slide-${slide.id}`}
-              className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] snap-start snap-always flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
+              className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
             >
               {/* ============================================================ */}
               {/* MOBILE VIEW: TRUE 100% FULLSCREEN 9:16 IMMERSIVE EXPERIENCE  */}
@@ -2204,6 +2249,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     className="w-full h-full object-cover object-center"
                     loading={idx === 0 ? "eager" : "lazy"}
                     fetchPriority={idx === 0 ? "high" : "auto"}
+                    decoding="async"
+                    width="720"
+                    height="1280"
                   />
                 </picture>
 
@@ -2243,8 +2291,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="hidden md:flex relative w-full h-full flex-col justify-between p-6 bg-slate-50">
                 {/* Ambient Atmospheric Background */}
                 <div 
-                  className="absolute inset-0 bg-cover bg-center filter blur-3xl scale-125 opacity-20 pointer-events-none transition-all duration-700"
-                  style={{ backgroundImage: `url(${slide.heroImage})` }}
+                  className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-slate-100 to-emerald-500/5 pointer-events-none"
                 />
 
                 {/* Main Content Grid */}
@@ -2259,8 +2306,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                         src={slide.heroImage}
                         alt={`D-VIEW Invisible Grills in ${slide.name}`}
                         className="w-full h-full object-cover rounded-3xl"
-                        loading={idx === 0 ? "eager" : "lazy"}
-                        fetchPriority={idx === 0 ? "high" : "auto"}
+                        loading="lazy"
+                        decoding="async"
+                        width="640"
+                        height="640"
                       />
                     </a>
                   </div>
@@ -2702,7 +2751,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <span className="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold">
                   FREQUENTLY ASKED QUESTIONS
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold uppercase text-slate-900 mt-2">
+                <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 mt-2 break-words">
                   Architectural Safety Insights ({activeSlide.name})
                 </h2>
               </div>
@@ -2736,13 +2785,22 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* WHATSAPP LEAD MODAL WITH DYNAMIC QR CODE                  */}
       {/* ========================================================= */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setIsModalOpen(false); }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="booking-modal-title"
+            className="relative w-full max-w-md max-h-[90dvh] overflow-y-auto bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl"
+          >
             
             <button 
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 cursor-pointer transition"
+              aria-label="Close Booking Modal"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 cursor-pointer transition"
             >
               <X className="w-5 h-5" />
             </button>
@@ -2751,7 +2809,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#16A34A] font-bold block">
                 Instant Concierge Booking
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold uppercase text-slate-900 mt-1">
+              <h3 id="booking-modal-title" className="text-xl sm:text-2xl font-extrabold uppercase text-slate-900 mt-1">
                 Book Free Site Measurement
               </h3>
               <p className="text-xs text-slate-600 mt-1 font-medium">
@@ -2761,10 +2819,11 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
             <div className="space-y-3.5">
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-city-hub" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Selected City Hub
                 </label>
                 <select 
+                  id="modal-city-hub"
                   value={selectedHub}
                   onChange={(e) => setSelectedHub(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white font-medium"
@@ -2780,10 +2839,11 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-corridor" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Corridor / Community
                 </label>
                 <input 
+                  id="modal-corridor"
                   type="text"
                   placeholder="e.g. Madhurawada High-Rises"
                   value={selectedCorridor}
@@ -2793,11 +2853,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-customer-name" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Your Full Name
                 </label>
                 <input 
+                  id="modal-customer-name"
                   type="text"
+                  autoComplete="name"
                   placeholder="e.g. Ramesh Varma"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
@@ -2806,11 +2868,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-customer-phone" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Phone Number (For WhatsApp Confirmation)
                 </label>
                 <input 
+                  id="modal-customer-phone"
                   type="tel"
+                  autoComplete="tel"
                   placeholder="+91 62816 20716"
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
