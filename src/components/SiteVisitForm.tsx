@@ -7,7 +7,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Plus,
-  Minus
+  Minus,
+  AlertCircle
 } from 'lucide-react';
 import { ALL_LOCATIONS } from '../data/locations';
 
@@ -57,6 +58,8 @@ export default function SiteVisitForm({ defaultCitySlug = 'rajahmundry', cityNam
   const [note, setNote] = useState('');
   const [consentAgreed, setConsentAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -117,30 +120,38 @@ ${note ? `• Note: ${note}` : ''}`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
     if (!name.trim()) {
-      alert('Please enter your name');
+      setErrorMessage('Please enter your full name.');
       return;
     }
     if (!/^[6-9]\d{9}$/.test(normalizedPhone)) {
-      alert('Please enter a valid 10-digit mobile number');
+      setErrorMessage('Please enter a valid 10-digit Indian mobile number (starting with 6-9).');
       return;
     }
     if (!area) {
-      alert(`Please select your area / locality in ${activeCity.name}`);
+      setErrorMessage(`Please select your area / locality in ${activeCity.name}.`);
       return;
     }
     if (area === 'other' && !customArea.trim()) {
-      alert('Please enter your locality / apartment name');
+      setErrorMessage('Please enter your apartment or colony name.');
       return;
     }
     if (!consentAgreed) {
-      alert('Please agree to project sharing terms to schedule your site visit');
+      setErrorMessage('Please check the agreement box to share your details via WhatsApp.');
       return;
     }
 
+    setIsSubmitting(true);
     setIsSubmitted(true);
-    // This only opens a draft; the visitor must tap Send in WhatsApp.
-    window.open(buildWhatsAppUrl(), '_blank', 'noopener,noreferrer');
+    try {
+      window.open(buildWhatsAppUrl(), '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      // Handled gracefully via the visible confirmation fallback link
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -154,7 +165,7 @@ ${note ? `• Note: ${note}` : ''}`;
         <div className="bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-9 relative overflow-hidden text-left">
           
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="space-y-6">
               
               {/* 01 / SITE DETAILS HEADER */}
               <div>
@@ -198,10 +209,15 @@ ${note ? `• Note: ${note}` : ''}`;
                   <input
                     id="site-visit-phone"
                     type="tel"
+                    inputMode="tel"
+                    pattern="[6-9][0-9]{9}"
                     required
                     autoComplete="tel"
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      if (errorMessage) setErrorMessage('');
+                    }}
                     placeholder="98765 43210"
                     maxLength={13}
                     className="w-full px-4 py-3.5 text-sm bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none"
@@ -368,8 +384,9 @@ ${note ? `• Note: ${note}` : ''}`;
 
               {/* CONSENT CHECKBOX */}
               <div className="pt-1">
-                <label className="flex items-start gap-2.5 cursor-pointer text-[11px] text-slate-500 leading-relaxed select-none">
+                <label htmlFor="site-visit-consent" className="flex items-start gap-2.5 cursor-pointer text-[11px] text-slate-500 leading-relaxed select-none">
                   <input
+                    id="site-visit-consent"
                     type="checkbox"
                     checked={consentAgreed}
                     onChange={(e) => setConsentAgreed(e.target.checked)}
@@ -381,13 +398,24 @@ ${note ? `• Note: ${note}` : ''}`;
                 </label>
               </div>
 
+              {/* ERROR MESSAGE DISPLAY */}
+              {errorMessage && (
+                <div role="alert" aria-live="polite" className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               {/* SUBMIT BUTTON - D-VIEW Signature Green */}
               <div>
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl font-extrabold text-sm sm:text-base tracking-wider uppercase text-slate-950 bg-[#7CFF3A] hover:bg-[#6be630] transition-all shadow-[0_4px_20px_rgba(124,255,58,0.4)] hover:shadow-[0_6px_28px_rgba(124,255,58,0.55)] hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer active:translate-y-0"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-6 rounded-xl font-extrabold text-sm sm:text-base tracking-wider uppercase text-slate-950 bg-[#7CFF3A] hover:bg-[#6be630] transition-all shadow-[0_4px_20px_rgba(124,255,58,0.4)] hover:shadow-[0_6px_28px_rgba(124,255,58,0.55)] hover:-translate-y-0.5 flex items-center justify-center gap-2 active:translate-y-0 ${
+                    isSubmitting ? 'opacity-80 cursor-wait' : 'cursor-pointer'
+                  }`}
                 >
-                  <span>SEND REQUEST ON WHATSAPP</span>
+                  <span>{isSubmitting ? 'PREPARING WHATSAPP DRAFT...' : 'SEND REQUEST ON WHATSAPP'}</span>
                   <span className="text-lg leading-none">→</span>
                 </button>
 
@@ -418,9 +446,15 @@ ${note ? `• Note: ${note}` : ''}`;
                   <MessageSquare className="w-4 h-4 fill-current" />
                   <span>Open WhatsApp Conversation Now</span>
                 </a>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  If your browser popup blocker prevented the window from opening automatically, tap the green button above.
+                </p>
                 <button
                   type="button"
-                  onClick={() => setIsSubmitted(false)}
+                  onClick={() => {
+                    setIsSubmitted(false);
+                    setErrorMessage('');
+                  }}
                   className="text-xs text-slate-500 hover:text-slate-900 underline pt-2"
                 >
                   Edit enquiry details

@@ -63,7 +63,20 @@ export default function PriceCalculator({ defaultCitySlug = 'visakhapatnam', cit
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [modalCity, setModalCity] = useState(defaultCitySlug);
+  const [consentAgreed, setConsentAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsModalOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen]);
 
   const selectedThicknessObj = THICKNESS_OPTIONS.find(t => t.value === thickness) || THICKNESS_OPTIONS[1];
   const activeCityObj = ALL_LOCATIONS.find(loc => loc.slug === selectedCity) || ALL_LOCATIONS[0];
@@ -112,16 +125,30 @@ Please arrange a Free On-Site Digital Measurement visit.`;
 
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
     if (!name.trim()) {
-      alert('Please enter your name');
+      setErrorMessage('Please enter your full name.');
       return;
     }
     if (!/^[6-9]\d{9}$/.test(normalizedPhone)) {
-      alert('Please enter a valid 10-digit mobile number');
+      setErrorMessage('Please enter a valid 10-digit Indian mobile number (starting with 6-9).');
       return;
     }
+    if (!consentAgreed) {
+      setErrorMessage('Please check the agreement box to share your quote via WhatsApp.');
+      return;
+    }
+
+    setIsSubmitting(true);
     setIsSubmitted(true);
-    window.open(createWhatsAppUrl(), '_blank', 'noopener,noreferrer');
+    try {
+      window.open(createWhatsAppUrl(), '_blank', 'noopener,noreferrer');
+    } catch (err) {
+      // Handled gracefully via the visible fallback link
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -199,19 +226,25 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                       min="3"
                       max="40"
                       step="1"
+                      aria-label="Balcony width in feet slider"
                       value={width}
                       onChange={(e) => setWidth(Number(e.target.value))}
                       className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#16A34A]"
                     />
                     <div className="mt-3 flex items-center justify-between">
-                      <span className="text-[11px] text-slate-500">Numeric:</span>
+                      <label htmlFor="calc-num-width" className="text-[11px] text-slate-500">Numeric:</label>
                       <div className="flex items-center gap-1.5">
                         <input
+                          id="calc-num-width"
                           type="number"
+                          inputMode="decimal"
                           min="1"
                           max="60"
                           value={width}
-                          onChange={(e) => setWidth(Math.max(1, Number(e.target.value)))}
+                          onChange={(e) => {
+                            const val = parseFloat(e.target.value);
+                            setWidth(isNaN(val) ? 1 : Math.max(1, Math.min(60, val)));
+                          }}
                           className="w-20 px-2 py-1 text-xs text-center bg-white border border-slate-300 rounded-lg text-slate-900 font-bold focus:outline-none focus:border-[#16A34A]"
                         />
                         <span className="text-xs text-slate-500">ft</span>
@@ -230,20 +263,26 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                       min="3"
                       max="15"
                       step="0.5"
+                      aria-label="Balcony height in feet slider"
                       value={height}
                       onChange={(e) => setHeight(Number(e.target.value))}
                       className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#16A34A]"
                     />
                     <div className="mt-3 flex items-center justify-between">
-                      <span className="text-[11px] text-slate-500">Numeric:</span>
+                      <label htmlFor="calc-num-height" className="text-[11px] text-slate-500">Numeric:</label>
                       <div className="flex items-center gap-1.5">
                         <input
+                          id="calc-num-height"
                           type="number"
+                          inputMode="decimal"
                           min="1"
                           max="20"
                           step="0.5"
                           value={height}
-                          onChange={(e) => setHeight(Math.max(1, Number(e.target.value)))}
+                          onChange={(e) => {
+                            const val = parseFloat(e.target.value);
+                            setHeight(isNaN(val) ? 1 : Math.max(1, Math.min(20, val)));
+                          }}
                           className="w-20 px-2 py-1 text-xs text-center bg-white border border-slate-300 rounded-lg text-slate-900 font-bold focus:outline-none focus:border-[#16A34A]"
                         />
                         <span className="text-xs text-slate-500">ft</span>
@@ -384,14 +423,23 @@ Please arrange a Free On-Site Digital Measurement visit.`;
 
       {/* Modal: Book Site Visit & Dynamic WhatsApp QR */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in">
-          <div className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in"
+          onClick={(e) => { if (e.target === e.currentTarget) setIsModalOpen(false); }}
+        >
+          <div 
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calc-modal-title"
+            className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto"
+          >
             
             {/* Close Button */}
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 rounded-lg bg-slate-100 hover:bg-slate-200"
+              aria-label="Close calculation modal"
+              className="absolute top-4 right-4 p-2 text-slate-500 hover:text-slate-800 rounded-lg bg-slate-100 hover:bg-slate-200 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -404,7 +452,7 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                     Free On-Site Laser Measurement
                   </span>
                 </div>
-                <h3 className="text-2xl font-black text-slate-900">
+                <h3 id="calc-modal-title" className="text-2xl font-black text-slate-900">
                   Book Free Site Visit With This Quote
                 </h3>
                 <p className="mt-1 text-sm text-slate-600">
@@ -414,16 +462,21 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-6">
                   
                   {/* Clean Lead Form */}
-                  <form onSubmit={handleSubmitLead} className="md:col-span-7 space-y-4">
+                  <form onSubmit={handleSubmitLead} noValidate className="md:col-span-7 space-y-4">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Your Full Name</label>
+                      <label htmlFor="calc-customer-name" className="block text-xs font-bold text-slate-700 mb-1">Your Full Name</label>
                       <div className="relative">
                         <User className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                         <input
+                          id="calc-customer-name"
                           type="text"
                           required
+                          autoComplete="name"
                           value={name}
-                          onChange={(e) => setName(e.target.value)}
+                          onChange={(e) => {
+                            setName(e.target.value);
+                            if (errorMessage) setErrorMessage('');
+                          }}
                           placeholder="e.g. Ramesh Varma"
                           className="w-full pl-9 pr-3 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:bg-white focus:outline-none focus:border-[#16A34A]"
                         />
@@ -431,14 +484,21 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Phone Number (WhatsApp Preferred)</label>
+                      <label htmlFor="calc-customer-phone" className="block text-xs font-bold text-slate-700 mb-1">Phone Number (WhatsApp Preferred)</label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                         <input
+                          id="calc-customer-phone"
                           type="tel"
+                          inputMode="tel"
+                          pattern="[6-9][0-9]{9}"
                           required
+                          autoComplete="tel"
                           value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
+                          onChange={(e) => {
+                            setPhone(e.target.value);
+                            if (errorMessage) setErrorMessage('');
+                          }}
                           placeholder="e.g. 6281620716"
                           className="w-full pl-9 pr-3 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:bg-white focus:outline-none focus:border-[#16A34A]"
                         />
@@ -447,10 +507,11 @@ Please arrange a Free On-Site Digital Measurement visit.`;
 
                     {/* Simple Location Dropdown */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Location / City</label>
+                      <label htmlFor="calc-customer-city" className="block text-xs font-bold text-slate-700 mb-1">Location / City</label>
                       <div className="relative">
                         <MapPin className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
                         <select
+                          id="calc-customer-city"
                           value={modalCity}
                           onChange={(e) => setModalCity(e.target.value)}
                           className="w-full pl-9 pr-3 py-2.5 text-sm bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:bg-white focus:outline-none focus:border-[#16A34A]"
@@ -466,11 +527,41 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                       </div>
                     </div>
 
+                    {/* Affirmative Consent Checkbox */}
+                    <div className="pt-1">
+                      <label htmlFor="calc-consent" className="flex items-start gap-2.5 cursor-pointer text-[11px] text-slate-500 leading-relaxed select-none">
+                        <input
+                          id="calc-consent"
+                          type="checkbox"
+                          checked={consentAgreed}
+                          onChange={(e) => {
+                            setConsentAgreed(e.target.checked);
+                            if (errorMessage) setErrorMessage('');
+                          }}
+                          className="w-4 h-4 mt-0.5 rounded accent-[#16A34A] cursor-pointer flex-shrink-0"
+                        />
+                        <span>
+                          I agree to share my balcony quotation details with D-VIEW on WhatsApp. I understand that I must tap Send in WhatsApp. See the <a href="/privacy#privacy" className="underline hover:text-slate-900" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                        </span>
+                      </label>
+                    </div>
+
+                    {/* Error Banner */}
+                    {errorMessage && (
+                      <div role="alert" aria-live="polite" className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        <span>{errorMessage}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl font-black text-sm text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-all shadow-[0_4px_16px_rgba(124,255,58,0.4)] cursor-pointer"
+                      disabled={isSubmitting}
+                      className={`w-full py-3.5 rounded-xl font-black text-sm text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-all shadow-[0_4px_16px_rgba(124,255,58,0.4)] ${
+                        isSubmitting ? 'opacity-80 cursor-wait' : 'cursor-pointer'
+                      }`}
                     >
-                      Confirm Free Site Visit Booking
+                      {isSubmitting ? 'Preparing WhatsApp...' : 'Confirm Free Site Visit Booking'}
                     </button>
                   </form>
 
@@ -527,11 +618,14 @@ Please arrange a Free On-Site Digital Measurement visit.`;
                       setIsSubmitted(false);
                       setIsModalOpen(false);
                     }}
-                    className="px-6 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-200"
+                    className="px-6 py-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 text-sm font-semibold hover:bg-slate-200 cursor-pointer"
                   >
                     Close
                   </button>
                 </div>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  If your browser popup blocker prevented the window from opening automatically, tap the green button above.
+                </p>
               </div>
             )}
 

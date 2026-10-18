@@ -139,12 +139,14 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
         <div className="grid grid-cols-2 gap-2.5">
           {/* Width Input */}
           <div>
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="hero-calc-width" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
               Width (1 - 100 Ft):
             </label>
             <div className="relative">
               <input
+                id="hero-calc-width"
                 type="number"
+                inputMode="decimal"
                 min="1"
                 max="100"
                 value={width || ''}
@@ -160,12 +162,14 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
 
           {/* Height Input */}
           <div>
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="hero-calc-height" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
               Height (1 - 100 Ft):
             </label>
             <div className="relative">
               <input
+                id="hero-calc-height"
                 type="number"
+                inputMode="decimal"
                 min="1"
                 max="100"
                 value={height || ''}
@@ -210,11 +214,12 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
 
         {/* Material Selection (SS 316 & SS 304) */}
         <div>
-          <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+          <label htmlFor="hero-calc-material" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
             Wire Material & Thickness:
           </label>
           <div className="relative">
             <select
+              id="hero-calc-material"
               value={selectedMaterialId}
               onChange={(e) => setSelectedMaterialId(e.target.value)}
               className="w-full appearance-none px-3 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-bold text-xs sm:text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white cursor-pointer pr-8"

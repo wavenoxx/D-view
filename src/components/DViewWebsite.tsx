@@ -4,7 +4,7 @@ import {
   ShieldCheck, Phone, CheckCircle2, X, 
   Flame, Baby, Cat, HeartHandshake, Eye, Sparkles, 
   Droplets, ArrowUpRight, HelpCircle, MapPin, ArrowLeft,
-  Wrench, Lock, Gift, Mail, MessageSquare, Building2
+  Wrench, Lock, Gift, Mail, MessageSquare, Building2, AlertCircle
 } from 'lucide-react';
 import { getSafetyGrillData } from '../data/corridors';
 
@@ -1296,10 +1296,14 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [selectedHub, setSelectedHub] = useState(activeSlide.name);
+  const [consentAgreed, setConsentAgreed] = useState(false);
+  const [modalError, setModalError] = useState('');
 
   const handleOpenBooking = (hubName?: string, corridorName?: string) => {
     setSelectedHub(hubName || activeSlide.name);
     if (corridorName) setSelectedCorridor(corridorName);
+    setModalError('');
+    setConsentAgreed(false);
     setIsModalOpen(true);
   };
 
@@ -1969,7 +1973,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       <a
         href={`https://wa.me/916281620716?text=${quickConnectWAMessage}`}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         aria-label="Chat with D-View on WhatsApp"
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-[0_4px_25px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 group cursor-pointer border-2 border-white/20"
       >
@@ -2862,7 +2866,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                   autoComplete="name"
                   placeholder="e.g. Ramesh Varma"
                   value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
+                  onChange={(e) => {
+                    setCustomerName(e.target.value);
+                    if (modalError) setModalError('');
+                  }}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
                 />
               </div>
@@ -2874,10 +2881,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <input 
                   id="modal-customer-phone"
                   type="tel"
+                  inputMode="tel"
+                  pattern="[6-9][0-9]{9}"
+                  maxLength={15}
                   autoComplete="tel"
                   placeholder="+91 62816 20716"
                   value={customerPhone}
-                  onChange={(e) => setCustomerPhone(e.target.value)}
+                  onChange={(e) => {
+                    setCustomerPhone(e.target.value);
+                    if (modalError) setModalError('');
+                  }}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
                 />
               </div>
@@ -2902,6 +2915,36 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 </span>
               </div>
 
+              {/* Affirmative Consent Checkbox */}
+              <div className="pt-2">
+                <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={consentAgreed}
+                    onChange={(e) => {
+                      setConsentAgreed(e.target.checked);
+                      if (modalError) setModalError('');
+                    }}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                  />
+                  <span className="text-[11px] text-slate-600 leading-tight">
+                    I agree to D-VIEW contacting me via WhatsApp or call regarding site measurement and safety grill details.
+                  </span>
+                </label>
+              </div>
+
+              {/* Accessible Inline Validation Alert */}
+              {modalError && (
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="bg-red-50 border border-red-200 text-red-700 text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-2 mt-2"
+                >
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                  <span>{modalError}</span>
+                </div>
+              )}
+
               <a 
                 href={`https://wa.me/916281620716?text=${getWhatsAppMessage()}`}
                 target="_blank"
@@ -2909,15 +2952,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 onClick={(e) => {
                   if (!customerName.trim()) {
                     e.preventDefault();
-                    alert('Please enter your name');
+                    setModalError('Please enter your full name');
                     return;
                   }
                   const cleanPhone = customerPhone.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '');
                   if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
                     e.preventDefault();
-                    alert('Please enter a valid 10-digit mobile number');
+                    setModalError('Please enter a valid 10-digit Indian mobile number');
                     return;
                   }
+                  if (!consentAgreed) {
+                    e.preventDefault();
+                    setModalError('Please check the consent box to proceed with WhatsApp enquiry.');
+                    return;
+                  }
+                  setModalError('');
                 }}
                 className="w-full bg-[#16A34A] hover:bg-emerald-700 text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider block text-center shadow-lg mt-3 transition"
               >
