@@ -6,7 +6,7 @@ const emotionalCards = [
     title: "Children Fall Safety",
     subtitle: "From Constant Fear to Complete Freedom",
     problem: "Fear of heights & balcony lockups",
-    solution: "100% child-safe vertical SS-316 tensioned cables",
+    solution: "Child-safe vertical stainless tensioned cables",
     image: "/assets/cards/child-mother-safety.jpg",
     tag: "Child Protection"
   },
@@ -24,16 +24,16 @@ const emotionalCards = [
     title: "Zero Pigeon Droppings",
     subtitle: "Say Goodbye to Balcony Dirt & Disease",
     problem: "Nasty bird droppings & contaminated spaces",
-    solution: "50mm precision gap stops pigeons permanently",
+    solution: "50mm precision gap deters pigeons and birds",
     image: "/assets/cards/pigeon-free-hygiene.jpg",
     tag: "Hygienic Living"
   },
   {
     id: 4,
-    title: "100% Open Air & View",
+    title: "Open Air & Panoramic View",
     subtitle: "Unobstructed Daylight & Fresh Breeze",
     problem: "Dark, blocked, shadowy rooms",
-    solution: "99% transparent marine-grade vertical wires",
+    solution: "99% transparent stainless steel vertical wires",
     image: "/assets/cards/unblocked-air-view.jpg",
     tag: "Panoramic View"
   }

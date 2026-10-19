@@ -10,7 +10,7 @@ interface DynamicQRCodeProps {
 export default function DynamicQRCode({ locationSlug, cityName }: DynamicQRCodeProps) {
   const [pageQrUrl, setPageQrUrl] = useState<string>('');
   const [copied, setCopied] = useState<boolean>(false);
-  const [currentUrl, setCurrentUrl] = useState<string>(`https://dviewsolutions.com/locations/${locationSlug}`);
+  const [currentUrl, setCurrentUrl] = useState<string>(`https://www.dviewsolutions.com/locations/${locationSlug}`);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -78,7 +78,7 @@ export default function DynamicQRCode({ locationSlug, cityName }: DynamicQRCodeP
           <div className="mt-3 p-3 rounded-xl bg-[#1A2420] border border-[#7CFF3A]/30 flex items-center gap-2.5">
             <span className="text-base">🛡️</span>
             <span className="text-xs font-semibold text-[#E2E8F0]">
-              <strong className="text-[#7CFF3A]">Doorstep Technical Survey:</strong> Includes precision digital laser measurement and certified SS-316 sample inspection.
+              <strong className="text-[#7CFF3A]">Doorstep Technical Survey:</strong> Includes precision digital laser measurement and SS-316 / SS-304 sample inspection.
             </span>
           </div>
 

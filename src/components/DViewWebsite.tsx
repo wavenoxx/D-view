@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode';
 import { 
   ShieldCheck, Phone, CheckCircle2, X, 
   Flame, Baby, Cat, HeartHandshake, Eye, Sparkles, 
   Droplets, ArrowUpRight, HelpCircle, MapPin, ArrowLeft,
-  Wrench, Lock, Gift, Mail, MessageSquare, Building2
+  Wrench, Lock, Gift, Mail, MessageSquare, Building2, AlertCircle
 } from 'lucide-react';
 import { getSafetyGrillData } from '../data/corridors';
 
@@ -43,7 +44,7 @@ export interface LocationSlide {
 export const CITIES_SLIDES: LocationSlide[] = [
   {
     id: 'vizag',
-    locationPath: '/locations/vizag',
+    locationPath: '/visakhapatnam',
     slug: 'visakhapatnam',
     name: 'Visakhapatnam',
     cityShort: 'VIZAG',
@@ -51,28 +52,28 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mainTitle: 'THE INVISIBLE THRESHOLD — VIZAG',
     subline: 'Balcony & Window Invisible Grills. Unobstructed RK Beach Panoramas.',
     microCue: 'Tap anywhere to explore Vizag corridors & pricing',
-    badge: 'Coastal Marine Line SS-316',
+    badge: 'Coastal Stainless Line SS-316 Option',
     emotionHook: 'Mana Vizag sea coast view invisible grills valla asalu block avvakunda entha luxury ga undo!',
     landmarkDesc: 'Luxury penthouse interior balcony framing RK Beach coastal waves and Kailasagiri hillside through vertical SS-316 cables.',
     heroImage: '/images/dashboard/dashboard-visakhapatnam.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-visakhapatnam-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Madhurawada (27-Floor High-Rises)', 'Yendada', 'Rushikonda', 'PM Palem', 'Anandapuram', 'Pendurthi', 'Gajuwaka'],
     weatherChallenge: "Vizag's high-salinity salt-air and marine damp humidity rapidly corrode cheap iron or low-grade steel wires within months.",
-    weatherSolution: 'Strictly Marine Grade SS-316 infused with Molybdenum core for zero-decay corrosion resistance.',
-    safetyText: '100% Toddler & Child Fall Protection • Zero Pigeon Menace • Coastal SS-316 Rust Immunity',
-    keywordPings: ['Invisible Grills Vizag', 'Balcony Safety Madhurawada', 'SS-316 Marine Grade', 'Toddler Fall Protection', 'Rushikonda Ocean Views'],
+    weatherSolution: 'SS-316 and SS-304 options engineered for corrosion resistance.',
+    safetyText: 'Balcony Safety Barrier • Bird Deterrent • Coastal Stainless Cable Option',
+    keywordPings: ['Invisible Grills Vizag', 'Balcony Safety Madhurawada', 'SS-316 Stainless Steel', 'Balcony Safety Barrier', 'Rushikonda Ocean Views'],
     subLocations: [
       {
         name: 'Madhurawada (27-Floor High-Rises)',
         elevation: '25th-Floor Penthouse Balcony View',
-        tag: '25TH-FLOOR PENTHOUSE | 27 TOWERS LOCKDOWN',
+        tag: '25TH-FLOOR PENTHOUSE | HIGH-RISE SPECIFICATION',
         desc: '25th-floor penthouse balcony looking through vertical SS-316 wires at high-rise valley towers (like MVV The Grand) surrounded by green coastal hills.',
         image: '/assets/locations/sub/vizag-madhurawada.png'
       },
       {
         name: 'Yendada Sea-Facing Corridor',
         elevation: 'High-Altitude Bay Panoramas',
-        tag: 'HIGH-ALTITUDE BAY PANORAMA | MARINE-GRADE SS-316',
+        tag: 'HIGH-ALTITUDE BAY PANORAMA | SS-316 SPECIFICATION',
         desc: 'Wide balcony perspective facing the deep coastal ocean shoreline through crisp, transparent safety cables.',
         image: '/assets/locations/sub/vizag-yendada.png'
       },
@@ -86,7 +87,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'PM Palem (Cricket Stadium Road)',
         elevation: 'Gated Community High-Rises',
-        tag: 'GATED COMMUNITY HIGH-RISE | ZERO-CLIMB TODDLER SAFE',
+        tag: 'GATED COMMUNITY HIGH-RISE | VERTICAL SAFETY BARRIER',
         desc: 'Modern gated community high-rise elevation looking towards mountain ridges through 2-inch safe spaced cables.',
         image: '/assets/locations/sub/vizag-pmpalem.png'
       },
@@ -108,7 +109,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'rajahmundry',
-    locationPath: '/locations/rajahmundry',
+    locationPath: '/rajahmundry',
     slug: 'rajahmundry',
     name: 'Rajamahendravaram',
     cityShort: 'RAJAHMUNDRY',
@@ -117,15 +118,15 @@ export const CITIES_SLIDES: LocationSlide[] = [
     subline: 'SS-316 Invisible Grills with Unobstructed Godavari Arch Bridge Views.',
     microCue: 'Tap anywhere to view Rajamahendravaram projects & pricing',
     badge: 'Godavari Riverfront Corridor',
-    emotionHook: 'Pigeon problem lekunda, challani Godavari gaali & arch bridge view asalu aagakunda intiki 100% safety!',
+    emotionHook: 'Pigeon problem lekunda, challani Godavari gaali & arch bridge view asalu aagakunda intiki complete safety!',
     landmarkDesc: 'Modern apartment balcony with floor tiles, railing, and vertical invisible safety wires framing the Godavari Arch Bridge and river cruise boats.',
     heroImage: '/images/dashboard/dashboard-rajahmundry.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-rajahmundry-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Morampudi', 'Bommuru', 'Diwancheruvu', 'Lalacheruvu', 'Vemagiri', 'Gadaala Residential Belts'],
     weatherChallenge: 'Daily river vapor mist and heavy pigeon nesting colonies on open balcony ledges.',
     weatherSolution: 'Precision 2-inch SS-316 tensioned cables preventing bird entry while allowing 99% free river cross-ventilation.',
-    safetyText: '100% Fall Containment • Zero Pigeon Infestation • Unobstructed Godavari Arch Bridge Breeze',
-    keywordPings: ['Invisible Grills Rajahmundry', 'Godavari Arch Bridge View', 'Balcony Safety Morampudi', 'Pigeon Proof Balcony', '10-Year Warranty'],
+    safetyText: 'Fall Containment • Zero Pigeon Infestation • Unobstructed Godavari Arch Bridge Breeze',
+    keywordPings: ['Invisible Grills Rajahmundry', 'Godavari Arch Bridge View', 'Balcony Safety Morampudi', 'Pigeon Proof Balcony', '5-Year Warranty'],
     subLocations: [
       {
         name: 'Morampudi Residential Towers',
@@ -137,15 +138,15 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Godavari Arch Bridge Riverfront',
         elevation: 'Historic River Panorama',
-        tag: 'ICONIC HERITAGE VIEW | 100% PIGEON SHIELD',
+        tag: 'ICONIC HERITAGE VIEW | BIRD DETERRENT',
         desc: 'Balcony view directly framing the yellow Godavari Arch Bridge and boats drifting on the water through transparent SS-316 wires.',
         image: '/assets/locations/rajahmundry-godavari-bridge.jpg'
       },
       {
         name: 'Bommuru Gated Communities',
         elevation: 'Mid & High-Rise Apartments',
-        tag: 'ZERO BIRD DROPPINGS | 2-INCH SAFE SPACING',
-        desc: 'Luxury society balcony view with pigeon-proof vertical safety wire screens.',
+        tag: 'BIRD DETERRENT | 2-INCH SPACING',
+        desc: 'Apartment balcony concept with vertical safety wire spacing.',
         image: '/assets/locations/sub/rajahmundry-bommuru.png'
       },
       {
@@ -166,7 +167,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'vijayawada',
-    locationPath: '/locations/vijayawada',
+    locationPath: '/vijayawada',
     slug: 'vijayawada-amaravati',
     name: 'Vijayawada & Amaravati',
     cityShort: 'VIJAYAWADA',
@@ -181,8 +182,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     mobileHeroImage: '/images/dashboard/dashboard-vijayawada-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Benz Circle', 'Moghalrajpuram', 'Gunadala', 'Kanuru', 'Poranki', 'Amaravati HappyNest (G+18)', 'Tadepalli'],
     weatherChallenge: 'Intense summer thermal expansion and high-velocity wind gusts on skyscraper floors above 15 levels.',
-    weatherSolution: 'High-tensile multi-strand core cables certified up to 400kg load per strand with thermal compensation.',
-    safetyText: 'Skyscraper High-Rise Fall Security • HappyNest & Riverside Balcony Safety • Certified 400kg/Strand',
+    weatherSolution: 'Multi-strand core cables engineered for uniform tension with thermal compensation.',
+    safetyText: 'Skyscraper High-Rise Fall Security • HappyNest & Riverside Balcony Safety • Multi-Strand Stainless Cable',
     keywordPings: ['Invisible Grills Vijayawada', 'Amaravati HappyNest Grills', 'Benz Circle Towers', 'High-Rise Balcony Safety', 'Prakasam Barrage View'],
     subLocations: [
       {
@@ -195,8 +196,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Amaravati HappyNest (G+18)',
         elevation: 'G+18 IT & Gov Housing Enclave',
-        tag: 'High-Rise Certified',
-        desc: 'Precision 50mm vertical wire spacing delivering 100% toddler fall security for HappyNest apartments.',
+        tag: 'High-Rise Engineered',
+        desc: 'Precision 50mm vertical wire spacing providing balcony barrier layout for high-rise apartments.',
         image: '/assets/corridors/vijayawada-happynest.jpg'
       },
       {
@@ -209,8 +210,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Gunadala & Ramavarappadu',
         elevation: 'Premium Gated Societies',
-        tag: '400 KG / Cable Load',
-        desc: 'Multi-strand core cables withstand body impacts and heavy leaning without slackening.',
+        tag: 'Multi-Strand Cable Load',
+        desc: 'Multi-strand core cables designed for balcony boundary containment when properly tensioned.',
         image: '/assets/corridors/vijayawada-gunadala.jpg'
       },
       {
@@ -223,15 +224,15 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Tadepalli Riverside Towers',
         elevation: 'Krishna Riverfront Penthouses',
-        tag: 'River Humidity Proof',
-        desc: 'Marine grade SS-316 cables chemically immune to Krishna river vapor mist and monsoon rains.',
+        tag: 'River Humidity Resistant',
+        desc: 'SS-316 cables formulated for resistance to Krishna river vapor mist and monsoon rains.',
         image: '/assets/corridors/vijayawada-tadepalli.jpg'
       }
     ]
   },
   {
     id: 'guntur',
-    locationPath: '/locations/guntur',
+    locationPath: '/guntur',
     slug: 'guntur',
     name: 'Guntur',
     cityShort: 'GUNTUR',
@@ -244,11 +245,11 @@ export const CITIES_SLIDES: LocationSlide[] = [
     landmarkDesc: 'Luxury apartment balcony framing Kondaveedu ridge skyline and Guntur urban expanse through floor-to-ceiling SS-316 invisible wire cables.',
     heroImage: '/images/dashboard/dashboard-guntur.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-guntur-9x16.jpg?v=tier1_fresh',
-    activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Belt (900+ listings)'],
+    activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Growth Corridor'],
     weatherChallenge: 'Heavy dry winds carrying abrasive dust particulates that erode and dull conventional iron bars.',
-    weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain lifelong shine.',
-    safetyText: 'Meticulous Fall Security for Apartments & Villas • Anti-Dust Smooth Nylon Coating • Zero-Climb Intervals',
-    keywordPings: ['Invisible Grills Guntur', 'Brodipet High-Rises', 'Arundelpet Balcony Safety', 'Kondaveedu Horizon', 'Toddler Anti-Climb Spacing'],
+    weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain durable clarity.',
+    safetyText: 'Meticulous Fall Security for Apartments & Villas • Anti-Dust Smooth Nylon Coating • Vertical Safety Intervals',
+    keywordPings: ['Invisible Grills Guntur', 'Brodipet High-Rises', 'Arundelpet Balcony Safety', 'Kondaveedu Horizon', 'Vertical Safe Spacing'],
     subLocations: [
       {
         name: 'Brodipet High-End Residencies',
@@ -260,8 +261,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Arundelpet Modern Towers',
         elevation: 'High-Density Residential Hub',
-        tag: 'Zero-Climb Spacing',
-        desc: 'Vertical 2-inch intervals with zero horizontal footing prevent climbing hazards completely.',
+        tag: 'Vertical Safety Spacing',
+        desc: 'Vertical 2-inch intervals with no horizontal footholds help deter climbing.',
         image: '/assets/corridors/guntur-arundelpet.jpg'
       },
       {
@@ -275,13 +276,13 @@ export const CITIES_SLIDES: LocationSlide[] = [
         name: 'Namburu IT & University Belt',
         elevation: 'University Belt Apartment Windows & Study Rooms',
         tag: 'Panoramic Window Safety',
-        desc: 'Panoramic room window fitted with tensioned invisible safety grills, overlooking university greens with 100% natural breeze.',
+        desc: 'Panoramic room window fitted with tensioned invisible safety grills, overlooking university greens with open natural breeze.',
         image: '/assets/corridors/guntur-namburu.jpg'
       },
       {
         name: 'Kaza & Tadepalli Belt',
         elevation: 'Twin-City Expressway Towers',
-        tag: '100% Daylighting',
+        tag: 'Natural Daylighting',
         desc: 'Bright sunlight fills the interiors naturally without obstructing windows or balcony doors.',
         image: '/assets/corridors/guntur-kaza.jpg'
       }
@@ -289,37 +290,37 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'kakinada',
-    locationPath: '/locations/kakinada',
+    locationPath: '/kakinada',
     slug: 'kakinada',
     name: 'Kakinada',
     cityShort: 'KAKINADA',
-    categoryTag: 'MARINE GRADE SS-316 CORRIDOR',
+    categoryTag: 'COASTAL CORRIDOR SPECIFICATION',
     mainTitle: "KAKINADA'S COASTAL SHIELD",
-    subline: 'Permanent rust immunity against salty coastal sea breezes.',
+    subline: 'Corrosion-resistant stainless steel for coastal sea breezes.',
     microCue: 'Tap anywhere to view Kakinada coastal specs & pricing',
     badge: 'Deepwater Port & Coastal Corridor',
-    emotionHook: 'Uppu gaali thupattu pattakunda, high-grade Marine wire security tho lifetime durability!',
-    landmarkDesc: 'Coastal apartment balcony framing Vakalapudi Lighthouse and palm shoreline with marine-grade SS-316 wires.',
+    emotionHook: 'Uppu gaali thupattu pattakunda, high-grade stainless wire security tho durable protection!',
+    landmarkDesc: 'Coastal apartment balcony framing Vakalapudi Lighthouse and palm shoreline with SS-316 wires.',
     heroImage: '/images/dashboard/dashboard-kakinada.jpg',
     mobileHeroImage: '/images/dashboard/dashboard-kakinada-9x16.jpg',
     activeBelts: ['Sarpavaram', 'Madhavapatnam', 'Ramanayyapeta', 'Vakalapudi', 'Jagannaickpur'],
     weatherChallenge: 'Aggressive industrial port emissions mixed with salty maritime mist causing pitting corrosion.',
-    weatherSolution: 'Certified Marine Grade SS-316 tested against ASTM B117 standards for extreme saline resistance.',
-    safetyText: 'Permanent Rust Immunity Against Marine Port Emissions • 100% Child & Pet Containment • Unblocked Sea Breeze',
-    keywordPings: ['Invisible Grills Kakinada', 'Sarpavaram High-Rise', 'Vakalapudi Port Balcony', 'Marine Grade SS-316', 'Coastal Rust Shield'],
+    weatherSolution: 'Corrosion-resistant SS-316 and SS-304 stainless steel options engineered for coastal exposure.',
+    safetyText: 'Corrosion Resistance Against Coastal Port Emissions • Child & Pet Containment • Unblocked Sea Breeze',
+    keywordPings: ['Invisible Grills Kakinada', 'Sarpavaram High-Rise', 'Vakalapudi Port Balcony', 'SS-316 Option', 'Coastal Rust Shield'],
     subLocations: [
       {
         name: 'Vakalapudi Port & Lighthouse Corridor',
         elevation: 'Sea-Front Balcony Residences',
-        tag: 'Marine-Grade Alloy',
-        desc: 'Direct view of Vakalapudi lighthouse protected with Molybdenum-infused SS-316 for lifetime rust immunity.',
+        tag: 'SS-316 Stainless Steel',
+        desc: 'Direct view of Vakalapudi lighthouse protected with molybdenum-infused SS-316 for enhanced coastal corrosion resistance.',
         image: '/assets/corridors/kakinada-vakalapudi.jpg'
       },
       {
         name: 'Sarpavaram High-Rise Towers',
         elevation: 'Gated Residential Colonies',
-        tag: 'Toddler Lockdown Safe',
-        desc: 'Ensures absolute fall containment up to the highest floors while allowing sea breeze in.',
+        tag: 'Balcony Safety Barrier',
+        desc: 'Designed as a reliable fall safety barrier across upper floors while allowing sea breeze in.',
         image: '/assets/corridors/kakinada-sarpavaram.jpg'
       },
       {
@@ -347,7 +348,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'nellore',
-    locationPath: '/locations/nellore',
+    locationPath: '/nellore',
     slug: 'nellore',
     name: 'Nellore',
     cityShort: 'NELLORE',
@@ -376,7 +377,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Balaji Nagar Elevated Residencies',
         elevation: 'High-Floor Family Apartments',
-        tag: '400 KG / Cable Strength',
+        tag: 'Multi-Strand Cable Strength',
         desc: 'Solid cable structural reassurance preventing vertigo and loss-of-balance fears.',
         image: '/assets/corridors/nellore-balajinagar.jpg'
       },
@@ -391,7 +392,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
         name: 'Vedayapalem Riverfront Belt',
         elevation: 'Penna Riverfront Windows & Flats',
         tag: 'Panoramic Window Safety',
-        desc: 'Seamless invisible grill installation across wide bedroom window, framing peaceful Penna river views while keeping children 100% safe.',
+        desc: 'Seamless invisible grill installation across wide bedroom window, framing peaceful Penna river views while keeping children safe.',
         image: '/assets/corridors/nellore-vedayapalem.jpg'
       },
       {
@@ -405,7 +406,7 @@ export const CITIES_SLIDES: LocationSlide[] = [
   },
   {
     id: 'ongole',
-    locationPath: '/locations/ongole',
+    locationPath: '/ongole',
     slug: 'ongole',
     name: 'Ongole',
     cityShort: 'ONGOLE',
@@ -414,21 +415,21 @@ export const CITIES_SLIDES: LocationSlide[] = [
     subline: 'SS-316 Invisible Safety Grills across Bhagyanagar, Lawyerpet & Kurnool Road.',
     microCue: 'Tap anywhere to view Ongole projects & pricing',
     badge: 'Prakasam High-Tension SS-316',
-    emotionHook: 'Bhagyanagar & Lawyerpet high-rises lo open breeze view asalu block avvakunda pillalu mariyu peddavallaki 100% safety!',
+    emotionHook: 'Bhagyanagar & Lawyerpet high-rises lo open breeze view asalu block avvakunda pillalu mariyu peddavallaki complete safety!',
     landmarkDesc: 'High-rise apartment balcony overlooking Kurnool Road Ridge and Ongole cityscape through vertical SS-316 invisible safety grills.',
     heroImage: '/images/dashboard/dashboard-ongole.jpg?v=tier1_fresh',
     mobileHeroImage: '/images/dashboard/dashboard-ongole-9x16.jpg?v=tier1_fresh',
     activeBelts: ['Bhagyanagar', 'Lawyerpet', 'Kurnool Road Belt', 'Santhapet', 'Mangamuru Road', 'Housing Board Colony'],
     weatherChallenge: 'Inland summer heat and dry highway dust wearing down traditional painted grills and causing frequent rust.',
-    weatherSolution: 'Certified SS-316 high-tensile wire rope coated with UV-resistant transparent nylon sheath and heavy-duty 6063-T6 aluminum tracks.',
-    safetyText: 'Prakasam High-Tension SS-316 Cable Lock • Zero Cage Feeling • 100% Fall Containment on High Floors',
+    weatherSolution: 'Multi-strand wire rope (SS-316 & SS-304 options) coated with UV-resistant transparent nylon sheath and heavy-duty 6063-T6 aluminum tracks.',
+    safetyText: 'Prakasam High-Tension Cable System • Zero Cage Feeling • High-Rise Fall Containment',
     keywordPings: ['Invisible Grills Ongole', 'Bhagyanagar High-Rises', 'Lawyerpet Balcony Safety', 'Kurnool Road Towers', 'Child & Pet Shield'],
     subLocations: [
       {
         name: 'Bhagyanagar Prime High-Rises',
         elevation: 'High-Floor Balconies',
-        tag: '100% Toddler Fall Protection',
-        desc: 'Uncompromised skyline views and absolute fall protection for children and families.',
+        tag: 'Balcony Safety Barrier',
+        desc: 'Uncompromised skyline views and reliable fall protection for children and families.',
         image: '/assets/corridors/ongole-bhagyanagar.jpg'
       },
       {
@@ -441,8 +442,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
       {
         name: 'Kurnool Road Growth Belt',
         elevation: 'Highway High-Rise Towers',
-        tag: 'High-Tension Tensile Strength',
-        desc: 'Calibrated tension turnbuckles and high-load cables ensuring zero sag and lifetime durability.',
+        tag: 'Multi-Strand Tension',
+        desc: 'Calibrated tension turnbuckles and stainless cables maintaining uniform tension and long-term performance.',
         image: '/assets/corridors/ongole-kurnoolroad.jpg'
       },
       {
@@ -512,13 +513,13 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "PM Palem": {
     image: "/assets/corridors/vizag-pmpalem.jpg",
     title: "PM Palem (Cricket Stadium Road)",
-    spec: "Gated Community High-Rise | Toddler Safe",
+    spec: "Gated Community High-Rise | Safety Barrier",
     cityId: "vizag"
   },
   "PM Palem (Cricket Stadium Road)": {
     image: "/assets/corridors/vizag-pmpalem.jpg",
     title: "PM Palem (Cricket Stadium Road)",
-    spec: "Gated Community High-Rise | Toddler Safe",
+    spec: "Gated Community High-Rise | Safety Barrier",
     cityId: "vizag"
   },
   "Anandapuram": {
@@ -562,19 +563,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Godavari Arch Bridge": {
     image: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     title: "Godavari Arch Bridge Riverfront",
-    spec: "Iconic Heritage View | 100% Pigeon Shield",
+    spec: "Iconic Heritage View | Bird Deterrent",
     cityId: "rajahmundry"
   },
   "Godavari Arch Bridge Riverfront": {
     image: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     title: "Godavari Arch Bridge Riverfront",
-    spec: "Iconic Heritage View | 100% Pigeon Shield",
+    spec: "Iconic Heritage View | Bird Deterrent",
     cityId: "rajahmundry"
   },
   "Bommuru": {
     image: "/assets/corridors/rajahmundry-bommuru.jpg",
     title: "Bommuru Gated Communities",
-    spec: "Zero Bird Droppings | 2-Inch Safe Spacing",
+    spec: "Bird Deterrent | 2-Inch Spacing",
     cityId: "rajahmundry"
   },
   "Bommuru Gated Communities": {
@@ -624,13 +625,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Amaravati HappyNest": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
-    spec: "G+18 Floodplain Panoramas | 100% Toddler Safe",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
+    cityId: "vijayawada"
+  },
+  "HappyNest Amaravati": {
+    image: "/assets/corridors/vijayawada-happynest.jpg",
+    title: "Amaravati HappyNest (G+18)",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
     cityId: "vijayawada"
   },
   "Amaravati HappyNest (G+18)": {
     image: "/assets/corridors/vijayawada-happynest.jpg",
     title: "Amaravati HappyNest (G+18)",
-    spec: "G+18 Floodplain Panoramas | 100% Toddler Safe",
+    spec: "G+18 Floodplain Panoramas | Safety Barrier",
     cityId: "vijayawada"
   },
   "Moghalrajpuram": {
@@ -642,7 +649,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Gunadala": {
     image: "/assets/corridors/vijayawada-gunadala.jpg",
     title: "Gunadala & Ramavarappadu",
-    spec: "Premium Gated Societies | 400 KG Load",
+    spec: "Premium Gated Societies | Multi-Strand Load",
     cityId: "vijayawada"
   },
   "Kanuru": {
@@ -668,7 +675,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Arundelpet": {
     image: "/assets/corridors/guntur-arundelpet.jpg",
     title: "Arundelpet Modern Towers",
-    spec: "High-Density Residential Hub | Zero-Climb",
+    spec: "High-Density Residential Hub | Vertical Cables",
     cityId: "guntur"
   },
   "Amaravati Road": {
@@ -680,13 +687,13 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Namburu": {
     image: "/assets/corridors/guntur-namburu.jpg",
     title: "Namburu IT & University Belt",
-    spec: "University Apartment Window Safety | 100% Breeze",
+    spec: "University Apartment Window Safety | Open Breeze",
     cityId: "guntur"
   },
   "Kaza": {
     image: "/assets/corridors/guntur-kaza.jpg",
     title: "Kaza & Tadepalli Belt",
-    spec: "Expressway Towers | 100% Daylighting",
+    spec: "Expressway Towers | Natural Daylighting",
     cityId: "guntur"
   },
 
@@ -694,19 +701,19 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Vakalapudi": {
     image: "/assets/corridors/kakinada-vakalapudi.jpg",
     title: "Vakalapudi Port & Lighthouse Corridor",
-    spec: "Sea-Front Balcony Residences | Marine-Grade Alloy",
+    spec: "Sea-Front Balcony Residences | SS-316 Stainless Steel",
     cityId: "kakinada"
   },
   "Sarpavaram": {
     image: "/assets/corridors/kakinada-sarpavaram.jpg",
     title: "Sarpavaram High-Rise Towers",
-    spec: "Gated Residential Colonies | Toddler Lockdown",
+    spec: "Gated Residential Colonies | Safety Barrier",
     cityId: "kakinada"
   },
   "Madhavapatnam": {
     image: "/assets/corridors/kakinada-madhavapatnam.jpg",
     title: "Madhavapatnam Residential Hub",
-    spec: "Family Window & Balcony Safety | Bird Barrier",
+    spec: "Family Window & Balcony Safety | Bird Deterrent",
     cityId: "kakinada"
   },
   "Ramanayyapeta": {
@@ -732,7 +739,7 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
   "Balaji Nagar": {
     image: "/assets/corridors/nellore-balajinagar.jpg",
     title: "Balaji Nagar Elevated Residencies",
-    spec: "High-Floor Family Apartments | 400 KG Strength",
+    spec: "High-Floor Family Apartments | Multi-Strand Strength",
     cityId: "nellore"
   },
   "Dargamitta": {
@@ -753,23 +760,29 @@ export const CORRIDOR_ASSETS: Record<string, CorridorAssetInfo> = {
     spec: "Expanding Gated Communities | Pest Control",
     cityId: "nellore"
   },
+  "Podalakuru Road": {
+    image: "/assets/corridors/nellore-podalakur.jpg",
+    title: "Podalakur Road & Kavali Belt",
+    spec: "Expanding Gated Communities | Pest Control",
+    cityId: "nellore"
+  },
   // Ongole Corridors
   "Bhagyanagar": {
     image: "/assets/corridors/ongole-bhagyanagar.jpg",
     title: "Bhagyanagar Prime High-Rises",
-    spec: "Prime Residential | 100% Toddler Fall Protection",
+    spec: "Prime Residential | Balcony Safety Barrier",
     cityId: "ongole"
   },
   "Lawyerpet": {
     image: "/assets/corridors/ongole-lawyerpet.jpg",
     title: "Lawyerpet Central Residences",
-    spec: "Central Society Living | 100% Pigeon Shield",
+    spec: "Central Society Living | Bird Deterrent",
     cityId: "ongole"
   },
   "Kurnool Road": {
     image: "/assets/corridors/ongole-kurnoolroad.jpg",
     title: "Kurnool Road Growth Belt",
-    spec: "Highway High-Rise Towers | High-Tension SS-316",
+    spec: "Highway High-Rise Towers | SS-316 Option",
     cityId: "ongole"
   },
   "Kurnool Road Belt": {
@@ -803,8 +816,8 @@ export interface SocietyInstallation {
   specs: string;
   highlight: string;
   image: string;
-  unitsProtected: string;
-  customerNote: string;
+  layoutTag: string;
+  layoutNote: string;
 }
 
 export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
@@ -816,11 +829,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'MVV GV The Grand',
     corridor: 'Madhurawada',
     floor: '25th-Floor Penthouse',
-    specs: '2.5mm Marine SS-316',
-    highlight: '100% Unblocked Hilltop & Valley View',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Unblocked Hilltop & Valley View',
     image: '/assets/locations/sub/vizag-madhurawada.png',
-    unitsProtected: '34 Balconies Secured',
-    customerNote: 'Valley breeze passes freely with zero vertigo risk for kids up to 25 floors.'
+    layoutTag: 'High-Rise Balcony',
+    layoutNote: 'Valley breeze passes freely with safe edge containment across upper-floor elevations.'
   },
   {
     id: 'sanskriti-bayfront',
@@ -829,11 +842,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Sanskriti Bayfront',
     corridor: 'Rushikonda',
     floor: 'Sea-Facing Tower (14th Floor)',
-    specs: '2.5mm Molybdenum SS-316',
-    highlight: 'Zero-Decay Marine Coating | Pet & Child Lockdown',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Stainless Steel Option | Pet & Child Safety',
     image: '/assets/locations/sub/vizag-rushikonda.png',
-    unitsProtected: '22 Balconies Secured',
-    customerNote: 'Zero rust from coastal salt air. Pristine view of turquoise waves.'
+    layoutTag: 'Coastal Elevation',
+    layoutNote: 'Stainless steel cable option selected for coastal salt-air exposure and unobstructed ocean sightlines.'
   },
   {
     id: 'oceanus-towers',
@@ -842,11 +855,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Oceanus Towers',
     corridor: 'Yendada',
     floor: '18th-Floor Coastal Flat',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'Pigeon Exclusion Grid & Coastal Bay Protection',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Bird Deterrent & Coastal Bay Protection',
     image: '/assets/locations/sub/vizag-yendada.png',
-    unitsProtected: '28 Balconies Secured',
-    customerNote: '100% bird droppings prevention without blocking the morning ocean sunrise.'
+    layoutTag: 'Bayfront Balcony',
+    layoutNote: 'Bird deterrent layout without blocking morning daylight or cross-ventilation.'
   },
 
   // Rajamahendravaram Hub
@@ -857,11 +870,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Godavari Riverfront Enclave',
     corridor: 'Morampudi',
     floor: '12th-Floor Riverfront Balcony',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'River-Breeze Balcony | 10-Year Anti-Rust Certified',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'River-Breeze Balcony | 5-Year Warranty',
     image: '/assets/locations/sub/rajahmundry-morampudi.png',
-    unitsProtected: '19 Balconies Secured',
-    customerNote: 'Continuous river humidity tested. Zero corrosion with 99% clear river sightline.'
+    layoutTag: 'Riverfront Enclave',
+    layoutNote: 'Moisture-resistant stainless steel cables preserving unobstructed river views.'
   },
   {
     id: 'sri-krishna-gated',
@@ -870,11 +883,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Sri Krishna Gated Society',
     corridor: 'Bommuru',
     floor: 'Duplex Terrace & Balcony',
-    specs: '2.5mm Virgin SS-316',
-    highlight: 'Toddler Fall-Safe Lockdown | 2-Inch Safe Spacing',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Child Safety Protection | 2-Inch Spacing',
     image: '/assets/locations/sub/rajahmundry-bommuru.png',
-    unitsProtected: '15 Balconies Secured',
-    customerNote: 'Eliminated pigeon roosting and gives parents complete peace of mind.'
+    layoutTag: 'Gated Community',
+    layoutNote: 'Engineered vertical wire spacing to deter pigeons and provide balcony edge safety.'
   },
 
   // Vijayawada & Amaravati Hub
@@ -885,11 +898,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Amaravati HappyNest (Tower 3)',
     corridor: 'Amaravati (G+18)',
     floor: '16th-Floor High-Rise Unit',
-    specs: 'SS-316 2.5mm Marine Grade',
-    highlight: 'High-Rise Safety Mesh | 1-Min Fire Cutter Egress Compliant',
+    specs: 'SS-316 2.5mm Option',
+    highlight: 'High-Rise Safety System | Quick-Cut Egress',
     image: '/assets/corridors/vijayawada-happynest.jpg',
-    unitsProtected: '48 Balconies Secured',
-    customerNote: 'Complies with fire safety norms with clean 60-second emergency cutter escape.'
+    layoutTag: 'High-Rise Elevation',
+    layoutNote: 'Engineered for fire emergency egress accessibility while maintaining robust fall protection.'
   },
   {
     id: 'tadepalli-riverside',
@@ -898,11 +911,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Tadepalli Riverside Residences',
     corridor: 'Tadepalli',
     floor: '10th-Floor Riverbank Flat',
-    specs: '2.5mm Marine SS-316',
-    highlight: 'Krishna River Mist Protection | SS-316 Metallurgy',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'River Mist Protection | SS-316 Metallurgy',
     image: '/assets/corridors/vijayawada-tadepalli.jpg',
-    unitsProtected: '26 Balconies Secured',
-    customerNote: 'Uninterrupted view of Prakasam Barrage waters and Krishna greenery.'
+    layoutTag: 'Riverbank Balcony',
+    layoutNote: 'Uninterrupted panoramic view of Prakasam Barrage waters and Krishna greenery.'
   },
   {
     id: 'benz-circle-skyscraper',
@@ -911,11 +924,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Benz Circle Skyscraper Residences',
     corridor: 'Benz Circle',
     floor: '15th-Floor Skyscraper Elevation',
-    specs: '3.0mm Heavy-Duty SS-316',
-    highlight: 'High Wind-Load Resistance | Capital Skyline Sightline',
+    specs: '3.0mm Heavy-Duty SS-316 Option',
+    highlight: 'High Wind-Load Resistance | Skyline View',
     image: '/assets/corridors/vijayawada-benzcircle.jpg',
-    unitsProtected: '32 Balconies Secured',
-    customerNote: 'High wind-load resistance with clear sightline to illuminated city avenues.'
+    layoutTag: 'Urban High-Rise',
+    layoutNote: 'Engineered for wind-load stability with clear sightlines across illuminated city avenues.'
   },
 
   // Guntur Hub
@@ -926,11 +939,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Brodipet Heights',
     corridor: 'Brodipet',
     floor: '14th-Floor Luxury Flat',
-    specs: '2.5mm High-Tensile SS-316',
-    highlight: 'High-Wind Resistance & Child Proofing',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Inland Wind Resistance & Child Safety',
     image: '/assets/corridors/guntur-brodipet.jpg',
-    unitsProtected: '18 Balconies Secured',
-    customerNote: 'Withstands strong gusts from Kondaveedu hills with zero wire vibration.'
+    layoutTag: 'Urban Apartment',
+    layoutNote: 'Tensioned cable system withstanding inland wind gusts with zero visual clutter.'
   },
 
   // Kakinada Hub
@@ -941,11 +954,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Vakalapudi Port View Towers',
     corridor: 'Vakalapudi Port Corridor',
     floor: '11th-Floor Port Harbor Flat',
-    specs: '2.5mm Marine Grade SS-316',
-    highlight: 'Salt-Spray Corrosion Immunity | Flat Coastal Panoramas',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Coastal Salinity Resistance | Port Panoramas',
     image: '/assets/corridors/kakinada-vakalapudi.jpg',
-    unitsProtected: '21 Balconies Secured',
-    customerNote: 'Full view of lighthouse and Bay of Bengal shipping vessels with zero rust.'
+    layoutTag: 'Port Corridor',
+    layoutNote: 'Corrosion-resistant stainless alloy preserving views of shipping channels and coastal horizons.'
   },
 
   // Nellore Hub
@@ -956,11 +969,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Magunta Layout Luxury Flats',
     corridor: 'Magunta Layout',
     floor: '8th-Floor Riverfront View',
-    specs: '2.5mm Marine SS-316',
-    highlight: '400 KG Tensile Strength Fall Protection',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Balcony Safety Barrier',
     image: '/assets/corridors/nellore-magunta.jpg',
-    unitsProtected: '17 Balconies Secured',
-    customerNote: 'Penna river breeze stays unblocked while toddlers play safely.'
+    layoutTag: 'Riverfront View',
+    layoutNote: 'River breeze stays unblocked while providing reliable fall safety for balconies.'
   },
 
   // Ongole Hub
@@ -971,11 +984,11 @@ export const SOCIETY_INSTALLATIONS: SocietyInstallation[] = [
     societyName: 'Bhagyanagar Skyline Enclave',
     corridor: 'Bhagyanagar',
     floor: '9th-Floor Balcony View',
-    specs: '2.5mm Marine SS-316',
-    highlight: '100% Uncompromised Open Air & Safety',
+    specs: '2.5mm SS-316 Option',
+    highlight: 'Open Air Circulation & Fall Safety',
     image: '/assets/corridors/ongole-bhagyanagar.jpg',
-    unitsProtected: '14 Balconies Secured',
-    customerNote: 'Children play safely while unobstructed morning sunlight floods the balcony.'
+    layoutTag: 'Skyline Balcony',
+    layoutNote: 'Child safety protection with unobstructed morning sunlight flooding the balcony.'
   }
 ];
 
@@ -984,12 +997,12 @@ export const PROBLEM_SOLVERS = [
   {
     icon: Baby,
     title: "Children's Safety",
-    tagline: 'High-Rise Balcony Lockdown',
-    badge: '400 KG / CABLE | HIGH-RISE BALCONY LOCKDOWN',
-    desc: 'Anti-fall lockdown coverage up to 30th floor. Chinna pillalu unna elevations bayam lekunda safe setup.',
-    teluguDesc: 'Chinna pillalu unna elevations bayam lekunda safe lockdown coverage.',
+    tagline: 'High-Rise Balcony Safety',
+    badge: 'MULTI-STRAND CABLE | BALCONY SAFETY BARRIER',
+    desc: 'Anti-fall protective coverage for high-rise elevations. Chinna pillalu unna elevations bayam lekunda safe setup.',
+    teluguDesc: 'Chinna pillalu unna elevations bayam lekunda safe coverage.',
     image: '/assets/pillars/children-safety.png',
-    stat: '400 KG / CABLE'
+    stat: 'MULTI-STRAND'
   },
   {
     icon: Cat,
@@ -1005,18 +1018,18 @@ export const PROBLEM_SOLVERS = [
     icon: HeartHandshake,
     title: 'Old Age Persons Safety',
     tagline: 'Vertigo & Tension Elimination',
-    badge: '100% RIGID ANCHORING | VERTIGO & TENSION ELIMINATION',
+    badge: 'RIGID ANCHORING | VERTIGO & TENSION ELIMINATION',
     desc: 'Solid structural support on balcony edges eliminating height dizziness and loose railing anxiety.',
     teluguDesc: 'Pedda vallu loose railings or heights valla tension padakunda absolute strong support balcony edge frame structure.',
     image: '/assets/pillars/old-age-safety.png',
-    stat: '100% RIGID ANCHORING'
+    stat: 'RIGID ANCHORING'
   },
   {
     icon: Eye,
     title: 'Pigeons Safety',
-    tagline: '100% Droppings Protection',
-    badge: 'ZERO BIRDS ENTRY | 100% DROPPINGS PROTECTION',
-    desc: '100% bird droppings and dirty maintenance prevention without blocking natural sea/river breeze or view.',
+    tagline: 'Effective Droppings Protection',
+    badge: 'ZERO BIRDS ENTRY | DROPPINGS PROTECTION',
+    desc: 'Effective bird droppings and dirty maintenance prevention without blocking natural sea/river breeze or view.',
     teluguDesc: 'Balcony and local windows padavvakunda, dirty maintenance problems lekunda birds control protection mesh screen.',
     image: '/assets/pillars/pigeon-control.png',
     stat: 'ZERO BIRDS ENTRY'
@@ -1026,8 +1039,8 @@ export const PROBLEM_SOLVERS = [
     title: '1-Minute Emergency Fire Escape',
     tagline: 'Life Saving Egress Speed',
     badge: '60 SEC CUT ESCAPE | LIFE SAVING EGRESS SPEED',
-    desc: 'Unlike welded iron cages that trap families during fires, SS-316 wires can be severed in under 60 seconds with emergency cutters.',
-    teluguDesc: 'Box type traditional iron mesh fixed ga untayi, fire accident time lo escape avvalem. Mana high-tensile wire setup lo standard cutter tho 1-minute lo easy wires cut chesi safe escape avvachu!',
+    desc: 'Unlike welded iron cages that trap families during fires, tensioned stainless cables can be severed quickly with standard wire cutters during emergencies.',
+    teluguDesc: 'Box type traditional iron mesh fixed ga untayi, fire accident time lo escape avvalem. Mana stainless wire setup lo standard cutter tho easy ga wires cut chesi safe escape avvachu!',
     image: '/assets/pillars/fire-escape.png',
     stat: '60 SEC CUT ESCAPE'
   },
@@ -1036,7 +1049,7 @@ export const PROBLEM_SOLVERS = [
     title: 'Modern Luxury Look & Free Air',
     tagline: 'Eliminates Dark Iron Bars',
     badge: '99% TRANSPARENCY | ELIMINATES DARK IRON BARS',
-    desc: 'Replaces ugly dark iron bars with invisible stainless-steel elegance, delivering 100% natural sunlight and cross-ventilation.',
+    desc: 'Replaces dark iron bars with slim stainless-steel elegance, delivering natural sunlight and cross-ventilation.',
     teluguDesc: 'Traditional heavy iron bars look pathadi aipoindi. Mana grills tho full lighting natural air flow stop avvadu. Balcony full open ventilation flat spaces premium architecture aesthetic build chesthundi.',
     image: '/assets/pillars/modern-airflow.png',
     stat: '99% TRANSPARENCY'
@@ -1046,19 +1059,19 @@ export const PROBLEM_SOLVERS = [
 export const FAQS = [
   {
     q: "Can invisible grills really support a child's weight or adult impact?",
-    a: "Yes. D-VIEW uses high-tensile SS-316 multi-strand wire ropes with each strand certified to withstand tensile loads exceeding 400 kg. Spaced precisely at 2-inch intervals, they provide unbreakable fall protection."
+    a: "Yes. D-VIEW uses multi-strand stainless steel wire ropes (SS-316 and SS-304 options) specified for balcony barrier safety. Spaced precisely at 2-inch intervals with rigid track tensioning, they are designed as a dependable balcony safety barrier."
   },
   {
     q: "How does SS-316 prevent rust in coastal areas like Vizag and Kakinada?",
-    a: "SS-316 contains 2.0% - 3.0% Molybdenum, a rare alloy element specifically developed for marine resistance. It is chemically immune to chloride pitting and coastal humidity, unlike standard SS-202 or SS-304."
+    a: "SS-316 contains molybdenum for enhanced corrosion resistance in high-humidity and coastal environments like Vizag and Kakinada. For inland or standard urban balconies, durable SS-304 options are also available."
   },
   {
     q: "How is emergency fire escape handled compared to iron grates?",
-    a: "Welded iron bars require heavy gas cutters or angle grinders, creating death traps during high-rise fires. In contrast, D-VIEW invisible grills can be severed with standard emergency manual wire cutters in under 60 seconds."
+    a: "Welded iron bars require heavy gas cutters or angle grinders, creating severe hazards during high-rise fires. In contrast, D-VIEW invisible grills can be severed with standard emergency manual wire cutters in under 60 seconds."
   },
   {
     q: "Will pigeons and birds still be able to enter my balcony?",
-    a: "No. The 2-inch (50 mm) vertical wire spacing physically prevents pigeons and common birds from squeezing into your balcony space, permanently solving droppings and nesting issues without dark nylon netting."
+    a: "No. The 2-inch (50 mm) vertical wire spacing effectively deters pigeons and common birds from squeezing into your balcony space, preventing droppings and nesting issues without dark nylon netting."
   }
 ];
 
@@ -1103,43 +1116,49 @@ interface DViewWebsiteProps {
   initialCitySlug?: string;
   initialCorridor?: string;
   tier?: 'tier1' | 'tier2' | 'tier3';
+  faqs?: { question: string; answer: string }[];
 }
 
 export const WARRANTY_BADGES = [
   {
     icon: ShieldCheck,
-    title: '10-Year 100% Anti-Rust Replacement Warranty',
-    highlight: 'SS-316 Molybdenum Core',
-    desc: 'Manufactured strictly using SS-316 with 2-3% Molybdenum core. If any rust, oxidation, or corrosion occurs in coastal salt-air or river humidity, we provide 100% FREE wire-and-track replacement.'
+    title: '5-Year Material Warranty',
+    highlight: 'Written Quotation Terms',
+    desc: '5-year warranty; specific coverage, material options (SS-316 / SS-304), and maintenance conditions are confirmed in the written quotation provided prior to installation.'
   },
   {
     icon: Lock,
-    title: '400 KG / Cable Tensile Breakage Guarantee',
-    highlight: 'UV-Nylon Multi-Strand',
-    desc: 'Multi-strand 316-grade stainless steel cables encased in UV-stabilized, transparent high-grade nylon. Guaranteed zero structural breakage under extreme high-rise impacts.'
+    title: 'Multi-Strand Cable Engineering',
+    highlight: 'Protective Coated Multi-Strand',
+    desc: 'Multi-strand stainless steel cables encased in transparent protective nylon sheath for structural durability and fall safety across high-rise balconies.'
   },
   {
     icon: Wrench,
-    title: 'Lifetime Zero-Loose Wires Service Guarantee',
-    highlight: '6063-T6 Structural Tracks',
-    desc: 'Solid anchored installation using 6063-T6 heavy-duty structural aluminum tracks. Includes free periodic wire tension inspections and re-tightening support.'
+    title: 'Structural Aluminum Track Mounting',
+    highlight: '6063-T6 Extruded Tracks',
+    desc: 'Secure structural installation using 6063-T6 extruded aluminum tracks and engineered tensioners for long-term alignment.'
   },
   {
     icon: Droplets,
-    title: 'ASTM B117 Saline Mist Laboratory Certification',
-    highlight: 'NSS Saline Tested',
-    desc: 'Independently tested for 1,000+ continuous hours of saline mist exposure with zero pitting, rusting, or surface discoloration across coastal and riverfront microclimates.'
+    title: 'Corrosion-Resistant Metallurgy',
+    highlight: 'SS-316 & SS-304 Options',
+    desc: 'Stainless steel cable options (SS-316 and SS-304 options) selected to suit coastal and inland urban environments.'
   }
 ];
 
-export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 'tier1' }: DViewWebsiteProps) {
+export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 'tier1', faqs }: DViewWebsiteProps) {
   const getIndexFromSlug = (slug?: string) => {
     if (!slug) return 0;
-    const clean = slug.toLowerCase();
+    const clean = slug.toLowerCase().trim();
+    if (clean === 'rajamahendravaram') return CITIES_SLIDES.findIndex(s => s.id === 'rajahmundry');
+    if (clean === 'amaravati' || clean === 'vijayawada-amaravati') return CITIES_SLIDES.findIndex(s => s.id === 'vijayawada');
+    if (clean === 'vizag' || clean === 'visakhapatnam') return CITIES_SLIDES.findIndex(s => s.id === 'vizag');
     const idx = CITIES_SLIDES.findIndex(
       s => s.locationPath.replace('/', '').replace('locations/', '') === clean || 
            s.slug === clean || 
            s.id === clean || 
+           s.name.toLowerCase().includes(clean) ||
+           s.slug.includes(clean) ||
            clean.includes(s.id)
     );
     return idx >= 0 ? idx : 0;
@@ -1183,9 +1202,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
   // Helper to resolve active corridor asset for dynamic Tier 3 Hero
   const getActiveCorridorAsset = () => {
+    const defaultSub = activeSlide.subLocations[0];
     const q = (selectedCorridor || '').trim();
     if (!q) {
-      const defaultSub = activeSlide.subLocations[0];
       return {
         name: defaultSub?.name || activeSlide.name,
         title: defaultSub?.name || activeSlide.name,
@@ -1196,12 +1215,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
     const cleanQ = q.toLowerCase();
 
-    // 1. Direct or fuzzy lookup in CORRIDOR_ASSETS
+    // 1. Direct or fuzzy lookup in CORRIDOR_ASSETS scoped to current city
     for (const [key, val] of Object.entries(CORRIDOR_ASSETS)) {
+      if (val.cityId && val.cityId !== activeSlide.id) continue;
       const cleanKey = key.toLowerCase();
-      if (cleanKey === cleanQ || cleanKey.includes(cleanQ) || cleanQ.includes(cleanKey)) {
+      if (
+        cleanKey === cleanQ ||
+        (cleanQ.length >= 3 && (cleanKey.includes(cleanQ) || cleanQ.includes(cleanKey)))
+      ) {
         return {
-          name: q,
+          name: val.title || key,
           title: val.title || key,
           image: val.image,
           spec: val.spec
@@ -1212,7 +1235,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     // 2. Lookup in activeSlide.subLocations
     const subMatch = activeSlide.subLocations.find(s => {
       const cleanSub = s.name.toLowerCase();
-      return cleanSub === cleanQ || cleanSub.includes(cleanQ) || cleanQ.includes(cleanSub);
+      return (
+        cleanSub === cleanQ ||
+        (cleanQ.length >= 3 && (cleanSub.includes(cleanQ) || cleanQ.includes(cleanSub)))
+      );
     });
 
     if (subMatch) {
@@ -1224,28 +1250,60 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       };
     }
 
-    // 3. Fallback
+    // 3. Lookup in activeSlide.activeBelts
+    const beltMatch = activeSlide.activeBelts.find(b => {
+      const cleanBelt = b.toLowerCase();
+      return (
+        cleanBelt === cleanQ ||
+        (cleanQ.length >= 3 && (cleanBelt.includes(cleanQ) || cleanQ.includes(cleanBelt)))
+      );
+    });
+
+    if (beltMatch) {
+      return {
+        name: beltMatch,
+        title: beltMatch,
+        image: defaultSub?.image || activeSlide.heroImage,
+        spec: defaultSub?.tag || activeSlide.badge
+      };
+    }
+
+    // 4. Safe fallback to default validated corridor (never render raw untrusted query string)
     return {
-      name: q,
-      title: q,
-      image: activeSlide.subLocations[0]?.image || activeSlide.heroImage,
-      spec: activeSlide.badge
+      name: defaultSub?.name || activeSlide.name,
+      title: defaultSub?.name || activeSlide.name,
+      image: defaultSub?.image || activeSlide.heroImage,
+      spec: defaultSub?.tag || activeSlide.badge
     };
   };
 
   const activeCorridorAsset = getActiveCorridorAsset();
   const currentHeroImage = activeCorridorAsset.image;
-  const currentCorridorDisplayName = activeCorridorAsset.title || selectedCorridor || activeSlide.name;
+  const currentCorridorDisplayName = activeCorridorAsset.title || activeSlide.name;
+
+  // Client-side document title synchronization when ?corridor= parameter is present on Tier 3
+  useEffect(() => {
+    if (typeof window !== 'undefined' && tier === 'tier3') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('corridor') && currentCorridorDisplayName) {
+        document.title = `SS-316 Invisible Grills in ${activeSlide.name} | ${currentCorridorDisplayName} Balcony Safety | D-View`;
+      }
+    }
+  }, [tier, activeSlide.name, currentCorridorDisplayName]);
 
   // Booking Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [selectedHub, setSelectedHub] = useState(activeSlide.name);
+  const [consentAgreed, setConsentAgreed] = useState(false);
+  const [modalError, setModalError] = useState('');
 
   const handleOpenBooking = (hubName?: string, corridorName?: string) => {
     setSelectedHub(hubName || activeSlide.name);
     if (corridorName) setSelectedCorridor(corridorName);
+    setModalError('');
+    setConsentAgreed(false);
     setIsModalOpen(true);
   };
 
@@ -1262,6 +1320,35 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     }
     return encodeURIComponent(msg);
   };
+
+  // Generate the prefilled enquiry QR locally instead of sending lead details
+  // to a third-party QR image API via a public request URL.
+  const [whatsAppQrDataUrl, setWhatsAppQrDataUrl] = useState('');
+  useEffect(() => {
+    let active = true;
+    const whatsappUrl = `https://wa.me/916281620716?text=${getWhatsAppMessage()}`;
+    QRCode.toDataURL(whatsappUrl, {
+      width: 140,
+      margin: 1,
+      color: { dark: '#0F172A', light: '#FFFFFF' }
+    })
+      .then(dataUrl => { if (active) setWhatsAppQrDataUrl(dataUrl); })
+      .catch(() => { if (active) setWhatsAppQrDataUrl(''); });
+    return () => { active = false; };
+  }, [customerName, customerPhone, selectedHub, currentCorridorDisplayName]);
+
+  // Close drawer or modal on Escape key press
+  useEffect(() => {
+    if (!isMenuOpen && !isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (isModalOpen) setIsModalOpen(false);
+        if (isMenuOpen) setIsMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen, isModalOpen]);
 
   // Society Proof Filter State
   const [societyFilter, setSocietyFilter] = useState<string>(activeSlide.id);
@@ -1286,20 +1373,20 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest mb-3 shadow-sm">
             <Building2 className="w-3.5 h-3.5 text-[#16A34A]" />
-            <span>REAL HIGH-RISE PROOF • 850+ VERIFIED APARTMENTS</span>
+            <span>ARCHITECTURAL BALCONY CONCEPTS • CORRIDOR PLANNING</span>
           </div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
-            RECENTLY COMPLETED INSTALLATIONS ACROSS <span className="text-[#16A34A]">ANDHRA SOCIETIES</span>
+            ARCHITECTURAL BALCONY CONCEPTS ACROSS <span className="text-[#16A34A]">REGIONAL CORRIDORS</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-normal">
-            Over 850+ luxury high-rise balconies secured with certified SS-316 marine-grade invisible safety cables.
+            Illustrative design concepts and corridor layout specifications for high-rise apartment balconies and open facades.
           </p>
         </div>
 
         {/* City Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {[
-            { id: 'all', label: 'All AP Hubs (850+)' },
+            { id: 'all', label: 'All Corridors' },
             { id: 'vizag', label: 'Visakhapatnam' },
             { id: 'rajahmundry', label: 'Rajamahendravaram' },
             { id: 'vijayawada', label: 'Vijayawada & Amaravati' },
@@ -1335,7 +1422,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-100">
                   <img
                     src={society.image}
-                    alt={`${society.societyName} SS-316 Balcony Invisible Grills`}
+                    alt={`${society.societyName} Balcony Design Concept`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                     decoding="async"
@@ -1352,10 +1439,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                   <div className="flex items-center justify-between gap-2 mb-2.5">
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#16A34A]">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
-                      <span>Verified Installation</span>
+                      <span>Design Specification</span>
                     </span>
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-700 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200">
-                      {society.unitsProtected}
+                      {society.layoutTag}
                     </span>
                   </div>
 
@@ -1388,9 +1475,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     <span>{society.highlight}</span>
                   </div>
 
-                  {/* Resident / Society Feedback Note */}
+                  {/* Layout Note */}
                   <p className="text-xs text-slate-600 italic font-light leading-relaxed">
-                    "{society.customerNote}"
+                    "{society.layoutNote}"
                   </p>
                 </div>
               </div>
@@ -1399,14 +1486,14 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="p-6 pt-0">
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">
-                    10-Year Anti-Rust Guaranteed
+                    5-Year Warranty Available
                   </span>
                   <button
                     type="button"
                     onClick={() => handleOpenBooking(society.cityName, society.societyName)}
                     className="text-xs font-bold text-[#16A34A] hover:text-emerald-700 transition flex items-center gap-1 cursor-pointer"
                   >
-                    <span>Request Similar Setup</span>
+                    <span>Enquire For This Layout</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -1427,9 +1514,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           
           <div className="lg:col-span-7 space-y-6">
             <span className="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold block">
-              SS-316 METALLURGY TRUST & GUARANTEES
+              SS-316 & SS-304 METALLURGY SPECIFICATIONS
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight break-words">
               Specific Weather Shield ({activeSlide.name})
             </h2>
             
@@ -1441,7 +1528,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
                 <Droplets className="w-6 h-6 text-[#16A34A] shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h4>
+                  <h3 className="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h3>
                   <p className="text-xs text-slate-600 mt-1">{activeSlide.weatherChallenge}</p>
                 </div>
               </div>
@@ -1449,69 +1536,73 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-300">
                 <ShieldCheck className="w-6 h-6 text-[#16A34A] shrink-0 mt-1" />
                 <div>
-                  <h4 className="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h4>
+                  <h3 className="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h3>
                   <p className="text-xs text-slate-700 mt-1">{activeSlide.weatherSolution}</p>
                 </div>
               </div>
             </div>
 
-            {/* Trust Guarantees */}
+            {/* Trust Badges */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-center">
-                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">10 YEARS</span>
+                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">5 YEARS</span>
                 <span className="text-[10px] uppercase tracking-wider text-slate-700 font-semibold block mt-0.5">
-                  Anti-Rust Replacement Warranty
+                  Warranty Terms With Quote
                 </span>
               </div>
 
               <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-                <span className="text-xl sm:text-2xl font-black text-slate-900 block">1 YEAR FREE</span>
+                <span className="text-xl sm:text-2xl font-black text-slate-900 block">1 YEAR</span>
                 <span className="text-[10px] uppercase tracking-wider text-slate-600 font-semibold block mt-0.5">
-                  Periodic Tension Inspection
+                  Periodic Tension Support
                 </span>
               </div>
 
               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-center">
-                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">400+ KG</span>
+                <span className="text-xl sm:text-2xl font-black text-[#16A34A] block">MULTI-STRAND</span>
                 <span className="text-[10px] uppercase tracking-wider text-slate-700 font-semibold block mt-0.5">
-                  Cable Breaking Tension Load
+                  Multi-Strand Construction
                 </span>
               </div>
             </div>
 
           </div>
 
-          {/* Certified SS-316 Architecture & Weather Defense Card */}
+          {/* Stainless Steel Architecture & Weather Defense Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
               <img 
                 src={activeSlide.heroImage} 
-                alt={`D-VIEW SS-316 Weather Shield in ${activeSlide.name}`} 
+                alt={`D-VIEW Weather Shield in ${activeSlide.name}`} 
                 className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="320"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
               
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-wider shadow-lg">
                   <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
-                  ASTM B117 Saline Certified
+                  Corrosion-Resistant Stainless Option
                 </span>
               </div>
 
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="inline-flex items-center gap-2 bg-[#16A34A] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-2">
-                  Marine Metallurgy Armor
+                  Stainless Metallurgy Option
                 </div>
-                <h4 className="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h4>
+                <h3 className="text-lg font-bold text-white">SS-316 Molybdenum Alloy</h3>
                 <p className="text-xs text-slate-200 mt-1 leading-relaxed">
-                  Infused with 2.5% Molybdenum core alloy, preventing salt-spray pitting, river-fog oxidation, and thermal slackening across {activeSlide.name}.
+                  Engineered with corrosion-resistant stainless steel to protect against salt-spray pitting, river-fog oxidation, and thermal slackening across {activeSlide.name}.
                 </p>
                 <div className="mt-3 flex items-center gap-2 pt-2 border-t border-white/20 text-[10px] text-slate-200 font-mono">
-                  <span className="text-emerald-400">● AISI-316</span>
+                  <span className="text-emerald-400">● SS-316 / SS-304</span>
                   <span>•</span>
-                  <span>400KG Tensile</span>
+                  <span>Multi-Strand</span>
                   <span>•</span>
-                  <span>UV-Nylon Core</span>
+                  <span>UV Polyamide Sheath</span>
                 </div>
               </div>
             </div>
@@ -1528,13 +1619,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       <div className="max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest mb-3 shadow-sm">
-            <span>UNCONDITIONAL PEACE OF MIND • STRUCTURAL INTEGRITY</span>
+            <span>PEACE OF MIND • STRUCTURAL INTEGRITY</span>
           </div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
-            OFFICIAL 10-YEAR STRUCTURAL WARRANTY & <span className="text-[#16A34A]">UNCONDITIONAL GUARANTEE</span>
+            5-YEAR WARRANTY & <span className="text-[#16A34A]">STRUCTURAL INTEGRITY</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm mt-3 font-normal leading-relaxed">
-            Certified Virgin Marine-Grade SS-316 metallurgy engineered for coastal & riverfront longevity.
+            High-grade stainless steel metallurgy engineered for durable performance; coverage confirmed in written quotation.
           </p>
         </div>
 
@@ -1564,10 +1655,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-[11px] text-[#16A34A] font-medium">
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> 100% Certified
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> Material Options
                   </span>
                   <span className="text-slate-500 text-[10px] uppercase tracking-wider">
-                    D-View Guarantee
+                    D-View Specification
                   </span>
                 </div>
               </div>
@@ -1575,18 +1666,18 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           })}
         </div>
 
-        {/* 100% Free Doorstep Precision Laser Survey Banner */}
+        {/* Doorstep Precision Laser Survey Consultation Banner */}
         <div className="mt-12 rounded-3xl overflow-hidden bg-gradient-to-r from-emerald-50 via-slate-50 to-emerald-50 border border-emerald-300 p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-2 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest shadow-sm">
               <ShieldCheck className="w-3.5 h-3.5 text-[#16A34A]" />
-              <span>100% Free Doorstep Engineering Survey</span>
+              <span>Doorstep Engineering Survey Coordination</span>
             </div>
-            <h4 className="text-xl sm:text-2xl font-bold text-slate-900">
-              Precision Laser Measurement & Genuine SS-316 Sample Verification
-            </h4>
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+              Precision Laser Measurement & SS-316 / SS-304 Material Verification
+            </h3>
             <p className="text-xs sm:text-sm text-slate-600 font-normal max-w-2xl leading-relaxed">
-              Our certified technicians visit your balcony with digital laser meters, genuine SS-316 cable cross-section samples, and provide accurate on-spot pricing with zero sales pressure.
+              Technical consultation can be coordinated with laser measurement, SS-316 and SS-304 cable samples, and clear written quotation after site measurement.
             </p>
           </div>
           <button
@@ -1594,7 +1685,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             onClick={() => handleOpenBooking(selectedHub)}
             className="px-6 py-3.5 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider shadow-lg shrink-0 transition cursor-pointer"
           >
-            Book Free Laser Survey →
+            Enquire for Laser Survey →
           </button>
         </div>
       </div>
@@ -1622,10 +1713,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </p>
             <ul className="space-y-2.5 text-[11px] text-slate-700">
               <li>
-                <a href="/contact#faq" className="hover:text-[#16A34A] transition block font-medium">FAQ & Installation Queries</a>
+                <a href="/contact#book-visit" className="hover:text-[#16A34A] transition block font-medium">Installation Enquiries</a>
               </li>
               <li>
-                <a href="/about#maintenance" className="hover:text-[#16A34A] transition block font-medium">Care & Maintenance Guide</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">About Our Work</a>
               </li>
               <li>
                 <a href="/locations" className="hover:text-[#16A34A] transition block font-medium">Service Areas & Corridors</a>
@@ -1665,7 +1756,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a href="/solutions" className="hover:text-[#16A34A] transition block font-medium">Duplex & Staircase Safety Systems</a>
               </li>
               <li>
-                <a href="/about#warranty" className="hover:text-[#16A34A] transition block font-medium">10-Year Warranty Guide</a>
+                <a href="/privacy#legal" className="hover:text-[#16A34A] transition block font-medium">Warranty & Terms</a>
               </li>
               <li>
                 <a href="/solutions" className="hover:text-[#16A34A] transition block font-medium">All Engineering Services</a>
@@ -1683,16 +1774,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a href="/about" className="hover:text-[#16A34A] transition block font-medium">Our Story & Heritage</a>
               </li>
               <li>
-                <a href="/about#metallurgy" className="hover:text-[#16A34A] transition block font-medium">Certified SS-316 Marine Metallurgy</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">About Invisible Grills</a>
               </li>
               <li>
                 <a href="/projects" className="hover:text-[#16A34A] transition block font-medium">Lifestyle Project Gallery</a>
               </li>
               <li>
-                <a href="/about#standards" className="hover:text-[#16A34A] transition block font-medium">400 KG Tensile Material Standards</a>
+                <a href="/about" className="hover:text-[#16A34A] transition block font-medium">Materials & Approach</a>
               </li>
               <li>
-                <a href="/about#fire-safety" className="hover:text-[#16A34A] transition block font-medium">1-Minute Fire Escape Egress</a>
+                <a href="/contact" className="hover:text-[#16A34A] transition block font-medium">Ask a Safety Question</a>
               </li>
             </ul>
           </div>
@@ -1703,7 +1794,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               CONNECT
             </h4>
             <p className="text-[11px] leading-relaxed text-slate-600 mb-4 font-normal">
-              <a href={`https://wa.me/916281620716?text=${getWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer" className="underline font-bold text-[#16A34A] hover:underline">WhatsApp us</a> and D-VIEW passes your request to our certified local engineering team across 7 cities in Andhra Pradesh, who visits your home, provides laser measurement, gives the written quote, installs and provides the 10-year warranty directly.
+              <a href={`https://wa.me/916281620716?text=${getWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer" className="underline font-bold text-[#16A34A] hover:underline">WhatsApp us</a> or call our helpline. Our team coordinates on-site measurement, provides an itemized written quotation, and offers a 5-year warranty with written terms upon quotation.
             </p>
             
             <div className="space-y-2 text-[11px] pt-1">
@@ -1717,8 +1808,8 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <span>dviewsolutions32@gmail.com</span>
               </a>
               <div className="pt-2 text-[10px] text-slate-500">
-                <span className="text-slate-800 font-semibold block">🏢 Registered Head Office:</span>
-                Rajamahendravaram, Andhra Pradesh, India.
+                <span className="text-slate-800 font-semibold block">📍 Service Coordination:</span>
+                Operating in Bengaluru; regional expansion planning for Andhra Pradesh corridors.
               </div>
             </div>
           </div>
@@ -1726,16 +1817,16 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
         </div>
 
         {/* ------------------------------------------------------------ */}
-        {/* 2. DEDICATED 7 SERVICE BASES & REGIONAL HUBS GRID             */}
+        {/* 2. DEDICATED 7 REGIONAL CORRIDORS & HUBS GRID               */}
         {/* ------------------------------------------------------------ */}
         <div className="py-10 border-b border-slate-200">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
             <div>
               <h4 className="text-slate-900 font-extrabold uppercase tracking-[0.16em] text-[11px]">
-                OUR 7 SERVICE BASES & REGIONAL HUBS (ANDHRA PRADESH)
+                EXPLORE REGIONAL CORRIDORS & CITIES (ANDHRA PRADESH)
               </h4>
               <p className="text-[11px] text-slate-500 mt-1">
-                Certified local technicians stationed across all major urban growth corridors with same-day laser measurements.
+                Enquire to confirm service availability, schedule site measurement, or discuss balcony safety specifications in your area.
               </p>
             </div>
             <a href="/locations" className="inline-flex items-center gap-1 text-[11px] font-bold text-[#16A34A] hover:underline whitespace-nowrap">
@@ -1746,7 +1837,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4 text-[11px]">
             {/* Vizag */}
-            <a href="/locations/vizag" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/visakhapatnam" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Visakhapatnam (Vizag)</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1757,7 +1848,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Rajahmundry */}
-            <a href="/locations/rajahmundry" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/rajahmundry" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Rajamahendravaram</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1768,7 +1859,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Vijayawada */}
-            <a href="/locations/vijayawada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/vijayawada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Vijayawada & Amaravati</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1779,7 +1870,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Guntur */}
-            <a href="/locations/guntur" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/guntur" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Guntur Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1790,7 +1881,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Kakinada */}
-            <a href="/locations/kakinada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/kakinada" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Kakinada Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1801,7 +1892,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Nellore */}
-            <a href="/locations/nellore" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/nellore" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Nellore Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1812,7 +1903,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             </a>
 
             {/* Ongole */}
-            <a href="/locations/ongole" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
+            <a href="/ongole" className="p-3 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/40 transition group">
               <div className="flex items-center justify-between mb-1">
                 <span className="font-extrabold text-slate-900 group-hover:text-[#16A34A]">Ongole Hub</span>
                 <span className="text-[10px] text-[#16A34A] font-bold">Explore →</span>
@@ -1826,7 +1917,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <div className="p-3 rounded-xl border border-emerald-300 bg-emerald-50/60 flex flex-col justify-between">
               <div>
                 <span className="font-black text-slate-900 text-[11px] block">Need Free Measurement?</span>
-                <span className="text-[10px] text-slate-600 block mt-0.5">We dispatch our engineer with laser toolkit in 2 hours.</span>
+                <span className="text-[10px] text-slate-600 block mt-0.5">Site visits and consultations coordinated upon enquiry, subject to location availability.</span>
               </div>
               <a href="tel:+916281620716" className="mt-2 text-[10px] font-black text-[#16A34A] hover:underline flex items-center gap-1">
                 <span>Call Now</span>
@@ -1844,7 +1935,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           {/* Left: Region Flag */}
           <div className="flex items-center gap-2 font-medium text-slate-700">
             <span className="text-base leading-none">🇮🇳</span>
-            <span>India • Andhra Pradesh</span>
+            <span>India • Bengaluru & AP Corridors</span>
           </div>
 
           {/* Right: Sitemap, Legal & Privacy, Cookies */}
@@ -1864,7 +1955,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             D-VIEW
           </div>
           <p className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-[0.28em] mt-1.5">
-            ARCHITECTURAL INVISIBLE SAFETY GRILLS • ZERO CAGES • 10-YEAR WARRANTY
+            ARCHITECTURAL INVISIBLE SAFETY GRILLS • ZERO CAGES • 5-YEAR WARRANTY
           </p>
         </div>
 
@@ -1882,7 +1973,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       <a
         href={`https://wa.me/916281620716?text=${quickConnectWAMessage}`}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         aria-label="Chat with D-View on WhatsApp"
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-[0_4px_25px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 group cursor-pointer border-2 border-white/20"
       >
@@ -1922,40 +2013,67 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* ========================================================= */}
       {/* 1. TOP MINIMAL NAVIGATION HEADER                          */}
       {/* ========================================================= */}
-      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-3.5 px-4 sm:px-12 flex items-center justify-between pointer-events-auto transition-all">
+      <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 py-3 px-4 sm:px-12 flex items-center justify-between pointer-events-auto transition-all">
         
         {/* Left: Thin menu mark `= MENU` and brand title `D-VIEW INVISIBLE SAFETY` */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <button
             type="button"
             onClick={() => setIsMenuOpen(true)}
-            className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-slate-700 hover:text-[#16A34A] transition cursor-pointer font-bold"
+            aria-label="Open Navigation Menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="dview-side-drawer"
+            className="flex items-center gap-2 py-2 text-xs uppercase tracking-[0.25em] text-slate-700 hover:text-[#16A34A] transition cursor-pointer font-bold"
           >
             <span className="text-base leading-none">=</span> MENU
           </button>
 
-          <a href="/" className="flex items-center gap-3 group">
-            <img 
-              src="/images/d-view-logo-horizontal.png" 
-              alt="D-VIEW Invisible Grills & Safety Solutions" 
-              className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
-            />
-            {/* Prominently Highlighted Brand Slogan Badge */}
-            <div className="hidden lg:flex items-center pl-3 border-l-2 border-emerald-500/40">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm">
-                <span className="text-[#16A34A] font-extrabold">—</span>
-                <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                <span className="text-[#16A34A] font-extrabold">—</span>
-              </span>
-            </div>
-          </a>
+          {tier === 'tier1' ? (
+            <h1 className="m-0 flex items-center">
+              <a href="/" className="flex items-center gap-3 group">
+                <img 
+                  src="/images/d-view-logo-horizontal.png" 
+                  alt="D-VIEW Invisible Grills & Safety Solutions" 
+                  width="160"
+                  height="40"
+                  decoding="async"
+                  className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                />
+                <span className="sr-only xl:not-sr-only xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
+                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                    <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                  </span>
+                </span>
+              </a>
+            </h1>
+          ) : (
+            <a href="/" className="flex items-center gap-3 group">
+              <img 
+                src="/images/d-view-logo-horizontal.png" 
+                alt="D-VIEW Invisible Grills & Safety Solutions" 
+                width="160"
+                height="40"
+                decoding="async"
+                className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              />
+              <div className="hidden xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
+                  <span className="text-[#16A34A] font-extrabold">—</span>
+                  <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                  <span className="text-[#16A34A] font-extrabold">—</span>
+                </span>
+              </div>
+            </a>
+          )}
         </div>
 
         {/* Middle: 6 Cities Quick Navigation Dropdown */}
         <div className="relative group hidden md:block">
           <button
             type="button"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold uppercase tracking-wider hover:bg-[#16A34A] hover:text-white transition cursor-pointer shadow-sm"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold uppercase tracking-wider hover:bg-[#16A34A] hover:text-white transition cursor-pointer shadow-sm"
           >
             <span>📍 Explore 7 City Hubs</span>
             <span className="text-[10px]">▼</span>
@@ -1978,20 +2096,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
         </div>
 
         {/* Right: Direct concierge telephone `+91 62816 20716` and `CONTACT US` */}
-        <div className="flex items-center gap-6 sm:gap-8 text-xs uppercase tracking-[0.2em] text-slate-700 font-semibold">
+        <div className="flex items-center gap-4 sm:gap-8 text-xs uppercase tracking-[0.2em] text-slate-700 font-semibold">
           <button
             type="button"
             onClick={() => handleOpenBooking()}
-            className="hidden sm:inline-block hover:text-[#16A34A] transition cursor-pointer text-slate-700"
+            className="hidden sm:inline-block py-2 hover:text-[#16A34A] transition cursor-pointer text-slate-700"
           >
             CONTACT US
           </button>
           
           <a
             href="tel:+916281620716"
-            className="text-slate-900 hover:text-[#16A34A] transition flex items-center gap-1.5"
+            aria-label="Call D-VIEW Helpline +91 62816 20716"
+            className="text-slate-900 hover:text-[#16A34A] transition flex items-center gap-1.5 p-2 sm:p-0"
           >
-            <Phone className="w-3.5 h-3.5 text-[#16A34A] stroke-[2]" />
+            <Phone className="w-4 h-4 sm:w-3.5 sm:h-3.5 text-[#16A34A] stroke-[2]" />
             <span className="hidden sm:inline text-slate-800 font-bold">+91 62816 20716</span>
           </a>
         </div>
@@ -2007,7 +2126,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             className="fixed inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setIsMenuOpen(false)}
           />
-          <div className="relative w-full max-w-sm bg-white border-r border-slate-200 h-full p-8 z-10 flex flex-col justify-between overflow-y-auto shadow-2xl">
+          <div
+            id="dview-side-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Site Navigation Menu"
+            className="relative w-full max-w-sm bg-white border-r border-slate-200 h-full p-6 sm:p-8 z-10 flex flex-col justify-between overflow-y-auto shadow-2xl"
+          >
             
             <div>
               <div className="flex items-center justify-between pb-5 border-b border-slate-200">
@@ -2016,6 +2141,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     <img 
                       src="/images/d-view-logo-horizontal.png" 
                       alt="D-VIEW Invisible Safety Grills" 
+                      width="160"
+                      height="40"
+                      decoding="async"
                       className="h-8 w-auto object-contain" 
                     />
                   </a>
@@ -2028,7 +2156,8 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <button 
                   type="button"
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-slate-500 hover:text-slate-900 p-1 cursor-pointer"
+                  aria-label="Close Navigation Menu"
+                  className="text-slate-500 hover:text-slate-900 p-2 rounded-lg hover:bg-slate-100 cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -2066,21 +2195,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <a 
                   href="/"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition"
+                  className="block py-1 hover:text-[#16A34A] transition"
                 >
                   Tier 1: City Showcase Slides
                 </a>
                 <a 
-                  href={`/locations/${activeSlide.id}`}
+                  href={activeSlide.locationPath}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition"
+                  className="block py-1 hover:text-[#16A34A] transition"
                 >
                   Tier 2: {activeSlide.name} Corridors
                 </a>
                 <a 
-                  href={`/safety-pillars/${activeSlide.id}`}
+                  href={`/safety-pillars/${activeSlide.slug === 'vijayawada-amaravati' ? 'vijayawada' : activeSlide.slug}`}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block hover:text-[#16A34A] transition text-[#16A34A]"
+                  className="block py-1 hover:text-[#16A34A] transition text-[#16A34A]"
                 >
                   Tier 3: 6-Pillar Proofs & Pricing
                 </a>
@@ -2099,17 +2228,17 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       )}
 
       {/* ==================================================================== */}
-      {/* TIER 1: MAIN DASHBOARD (100vh FULL-SCREEN SNAP-SCROLL SLIDES)         */}
+      {/* TIER 1: MAIN DASHBOARD (FULL-SCREEN CITY SHOWCASE SLIDES)            */}
       {/* ==================================================================== */}
       {tier === 'tier1' && (
-        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-slate-50">
+        <main className="min-h-screen w-full bg-slate-50">
           
           {/* 6 CITIES SLIDES: 100% IMMERSIVE FULL SCREEN COVERAGE */}
           {CITIES_SLIDES.map((slide, idx) => (
             <section
               key={slide.id}
               id={`slide-${slide.id}`}
-              className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] snap-start snap-always flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
+              className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
             >
               {/* ============================================================ */}
               {/* MOBILE VIEW: TRUE 100% FULLSCREEN 9:16 IMMERSIVE EXPERIENCE  */}
@@ -2124,6 +2253,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     className="w-full h-full object-cover object-center"
                     loading={idx === 0 ? "eager" : "lazy"}
                     fetchPriority={idx === 0 ? "high" : "auto"}
+                    decoding="async"
+                    width="720"
+                    height="1280"
                   />
                 </picture>
 
@@ -2144,15 +2276,15 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     {slide.name}
                   </div>
 
-                  {/* Line 2: Semantic H1 Headline */}
-                  <h1 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
+                  {/* Line 2: Semantic H2 Headline */}
+                  <h2 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
                     Invisible Grills in <span className="text-[#7CFF3A]">{slide.cityShort}</span>
-                  </h1>
-
-                  {/* Line 3: Semantic H2 / Subline */}
-                  <h2 className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
-                    {slide.subline || "SS-316 Marine Grade Invisible Grills for 100% Balcony Safety & Open Views."}
                   </h2>
+
+                  {/* Line 3: Subline Paragraph */}
+                  <p className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
+                    {slide.subline || "Stainless Steel Invisible Grills for Balcony Safety & Open Views."}
+                  </p>
                 </div>
 
               </div>
@@ -2163,8 +2295,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <div className="hidden md:flex relative w-full h-full flex-col justify-between p-6 bg-slate-50">
                 {/* Ambient Atmospheric Background */}
                 <div 
-                  className="absolute inset-0 bg-cover bg-center filter blur-3xl scale-125 opacity-20 pointer-events-none transition-all duration-700"
-                  style={{ backgroundImage: `url(${slide.heroImage})` }}
+                  className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-slate-100 to-emerald-500/5 pointer-events-none"
                 />
 
                 {/* Main Content Grid */}
@@ -2179,8 +2310,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                         src={slide.heroImage}
                         alt={`D-VIEW Invisible Grills in ${slide.name}`}
                         className="w-full h-full object-cover rounded-3xl"
-                        loading={idx === 0 ? "eager" : "lazy"}
-                        fetchPriority={idx === 0 ? "high" : "auto"}
+                        loading="lazy"
+                        decoding="async"
+                        width="640"
+                        height="640"
                       />
                     </a>
                   </div>
@@ -2290,7 +2423,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {activeSlide.subLocations.map((corridor, idx) => (
                 <a
                   key={idx}
-                  href={`/safety-pillars/${activeSlide.id}?corridor=${encodeURIComponent(corridor.name)}`}
+                  href={`/safety-pillars/${activeSlide.slug === 'vijayawada-amaravati' ? 'vijayawada' : activeSlide.slug}?corridor=${encodeURIComponent(corridor.name)}`}
                   className="group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col hover:shadow-xl cursor-pointer"
                 >
                   {/* High-Definition Sunlit Balcony Visual - 100% CLEAN & UNOBSTRUCTED */}
@@ -2339,7 +2472,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                         View 6-Pillar Solutions & Pricing →
                       </span>
                       <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">
-                        SS-316 Certified
+                        SS-316 / SS-304 Spec
                       </span>
                     </div>
                   </div>
@@ -2387,7 +2520,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Top Back Link & Focused Corridor Badge */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
                 <a 
-                  href={`/locations/${activeSlide.id}`} 
+                  href={activeSlide.locationPath} 
                   className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-slate-200 hover:text-white transition group font-medium drop-shadow"
                 >
                   <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition" />
@@ -2419,7 +2552,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               
               <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest mb-2 shadow-sm">
-                  <span>REAL PROOF SOLUTIONS • SS-316 ARCHITECTURAL CERTIFIED</span>
+                  <span>ARCHITECTURAL SAFETY SOLUTIONS • SS-316 / SS-304 GRADE</span>
                 </div>
                 <h2 className="text-xl sm:text-3xl font-extrabold uppercase text-slate-900 tracking-tight">
                   High-Definition <span className="text-[#16A34A]">Balcony Protection</span>
@@ -2516,10 +2649,10 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
                             <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                               <span className="flex items-center gap-1.5 text-[#16A34A] font-bold">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> Certified SS-316
+                                <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" /> SS-316 / SS-304 Spec
                               </span>
                               <span className="uppercase text-[10px] tracking-wider text-slate-500 font-semibold">
-                                100% Reliable
+                                D-VIEW Engineered
                               </span>
                             </div>
                           </div>
@@ -2542,7 +2675,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                     <div className="text-center mb-6">
                       <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
-                        VERIFIED {cityGrillData.cityName.toUpperCase()} INSTALLATIONS
+                        REGIONAL ARCHITECTURAL CONCEPTS · {cityGrillData.cityName.toUpperCase()}
                       </span>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -2562,9 +2695,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                               </span>
                             )}
                           </div>
-                          <h4 className="text-base font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1 leading-snug">
+                          <h3 className="text-base font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1 leading-snug">
                             {proj.societyName}
-                          </h4>
+                          </h3>
                           <div className="flex items-center gap-1.5 text-[10px] text-[#16A34A] font-semibold mb-2">
                             <span>🛡</span>
                             <span>{proj.installationType}</span>
@@ -2590,7 +2723,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Closing Tagline in Telugu */}
               <div className="mt-14 text-center p-6 rounded-2xl bg-emerald-50 border border-emerald-200 max-w-4xl mx-auto shadow-sm">
                 <p className="text-emerald-950 font-semibold text-sm sm:text-base italic">
-                  "Okke Okka Balcony Installation... Enno High-Alert Safety Problems Nundi Mee Intiki Life-Time Premium Protection!"
+                  "Okke Okka Balcony Installation... Enno Safety Problems Nundi Mee Intiki Reliable Long-Term Protection!"
                 </p>
               </div>
 
@@ -2622,13 +2755,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 <span className="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold">
                   FREQUENTLY ASKED QUESTIONS
                 </span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold uppercase text-slate-900 mt-2">
-                  Architectural Safety Insights
+                <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 mt-2 break-words">
+                  Architectural Safety Insights ({activeSlide.name})
                 </h2>
               </div>
 
               <div className="space-y-4">
-                {FAQS.map((faq, i) => (
+                {(faqs && faqs.length > 0 ? faqs.map(f => ({ q: f.question, a: f.answer })) : FAQS).map((faq, i) => (
                   <div key={i} className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
                     <h3 className="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
                       <HelpCircle className="w-4 h-4 text-[#16A34A] shrink-0" />
@@ -2656,13 +2789,22 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* WHATSAPP LEAD MODAL WITH DYNAMIC QR CODE                  */}
       {/* ========================================================= */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm"
+          onClick={(e) => { if (e.target === e.currentTarget) setIsModalOpen(false); }}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="booking-modal-title"
+            className="relative w-full max-w-md max-h-[90dvh] overflow-y-auto bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl"
+          >
             
             <button 
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1 rounded-full hover:bg-slate-100 cursor-pointer transition"
+              aria-label="Close Booking Modal"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 p-2 rounded-full hover:bg-slate-100 cursor-pointer transition"
             >
               <X className="w-5 h-5" />
             </button>
@@ -2671,20 +2813,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#16A34A] font-bold block">
                 Instant Concierge Booking
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold uppercase text-slate-900 mt-1">
+              <h3 id="booking-modal-title" className="text-xl sm:text-2xl font-extrabold uppercase text-slate-900 mt-1">
                 Book Free Site Measurement
               </h3>
               <p className="text-xs text-slate-600 mt-1 font-medium">
-                Free Doorstep Precision Laser Site Measurement Across Andhra Pradesh
+                Doorstep Precision Laser Site Measurement Coordination
               </p>
             </div>
 
             <div className="space-y-3.5">
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-city-hub" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Selected City Hub
                 </label>
                 <select 
+                  id="modal-city-hub"
                   value={selectedHub}
                   onChange={(e) => setSelectedHub(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white font-medium"
@@ -2700,10 +2843,11 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-corridor" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Corridor / Community
                 </label>
                 <input 
+                  id="modal-corridor"
                   type="text"
                   placeholder="e.g. Madhurawada High-Rises"
                   value={selectedCorridor}
@@ -2713,27 +2857,40 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-customer-name" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Your Full Name
                 </label>
                 <input 
+                  id="modal-customer-name"
                   type="text"
+                  autoComplete="name"
                   placeholder="e.g. Ramesh Varma"
                   value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
+                  onChange={(e) => {
+                    setCustomerName(e.target.value);
+                    if (modalError) setModalError('');
+                  }}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
                 />
               </div>
 
               <div>
-                <label className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
+                <label htmlFor="modal-customer-phone" className="text-[11px] uppercase font-bold text-slate-700 block mb-1">
                   Phone Number (For WhatsApp Confirmation)
                 </label>
                 <input 
+                  id="modal-customer-phone"
                   type="tel"
+                  inputMode="tel"
+                  pattern="[6-9][0-9]{9}"
+                  maxLength={15}
+                  autoComplete="tel"
                   placeholder="+91 62816 20716"
                   value={customerPhone}
-                  onChange={(e) => setCustomerPhone(e.target.value)}
+                  onChange={(e) => {
+                    setCustomerPhone(e.target.value);
+                    if (modalError) setModalError('');
+                  }}
                   className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:bg-white"
                 />
               </div>
@@ -2741,25 +2898,83 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* Dynamic WhatsApp QR Code */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center mt-3">
                 <div className="w-32 h-32 mx-auto bg-white p-2 rounded-xl flex items-center justify-center border border-slate-200 shadow-sm">
-                  <img 
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wa.me/916281620716?text=${getWhatsAppMessage()}`} 
-                    alt="WhatsApp QR Code"
-                    className="w-full h-full object-contain"
-                  />
+                  {whatsAppQrDataUrl ? (
+                    <img
+                      src={whatsAppQrDataUrl}
+                      alt="QR code for opening the prefilled D-VIEW WhatsApp enquiry"
+                      className="w-full h-full object-contain"
+                      width="140"
+                      height="140"
+                    />
+                  ) : (
+                    <span className="text-[10px] text-slate-500">QR code loading</span>
+                  )}
                 </div>
                 <span className="block text-[11px] text-slate-600 font-medium mt-2">
-                  Scan with camera to launch WhatsApp booking instantly
+                  Scan with camera to open pre-filled WhatsApp enquiry draft
                 </span>
               </div>
+
+              {/* Affirmative Consent Checkbox */}
+              <div className="pt-2">
+                <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    checked={consentAgreed}
+                    onChange={(e) => {
+                      setConsentAgreed(e.target.checked);
+                      if (modalError) setModalError('');
+                    }}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
+                  />
+                  <span className="text-[11px] text-slate-600 leading-tight">
+                    I agree to D-VIEW contacting me via WhatsApp or call regarding site measurement and safety grill details.
+                  </span>
+                </label>
+              </div>
+
+              {/* Accessible Inline Validation Alert */}
+              {modalError && (
+                <div
+                  role="alert"
+                  aria-live="polite"
+                  className="bg-red-50 border border-red-200 text-red-700 text-xs px-3.5 py-2.5 rounded-xl flex items-center gap-2 mt-2"
+                >
+                  <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
+                  <span>{modalError}</span>
+                </div>
+              )}
 
               <a 
                 href={`https://wa.me/916281620716?text=${getWhatsAppMessage()}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (!customerName.trim()) {
+                    e.preventDefault();
+                    setModalError('Please enter your full name');
+                    return;
+                  }
+                  const cleanPhone = customerPhone.replace(/\D/g, '').replace(/^91(?=\d{10}$)/, '');
+                  if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+                    e.preventDefault();
+                    setModalError('Please enter a valid 10-digit Indian mobile number');
+                    return;
+                  }
+                  if (!consentAgreed) {
+                    e.preventDefault();
+                    setModalError('Please check the consent box to proceed with WhatsApp enquiry.');
+                    return;
+                  }
+                  setModalError('');
+                }}
                 className="w-full bg-[#16A34A] hover:bg-emerald-700 text-white py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider block text-center shadow-lg mt-3 transition"
               >
                 Send Details via WhatsApp Directly →
               </a>
+              <p className="text-center text-[10px] text-slate-500 mt-1">
+                Opens WhatsApp with your draft message; tap Send in WhatsApp to share with D-VIEW.
+              </p>
 
             </div>
 
