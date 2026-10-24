@@ -180,9 +180,16 @@ export default function BeforeAfterSlider({
           src={afterImage} 
           alt="After D-VIEW Invisible Safety" 
           className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          style={{ imageRendering: '-webkit-optimize-contrast' as any }}
           draggable={false}
           loading="lazy"
           decoding="async"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/images/balcony-after.jpg')) {
+              target.src = '/images/balcony-after.jpg';
+            }
+          }}
         />
         <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-md border border-emerald-300 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold shadow-md z-10 pointer-events-none">
           AFTER: 100% Safe
@@ -201,6 +208,12 @@ export default function BeforeAfterSlider({
             draggable={false}
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (!target.src.endsWith('/images/balcony-before.jpg')) {
+                target.src = '/images/balcony-before.jpg';
+              }
+            }}
           />
           <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-md border border-rose-300 text-rose-800 text-xs px-2.5 py-1 rounded-full font-bold shadow-md pointer-events-none whitespace-nowrap">
             BEFORE: Danger & Fear

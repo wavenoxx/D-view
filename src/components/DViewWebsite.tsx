@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   ShieldCheck, Phone, CheckCircle2, X, 
   Flame, Baby, Cat, HeartHandshake, Eye, Sparkles, 
   Droplets, ArrowUpRight, HelpCircle, MapPin, ArrowLeft,
-  Wrench, Lock, Gift, Mail, MessageSquare, Building2
+  Wrench, Lock, Gift, Mail, MessageSquare, Building2,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { getSafetyGrillData } from '../data/corridors';
+import OptimizedGrillImage, { prefetchGrillImages } from './OptimizedGrillImage';
 
 // --- SUB-LOCATION CORRIDOR INTERFACE ---
 export interface SubLocationCorridor {
@@ -1275,150 +1277,351 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
     : SOCIETY_INSTALLATIONS.filter(s => s.cityId === societyFilter);
 
   // =========================================================================
+  // CAROUSEL & SLIDER AUTOMATION LOGIC (STRICT RULES 1 - 5)
+  // 1. 1000ms autoplay interval
+  // 2. 450ms smooth cubic-bezier(0.25, 1, 0.5, 1) transition
+  // 3. Infinite loop (loop: true)
+  // 4. disableOnInteraction: false and pauseOnMouseEnter: false
+  // 5. Clean cleanup of intervals/timers on component unmount
+  // =========================================================================
+
+  // --- 1. Dashboard City Hubs Auto-Sliding State & Effect ---
+  const [dashboardCityIndex, setDashboardCityIndex] = useState(initialIndex);
+  const cityTouchStartX = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (tier !== 'tier1') return;
+
+    const interval = setInterval(() => {
+      setDashboardCityIndex((prev) => (prev + 1) % CITIES_SLIDES.length);
+    }, 2000); // Strict rule: Paused by 2 sec (2000ms) between slides in dashboard pages
+
+    return () => clearInterval(interval); // Strict rule 5: Clean cleanup on unmount
+  }, [tier]);
+
+  // Eagerly prefetch activeIndex + 1 and activeIndex + 2 dashboard hero slides in background
+  useEffect(() => {
+    if (tier !== 'tier1') return;
+    const next1 = (dashboardCityIndex + 1) % CITIES_SLIDES.length;
+    const next2 = (dashboardCityIndex + 2) % CITIES_SLIDES.length;
+    prefetchGrillImages([
+      CITIES_SLIDES[next1]?.heroImage,
+      CITIES_SLIDES[next1]?.mobileHeroImage,
+      CITIES_SLIDES[next2]?.heroImage,
+      CITIES_SLIDES[next2]?.mobileHeroImage,
+    ]);
+  }, [dashboardCityIndex, tier]);
+
+  const [activeSocietyIndex, setActiveSocietyIndex] = useState(0);
+
+  // Eagerly prefetch activeIndex + 1 and activeIndex + 2 society installation cards
+  useEffect(() => {
+    if (filteredSocieties.length <= 1) return;
+    const next1 = (activeSocietyIndex + 1) % filteredSocieties.length;
+    const next2 = (activeSocietyIndex + 2) % filteredSocieties.length;
+    prefetchGrillImages([
+      filteredSocieties[next1]?.image,
+      filteredSocieties[next2]?.image,
+    ]);
+  }, [activeSocietyIndex, filteredSocieties]);
+
+  const goToNextCity = () => {
+    setDashboardCityIndex((prev) => (prev + 1) % CITIES_SLIDES.length);
+  };
+
+  const goToPrevCity = () => {
+    setDashboardCityIndex((prev) => (prev - 1 + CITIES_SLIDES.length) % CITIES_SLIDES.length);
+  };
+
+  const handleCityTouchStart = (e: React.TouchEvent) => {
+    cityTouchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleCityTouchEnd = (e: React.TouchEvent) => {
+    if (cityTouchStartX.current === null) return;
+    const diff = cityTouchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50) goToNextCity();
+    if (diff < -50) goToPrevCity();
+    cityTouchStartX.current = null;
+  };
+
+  // --- 2. Recently Completed Installations Society Cards Carousel State & Effect ---
+  const societyScrollRef = useRef<HTMLDivElement>(null);
+  const societyRafRef = useRef<number | null>(null);
+
+  // Smooth cubic-bezier(0.25, 1, 0.5, 1) curve evaluator for 450ms brisk & smooth sliding
+  const cubicBezierEase = (t: number): number => {
+    const u = 1 - t;
+    return 3 * u * u * t * 1 + 3 * u * t * t * 1 + t * t * t;
+  };
+
+  const smoothScrollSociety = (targetLeft: number, duration: number = 450) => {
+    if (!societyScrollRef.current) return;
+    const el = societyScrollRef.current;
+    const startLeft = el.scrollLeft;
+    const distance = targetLeft - startLeft;
+    const startTime = performance.now();
+
+    if (societyRafRef.current) cancelAnimationFrame(societyRafRef.current);
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = cubicBezierEase(progress);
+      el.scrollLeft = startLeft + distance * ease;
+
+      if (progress < 1) {
+        societyRafRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    societyRafRef.current = requestAnimationFrame(animate);
+  };
+
+  // Strict rule 1: 1000ms autoplay interval
+  // Strict rule 2: 450ms smooth cubic-bezier transition
+  // Strict rule 3: Infinite loop (loop: true)
+  // Strict rule 4: disableOnInteraction: false and pauseOnMouseEnter: false
+  // Strict rule 5: Clean cleanup of intervals on unmount
+  useEffect(() => {
+    if (filteredSocieties.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveSocietyIndex((prev) => (prev + 1) % filteredSocieties.length);
+
+      if (societyScrollRef.current) {
+        const el = societyScrollRef.current;
+        const cardEl = el.firstElementChild as HTMLElement | null;
+        const cardWidth = cardEl?.clientWidth || 360;
+        const gap = 24; // gap-6
+        const step = cardWidth + gap;
+        const singleSetWidth = step * filteredSocieties.length;
+
+        // Infinite loop: if scrolled past 1 set, seamlessly adjust back without visual jump
+        if (el.scrollLeft >= singleSetWidth) {
+          el.scrollLeft -= singleSetWidth;
+        }
+
+        smoothScrollSociety(el.scrollLeft + step, 450);
+      }
+    }, 1000); // 1000ms delay between slides
+
+    return () => {
+      clearInterval(interval);
+      if (societyRafRef.current) cancelAnimationFrame(societyRafRef.current);
+    };
+  }, [filteredSocieties]);
+
+  const goToNextSociety = () => {
+    setActiveSocietyIndex((prev) => (prev + 1) % filteredSocieties.length);
+    if (!societyScrollRef.current) return;
+    const el = societyScrollRef.current;
+    const cardEl = el.firstElementChild as HTMLElement | null;
+    const step = (cardEl?.clientWidth || 360) + 24;
+    const singleSetWidth = step * filteredSocieties.length;
+    if (el.scrollLeft >= singleSetWidth) {
+      el.scrollLeft -= singleSetWidth;
+    }
+    smoothScrollSociety(el.scrollLeft + step, 450);
+  };
+
+  const goToPrevSociety = () => {
+    setActiveSocietyIndex((prev) => (prev - 1 + filteredSocieties.length) % filteredSocieties.length);
+    if (!societyScrollRef.current) return;
+    const el = societyScrollRef.current;
+    const cardEl = el.firstElementChild as HTMLElement | null;
+    const step = (cardEl?.clientWidth || 360) + 24;
+    const singleSetWidth = step * filteredSocieties.length;
+    if (el.scrollLeft <= 0) {
+      el.scrollLeft += singleSetWidth;
+    }
+    smoothScrollSociety(el.scrollLeft - step, 450);
+  };
+
+  // =========================================================================
   // REUSABLE GLOBAL SECTIONS: PROOF, WARRANTY, FOOTER
   // =========================================================================
 
-  const renderSocietyProofSection = (isSnap = false) => (
-    <section id="society-proof-section" className={`${isSnap ? 'snap-start' : ''} relative py-16 sm:py-20 px-5 sm:px-12 bg-slate-50 border-t border-slate-200`}>
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest mb-3 shadow-sm">
-            <Building2 className="w-3.5 h-3.5 text-[#16A34A]" />
-            <span>REAL HIGH-RISE PROOF • 850+ VERIFIED APARTMENTS</span>
-          </div>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
-            RECENTLY COMPLETED INSTALLATIONS ACROSS <span className="text-[#16A34A]">ANDHRA SOCIETIES</span>
-          </h2>
-          <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-normal">
-            Over 850+ luxury high-rise balconies secured with certified SS-316 marine-grade invisible safety cables.
-          </p>
-        </div>
+  const renderSocietyProofSection = (isSnap = false) => {
+    // Triple/quintuple repetition for true infinite loop (loop: true)
+    const infiniteSocieties = filteredSocieties.length >= 3
+      ? [...filteredSocieties, ...filteredSocieties, ...filteredSocieties]
+      : [...filteredSocieties, ...filteredSocieties, ...filteredSocieties, ...filteredSocieties, ...filteredSocieties];
 
-        {/* City Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {[
-            { id: 'all', label: 'All AP Hubs (850+)' },
-            { id: 'vizag', label: 'Visakhapatnam' },
-            { id: 'rajahmundry', label: 'Rajamahendravaram' },
-            { id: 'vijayawada', label: 'Vijayawada & Amaravati' },
-            { id: 'guntur', label: 'Guntur' },
-            { id: 'kakinada', label: 'Kakinada' },
-            { id: 'nellore', label: 'Nellore' },
-            { id: 'ongole', label: 'Ongole' },
-          ].map(tab => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => setSocietyFilter(tab.id)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition cursor-pointer ${
-                societyFilter === tab.id
-                  ? 'bg-[#16A34A] text-white shadow-md'
-                  : 'bg-white text-slate-700 border border-slate-300 hover:border-emerald-500 hover:text-slate-900'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Society Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredSocieties.map((society) => (
-            <div
-              key={society.id}
-              className="group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col justify-between hover:shadow-xl shadow-sm"
-            >
-              <div>
-                {/* 100% Clean Architectural Balcony Photo */}
-                <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-slate-100">
-                  <img
-                    src={society.image}
-                    alt={`${society.societyName} SS-316 Balcony Invisible Grills`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    decoding="async"
-                    width="640"
-                    height="360"
-                  />
-                  {/* Subtle bottom blend */}
-                  <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
-                </div>
-
-                {/* Content Container Below Image */}
-                <div className="p-6">
-                  {/* Top Status & Units Row */}
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#16A34A]">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
-                      <span>Verified Installation</span>
-                    </span>
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-700 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200">
-                      {society.unitsProtected}
-                    </span>
-                  </div>
-
-                  {/* Society Name */}
-                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1">
-                    {society.societyName}
-                  </h3>
-
-                  {/* Location Subline */}
-                  <div className="flex items-center gap-1.5 text-xs text-slate-600 mb-3">
-                    <MapPin className="w-3.5 h-3.5 text-[#16A34A] shrink-0" />
-                    <span>{society.corridor}, {society.cityName}</span>
-                  </div>
-
-                  {/* Specs & Floor Pill Container */}
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-3 space-y-1">
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-500 font-medium">Elevation:</span>
-                      <span className="text-slate-800 font-semibold">{society.floor}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-xs">
-                      <span className="text-slate-500 font-medium">Metallurgy:</span>
-                      <span className="text-[#16A34A] font-bold">{society.specs}</span>
-                    </div>
-                  </div>
-
-                  {/* Highlight Feature */}
-                  <div className="text-xs font-semibold text-[#16A34A] mb-2 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] shrink-0" />
-                    <span>{society.highlight}</span>
-                  </div>
-
-                  {/* Resident / Society Feedback Note */}
-                  <p className="text-xs text-slate-600 italic font-light leading-relaxed">
-                    "{society.customerNote}"
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Action Footer */}
-              <div className="p-6 pt-0">
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">
-                    10-Year Anti-Rust Guaranteed
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => handleOpenBooking(society.cityName, society.societyName)}
-                    className="text-xs font-bold text-[#16A34A] hover:text-emerald-700 transition flex items-center gap-1 cursor-pointer"
-                  >
-                    <span>Request Similar Setup</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
-
+    return (
+      <section id="society-proof-section" className={`${isSnap ? 'snap-start' : ''} relative py-16 sm:py-20 px-5 sm:px-12 bg-slate-50 border-t border-slate-200`}>
+        <div className="max-w-7xl mx-auto">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-widest mb-3 shadow-sm">
+              <Building2 className="w-3.5 h-3.5 text-[#16A34A]" />
+              <span>REAL HIGH-RISE PROOF • 850+ VERIFIED APARTMENTS</span>
             </div>
-          ))}
-        </div>
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
+              RECENTLY COMPLETED INSTALLATIONS ACROSS <span className="text-[#16A34A]">ANDHRA SOCIETIES</span>
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-normal">
+              Over 850+ luxury high-rise balconies secured with certified SS-316 marine-grade invisible safety cables.
+            </p>
+          </div>
 
-      </div>
-    </section>
-  );
+          {/* City Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+            {[
+              { id: 'all', label: 'All AP Hubs (850+)' },
+              { id: 'vizag', label: 'Visakhapatnam' },
+              { id: 'rajahmundry', label: 'Rajamahendravaram' },
+              { id: 'vijayawada', label: 'Vijayawada & Amaravati' },
+              { id: 'guntur', label: 'Guntur' },
+              { id: 'kakinada', label: 'Kakinada' },
+              { id: 'nellore', label: 'Nellore' },
+              { id: 'ongole', label: 'Ongole' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setSocietyFilter(tab.id)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition cursor-pointer ${
+                  societyFilter === tab.id
+                    ? 'bg-[#16A34A] text-white shadow-md'
+                    : 'bg-white text-slate-700 border border-slate-300 hover:border-emerald-500 hover:text-slate-900'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Carousel Header Controls: Status & Navigation Arrows */}
+          <div className="flex items-center justify-between mb-4 px-1">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              Auto-Sliding Installations ({filteredSocieties.length} Projects in view)
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={goToPrevSociety}
+                aria-label="Previous Installation"
+                className="w-9 h-9 rounded-full bg-white border border-slate-300 hover:border-emerald-500 text-slate-700 hover:text-[#16A34A] flex items-center justify-center transition-all shadow-sm cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={goToNextSociety}
+                aria-label="Next Installation"
+                className="w-9 h-9 rounded-full bg-white border border-slate-300 hover:border-emerald-500 text-slate-700 hover:text-[#16A34A] flex items-center justify-center transition-all shadow-sm cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Society Cards Auto-Sliding Carousel Track with 1000ms Autoplay, 450ms Cubic-Bezier, Infinite Loop, pauseOnMouseEnter: false */}
+          <div
+            ref={societyScrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 pt-1 no-scrollbar select-none cursor-grab active:cursor-grabbing"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {infiniteSocieties.map((society, sIdx) => (
+              <div
+                key={`${society.id}-${sIdx}`}
+                className="w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[380px] shrink-0 group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col justify-between hover:shadow-xl shadow-sm gpu-accel"
+              >
+                <div>
+                  {/* 100% Clean Architectural Balcony Photo */}
+                  <div className="relative aspect-[16/9] sm:h-64 w-full overflow-hidden bg-slate-100">
+                    <OptimizedGrillImage
+                      src={society.image}
+                      alt={`${society.societyName} SS-316 Balcony Invisible Grills`}
+                      aspectRatio="16/9"
+                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 380px"
+                      className="w-full h-full"
+                      imageClassName="group-hover:scale-105 transition-transform duration-700"
+                      width={380}
+                      height={214}
+                      loading="lazy"
+                      sharpen={true}
+                    />
+                    {/* Subtle bottom blend */}
+                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-black/30 to-transparent pointer-events-none z-10" />
+                  </div>
+
+                  {/* Content Container Below Image */}
+                  <div className="p-6">
+                    {/* Top Status & Units Row */}
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#16A34A]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A]" />
+                        <span>Verified Installation</span>
+                      </span>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-700 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200">
+                        {society.unitsProtected}
+                      </span>
+                    </div>
+
+                    {/* Society Name */}
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#16A34A] transition mb-1">
+                      {society.societyName}
+                    </h3>
+
+                    {/* Location Subline */}
+                    <div className="flex items-center gap-1.5 text-xs text-slate-600 mb-3">
+                      <MapPin className="w-3.5 h-3.5 text-[#16A34A] shrink-0" />
+                      <span>{society.corridor}, {society.cityName}</span>
+                    </div>
+
+                    {/* Specs & Floor Pill Container */}
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 mb-3 space-y-1">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-slate-500 font-medium">Elevation:</span>
+                        <span className="text-slate-800 font-semibold">{society.floor}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-slate-500 font-medium">Metallurgy:</span>
+                        <span className="text-[#16A34A] font-bold">{society.specs}</span>
+                      </div>
+                    </div>
+
+                    {/* Highlight Feature */}
+                    <div className="text-xs font-semibold text-[#16A34A] mb-2 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#16A34A] shrink-0" />
+                      <span>{society.highlight}</span>
+                    </div>
+
+                    {/* Resident / Society Feedback Note */}
+                    <p className="text-xs text-slate-600 italic font-light leading-relaxed">
+                      "{society.customerNote}"
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Action Footer */}
+                <div className="p-6 pt-0">
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[10px] uppercase tracking-wider text-slate-500 font-medium">
+                      10-Year Anti-Rust Guaranteed
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleOpenBooking(society.cityName, society.societyName)}
+                      className="text-xs font-bold text-[#16A34A] hover:text-emerald-700 transition flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>Request Similar Setup</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+    );
+  };
 
   const renderWeatherShieldSection = (isSnap = false) => (
     <section id="weather-trust" className={`${isSnap ? 'snap-start' : ''} py-20 px-6 sm:px-12 border-t border-slate-200 bg-white`}>
@@ -1483,13 +1686,20 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
 
           {/* Certified SS-316 Architecture & Weather Defense Card */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
-              <img 
-                src={activeSlide.heroImage} 
-                alt={`D-VIEW SS-316 Weather Shield in ${activeSlide.name}`} 
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+            <div className="relative aspect-[16/10] sm:h-80 w-full rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
+              <OptimizedGrillImage
+                src={activeSlide.heroImage}
+                alt={`D-VIEW SS-316 Weather Shield in ${activeSlide.name}`}
+                aspectRatio="16/10"
+                sizes="(max-width: 1024px) 100vw, 500px"
+                className="w-full h-full"
+                imageClassName="group-hover:scale-105 transition-transform duration-700"
+                width={500}
+                height={320}
+                loading="lazy"
+                sharpen={true}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
               
               <div className="absolute top-4 right-4">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-wider shadow-lg">
@@ -1877,7 +2087,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
   );
 
   const renderFloatingQuickConnect = () => (
-    <aside aria-label="Quick Connect Floating Actions">
+    <aside aria-label="Quick Connect Floating Actions" className="hidden md:block">
       {/* 1. Floating WhatsApp Button (Bottom-Right on ALL devices) */}
       <a
         href={`https://wa.me/916281620716?text=${quickConnectWAMessage}`}
@@ -2102,132 +2312,155 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* TIER 1: MAIN DASHBOARD (100vh FULL-SCREEN SNAP-SCROLL SLIDES)         */}
       {/* ==================================================================== */}
       {tier === 'tier1' && (
-        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-slate-50">
+        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-slate-50 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           
-          {/* 6 CITIES SLIDES: 100% IMMERSIVE FULL SCREEN COVERAGE */}
-          {CITIES_SLIDES.map((slide, idx) => (
-            <section
-              key={slide.id}
-              id={`slide-${slide.id}`}
-              className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] snap-start snap-always flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
-            >
-              {/* ============================================================ */}
-              {/* MOBILE VIEW: TRUE 100% FULLSCREEN 9:16 IMMERSIVE EXPERIENCE  */}
-              {/* ============================================================ */}
-              <div className="md:hidden absolute inset-0 w-full h-full">
-                {/* 100% Fullscreen 9:16 Vertical Image covering entire mobile screen edge-to-edge */}
-                <picture className="absolute inset-0 w-full h-full">
-                  <source media="(max-width: 768px)" srcSet={slide.mobileHeroImage || slide.heroImage} />
-                  <img
-                    src={slide.heroImage}
-                    alt={`D-VIEW Invisible Grills in ${slide.name}`}
-                    className="w-full h-full object-cover object-center"
-                    loading={idx === 0 ? "eager" : "lazy"}
-                    fetchPriority={idx === 0 ? "high" : "auto"}
-                  />
-                </picture>
+          {/* ==================================================================== */}
+          {/* CITY HUBS SHOWCASE SLIDER: 1000ms AUTOPLAY, 450ms CUBIC-BEZIER       */}
+          {/* Strict rules: 1000ms delay, 450ms cubic-bezier transition,          */}
+          {/* loop: true, disableOnInteraction: false, pauseOnMouseEnter: false   */}
+          {/* ==================================================================== */}
+          <section
+            id="city-hubs-slider"
+            className="relative w-full h-[calc(100dvh-56px)] min-h-[580px] snap-start snap-always flex flex-col justify-between overflow-hidden select-none border-b border-slate-200 bg-white"
+            onTouchStart={handleCityTouchStart}
+            onTouchEnd={handleCityTouchEnd}
+          >
+            {CITIES_SLIDES.map((slide, idx) => {
+              const isActive = idx === dashboardCityIndex;
+              return (
+                <div
+                  key={slide.id}
+                  id={`slide-${slide.id}`}
+                  className={`absolute inset-0 w-full h-full flex flex-col justify-between overflow-hidden select-none ${
+                    isActive ? 'opacity-100 z-10 pointer-events-auto' : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                  style={{
+                    transition: 'opacity 450ms cubic-bezier(0.25, 1, 0.5, 1), transform 450ms cubic-bezier(0.25, 1, 0.5, 1)',
+                    transform: isActive ? 'scale(1)' : 'scale(0.98)'
+                  }}
+                >
+                  {/* ============================================================ */}
+                  {/* MOBILE VIEW: TRUE 100% FULLSCREEN 9:16 IMMERSIVE EXPERIENCE  */}
+                  {/* ============================================================ */}
+                  <div className="md:hidden absolute inset-0 w-full h-full">
+                    {/* 100% Fullscreen 9:16 Vertical Image covering entire mobile screen edge-to-edge */}
+                    <OptimizedGrillImage
+                      src={slide.mobileHeroImage || slide.heroImage}
+                      alt={`D-VIEW Invisible Grills in ${slide.name}`}
+                      priority={idx === 0}
+                      className="absolute inset-0 w-full h-full"
+                      width={800}
+                      height={1200}
+                      sharpen={true}
+                    />
 
-                {/* Bottom gradient vignette for crisp text legibility while upper 75% remains unblocked */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none" />
+                    {/* Bottom gradient vignette for crisp text legibility while upper 75% remains unblocked */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none z-10" />
 
-                {/* Full screen tap-target navigates directly to the city corridor page */}
-                <a
-                  href={slide.locationPath}
-                  className="absolute inset-0 z-10 block"
-                  aria-label={`Explore ${slide.name} Invisible Grills`}
-                />
-
-                {/* Mobile Bottom Information: Exactly 2-3 lines of clean text (NO map symbol, NO counter, NO extra buttons) */}
-                <div className="absolute bottom-24 inset-x-0 z-20 px-5 pb-2 text-left pointer-events-none">
-                  {/* Line 1: Place Name in Brand Green (No map icon) */}
-                  <div className="text-xs sm:text-sm font-black text-[#7CFF3A] tracking-[0.22em] uppercase drop-shadow mb-1">
-                    {slide.name}
-                  </div>
-
-                  {/* Line 2: Semantic H1 Headline */}
-                  <h1 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
-                    Invisible Grills in <span className="text-[#7CFF3A]">{slide.cityShort}</span>
-                  </h1>
-
-                  {/* Line 3: Semantic H2 / Subline */}
-                  <h2 className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
-                    {slide.subline || "SS-316 Marine Grade Invisible Grills for 100% Balcony Safety & Open Views."}
-                  </h2>
-                </div>
-
-              </div>
-
-              {/* ============================================================ */}
-              {/* DESKTOP VIEW: LUXURY 2-COLUMN SPLIT SHOWCASE                 */}
-              {/* ============================================================ */}
-              <div className="hidden md:flex relative w-full h-full flex-col justify-between p-6 bg-slate-50">
-                {/* Ambient Atmospheric Background */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center filter blur-3xl scale-125 opacity-20 pointer-events-none transition-all duration-700"
-                  style={{ backgroundImage: `url(${slide.heroImage})` }}
-                />
-
-                {/* Main Content Grid */}
-                <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 grid grid-cols-12 gap-8 items-center justify-center my-auto">
-                  {/* Poster Image Card */}
-                  <div className="col-span-7 flex flex-col items-center justify-center">
+                    {/* Full screen tap-target navigates directly to the city corridor page */}
                     <a
                       href={slide.locationPath}
-                      className="relative block w-full max-w-[480px] aspect-square rounded-3xl overflow-hidden border-2 border-emerald-500 shadow-xl bg-white group transition-all duration-300 hover:scale-[1.01] active:scale-98 cursor-pointer"
-                    >
-                      <img
-                        src={slide.heroImage}
-                        alt={`D-VIEW Invisible Grills in ${slide.name}`}
-                        className="w-full h-full object-cover rounded-3xl"
-                        loading={idx === 0 ? "eager" : "lazy"}
-                        fetchPriority={idx === 0 ? "high" : "auto"}
-                      />
-                    </a>
+                      className="absolute inset-0 z-20 block"
+                      aria-label={`Explore ${slide.name} Invisible Grills`}
+                    />
+
+                    {/* Mobile Bottom Information: Exactly 2-3 lines of clean text */}
+                    <div className="absolute bottom-20 inset-x-0 z-20 px-5 pb-2 text-left pointer-events-none">
+                      {/* Line 1: Place Name in Brand Green */}
+                      <div className="text-xs sm:text-sm font-black text-[#7CFF3A] tracking-[0.22em] uppercase drop-shadow mb-1">
+                        {slide.name}
+                      </div>
+
+                      {/* Line 2: Semantic H1 Headline */}
+                      <h1 className="text-fluid-h2 font-black text-white uppercase tracking-tight leading-tight drop-shadow-md mb-1.5">
+                        Invisible Grills in <span className="text-[#7CFF3A]">{slide.cityShort}</span>
+                      </h1>
+
+                      {/* Line 3: Semantic H2 / Subline */}
+                      <h2 className="text-xs sm:text-sm text-slate-100/95 font-medium leading-snug drop-shadow max-w-sm">
+                        {slide.subline || "SS-316 Marine Grade Invisible Grills for 100% Balcony Safety & Open Views."}
+                      </h2>
+                    </div>
                   </div>
 
-                  {/* Desktop Side Details */}
-                  <div className="col-span-5 flex flex-col items-start text-left space-y-3.5">
-                    {/* Prominently Highlighted Brand Slogan Badge */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border-2 border-emerald-500 text-[11px] font-black tracking-wider uppercase text-emerald-950 shadow-sm">
-                      <span className="text-[#16A34A] font-extrabold text-sm">—</span>
-                      <span className="font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                      <span className="text-[#16A34A] font-extrabold text-sm">—</span>
-                    </div>
+                  {/* ============================================================ */}
+                  {/* DESKTOP VIEW: LUXURY 2-COLUMN SPLIT SHOWCASE                 */}
+                  {/* ============================================================ */}
+                  <div className="hidden md:flex relative w-full h-full flex-col justify-between p-6 bg-slate-50">
+                    {/* Ambient Atmospheric Background */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center filter blur-3xl scale-125 opacity-20 pointer-events-none transition-all duration-700"
+                      style={{ backgroundImage: `url(${slide.heroImage.split('?')[0].replace(/\.(jpg|png)$/, '.webp')})` }}
+                    />
 
-                    {/* Place Name (Clean - No map icon) */}
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-black text-[#16A34A] uppercase tracking-wider">
-                      <span>{slide.name} ({slide.cityShort})</span>
-                    </div>
-
-                    <h2 className="text-2xl lg:text-3xl font-black text-slate-900 uppercase leading-snug tracking-tight">
-                      Invisible Grills in <span className="text-[#16A34A]">{slide.name}</span>
-                    </h2>
-
-                    <p className="text-sm text-slate-600 font-normal leading-relaxed">
-                      {slide.subline || slide.landmarkDesc}
-                    </p>
-
-                    <div className="p-3 rounded-2xl bg-white border border-slate-200 w-full space-y-1 shadow-sm">
-                      <div className="text-[11px] font-bold text-[#16A34A] uppercase tracking-wider">
-                        Prominent Service Belts:
+                    {/* Main Content Grid */}
+                    <div className="relative z-10 w-full max-w-6xl mx-auto flex-1 grid grid-cols-12 gap-8 items-center justify-center my-auto">
+                      {/* Poster Image Card */}
+                      <div className="col-span-7 flex flex-col items-center justify-center">
+                        <a
+                          href={slide.locationPath}
+                          className="relative block w-full max-w-[480px] aspect-square rounded-3xl overflow-hidden border-2 border-emerald-500 shadow-xl bg-white group transition-all duration-300 hover:scale-[1.01] active:scale-98 cursor-pointer"
+                        >
+                          <OptimizedGrillImage
+                            src={slide.heroImage}
+                            alt={`D-VIEW Invisible Grills in ${slide.name}`}
+                            priority={idx === 0}
+                            aspectRatio="1/1"
+                            sizes="(max-width: 1024px) 50vw, 480px"
+                            className="w-full h-full rounded-3xl"
+                            width={480}
+                            height={480}
+                            sharpen={true}
+                          />
+                        </a>
                       </div>
-                      <div className="text-xs text-slate-700 font-medium">
-                        {slide.activeBelts.slice(0, 4).join(' • ')}
+
+                      {/* Desktop Side Details */}
+                      <div className="col-span-5 flex flex-col items-start text-left space-y-3.5">
+                        {/* Prominently Highlighted Brand Slogan Badge */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border-2 border-emerald-500 text-[11px] font-black tracking-wider uppercase text-emerald-950 shadow-sm">
+                          <span className="text-[#16A34A] font-extrabold text-sm">—</span>
+                          <span className="font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
+                          <span className="text-[#16A34A] font-extrabold text-sm">—</span>
+                        </div>
+
+                        {/* Place Name */}
+                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-xs font-black text-[#16A34A] uppercase tracking-wider">
+                          <span>{slide.name} ({slide.cityShort})</span>
+                        </div>
+
+                        <h2 className="text-fluid-h2 font-black text-slate-900 uppercase leading-snug tracking-tight">
+                          Invisible Grills in <span className="text-[#16A34A]">{slide.name}</span>
+                        </h2>
+
+                        <p className="text-sm text-slate-600 font-normal leading-relaxed">
+                          {slide.subline || slide.landmarkDesc}
+                        </p>
+
+                        <div className="p-3 rounded-2xl bg-white border border-slate-200 w-full space-y-1 shadow-sm">
+                          <div className="text-[11px] font-bold text-[#16A34A] uppercase tracking-wider">
+                            Prominent Service Belts:
+                          </div>
+                          <div className="text-xs text-slate-700 font-medium">
+                            {slide.activeBelts.slice(0, 4).join(' • ')}
+                          </div>
+                        </div>
+
+                        <a
+                          href={slide.locationPath}
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                        >
+                          <span>Explore {slide.cityShort} Safety Solutions</span>
+                          <span className="text-base font-black">→</span>
+                        </a>
                       </div>
                     </div>
-
-                    <a
-                      href={slide.locationPath}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <span>Explore {slide.cityShort} Safety Solutions</span>
-                      <span className="text-base font-black">→</span>
-                    </a>
                   </div>
                 </div>
-              </div>
-            </section>
-          ))}
+              );
+            })}
+
+          </section>
 
           {/* GLOBAL SECTIONS: PROOF, WARRANTY, FOOTER                            */}
           {/* ==================================================================== */}
@@ -2244,7 +2477,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* CRITICAL: ONLY LOCAL PROMINENT CORRIDORS - ZERO 6-PILLAR GRID HERE!  */}
       {/* ==================================================================== */}
       {tier === 'tier2' && (
-        <main id="location-tier2" className="min-h-screen pb-28 sm:pb-20 bg-slate-50">
+        <main id="location-tier2" className="min-h-screen pb-28 sm:pb-20 bg-slate-50 no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           
           {/* Top 35vh (Mobile) / 45vh (Desktop) Bright Hero Background Section */}
           <section className="relative h-[35vh] sm:h-[45vh] min-h-[260px] w-full overflow-hidden flex items-end justify-start">
@@ -2294,21 +2527,22 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                   className="group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col hover:shadow-xl cursor-pointer"
                 >
                   {/* High-Definition Sunlit Balcony Visual - 100% CLEAN & UNOBSTRUCTED */}
-                  <div className="relative h-64 sm:h-72 w-full overflow-hidden">
-                    <img 
-                      src={corridor.image} 
-                      alt={`${corridor.name} Balcony SS-316 Invisible Grills`} 
+                  <div className="relative aspect-[4/3] sm:h-72 w-full overflow-hidden">
+                    <OptimizedGrillImage
+                      src={corridor.image}
+                      alt={`${corridor.name} Balcony SS-316 Invisible Grills`}
+                      aspectRatio="4/3"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                      className="w-full h-full"
+                      imageClassName={`group-hover:scale-105 transition-transform duration-700 ${getMobileLandmarkClass(corridor.name)}`}
+                      width={400}
+                      height={300}
+                      loading="lazy"
+                      sharpen={true}
                       style={{ objectPosition: getMobileFocalPosition(corridor.name) }}
-                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${getMobileLandmarkClass(corridor.name)}`}
-                      loading={idx === 0 ? "eager" : "lazy"}
-                      fetchPriority={idx === 0 ? "high" : "auto"}
-                      decoding="async"
-                      width="640"
-                      height="360"
-                      sizes="(max-width: 768px) 100vw, 1920px"
                     />
                     {/* Natural Daytime Architectural Clarity: Subtle bottom blend only */}
-                    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
                   </div>
 
                   {/* Card Content in Brushed Silver & Deep Green */}
@@ -2365,7 +2599,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* OPENS ONLY AFTER CLICKING A TIER 2 SUB-LOCATION CARD!                 */}
       {/* ==================================================================== */}
       {tier === 'tier3' && (
-        <main id="location-tier3" className="min-h-screen pb-28 sm:pb-20 bg-white">
+        <main id="location-tier3" className="min-h-screen pb-28 sm:pb-20 bg-white no-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           
           {/* Dynamic Top Hero Section (Height: 32vh on mobile, 42vh on desktop) */}
           <section className="relative h-[32vh] sm:h-[42vh] min-h-[240px] w-full overflow-hidden flex items-end justify-start">
@@ -2449,20 +2683,21 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                           className="group rounded-3xl overflow-hidden border border-slate-200 hover:border-emerald-500 bg-white transition-all duration-300 flex flex-col hover:shadow-xl"
                         >
                           {/* High-Definition Sunlit Balcony Photography - 100% CLEAN & UNOBSTRUCTED */}
-                          <div className="relative h-64 w-full overflow-hidden">
-                            <img 
-                              src={card.image} 
-                              alt={cityPillar?.title || card.title} 
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                              loading={idx === 0 ? "eager" : "lazy"}
-                              fetchPriority={idx === 0 ? "high" : "auto"}
-                              decoding="async"
-                              width="640"
-                              height="360"
-                              sizes="(max-width: 768px) 100vw, 1920px"
+                          <div className="relative aspect-[16/9] sm:h-64 w-full overflow-hidden">
+                            <OptimizedGrillImage
+                              src={card.image}
+                              alt={cityPillar?.title || card.title}
+                              aspectRatio="16/9"
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                              className="w-full h-full"
+                              imageClassName="group-hover:scale-105 transition-transform duration-500"
+                              width={400}
+                              height={225}
+                              loading="lazy"
+                              sharpen={true}
                             />
                             {/* Natural Daytime Architectural Clarity: Subtle bottom blend only */}
-                            <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                            <div className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
                           </div>
 
                           {/* Content in Deep Emerald Green & Brushed Silver */}

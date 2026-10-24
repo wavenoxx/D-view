@@ -1,0 +1,55 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  aspectRatio?: string; // e.g. '16/9', '4/3', '4/5', '3/4'
+  width?: number | string;
+  height?: number | string;
+  priority?: boolean;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  sizes?: string;
+  fallbackSrc?: string;
+  class?: string;
+  imageClass?: string;
+  sharpen?: boolean;
+}
+
+const {
+  src,
+  alt,
+  aspectRatio,
+  width,
+  height,
+  priority = false,
+  loading,
+  fetchpriority,
+  fallbackSrc = '/images/dashboard/dashboard-visakhapatnam.jpg',
+  class: className = '',
+  imageClass = '',
+} = Astro.props;
+
+const cleanSrc = src.split('?')[0];
+const effectiveLoading = loading || (priority ? 'eager' : 'lazy');
+const effectiveFetchPriority = fetchpriority || (priority ? 'high' : 'low');
+const formattedAspect = aspectRatio ? aspectRatio.replace(':', ' / ') : undefined;
+---
+
+<div
+  class={`relative overflow-hidden ${className}`}
+  style={formattedAspect ? `aspect-ratio: ${formattedAspect};` : undefined}
+>
+  <!-- Original high-resolution asset (min 1200px) loaded directly without downscaling or blurring -->
+  <img
+    src={cleanSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={effectiveLoading}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={effectiveFetchPriority}
+    class={`w-full h-full object-cover ${imageClass}`}
+    style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+    onerror={`this.onerror=null; this.src='${fallbackSrc}';`}
+  />
+</div>

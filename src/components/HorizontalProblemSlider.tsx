@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import OptimizedGrillImage, { prefetchGrillImages } from './OptimizedGrillImage';
 
 export interface ShowcaseCard {
   id: number;
@@ -185,67 +186,93 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
   cityName = 'Andhra Pradesh',
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-  // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
-  const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
+  // Eagerly pre-fetch activeIndex + 1 and activeIndex + 2 images
+  useEffect(() => {
+    const next1 = (activeSlideIndex + 1) % SHOWCASE_8_CARDS.length;
+    const next2 = (activeSlideIndex + 2) % SHOWCASE_8_CARDS.length;
+    prefetchGrillImages([
+      SHOWCASE_8_CARDS[next1]?.image,
+      SHOWCASE_8_CARDS[next2]?.image,
+    ]);
+  }, [activeSlideIndex]);
+
+  // Smooth cubic-bezier(0.25, 1, 0.5, 1) easing curve (duration: 450ms)
+  const cubicBezierEase = (t: number): number => {
+    // Exact cubic-bezier(0.25, 1, 0.5, 1) curve for brisk, smooth deceleration
+    const u = 1 - t;
+    return 3 * u * u * t * 1 + 3 * u * t * t * 1 + t * t * t;
+  };
+
+  // High-performance 60fps RAF scroll (450ms transition with smooth cubic-bezier easing)
+  const smoothScrollTo = (targetLeft: number, duration: number = 450) => {
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
     const distance = targetLeft - startLeft;
     const startTime = performance.now();
 
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Fast, snappy easeOut curve for responsive modern sliding
-      const ease = 1 - Math.pow(1 - progress, 3);
+      const ease = cubicBezierEase(progress);
       el.scrollLeft = startLeft + distance * ease;
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        rafRef.current = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
+    rafRef.current = requestAnimationFrame(animate);
   };
 
-  // Smooth 1-second auto-sliding interval (1s)
+  // Strict rules 1-5: Autoplay 1000ms delay, 450ms cubic-bezier transition,
+  // infinite loop (loop: true), disableOnInteraction: false, pauseOnMouseEnter: false,
+  // and clean cleanup on unmount.
   useEffect(() => {
-    if (isPaused) return;
-
     const interval = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % SHOWCASE_8_CARDS.length);
+
       if (scrollRef.current) {
         const el = scrollRef.current;
         const cardWidth = el.firstElementChild?.clientWidth || 310;
-        const step = cardWidth + 24;
-        const maxScroll = el.scrollWidth - el.clientWidth;
+        const step = cardWidth + 24; // card width + gap
+        const singleSetWidth = step * SHOWCASE_8_CARDS.length;
 
-        // Loop smoothly when reaching the end
-        if (el.scrollLeft >= maxScroll - 25) {
-          smoothScrollTo(0, 350);
-        } else {
-          smoothScrollTo(el.scrollLeft + step, 280);
+        // Infinite loop: if we've scrolled past one full set of cards, seamlessly adjust back
+        if (el.scrollLeft >= singleSetWidth) {
+          el.scrollLeft -= singleSetWidth;
         }
-      }
-    }, 1000); // Snappy 1-second auto-slide interval
 
-    return () => clearInterval(interval);
-  }, [isPaused]);
+        smoothScrollTo(el.scrollLeft + step, 450);
+      }
+    }, 1000); // Strict rule 1: Autoplay with maximum 1000ms delay between slides
+
+    return () => {
+      clearInterval(interval);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  // Triple set of cards for seamless infinite loop (loop: true)
+  const infiniteCards = [...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS];
 
   return (
-    <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
+    <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
+        {/* Section Header with Fluid Typography */}
         <div className="mb-8">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold tracking-widest uppercase mb-2 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
               Why Choose Invisible Grills?
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-fluid-h1 font-extrabold text-slate-900 tracking-tight">
               Why Install Invisible Grills? <span className="text-[#16A34A]">One Single Installation, Every Problem Solved.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">
@@ -254,38 +281,37 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
           </div>
         </div>
 
-        {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding & Interactive Pause */}
+        {/* Responsive Horizontal Cards: 1.15 cards on Mobile (<640px), 2.2 on Tablet (640-1024px), 3-4 on Desktop (>1024px) */}
         <div
           ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => {
-            if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-            pauseTimerRef.current = setTimeout(() => setIsPaused(false), 2500);
-          }}
-          className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {SHOWCASE_8_CARDS.map((card) => {
+          {infiniteCards.map((card, idx) => {
             const isProblem = card.type === 'problem';
 
             return (
               <div
-                key={card.id}
-                className={`w-[260px] sm:w-[290px] md:w-[310px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white ${
+                key={`${card.id}-${idx}`}
+                className={`w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white gpu-accel ${
                   isProblem
                     ? 'border border-rose-200 hover:border-rose-400 hover:shadow-lg'
                     : 'border border-emerald-200 hover:border-emerald-400 hover:shadow-lg'
                 }`}
               >
-                {/* Visual Area with Image - Reduced Compact Height */}
-                <div className="relative h-[210px] sm:h-[230px] w-full overflow-hidden bg-slate-100">
-                  <img
+                {/* Visual Area with Image - OptimizedGrillImage with Shimmer & High-DPI Sharpness */}
+                <div className="relative aspect-[4/3] sm:h-[230px] w-full overflow-hidden bg-slate-100">
+                  <OptimizedGrillImage
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    aspectRatio="4/3"
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 340px"
+                    className="w-full h-full"
+                    imageClassName="group-hover:scale-105 transition-transform duration-500"
+                    width={480}
+                    height={360}
                     loading="lazy"
+                    sharpen={true}
                   />
                   
                   {/* Subtle Gradient Overlay */}

@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider';
 import HorizontalProblemSlider from '../../components/HorizontalProblemSlider';
+import OptimizedGrillImage from '../../components/OptimizedGrillImage.astro';
 import { ALL_LOCATIONS, type LocationData } from '../../data/locations';
 
 export async function getStaticPaths() {
@@ -106,13 +107,17 @@ const subLocalities = location.subLocalities || [];
           
           <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border-2 border-emerald-500 bg-white shadow-2xl group">
             {/* 100% Full-bleed background image with unobstructed center */}
-            <img
+            <OptimizedGrillImage
               src={heroPoster}
               alt={`D-VIEW Invisible Safety in ${cityName}`}
-              class="w-full h-full object-cover object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
+              aspectRatio="4/5"
+              sizes="(max-width: 640px) 95vw, 512px"
+              class="w-full h-full"
+              imageClass="object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
+              width={512}
+              height={640}
+              priority={true}
+              sharpen={true}
             />
 
             {/* LOWER THIRD TIGHT GRADIENT & CONTENT ANCHORED AT THE VERY BOTTOM */}
@@ -220,12 +225,17 @@ const subLocalities = location.subLocalities || [];
             <!-- Card Image with Gradient Overlay & Badges -->
             <div class="relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">
               {sub.image ? (
-                <img
+                <OptimizedGrillImage
                   src={sub.image}
                   alt={`${sub.name} - Invisible Safety Grill Installation in ${cityName}`}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  class="w-full h-full"
+                  imageClass="group-hover:scale-105 transition-transform duration-500"
+                  width={400}
+                  height={208}
+                  aspectRatio="4/3"
                   loading="lazy"
-                  decoding="async"
+                  sharpen={true}
                 />
               ) : (
                 <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-500 text-xs">
@@ -233,10 +243,10 @@ const subLocalities = location.subLocalities || [];
                 </div>
               )}
               <!-- Gradient Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10" />
 
               {sub.tag && (
-                <div class="absolute bottom-2 left-3 right-3 pointer-events-none">
+                <div class="absolute bottom-2 left-3 right-3 pointer-events-none z-10">
                   <span class="inline-block text-[9.5px] font-bold text-emerald-800 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-200 truncate max-w-full shadow-sm">
                     {sub.tag}
                   </span>
@@ -330,16 +340,21 @@ const subLocalities = location.subLocalities || [];
         </div>
 
         <div class="lg:col-span-5 relative">
-          <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
-            <img 
-              src={heroImage} 
-              alt={`D-VIEW SS-316 Weather Shield in ${cityName}`} 
-              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+          <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group aspect-[16/10] sm:h-80 w-full">
+            <OptimizedGrillImage
+              src={heroImage}
+              alt={`D-VIEW SS-316 Weather Shield in ${cityName}`}
+              sizes="(max-width: 1024px) 100vw, 500px"
+              class="w-full h-full"
+              imageClass="group-hover:scale-105 transition-transform duration-700"
+              width={500}
+              height={320}
+              aspectRatio="16/10"
               loading="lazy"
-              decoding="async"
+              sharpen={true}
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
-            <div class="absolute top-4 right-4">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+            <div class="absolute top-4 right-4 z-10">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-wider shadow-lg">
                 <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
                 ASTM B117 Saline Certified
