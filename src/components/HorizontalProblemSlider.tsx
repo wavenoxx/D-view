@@ -185,54 +185,66 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
   cityName = 'Andhra Pradesh',
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const rafRef = useRef<number | null>(null);
 
-  // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
-  const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
+  // Smooth 400ms transition with snappy easeOut curve
+  const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
     const distance = targetLeft - startLeft;
     const startTime = performance.now();
 
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Fast, snappy easeOut curve for responsive modern sliding
+      // Smooth ease-out cubic curve (duration: 400ms)
       const ease = 1 - Math.pow(1 - progress, 3);
       el.scrollLeft = startLeft + distance * ease;
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        rafRef.current = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
+    rafRef.current = requestAnimationFrame(animate);
   };
 
-  // Smooth 1-second auto-sliding interval (1s)
+  // Strict rules 2 & 3:
+  // - 1000ms autoplay interval (maximum 1 second delay)
+  // - 400ms smooth transition speed
+  // - Infinite loop (loop: true)
+  // - disableOnInteraction: false and pauseOnMouseEnter: false
+  // - Clean cleanup on unmount
   useEffect(() => {
-    if (isPaused) return;
-
     const interval = setInterval(() => {
       if (scrollRef.current) {
         const el = scrollRef.current;
-        const cardWidth = el.firstElementChild?.clientWidth || 310;
-        const step = cardWidth + 24;
-        const maxScroll = el.scrollWidth - el.clientWidth;
+        const cardEl = el.firstElementChild as HTMLElement | null;
+        const cardWidth = cardEl?.clientWidth || 310;
+        const gap = 24; // gap-5 sm:gap-6
+        const step = cardWidth + gap;
+        const singleSetWidth = step * SHOWCASE_8_CARDS.length;
 
-        // Loop smoothly when reaching the end
-        if (el.scrollLeft >= maxScroll - 25) {
-          smoothScrollTo(0, 350);
-        } else {
-          smoothScrollTo(el.scrollLeft + step, 280);
+        // Infinite loop (loop: true): reset scrollLeft silently by 1 set without visual jump
+        if (el.scrollLeft >= singleSetWidth) {
+          el.scrollLeft -= singleSetWidth;
         }
-      }
-    }, 1000); // Snappy 1-second auto-slide interval
 
-    return () => clearInterval(interval);
-  }, [isPaused]);
+        smoothScrollTo(el.scrollLeft + step, 400);
+      }
+    }, 1000); // Strict rule 2: maximum 1 second delay (1000ms)
+
+    return () => {
+      clearInterval(interval);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  // Triple set of cards for seamless infinite forward looping (loop: true)
+  const infiniteCards = [...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS];
 
   return (
     <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
@@ -254,25 +266,18 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
           </div>
         </div>
 
-        {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding & Interactive Pause */}
+        {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding: 1000ms autoplay, 400ms transition, loop: true */}
         <div
           ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => {
-            if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-            pauseTimerRef.current = setTimeout(() => setIsPaused(false), 2500);
-          }}
           className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {SHOWCASE_8_CARDS.map((card) => {
+          {infiniteCards.map((card, idx) => {
             const isProblem = card.type === 'problem';
 
             return (
               <div
-                key={card.id}
+                key={`${card.id}-${idx}`}
                 className={`w-[260px] sm:w-[290px] md:w-[310px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white ${
                   isProblem
                     ? 'border border-rose-200 hover:border-rose-400 hover:shadow-lg'
