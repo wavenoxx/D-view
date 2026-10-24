@@ -108,7 +108,7 @@ export const HeroVisualSlider: React.FC<BeforeAfterProps> = ({
         </div>
         <div className="p-3 bg-white rounded-xl border border-gray-100 shadow-sm text-center">
           <p className="text-xs text-gray-500">Child & Elder Safety</p>
-          <p className="text-sm font-bold text-gray-900">High-Tensile Fall Protection</p>
+          <p className="text-sm font-bold text-gray-900">Balcony Safety Barrier</p>
         </div>
         <div className="p-3 bg-white rounded-xl border border-gray-100 shadow-sm text-center">
           <p className="text-xs text-gray-500">Unblocked View</p>

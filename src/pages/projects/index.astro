@@ -11,9 +11,9 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
 ---
 
 <Layout
-  title="Recent Projects | D-VIEW Invisible Grills Andhra Pradesh"
-  description="Browse recent balcony safety and invisible grill installations across Visakhapatnam, Rajahmundry, Vijayawada, Kakinada, Guntur & Nellore."
-  canonicalUrl="https://dviewsolutions.com/projects"
+  title="Architectural Design Concepts & Layouts | D-VIEW Solutions"
+  description="Explore architectural balcony layouts and stainless steel invisible safety grill design concepts. Specifications and feasibility confirmed upon site survey."
+  canonicalUrl="https://www.dviewsolutions.com/projects"
 >
   <Navbar client:load />
 
@@ -22,14 +22,14 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
       
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-[#16A34A] uppercase tracking-wider mb-4">
-          <span>Field Portfolio</span>
+          <span>Design Concepts</span>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-          RECENT RESIDENTIAL <br />
-          <span class="text-[#16A34A]">INSTALLATIONS</span>
+          BALCONY SAFETY <br />
+          <span class="text-[#16A34A]">DESIGN SPECIFICATIONS</span>
         </h1>
         <p class="mt-4 text-base sm:text-lg text-slate-600">
-          Explore real balconies and penthouses safeguarded with D-VIEW SS-316 invisible grills across Andhra Pradesh.
+          Explore architectural balcony layouts and illustrative stainless steel invisible safety grill specifications. Note: Imagery depicts design concepts and layouts; exact engineering specifications are confirmed upon physical site consultation.
         </p>
       </div>
 
@@ -38,6 +38,7 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
           <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-emerald-500 hover:shadow-xl transition-all group flex flex-col justify-between shadow-sm">
             <div>
               <div class="relative h-60 overflow-hidden bg-slate-100">
+<<<<<<< HEAD
                 <OptimizedGrillImage
                   src={project.image}
                   alt={`${project.title} - ${project.locality}`}
@@ -47,20 +48,35 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
                   width={400}
                   height={240}
                   aspectRatio="4/3"
+=======
+                <img 
+                  src={project.image} 
+                  alt={`Illustrative layout concept - ${project.title}, ${project.locality}`} 
+                  width="640"
+                  height="360"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+>>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
                   loading="lazy"
                   sharpen={true}
                 />
+<<<<<<< HEAD
                 <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10"></div>
                 <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-slate-200 text-[11px] font-bold text-[#16A34A] shadow-sm z-10">
                   {project.cityName} • {project.wireSpec}
+=======
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-md border border-slate-200 text-[11px] font-bold text-[#16A34A] shadow-sm">
+                  {project.cityName} • Concept Specification
+>>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
                 </div>
               </div>
 
               <div class="p-6">
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-lg font-black text-slate-900 group-hover:text-[#16A34A] transition-colors">
+                  <h2 class="text-lg font-black text-slate-900 group-hover:text-[#16A34A] transition-colors">
                     {project.title}
-                  </h3>
+                  </h2>
                   <span class="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
                     {project.areaSqFt} sq.ft
                   </span>
@@ -80,10 +96,10 @@ const allProjects = ALL_LOCATIONS.flatMap((loc) =>
 
             <div class="px-6 pb-6">
               <a
-                href={`/locations/${project.citySlug}#book-visit`}
+                href={`/contact?city=${encodeURIComponent(project.citySlug)}#book-visit`}
                 class="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-colors shadow-sm"
               >
-                <span>Book Similar in {project.cityName}</span>
+                <span>Enquire for Specification in {project.cityName}</span>
                 <span>→</span>
               </a>
             </div>

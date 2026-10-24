@@ -75,7 +75,6 @@ body::-webkit-scrollbar {
   display: none !important;
   background: transparent !important;
 }
-
 /* Invisible Grill Wire Texture Utility disabled to keep images clean and natural */
 .wire-grid-overlay,
 .wire-grid-fine {
@@ -179,7 +178,6 @@ input {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
 }
-
 /* ========================================================================= */
 /* SHIMMER PLACEHOLDER FOR ZERO CLS (CUMULATIVE LAYOUT SHIFT = 0)            */
 /* ========================================================================= */
@@ -256,4 +254,65 @@ main {
 
 .safe-bottom-pad {
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+=======
+/* Homepage-only branded entrance: no JS, no network asset and no blocked interactions. */
+.dview-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: #ffffff;
+  animation: dview-intro-dismiss 980ms ease-out both;
+}
+.dview-intro-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.dview-intro-grill {
+  width: 148px;
+  height: 68px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  border-top: 3px solid #16a34a;
+  border-bottom: 3px solid #16a34a;
+  padding: 0 10px;
+}
+.dview-intro-grill span {
+  width: 2px;
+  display: block;
+  background: linear-gradient(#16a34a, #94a3b8 55%, #16a34a);
+  transform-origin: top;
+  animation: dview-intro-wire 420ms ease-out both;
+}
+.dview-intro-grill span:nth-child(2n) { animation-delay: 55ms; }
+.dview-intro-grill span:nth-child(3n) { animation-delay: 110ms; }
+.dview-intro-wordmark {
+  color: #0f172a;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 0.28em;
+  margin-left: 0.28em;
+}
+.dview-intro-caption {
+  color: #64748b;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+@keyframes dview-intro-wire {
+  from { transform: scaleY(0.1); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+@keyframes dview-intro-dismiss {
+  0%, 52% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dview-intro { display: none; }
+>>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
 }

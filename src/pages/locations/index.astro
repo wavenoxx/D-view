@@ -7,9 +7,9 @@ import { ALL_LOCATIONS } from '../../data/locations';
 ---
 
 <Layout
-  title="Find D-VIEW Safety Solutions Near You | 7 Andhra Pradesh Hubs"
-  description="Select your city to explore certified SS-316 invisible safety grill engineering tailored for Visakhapatnam, Kakinada, Rajahmundry, Vijayawada, Guntur, Nellore & Ongole."
-  canonicalUrl="https://dviewsolutions.com/locations"
+  title="Regional Architectural Safety Corridors | D-VIEW Solutions"
+  description="Select a city corridor to explore SS-316 & SS-304 invisible safety grill engineering specifications for regional residential developments."
+  canonicalUrl="https://www.dviewsolutions.com/locations"
 >
   <Navbar client:load />
 
@@ -19,7 +19,7 @@ import { ALL_LOCATIONS } from '../../data/locations';
       {/* Header */}
       <div class="text-center max-w-3xl mx-auto mb-16">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-[#16A34A] uppercase tracking-wider mb-4 shadow-sm">
-          <span>Andhra Pradesh Regional Safety Network</span>
+          <span>Regional Safety & Specification Network</span>
         </div>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
           Find D-VIEW Safety <br />
@@ -30,11 +30,13 @@ import { ALL_LOCATIONS } from '../../data/locations';
         </p>
       </div>
 
-      {/* 6 Location Hub Cards */}
+      {/* 7 Location Hub Cards */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {ALL_LOCATIONS.map((loc) => (
+        {ALL_LOCATIONS.map((loc) => {
+          const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
+          return (
           <a
-            href={`/locations/${loc.slug}`}
+            href={`/${canonicalSlug}`}
             class="group bg-white rounded-3xl border border-slate-200 overflow-hidden hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between shadow-sm hover:shadow-xl hover:-translate-y-1"
           >
             <div>
@@ -42,6 +44,7 @@ import { ALL_LOCATIONS } from '../../data/locations';
               <div class="relative h-60 overflow-hidden">
                 <OptimizedGrillImage
                   src={loc.heroImage}
+<<<<<<< HEAD
                   alt={`D-VIEW Invisible Grills ${loc.name}`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                   class="w-full h-full"
@@ -49,6 +52,10 @@ import { ALL_LOCATIONS } from '../../data/locations';
                   width={400}
                   height={240}
                   aspectRatio="4/3"
+=======
+                  alt={loc.heroImageAlt || `D-VIEW Invisible Grills ${loc.name}`}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.02]"
+>>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
                   loading="lazy"
                   sharpen={true}
                 />
@@ -105,16 +112,17 @@ import { ALL_LOCATIONS } from '../../data/locations';
               </div>
             </div>
           </a>
-        ))}
+        );
+        })}
       </div>
 
       {/* Free Site Visit Callout */}
       <div class="mt-16 bg-gradient-to-r from-emerald-50 via-white to-emerald-50 rounded-3xl border border-emerald-200 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
           Need a Custom Multi-Balcony Consultation?
-        </h3>
+        </h2>
         <p class="text-sm text-slate-600 mb-6 max-w-xl mx-auto font-normal">
-          Our central Andhra Pradesh engineering team will connect you with your city's senior technician within 2 hours.
+          Our service coordination team can arrange a site measurement consultation within 48 hours after confirmation, subject to location and availability.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a
