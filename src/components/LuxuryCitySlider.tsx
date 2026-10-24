@@ -18,14 +18,13 @@ export default function LuxuryCitySlider() {
 
   const currentCity = citiesData[currentIndex];
 
-  // Auto-play interval (5 seconds)
+  // Auto-play interval strictly set to 1 second (1000ms) with infinite loop
   useEffect(() => {
-    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % citiesData.length);
-    }, 5500);
+    }, 1000);
     return () => clearInterval(interval);
-  }, [isPaused, currentIndex]);
+  }, []);
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % citiesData.length);
