@@ -38,6 +38,15 @@ export default function Navbar({ currentSlug }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const activeLocation = ALL_LOCATIONS.find(loc => loc.slug === currentSlug);
 
   return (
@@ -88,16 +97,19 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                     7 Andhra Pradesh Hubs
                   </div>
                   <div className="mt-1 space-y-1">
-                    {ALL_LOCATIONS.map((loc) => (
+                    {ALL_LOCATIONS.map((loc) => {
+                      const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
+                      return (
                       <a
                         key={loc.slug}
-                        href={`/locations/${loc.slug}`}
+                        href={`/${canonicalSlug}`}
                         className="flex items-center justify-between px-3 py-1.5 rounded-lg text-xs text-slate-700 hover:bg-emerald-50 hover:text-[#16A34A] transition-all"
                       >
                         <span>{loc.name}</span>
                         <span className="text-[10px] text-slate-400">{loc.district}</span>
                       </a>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -124,7 +136,8 @@ export default function Navbar({ currentSlug }: NavbarProps) {
               {solutionsDropdownOpen && (
                 <div className="absolute top-full mt-2 left-0 w-64 rounded-xl bg-white border border-slate-200 shadow-2xl p-2 z-50 animate-in fade-in backdrop-blur-xl">
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
@@ -135,25 +148,27 @@ export default function Navbar({ currentSlug }: NavbarProps) {
                     </span>
                   </a>
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
                       Window Grills
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      Zero-rust slim cables for open window ventilation
+                      Corrosion-resistant slim cables for open window ventilation
                     </span>
                   </a>
                   <a
-                    href="#solutions"
+                    href="/solutions#services"
+                    onClick={() => setSolutionsDropdownOpen(false)}
                     className="flex flex-col px-3 py-2.5 rounded-lg hover:bg-slate-50 text-left transition-all group"
                   >
                     <span className="text-sm font-bold text-slate-900 group-hover:text-[#16A34A]">
                       High-Rise Elevation Grills
                     </span>
                     <span className="text-[11px] text-slate-500">
-                      Structural &gt;400kg tensioned coastal elevation grills
+                      Multi-strand tensioned stainless steel elevation grills
                     </span>
                   </a>
                 </div>
@@ -171,20 +186,20 @@ export default function Navbar({ currentSlug }: NavbarProps) {
 
             {/* 3. Projects */}
             <a 
-              href="#projects" 
+              href="/projects" 
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all"
             >
               <FolderKanban className="w-4 h-4 text-[#16A34A]" />
               <span>Projects</span>
             </a>
 
-            {/* 4. FAQ */}
+            {/* 4. About */}
             <a 
-              href="#faq" 
+              href="/about" 
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-all"
             >
-              <HelpCircle className="w-4 h-4 text-[#16A34A]" />
-              <span>FAQ</span>
+              <ShieldCheck className="w-4 h-4 text-[#16A34A]" />
+              <span>About</span>
             </a>
 
             {/* 5. Direct Call */}
@@ -201,7 +216,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           {/* Right CTA Button: Emerald Green Button -> 'Book Free Site Visit ->' */}
           <div className="hidden lg:flex items-center">
             <a
-              href="#book-visit"
+              href="/contact#book-visit"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-extrabold text-slate-950 bg-[#7CFF3A] hover:bg-[#68e028] transition-all duration-200 shadow-[0_4px_16px_rgba(124,255,58,0.35)] hover:shadow-[0_6px_22px_rgba(124,255,58,0.5)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>Book Free Site Visit</span>
@@ -210,25 +225,27 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
             <a
               href="tel:+916281620716"
               className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-[#16A34A]"
-              aria-label="Call Direct"
+              aria-label="Call D-VIEW Helpline +91 62816 20716"
             >
               <PhoneCall className="w-4 h-4" />
             </a>
             <a
-              href="#book-visit"
-              className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-950 bg-[#7CFF3A]"
+              href="/contact#book-visit"
+              className="hidden min-[380px]:inline-flex px-3 py-1.5 rounded-lg text-xs font-bold text-slate-950 bg-[#7CFF3A]"
             >
               Free Visit
             </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 hover:text-[#16A34A]"
+              className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 hover:text-[#16A34A] cursor-pointer"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -239,7 +256,12 @@ export default function Navbar({ currentSlug }: NavbarProps) {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/98 border-b border-slate-200 px-4 pt-4 pb-6 space-y-4 backdrop-blur-2xl shadow-xl">
+        <div
+          id="mobile-nav-drawer"
+          role="region"
+          aria-label="Mobile Navigation Drawer"
+          className="lg:hidden bg-white/98 border-b border-slate-200 px-4 pt-4 pb-6 space-y-4 backdrop-blur-2xl shadow-xl"
+        >
           
           {/* City Selection in Mobile Drawer */}
           <div className="bg-slate-50 rounded-xl p-3 border border-slate-200">
@@ -250,10 +272,11 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             <div className="grid grid-cols-2 gap-1.5">
               {ALL_LOCATIONS.map((loc) => {
                 const isActive = loc.slug === currentSlug;
+                const canonicalSlug = loc.slug === 'vijayawada-amaravati' ? 'vijayawada' : loc.slug;
                 return (
                   <a
                     key={loc.slug}
-                    href={`/locations/${loc.slug}`}
+                    href={`/${canonicalSlug}`}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold text-left truncate transition-colors ${
                       isActive
@@ -274,21 +297,21 @@ export default function Navbar({ currentSlug }: NavbarProps) {
               Solutions
             </div>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               • Balcony SS-316 Grills
             </a>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               • Window Grills
             </a>
             <a
-              href="#solutions"
+              href="/solutions#services"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2 rounded-lg text-sm text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
@@ -310,7 +333,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             </a>
 
             <a
-              href="#projects"
+              href="/projects"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
@@ -322,13 +345,13 @@ export default function Navbar({ currentSlug }: NavbarProps) {
             </a>
 
             <a
-              href="#faq"
+              href="/about"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]"
             >
               <span className="flex items-center gap-2">
-                <HelpCircle className="w-4 h-4 text-[#16A34A]" />
-                FAQ
+                <ShieldCheck className="w-4 h-4 text-[#16A34A]" />
+                About
               </span>
               <ArrowRight className="w-4 h-4 text-slate-400" />
             </a>
@@ -337,7 +360,7 @@ export default function Navbar({ currentSlug }: NavbarProps) {
           {/* Action CTA */}
           <div className="pt-2 border-t border-slate-200 space-y-2">
             <a
-              href="#book-visit"
+              href="/contact#book-visit"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#7CFF3A] text-slate-950 font-extrabold text-sm shadow-md"
             >

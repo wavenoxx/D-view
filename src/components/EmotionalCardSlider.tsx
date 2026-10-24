@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import OptimizedGrillImage, { prefetchGrillImages } from './OptimizedGrillImage';
 
 const emotionalCards = [
   {
@@ -6,7 +7,7 @@ const emotionalCards = [
     title: "Children Fall Safety",
     subtitle: "From Constant Fear to Complete Freedom",
     problem: "Fear of heights & balcony lockups",
-    solution: "100% child-safe vertical SS-316 tensioned cables",
+    solution: "Child-safe vertical stainless tensioned cables",
     image: "/assets/cards/child-mother-safety.jpg",
     tag: "Child Protection"
   },
@@ -24,16 +25,16 @@ const emotionalCards = [
     title: "Zero Pigeon Droppings",
     subtitle: "Say Goodbye to Balcony Dirt & Disease",
     problem: "Nasty bird droppings & contaminated spaces",
-    solution: "50mm precision gap stops pigeons permanently",
+    solution: "50mm precision gap deters pigeons and birds",
     image: "/assets/cards/pigeon-free-hygiene.jpg",
     tag: "Hygienic Living"
   },
   {
     id: 4,
-    title: "100% Open Air & View",
+    title: "Open Air & Panoramic View",
     subtitle: "Unobstructed Daylight & Fresh Breeze",
     problem: "Dark, blocked, shadowy rooms",
-    solution: "99% transparent marine-grade vertical wires",
+    solution: "99% transparent stainless steel vertical wires",
     image: "/assets/cards/unblocked-air-view.jpg",
     tag: "Panoramic View"
   }
@@ -42,8 +43,30 @@ const emotionalCards = [
 export const EmotionalCardSlider = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
+<<<<<<< HEAD
 
   const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
+=======
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  // Eagerly pre-fetch activeIndex + 1 and activeIndex + 2 images
+  useEffect(() => {
+    const next1 = (activeSlideIndex + 1) % emotionalCards.length;
+    const next2 = (activeSlideIndex + 2) % emotionalCards.length;
+    prefetchGrillImages([
+      emotionalCards[next1]?.image,
+      emotionalCards[next2]?.image,
+    ]);
+  }, [activeSlideIndex]);
+
+  // Smooth cubic-bezier(0.25, 1, 0.5, 1) easing curve (duration: 450ms)
+  const cubicBezierEase = (t: number): number => {
+    const u = 1 - t;
+    return 3 * u * u * t * 1 + 3 * u * t * t * 1 + t * t * t;
+  };
+
+  const smoothScrollTo = (targetLeft: number, duration: number = 450) => {
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
@@ -55,7 +78,11 @@ export const EmotionalCardSlider = () => {
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
+<<<<<<< HEAD
       const ease = 1 - Math.pow(1 - progress, 3);
+=======
+      const ease = cubicBezierEase(progress);
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
       el.scrollLeft = startLeft + distance * ease;
 
       if (progress < 1) {
@@ -66,6 +93,7 @@ export const EmotionalCardSlider = () => {
     rafRef.current = requestAnimationFrame(animate);
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     const interval = setInterval(() => {
       if (scrollRef.current) {
@@ -76,11 +104,31 @@ export const EmotionalCardSlider = () => {
         const step = cardWidth + gap;
         const singleSetWidth = step * emotionalCards.length;
 
+=======
+  // Strict rules 1-5: Autoplay with 1000ms delay, 450ms cubic-bezier transition,
+  // infinite loop (loop: true), disableOnInteraction: false, pauseOnMouseEnter: false,
+  // and clean cleanup on unmount.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlideIndex((prev) => (prev + 1) % emotionalCards.length);
+
+      if (scrollRef.current) {
+        const el = scrollRef.current;
+        const cardWidth = el.firstElementChild?.clientWidth || 290;
+        const step = cardWidth + 16; // card width + gap
+        const singleSetWidth = step * emotionalCards.length;
+
+        // Infinite loop: seamless reset without visual jump
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
         if (el.scrollLeft >= singleSetWidth) {
           el.scrollLeft -= singleSetWidth;
         }
 
+<<<<<<< HEAD
         smoothScrollTo(el.scrollLeft + step, 400);
+=======
+        smoothScrollTo(el.scrollLeft + step, 450);
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
       }
     }, 1000); // 1000ms delay between slides
 
@@ -93,12 +141,12 @@ export const EmotionalCardSlider = () => {
   const infiniteCards = [...emotionalCards, ...emotionalCards, ...emotionalCards];
 
   return (
-    <section className="w-full bg-[#031B15] py-8 px-4 text-white">
+    <section className="w-full bg-[#031B15] py-8 px-4 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto mb-6 text-center">
         <span className="text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-[#028A0F]/20 text-[#3DED97] border border-[#028A0F]/50 font-bold">
           Why D-View Invisible Safety?
         </span>
-        <h2 className="text-2xl md:text-4xl font-extrabold mt-2 text-white">
+        <h2 className="text-fluid-h1 font-extrabold mt-2 text-white">
           Real Life Balcony <span className="text-[#3DED97]">Transformations</span>
         </h2>
         <p className="text-xs md:text-sm text-gray-300 mt-1">
@@ -106,25 +154,43 @@ export const EmotionalCardSlider = () => {
         </p>
       </div>
 
+<<<<<<< HEAD
       {/* Horizontal Swipe Card Carousel: 1000ms auto-sliding, 400ms transition */}
       <div 
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto no-scrollbar pb-4 pt-1 cursor-grab active:cursor-grabbing select-none"
+=======
+      {/* Responsive Horizontal Swipe Card Carousel: 1.15 on Mobile (<640px), 2.2 on Tablet (640-1024px), 3-4 on Desktop (>1024px) */}
+      <div 
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 pt-1 cursor-grab active:cursor-grabbing select-none"
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {infiniteCards.map((card, idx) => (
           <div 
             key={`${card.id}-${idx}`}
+<<<<<<< HEAD
             className="flex-shrink-0 w-[290px] md:w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col"
+=======
+            className="flex-shrink-0 w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col gpu-accel"
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
           >
-            {/* 3D Visual Preview */}
-            <div className="relative h-[380px] w-full overflow-hidden">
-              <img 
-                src={card.image} 
-                alt={card.title} 
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            {/* 3D Visual Preview with 3:4 Aspect Ratio and OptimizedGrillImage */}
+            <div className="relative aspect-[3/4] sm:h-[380px] w-full overflow-hidden">
+              <OptimizedGrillImage
+                src={card.image}
+                alt={card.title}
+                aspectRatio="3/4"
+                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 340px"
+                className="w-full h-full"
+                imageClassName="hover:scale-105 transition-transform duration-500"
+                width={480}
+                height={640}
+                loading="lazy"
+                sharpen={true}
               />
-              <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-bold text-[#3DED97] border border-white/10">
+              <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-bold text-[#3DED97] border border-white/10 z-10">
                 {card.tag}
               </span>
             </div>

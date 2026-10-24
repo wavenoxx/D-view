@@ -15,25 +15,25 @@ export const citiesData: CityConfig[] = [
   {
     id: "vizag",
     name: "Visakhapatnam",
-    tagline: "Unblocked Vizag Views, 101% Breathtaking & Secure",
+    tagline: "Unblocked Vizag Views, Breathtaking & Secure",
     subline: "RK Beach to Kailasagiri - Experience ocean horizon vistas with zero safety compromise.",
     landmark: "RK Beach & Kailasagiri Hilltop View",
     heroImage: "/assets/locations/vizag-novotel-straight.jpg",
     localHeroImage: "/assets/locations/vizag-novotel-straight.jpg",
     keyAreas: ["Madhurawada (27-Floor High-Rises)", "Yendada", "Rushikonda", "PM Palem", "Anandapuram", "Pendurthi", "Gajuwaka"],
-    weatherAngle: "Continuous marine damp humidity and coastal salt-spray will corrode normal steel within months. We exclusively install SS-316 Marine Grade wires with 10-Year Rust Warranty.",
+    weatherAngle: "Continuous marine damp humidity and coastal salt-spray require high-grade stainless steel cables. We offer SS-316 and SS-304 options with a 5-year warranty confirmed in your quotation.",
     district: "Visakhapatnam"
   },
   {
     id: "rajahmundry",
     name: "Rajamahendravaram",
     tagline: "RIVERFRONT HERITAGE LIVING | BRIGHT & SUNLIT ELEVATIONS",
-    subline: "SS-316 Invisible Grills with Unobstructed Godavari Arch Bridge Views.",
+    subline: "Stainless Steel Invisible Grills with Unobstructed Godavari Arch Bridge Views.",
     landmark: "Godavari Arch Bridge & River Breeze",
     heroImage: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     localHeroImage: "/assets/locations/rajahmundry-godavari-bridge.jpg",
     keyAreas: ["Morampudi", "Bommuru", "Diwancheruvu", "Lalacheruvu", "Vemagiri", "Gadaala Projects"],
-    weatherAngle: "River humidity attracts high pigeon infestation. Our invisible mesh blocks pigeons 100% while allowing free cross-ventilation.",
+    weatherAngle: "River humidity attracts high pigeon activity. Our invisible safety grill layout effectively deters pigeons while allowing free cross-ventilation.",
     district: "East Godavari"
   },
   {
@@ -52,24 +52,24 @@ export const citiesData: CityConfig[] = [
     id: "guntur",
     name: "Guntur",
     tagline: "ELEVATED INLAND RESIDENTIAL LIVING | Meticulous Fall Containment",
-    subline: "SS-316 Invisible Safety Grills for Multi-Storey Balconies & Terraces across Guntur's premium high-rise corridors.",
+    subline: "Stainless Steel Invisible Safety Grills for Multi-Storey Balconies & Terraces across Guntur's high-rise corridors.",
     landmark: "Kondaveedu Fort Ridge & Guntur Urban Skyline",
     heroImage: "/assets/locations/guntur.jpg",
     localHeroImage: "/assets/locations/guntur.jpg",
     keyAreas: ["Brodipet", "Arundelpet", "Amaravati Road", "Namburu", "Kaza & Tadepalli Growth Corridor"],
-    weatherAngle: "Dust and strong inland winds need low-maintenance, easy-to-clean SS-316 high-tension steel structures.",
+    weatherAngle: "Dust and strong inland winds need low-maintenance, easy-to-clean stainless steel cable structures.",
     district: "Guntur"
   },
   {
     id: "kakinada",
     name: "Kakinada",
-    tagline: "Kakinada's Coastal Charm & Marine-Grade SS-316 Safety",
+    tagline: "Kakinada's Coastal Charm & Stainless Steel Balcony Safety",
     subline: "Vakalapudi Lighthouse and coastal palm vistas preserved with anti-corrosive engineering.",
     landmark: "Vakalapudi Lighthouse & Port Coastline",
     heroImage: "/assets/locations/kakinada.jpg",
     localHeroImage: "/assets/locations/kakinada.jpg",
     keyAreas: ["Sarpavaram", "Madhavapatnam", "Ramanayyapeta", "Vakalapudi", "Jagannaickpur"],
-    weatherAngle: "High industrial & coastal salinity demands zero-rust SS-316 grade wiring designed for port towns.",
+    weatherAngle: "Coastal salinity makes corrosion-resistant SS-316 grade wiring a recommended option for port towns.",
     district: "Kakinada"
   },
   {
@@ -88,12 +88,12 @@ export const citiesData: CityConfig[] = [
     id: "ongole",
     name: "Ongole",
     tagline: "Prakasam Pride: Bhagyanagar, Lawyerpet & Kurnool Road Skyline",
-    subline: "100% Uncompromised safety and breezy open balconies across Ongole's thriving high-rise corridors.",
+    subline: "Uncompromised safety and breezy open balconies across Ongole's thriving high-rise corridors.",
     landmark: "Kurnool Road Ridge & Chennakesava Swamy Panorama",
     heroImage: "/assets/locations/ongole.jpg",
     localHeroImage: "/assets/locations/ongole.jpg",
     keyAreas: ["Bhagyanagar", "Lawyerpet", "Kurnool Road Belt", "Santhapet", "Mangamuru Road", "Pellur Corridor", "Housing Board Colony"],
-    weatherAngle: "Inland heat and sudden dust winds require SS-316 high-tension steel with anti-dust coating and zero rust guarantees.",
+    weatherAngle: "Inland heat and sudden dust winds require durable multi-strand stainless steel cables with smooth protective coating.",
     district: "Prakasam"
   }
 ];

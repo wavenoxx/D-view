@@ -10,14 +10,15 @@ import {
   Compass
 } from 'lucide-react';
 import { citiesData, type CityConfig } from '../data/citiesData';
+import OptimizedGrillImage, { prefetchGrillImages } from './OptimizedGrillImage';
 
 export default function LuxuryCitySlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
   const currentCity = citiesData[currentIndex];
 
+<<<<<<< HEAD
   // Auto-play interval strictly set to 1 second (1000ms) with infinite loop
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,6 +26,28 @@ export default function LuxuryCitySlider() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+=======
+  // Strict rule 1: Autoplay enabled with 1000ms delay between slides
+  // Strict rule 3: Infinite loop (loop: true)
+  // Strict rule 4: disableOnInteraction: false and pauseOnMouseEnter: false
+  // Strict rule 5: Clean cleanup of intervals on component unmount
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % citiesData.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  // Eagerly prefetch activeIndex + 1 and activeIndex + 2 slides in background
+  useEffect(() => {
+    const next1 = (currentIndex + 1) % citiesData.length;
+    const next2 = (currentIndex + 2) % citiesData.length;
+    prefetchGrillImages([
+      citiesData[next1]?.localHeroImage || citiesData[next1]?.heroImage,
+      citiesData[next2]?.localHeroImage || citiesData[next2]?.heroImage,
+    ]);
+  }, [currentIndex]);
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % citiesData.length);
@@ -44,7 +67,7 @@ export default function LuxuryCitySlider() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Touch Swipe
+  // Touch Swipe (disableOnInteraction: false - swipe does not permanently kill auto-sliding timer)
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -66,32 +89,41 @@ export default function LuxuryCitySlider() {
   return (
     <section 
       className="relative w-full h-screen min-h-[680px] bg-[#0B0D0C] overflow-hidden select-none"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Background Images with Cross-fade Transition */}
+      {/* Background Images with 450ms smooth cubic-bezier Cross-fade Transition */}
       {citiesData.map((city, index) => {
         const isActive = index === currentIndex;
+        const imgPath = city.localHeroImage || city.heroImage;
         return (
           <div
             key={city.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 gpu-accel ${
               isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
             }`}
+            style={{
+              transition: 'opacity 450ms cubic-bezier(0.25, 1, 0.5, 1)',
+              willChange: 'opacity'
+            }}
           >
-            <img
+            <OptimizedGrillImage
               src={city.localHeroImage || city.heroImage}
               alt={city.name}
-              className={`w-full h-full object-cover filter brightness-[0.70] contrast-[1.08] transition-transform duration-[6000ms] ease-out ${
-                isActive ? 'scale-105' : 'scale-100'
-              }`}
+              priority={index === 0}
+              sizes="100vw"
+              width={1920}
+              height={1080}
+              className="w-full h-full"
+              imageClassName={isActive ? 'scale-105' : 'scale-100'}
+              style={{
+                transition: 'transform 450ms cubic-bezier(0.25, 1, 0.5, 1)',
+                willChange: 'transform'
+              }}
             />
             {/* Invisprotect-inspired architectural gradient masks */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B0D0C]/95 via-[#0B0D0C]/65 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0D0C] via-transparent to-[#0B0D0C]/50"></div>
-
           </div>
         );
       })}
@@ -125,7 +157,7 @@ export default function LuxuryCitySlider() {
               Architectural Invisible Grills & Balcony Safety
             </span>
             <a href={getCityUrl(currentCity)} className="group block focus:outline-none">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white group-hover:text-[#7CFF3A] transition-colors tracking-tight leading-[1.08] text-shadow">
+              <h1 className="text-fluid-hero font-black text-white group-hover:text-[#7CFF3A] transition-colors tracking-tight leading-[1.08] text-shadow">
                 {currentCity.tagline.split(':')[0]} <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7CFF3A] via-[#A6FF7A] to-white group-hover:from-white group-hover:to-[#7CFF3A]">
                   {currentCity.name.toUpperCase()}

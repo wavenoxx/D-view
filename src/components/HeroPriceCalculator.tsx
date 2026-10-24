@@ -11,57 +11,47 @@ export interface MaterialOption {
   grade: 'SS 316' | 'SS 304';
   thickness: string;
   label: string;
-  ratePerSqFt: number;
 }
 
-// User-specified rates:
-// SS 316: 3.0mm = ₹190, 2.5mm = ₹170, 2.0mm = ₹160
-// SS 304: 3.0mm = ₹170, 2.5mm = ₹150, 2.0mm = ₹140
 const MATERIAL_OPTIONS: MaterialOption[] = [
-  // SS 316 (Marine Grade)
+  // SS 316
   {
     id: '316-2.5',
     grade: 'SS 316',
     thickness: '2.5 mm',
-    label: 'SS 316 (Marine Grade) - 2.5 mm High Tensile (Recommended)',
-    ratePerSqFt: 170,
+    label: 'SS-316 Stainless Steel - 2.5 mm (Recommended for Coastal Humidity)',
   },
   {
     id: '316-3.0',
     grade: 'SS 316',
     thickness: '3.0 mm',
-    label: 'SS 316 (Marine Grade) - 3.0 mm Heavy Duty Coastal',
-    ratePerSqFt: 190,
+    label: 'SS-316 Stainless Steel - 3.0 mm (Heavy Duty)',
   },
   {
     id: '316-2.0',
     grade: 'SS 316',
     thickness: '2.0 mm',
-    label: 'SS 316 (Marine Grade) - 2.0 mm Standard',
-    ratePerSqFt: 160,
+    label: 'SS-316 Stainless Steel - 2.0 mm (Standard)',
   },
 
-  // SS 304 (Standard Grade)
+  // SS 304
   {
     id: '304-2.5',
     grade: 'SS 304',
     thickness: '2.5 mm',
-    label: 'SS 304 (Standard Grade) - 2.5 mm High Tensile',
-    ratePerSqFt: 150,
+    label: 'SS-304 Stainless Steel - 2.5 mm (Standard Balcony)',
   },
   {
     id: '304-3.0',
     grade: 'SS 304',
     thickness: '3.0 mm',
-    label: 'SS 304 (Standard Grade) - 3.0 mm Heavy Duty',
-    ratePerSqFt: 170,
+    label: 'SS-304 Stainless Steel - 3.0 mm (Heavy Duty)',
   },
   {
     id: '304-2.0',
     grade: 'SS 304',
     thickness: '2.0 mm',
-    label: 'SS 304 (Standard Grade) - 2.0 mm Economy',
-    ratePerSqFt: 140,
+    label: 'SS-304 Stainless Steel - 2.0 mm (Economy)',
   },
 ];
 
@@ -77,7 +67,6 @@ export default function HeroPriceCalculator({ citySlug, cityName }: HeroPriceCal
   // Calculate only when width and height are provided
   const hasValidDimensions = width > 0 && height > 0;
   const area = hasValidDimensions ? width * height : 0;
-  const estimatedPrice = hasValidDimensions ? area * selectedMaterial.ratePerSqFt : 0;
 
   // Handle number input clamped between 1 and 100
   const handleWidthChange = (val: string) => {
@@ -99,13 +88,12 @@ export default function HeroPriceCalculator({ citySlug, cityName }: HeroPriceCal
   };
 
   const getWhatsAppEstimateUrl = () => {
-    const text = `Hi D-View! I checked the ${cityName} balcony price calculator:
+    const text = `Hi D-View! I checked the ${cityName} balcony area calculator:
 • Dimensions: ${width || 0} Ft (Width) × ${height || 0} Ft (Height)
 • Total Area: ${area} Sq.Ft
-• Material: ${selectedMaterial.label}
-• Estimated Demo Price: ₹${estimatedPrice.toLocaleString('en-IN')}
+• Selected Material: ${selectedMaterial.label}
 
-I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Visit & Measurement and apply the 10% – 15% Spot Discount.`;
+Please share quotation details and confirm site-visit availability for my location.`;
 
     return `https://wa.me/916281620716?text=${encodeURIComponent(text)}`;
   };
@@ -113,7 +101,7 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
   return (
     <div className="bg-white/95 sm:bg-white backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-slate-200 sm:border-2 sm:border-emerald-500/80 p-3.5 sm:p-5 shadow-2xl text-left relative overflow-hidden select-none">
       
-      {/* Top Header: CHECK [CITY] PRICE NOW */}
+      {/* Top Header */}
       <div className="mb-3">
         <a
           href={getWhatsAppEstimateUrl()}
@@ -126,7 +114,7 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
               <Calculator className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </span>
             <span className="truncate">
-              CHECK <strong className="text-white underline">{cityName}</strong> PRICE NOW
+              CALCULATE <strong className="text-white underline">{cityName}</strong> BALCONY AREA
             </span>
           </div>
           <span className="text-base leading-none group-hover:translate-x-1 transition-transform">›</span>
@@ -139,12 +127,14 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
         <div className="grid grid-cols-2 gap-2.5">
           {/* Width Input */}
           <div>
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="hero-calc-width" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
               Width (1 - 100 Ft):
             </label>
             <div className="relative">
               <input
+                id="hero-calc-width"
                 type="number"
+                inputMode="decimal"
                 min="1"
                 max="100"
                 value={width || ''}
@@ -160,12 +150,14 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
 
           {/* Height Input */}
           <div>
-            <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+            <label htmlFor="hero-calc-height" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
               Height (1 - 100 Ft):
             </label>
             <div className="relative">
               <input
+                id="hero-calc-height"
                 type="number"
+                inputMode="decimal"
                 min="1"
                 max="100"
                 value={height || ''}
@@ -210,77 +202,77 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
 
         {/* Material Selection (SS 316 & SS 304) */}
         <div>
-          <label className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
+          <label htmlFor="hero-calc-material" className="block text-[11px] sm:text-xs font-bold text-slate-700 mb-1">
             Wire Material & Thickness:
           </label>
           <div className="relative">
             <select
+              id="hero-calc-material"
               value={selectedMaterialId}
               onChange={(e) => setSelectedMaterialId(e.target.value)}
               className="w-full appearance-none px-3 py-2 sm:py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 font-bold text-xs sm:text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white cursor-pointer pr-8"
             >
-              <optgroup label="── SS 316 Marine Grade (Rust-Proof) ──">
-                <option value="316-2.5">SS 316 (Marine Grade) - 2.5 mm High Tensile (Recommended)</option>
-                <option value="316-3.0">SS 316 (Marine Grade) - 3.0 mm Heavy Duty Coastal</option>
-                <option value="316-2.0">SS 316 (Marine Grade) - 2.0 mm Standard</option>
+              <optgroup label="── SS-316 Stainless Steel (Coastal Recommended) ──">
+                <option value="316-2.5">SS-316 Stainless Steel - 2.5 mm (Recommended for Coastal Humidity)</option>
+                <option value="316-3.0">SS-316 Stainless Steel - 3.0 mm (Heavy Duty)</option>
+                <option value="316-2.0">SS-316 Stainless Steel - 2.0 mm (Standard)</option>
               </optgroup>
-              <optgroup label="── SS 304 Standard Grade ──">
-                <option value="304-2.5">SS 304 (Standard Grade) - 2.5 mm High Tensile</option>
-                <option value="304-3.0">SS 304 (Standard Grade) - 3.0 mm Heavy Duty</option>
-                <option value="304-2.0">SS 304 (Standard Grade) - 2.0 mm Economy</option>
+              <optgroup label="── SS-304 Stainless Steel (Standard Inland) ──">
+                <option value="304-2.5">SS-304 Stainless Steel - 2.5 mm (Standard Balcony)</option>
+                <option value="304-3.0">SS-304 Stainless Steel - 3.0 mm (Heavy Duty)</option>
+                <option value="304-2.0">SS-304 Stainless Steel - 2.0 mm (Economy)</option>
               </optgroup>
             </select>
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-[10px]">▼</span>
           </div>
         </div>
 
-        {/* Output Area: Price shown only when Width and Height are added */}
+        {/* Output Area: Area and Quotation Status */}
         {hasValidDimensions ? (
           <div className="bg-emerald-50 border border-emerald-300 rounded-xl p-3 shadow-inner">
             <div className="flex items-center justify-between text-xs sm:text-sm">
-              <span className="text-slate-600">Total Area:</span>
+              <span className="text-slate-600">Total Calculated Area:</span>
               <span className="font-extrabold text-slate-900">
                 {area} Sq.Ft <span className="text-slate-500 text-xs">({width} Ft × {height} Ft)</span>
               </span>
             </div>
             <div className="flex items-baseline justify-between pt-1.5 border-t border-emerald-200 mt-1.5">
               <div>
-                <span className="text-xs sm:text-sm font-extrabold text-slate-900">Estimated Demo Price:</span>
+                <span className="text-xs sm:text-sm font-extrabold text-slate-900">Quotation on Measurement:</span>
                 <span className="block text-[10px] text-slate-500 font-normal">
                   ({selectedMaterial.grade} • {selectedMaterial.thickness})
                 </span>
               </div>
-              <span className="text-2xl sm:text-3xl font-black text-[#16A34A] drop-shadow-sm">
-                ₹ {estimatedPrice.toLocaleString('en-IN')}
+              <span className="text-xs sm:text-sm font-bold text-[#16A34A] bg-emerald-100/70 px-2 py-0.5 rounded-lg border border-emerald-200">
+                Itemized Quote
               </span>
             </div>
           </div>
         ) : (
           <div className="bg-amber-50 border border-amber-300 rounded-xl p-3 text-center">
             <p className="text-xs text-amber-800 font-semibold">
-              ⚠️ Please enter Width & Height (1 - 100 Ft) above to see estimated demo price.
+              ⚠️ Please enter Width & Height (1 - 100 Ft) above to calculate balcony area.
             </p>
           </div>
         )}
 
-        {/* High-Converting Special Offer Box */}
-        <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-br from-emerald-50 via-green-50 to-emerald-100/60 border-2 border-emerald-400 shadow-sm text-left relative overflow-hidden">
-          {/* Header Badge */}
+        {/* Informative Site Measurement Box */}
+        <div className="p-3 sm:p-3.5 rounded-2xl bg-slate-50 border border-slate-200 shadow-sm text-left relative overflow-hidden">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-100 border border-emerald-300 text-[#16A34A] text-[10px] sm:text-[11px] font-black uppercase tracking-wider">
-              🔥 SPECIAL ON-SITE OFFER
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-[#16A34A] text-[10px] sm:text-[11px] font-bold uppercase tracking-wider">
+              Site Measurement & Written Quote
             </span>
-            <span className="text-[11px] sm:text-xs font-black text-white bg-[#16A34A] px-2 py-0.5 rounded-lg shadow-sm">
-              10% – 15% OFF
+            <span className="text-[10px] font-semibold text-slate-500">
+              Transparent Pricing
             </span>
           </div>
 
-          <h4 className="text-xs sm:text-sm font-black text-slate-900 leading-snug">
-            Worried about price? <span className="text-[#16A34A]">Get 10% to 15% Extra Discount on Call or Free Site Visit!</span>
+          <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+            Tailored to Your Balcony Dimensions & Selected Grade
           </h4>
           
           <p className="text-[10px] sm:text-[11px] text-slate-600 mt-1 leading-relaxed">
-            * <strong className="text-slate-900">Note:</strong> The price above is only a standard demo estimate. When you schedule a <strong className="text-[#16A34A]">100% Free Site Measurement Visit</strong> or call our engineering team, we inspect your balcony and unlock a <strong className="text-[#16A34A]">10% to 15% direct spot discount</strong> tailored to your site!
+            Final pricing is determined after physical site inspection based on structural anchor tracks, span, and selected material ({selectedMaterial.grade}). Contact us to verify service availability and schedule measurement.
           </p>
         </div>
 
@@ -294,7 +286,7 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
             className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 px-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#16A34A] to-[#22c55e] hover:from-[#15803d] hover:to-[#16A34A] text-white font-extrabold text-xs sm:text-sm transition-all shadow-md active:scale-98 group cursor-pointer"
           >
             <span className="text-sm sm:text-base">👉</span>
-            <span>Book Free Site Visit & Claim 15% Off (WhatsApp)</span>
+            <span>Request Quotation via WhatsApp</span>
           </a>
 
           {/* Direct Phone Call Button */}
@@ -303,7 +295,7 @@ I am interested in D-View Invisible Grills. Please schedule a 100% Free Site Vis
             className="w-full flex items-center justify-center gap-2 py-2 sm:py-2.5 px-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-300 hover:border-[#16A34A] text-slate-800 font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-98 cursor-pointer"
           >
             <span>📞</span>
-            <span>Call Directly for Lowest Spot Quote: <strong className="text-[#16A34A] ml-1">+91 62816 20716</strong></span>
+            <span>Call for Enquiry & Quotation: <strong className="text-[#16A34A] ml-1">+91 62816 20716</strong></span>
           </a>
         </div>
 

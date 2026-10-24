@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import OptimizedGrillImage, { prefetchGrillImages } from './OptimizedGrillImage';
 
 export interface ShowcaseCard {
   id: number;
@@ -24,7 +25,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     title: 'Children Fall Hazard',
     subtitle: 'Low Railings & Unprotected Open Ledges',
     image: '/images/before-child-danger.jpg',
-    description: 'Low open railings cause constant panic for parents. Toddlers can easily drag a chair or slip through wide gaps. One misstep can be fatal.',
+    description: 'Low open railings cause constant panic for parents. Young children can drag a chair or slip through wide gaps. One misstep can be fatal.',
     bullet: 'Parents keep balcony doors locked in permanent fear.',
   },
   // 2. Children Solution
@@ -33,12 +34,12 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'CHILDREN SAFETY',
     tag: '02 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% TODDLER FALL PROTECTION',
+    badge: '🛡️ BALCONY SAFETY BARRIER',
     title: 'Children Freedom & Safety',
-    subtitle: 'High-Tensile SS-316 @ 2" Safe Gap',
+    subtitle: 'SS-316 Stainless Option @ 2" Safe Gap',
     image: '/images/after-child-safety.jpg',
-    description: 'Floor-to-ceiling high-tensile SS-316 vertical wire cables with strict 2-inch safe spacing. Zero horizontal footholds to climb. Supports >400 kg load per strand.',
-    bullet: 'Toddlers explore and play freely right at the edge without fear.',
+    description: 'Floor-to-ceiling SS-316 vertical wire cables with 2-inch safe spacing. Vertical design with no horizontal footholds to climb. Multi-strand construction for balcony containment.',
+    bullet: 'Provides reliable boundary protection across open balcony elevations.',
   },
 
   // 3. Pigeon Problem
@@ -60,7 +61,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'PIGEON MENACE',
     tag: '04 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% BIRD-FREE CLEAN HYGIENE',
+    badge: '🛡️ BIRD-FREE CLEAN HYGIENE',
     title: 'Zero Pigeon Menace',
     subtitle: 'Precision 50mm Structural Physical Barrier',
     image: '/images/after-pigeon-free.jpg',
@@ -88,11 +89,11 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     category: 'VIEW & AIRFLOW',
     tag: '06 • D-VIEW SOLUTION',
     badge: '🛡️ 99% AIRFLOW & 1-MIN FIRE ESCAPE',
-    title: '100% Open Air & Fire Safety',
+    title: 'Open Air & Fire Safety',
     subtitle: 'Unobstructed Panoramic Views',
     image: '/images/after-luxury-lounge.jpg',
     description: 'Ultra-slim vertical stainless steel cables preserve 99% optical transparency and river/coastal breeze. Fully severable in under 60 seconds with emergency cutters.',
-    bullet: 'Pure sunlight, complete airflow, and certified life-saving fire egress.',
+    bullet: 'Pure sunlight, complete airflow, and clear emergency fire egress.',
   },
 
   // 7. Old Age Problem
@@ -114,7 +115,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'SENIOR CITIZENS',
     tag: '08 • D-VIEW SOLUTION',
-    badge: '🛡️ 100% PEACEFUL RETIREMENT & VERTIGO RELIEF',
+    badge: '🛡️ PEACEFUL RETIREMENT & VERTIGO RELIEF',
     title: 'Senior Comfort & Fall Protection',
     subtitle: 'Floor-to-Ceiling SS-316 High-Tension Barrier',
     image: '/images/after-elderly-peace.jpg',
@@ -145,8 +146,8 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     title: '60-Second Fire Escape System',
     subtitle: 'Instant Cable-Cut & Fire Brigade Ladder Evacuation',
     image: '/images/after-dview-fire-escape.jpg',
-    description: 'Unlike impenetrable welded iron cages, D-View SS-316 high-tension cables provide 400kg fall security daily, yet can be cleanly severed in under 60 seconds with emergency cutters. Fire brigade turntable ladders can easily reach and rescue families.',
-    bullet: 'Life-saving emergency balcony evacuation with certified quick-cut cable technology.',
+    description: 'Unlike impenetrable welded iron cages, D-View SS-316 high-tension cables provide robust fall security daily, yet can be cleanly severed in under 60 seconds with emergency cutters. Fire brigade turntable ladders can easily reach and rescue families.',
+    bullet: 'Life-saving emergency balcony evacuation with quick-cut cable capability.',
   },
 
   // 11. Pet Safety Problem
@@ -168,7 +169,7 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
     type: 'solution',
     category: 'PET SAFETY & FREEDOM',
     tag: '12 • D-VIEW SOLUTION',
-    badge: '🐾 100% SECURE PET FREEDOM & RELAXATION',
+    badge: '🐾 SECURE PET FREEDOM & RELAXATION',
     title: 'Safe Pet Balcony Living',
     subtitle: 'Relaxed Sunbathing & Unrestricted Peace of Mind',
     image: '/images/after-pet-freedom.jpg',
@@ -179,16 +180,58 @@ export const SHOWCASE_8_CARDS: ShowcaseCard[] = [
 
 interface HorizontalProblemSliderProps {
   cityName?: string;
+  citySlug?: string;
 }
 
 export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = ({
   cityName = 'Andhra Pradesh',
+  citySlug,
 }) => {
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+<<<<<<< HEAD
   const rafRef = useRef<number | null>(null);
 
   // Smooth 400ms transition with snappy easeOut curve
   const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
+=======
+  const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const rafRef = useRef<number | null>(null);
+  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Check prefers-reduced-motion
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(media.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    media.addEventListener('change', handler);
+    return () => media.removeEventListener('change', handler);
+  }, []);
+
+  // Track viewport visibility with IntersectionObserver
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === 'undefined') {
+      setIsInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
+  const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
@@ -200,7 +243,10 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
+<<<<<<< HEAD
       // Smooth ease-out cubic curve (duration: 400ms)
+=======
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
       const ease = 1 - Math.pow(1 - progress, 3);
       el.scrollLeft = startLeft + distance * ease;
 
@@ -212,6 +258,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     rafRef.current = requestAnimationFrame(animate);
   };
 
+<<<<<<< HEAD
   // Strict rules 2 & 3:
   // - 1000ms autoplay interval (maximum 1 second delay)
   // - 400ms smooth transition speed
@@ -237,35 +284,99 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
       }
     }, 1000); // Strict rule 2: maximum 1 second delay (1000ms)
 
+=======
+  const scrollNext = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardWidth = el.firstElementChild?.clientWidth || 310;
+    const step = cardWidth + 24;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft >= maxScroll - 25) {
+      smoothScrollTo(0, 350);
+    } else {
+      smoothScrollTo(el.scrollLeft + step, 280);
+    }
+  };
+
+  const scrollPrev = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardWidth = el.firstElementChild?.clientWidth || 310;
+    const step = cardWidth + 24;
+    if (el.scrollLeft <= 25) {
+      smoothScrollTo(el.scrollWidth - el.clientWidth, 350);
+    } else {
+      smoothScrollTo(el.scrollLeft - step, 280);
+    }
+  };
+
+  // Safe, readable 4500ms auto-sliding interval; paused when off-screen, focused, or reduced motion preferred
+  useEffect(() => {
+    if (isPaused || !isInView || prefersReducedMotion) return;
+
+    const interval = setInterval(() => {
+      scrollNext();
+    }, 4500);
+
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     return () => {
       clearInterval(interval);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
+<<<<<<< HEAD
   }, []);
 
   // Triple set of cards for seamless infinite forward looping (loop: true)
   const infiniteCards = [...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS];
+=======
+  }, [isPaused, isInView, prefersReducedMotion]);
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 
   return (
-    <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
+    <section ref={sectionRef} className="w-full overflow-hidden bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
-        <div className="mb-8">
+        <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold tracking-widest uppercase mb-2 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
               Why Choose Invisible Grills?
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-fluid-h1 font-extrabold text-slate-900 tracking-tight">
               Why Install Invisible Grills? <span className="text-[#16A34A]">One Single Installation, Every Problem Solved.</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-3xl leading-relaxed">
-              A single modern installation solves all your major balcony challenges at once — guaranteeing 100% toddler safety, eliminating pigeon mess, preventing iron rust, and giving you crystal-clear open views without that caged feeling.
+              A single modern installation addresses major balcony concerns at once — providing balcony fall safety, bird deterrence, rust resistance, and open views without that caged feeling.
             </p>
+          </div>
+
+          {/* Manual Carousel Controls */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              aria-label="Previous safety problem slide"
+              className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-[#16A34A] text-slate-700 hover:text-[#16A34A] shadow-sm transition cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              aria-label="Next safety problem slide"
+              className="p-2.5 rounded-full bg-white border border-slate-200 hover:border-[#16A34A] text-slate-700 hover:text-[#16A34A] shadow-sm transition cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding: 1000ms autoplay, 400ms transition, loop: true */}
         <div
           ref={scrollRef}
@@ -273,24 +384,52 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {infiniteCards.map((card, idx) => {
+=======
+        {/* 12 Horizontal Cards Container with Accessible Pause and Focus Capture */}
+        <div
+          ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => {
+            if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+            pauseTimerRef.current = setTimeout(() => setIsPaused(false), 2500);
+          }}
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {SHOWCASE_8_CARDS.map((card, idx) => {
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
             const isProblem = card.type === 'problem';
 
             return (
               <div
                 key={`${card.id}-${idx}`}
+<<<<<<< HEAD
                 className={`w-[260px] sm:w-[290px] md:w-[310px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white ${
+=======
+                className={`w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white gpu-accel ${
+>>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
                   isProblem
                     ? 'border border-rose-200 hover:border-rose-400 hover:shadow-lg'
                     : 'border border-emerald-200 hover:border-emerald-400 hover:shadow-lg'
                 }`}
               >
-                {/* Visual Area with Image - Reduced Compact Height */}
-                <div className="relative h-[210px] sm:h-[230px] w-full overflow-hidden bg-slate-100">
-                  <img
+                {/* Visual Area with Image - OptimizedGrillImage with Shimmer & High-DPI Sharpness */}
+                <div className="relative aspect-[4/3] sm:h-[230px] w-full overflow-hidden bg-slate-100">
+                  <OptimizedGrillImage
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    aspectRatio="4/3"
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 340px"
+                    className="w-full h-full"
+                    imageClassName="group-hover:scale-105 transition-transform duration-500"
+                    width={480}
+                    height={360}
                     loading="lazy"
+                    sharpen={true}
                   />
                   
                   {/* Subtle Gradient Overlay */}
@@ -366,7 +505,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
 
                   {/* Bottom Action CTA */}
                   <a
-                    href={`/contact?reason=${encodeURIComponent(card.category)}`}
+                    href={`/contact?${citySlug ? `city=${encodeURIComponent(citySlug)}&` : ''}reason=${encodeURIComponent(card.category)}#book-visit`}
                     className={`mt-3 w-full py-2 rounded-xl text-[11px] font-bold transition-all duration-300 text-center block shadow-sm cursor-pointer ${
                       isProblem
                         ? 'bg-rose-600 hover:bg-rose-700 text-white'

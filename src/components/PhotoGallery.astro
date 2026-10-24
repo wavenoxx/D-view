@@ -1,4 +1,6 @@
 ---
+import OptimizedGrillImage from './OptimizedGrillImage.astro';
+
 interface Props {
   cityName?: string;
 }
@@ -25,7 +27,7 @@ const galleryItems = [
   {
     title: '2-Inch Child & Pet Safety Interval',
     subtitle: 'Strict 50mm Spacing With Zero Horizontal Footholds',
-    description: 'Precision vertical spacing prevents toddlers from climbing or slipping, while keeping dogs and cats safely contained.',
+    description: 'Precision vertical spacing provides balcony edge safety, while keeping dogs and cats safely contained.',
     image: '/images/child-safety-balcony.jpg',
     tag: 'FALL PREVENTION',
     metric: 'Zero Foothold'
@@ -41,18 +43,18 @@ const galleryItems = [
   {
     title: 'High-Rise Balcony Cross-Ventilation',
     subtitle: 'Natural River & Ocean Airflow Without Pigeon Intrusion',
-    description: 'Unlike solid glass or bulky box bars, high-tensile SS-316 cables preserve 100% natural air circulation and eliminate pigeons.',
+    description: 'Unlike solid glass or bulky box bars, multi-strand stainless steel cables preserve unhindered natural air circulation and deter pigeons.',
     image: '/images/rajahmundry-hero.jpg',
     tag: 'VENTILATION & HYGIENE',
-    metric: '100% Airflow'
+    metric: 'Open Airflow'
   },
   {
     title: 'Penthouse & Corner Balcony Elevation',
-    subtitle: 'Wind-Load Tested For 15+ Floor Towers & Coastal Gusts',
-    description: 'Engineered with >400 kgf breaking load per strand, delivering safety for coastal penthouses and high-elevation residences.',
+    subtitle: 'Engineered For 15+ Floor Towers & Coastal Gusts',
+    description: 'Engineered for robust structural strength, delivering safety for coastal penthouses and high-elevation residences.',
     image: '/images/project-penthouse.jpg',
     tag: 'HIGH-RISE ENGINEERING',
-    metric: '>400kg Breaking Load'
+    metric: 'Multi-Strand'
   },
   {
     title: 'Smooth Paw-Safe Polyamide Sheath',
@@ -74,7 +76,7 @@ const galleryItems = [
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-[#16A34A] uppercase tracking-wider mb-3 shadow-sm">
           <span>Real Balcony Installations</span>
         </div>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <h2 class="text-fluid-h1 font-extrabold text-slate-900 tracking-tight">
           VISUAL PROOF: <span class="text-[#16A34A]">LUXURY INVISIBLE GRILLS</span>
         </h2>
       </div>
@@ -88,16 +90,22 @@ const galleryItems = [
       {galleryItems.map((item) => (
         <div class="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-emerald-500 transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between">
           
-          {/* 80% High-Definition Visual Frame */}
-          <div class="relative h-72 sm:h-80 overflow-hidden">
-            <img 
-              src={item.image} 
-              alt={item.title} 
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.02]"
+          {/* 80% High-Definition Visual Frame with 4:3 Aspect Ratio */}
+          <div class="relative aspect-[4/3] sm:h-80 w-full overflow-hidden">
+            <OptimizedGrillImage
+              src={item.image}
+              alt={item.title}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+              class="w-full h-full"
+              imageClass="group-hover:scale-105 transition-transform duration-500"
+              width={640}
+              height={480}
+              aspectRatio="4/3"
               loading="lazy"
+              sharpen={true}
             />
             {/* Subtle Gradient vignette */}
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10"></div>
 
             {/* Top pill tags */}
             <div class="absolute top-4 left-4 right-4 flex items-center justify-between z-10">

@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 import BeforeAfterSlider from '../../components/BeforeAfterSlider';
 import HorizontalProblemSlider from '../../components/HorizontalProblemSlider';
+import OptimizedGrillImage from '../../components/OptimizedGrillImage.astro';
 import { ALL_LOCATIONS, type LocationData } from '../../data/locations';
 
 export async function getStaticPaths() {
@@ -40,65 +41,137 @@ const cityName = location.cityName || location.name;
 const heroImage = location.heroImage;
 const heroPoster = location.heroPosterImage || location.heroImage;
 const subLocalities = location.subLocalities || [];
+// Location pages reuse the city landing-page template; consolidate indexing signals.
+const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' : location.slug;
 ---
 
 <Layout
-  title={`D-VIEW Invisible Safety | ${cityName} SS-316 Balcony Grills`}
-  description={`Engineered SS-316 invisible safety grills across ${cityName}. Living spaces without fear & without cages. 100% fall protection, child & pet safety with 10-year warranty.`}
-  canonicalUrl={`https://dviewsolutions.com/locations/${slug}`}
+  title={location.seoTitle || `D-VIEW Invisible Safety | ${cityName} SS-316 Balcony Grills`}
+  description={location.seoDescription || `Engineered invisible safety grills across ${cityName}. Living spaces without fear & without cages. Child & pet fall safety with 5-year warranty.`}
+  canonicalUrl={`https://www.dviewsolutions.com/${primaryCitySlug}`}
   cityName={cityName}
   ogImage={heroImage}
-  preloadHeroImage={heroImage}
+  preloadHeroImage={heroPoster}
   keywords={location.keywords}
-  faqs={location.faqs || []}
 >
   <main class="min-h-screen bg-white text-slate-900">
     {/* TOP BRAND NAVIGATION BAR MATCHING REFERENCE SCREENSHOT */}
     <header class="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
         
         {/* Left: Brand Logo in a clean straight line */}
-        <a href="/" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+        <a href="/" class="flex items-center gap-2 sm:gap-3 group shrink-0">
           <img 
             src="/images/d-view-logo-horizontal.png" 
             alt="D-VIEW Invisible Grills & Safety Solutions" 
-            class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+            width="160"
+            height="40"
+            decoding="async"
+            class="h-7 sm:h-9 lg:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
           />
         </a>
 
         {/* Middle: Navigation Links */}
-        <nav class="hidden md:flex items-center gap-7 text-xs font-bold tracking-wider uppercase">
-          <a href="/" class="text-[#16A34A] hover:text-emerald-700 transition flex items-center gap-1">
+        <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-4 lg:gap-7 text-xs font-bold tracking-wider uppercase shrink-0">
+          <a href="/" class="py-2 text-[#16A34A] hover:text-emerald-700 transition flex items-center gap-1">
             Home
           </a>
-          <a href="#corridors" class="text-slate-600 hover:text-[#16A34A] transition">
+          <a href="#corridors" class="py-2 text-slate-600 hover:text-[#16A34A] transition">
             Applications
           </a>
-          <a href="#formula" class="text-slate-600 hover:text-[#16A34A] transition">
+          <a href="/solutions" class="py-2 text-slate-600 hover:text-[#16A34A] transition">
+            Solutions
+          </a>
+          <a href="/about" class="py-2 text-slate-600 hover:text-[#16A34A] transition">
             About
           </a>
-          <a href="/contact" class="text-slate-600 hover:text-[#16A34A] transition">
+          <a href="/contact" class="py-2 text-slate-600 hover:text-[#16A34A] transition">
             Contact
           </a>
         </nav>
 
-        {/* Right: City Service Area Pill Badge matching screenshot */}
-        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-emerald-300 text-right shadow-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#16A34A] animate-pulse"></span>
-          <div>
-            <span class="block text-xs font-black text-slate-900">{cityName}</span>
-            <span class="block text-[9px] font-semibold text-[#16A34A] uppercase tracking-wider">Our Service Area</span>
+        {/* Right: City Service Area Pill Badge + Mobile Menu Toggle */}
+        <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <div class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-slate-50 border border-emerald-300 text-right shadow-sm min-w-0 max-w-[145px] sm:max-w-[220px] lg:max-w-none">
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#16A34A] animate-pulse shrink-0"></span>
+            <div class="min-w-0">
+              <span class="block text-[10px] sm:text-xs font-black text-slate-900 truncate">{cityName}</span>
+              <span class="block text-[8px] sm:text-[9px] font-semibold text-[#16A34A] uppercase tracking-wider truncate">Our Service Area</span>
+            </div>
+            <span class="hidden sm:inline text-base text-slate-400 ml-0.5 shrink-0" aria-hidden="true">🌉</span>
           </div>
-          <span class="text-base text-slate-400 ml-1">🌉</span>
+
+          <button
+            type="button"
+            id="location-mobile-menu-btn"
+            aria-label="Toggle Navigation Menu"
+            aria-expanded="false"
+            aria-controls="location-mobile-menu"
+            class="md:hidden p-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 hover:text-[#16A34A] transition shrink-0 cursor-pointer"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
 
       </div>
+
+      {/* Mobile Navigation Drawer */}
+      <nav
+        id="location-mobile-menu"
+        aria-label="Mobile Navigation"
+        class="hidden md:hidden border-t border-slate-200 bg-white/98 backdrop-blur-xl px-4 py-3 space-y-1 shadow-xl"
+      >
+        <a href="/" class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-[#16A34A] hover:bg-emerald-50">
+          Home
+        </a>
+        <a href="#corridors" class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]">
+          {cityName} Corridors & Applications
+        </a>
+        <a href={`/safety-pillars/${primaryCitySlug}`} class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]">
+          6-Pillar Safety Solutions
+        </a>
+        <a href="/solutions" class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]">
+          All Engineering Solutions
+        </a>
+        <a href="/projects" class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]">
+          Projects Portfolio
+        </a>
+        <a href="/about" class="block px-3 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-50 hover:text-[#16A34A]">
+          About D-VIEW
+        </a>
+        <a href={`/contact?city=${slug}#book-visit`} class="block px-3 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider text-slate-950 bg-[#7CFF3A] text-center mt-2">
+          Book Free Site Visit →
+        </a>
+      </nav>
     </header>
+    <script is:inline>
+      (() => {
+        const btn = document.getElementById('location-mobile-menu-btn');
+        const menu = document.getElementById('location-mobile-menu');
+        if (!btn || !menu) return;
+        const closeMenu = () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+        };
+        btn.addEventListener('click', () => {
+          const isHidden = menu.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+        });
+        menu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', closeMenu);
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') closeMenu();
+        });
+      })();
+    </script>
 
     {/* TIER 1: 4:5 CITY POSTER CARD SHOWCASE (IMAGE HIGHLIGHTED - ZERO VIEW BLOCKING) */}
     <section class="relative w-full bg-slate-50 py-4 sm:py-8 lg:py-10 border-b border-slate-200 overflow-hidden">
       <!-- Subtle ambient background glow -->
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-400/10 blur-[120px] pointer-events-none rounded-full"></div>
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[400px] bg-emerald-400/10 blur-[120px] pointer-events-none rounded-full"></div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full">
         {/* 4:5 POSTER CARD */}
@@ -106,13 +179,17 @@ const subLocalities = location.subLocalities || [];
           
           <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden border-2 border-emerald-500 bg-white shadow-2xl group">
             {/* 100% Full-bleed background image with unobstructed center */}
-            <img
+            <OptimizedGrillImage
               src={heroPoster}
-              alt={`D-VIEW Invisible Safety in ${cityName}`}
-              class="w-full h-full object-cover object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
+              alt={location.heroImageAlt || `D-VIEW Invisible Safety in ${cityName}`}
+              aspectRatio="4/5"
+              sizes="(max-width: 640px) 95vw, 512px"
+              class="w-full h-full"
+              imageClass="object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
+              width={512}
+              height={640}
+              priority={true}
+              sharpen={true}
             />
 
             {/* LOWER THIRD TIGHT GRADIENT & CONTENT ANCHORED AT THE VERY BOTTOM */}
@@ -138,9 +215,9 @@ const subLocalities = location.subLocalities || [];
                 {/* 1. Call Us */}
                 <a
                   href="tel:+916281620716"
-                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-white/95 hover:bg-white text-slate-900 hover:text-[#16A34A] border border-slate-200 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
+                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2.5 rounded-xl bg-white/95 hover:bg-white text-slate-900 hover:text-[#16A34A] border border-slate-200 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
                 >
-                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#16A34A] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#16A34A] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <span class="truncate">Call Us</span>
@@ -149,9 +226,9 @@ const subLocalities = location.subLocalities || [];
                 {/* 2. Free Visit */}
                 <a
                   href={`/contact?city=${slug}#book-visit`}
-                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
+                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
                 >
-                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                   </svg>
                   <span class="truncate">Free Visit</span>
@@ -162,9 +239,9 @@ const subLocalities = location.subLocalities || [];
                   href={`https://wa.me/916281620716?text=${encodeURIComponent(`Hello D-view invisible grills, I am interested in invisible safety grills for my balcony in ${cityName}. Please share details.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2 sm:py-2.5 rounded-xl bg-white/95 hover:bg-white text-slate-900 hover:text-[#25D366] border border-slate-200 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
+                  class="inline-flex items-center justify-center gap-1 px-1.5 sm:px-2 py-2.5 rounded-xl bg-white/95 hover:bg-white text-slate-900 hover:text-[#25D366] border border-slate-200 text-[10px] sm:text-xs font-bold transition-all shadow-md text-center"
                 >
-                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#25D366] fill-current flex-shrink-0" viewBox="0 0 24 24">
+                  <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#25D366] fill-current flex-shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                   </svg>
                   <span class="truncate">WhatsApp</span>
@@ -179,8 +256,8 @@ const subLocalities = location.subLocalities || [];
     </section>
 
     {/* TIER 2: HORIZONTAL SLIDING VIEW (LEFT TO RIGHT SCROLLING CARDS) */}
-    <div id="problem-solutions">
-      <HorizontalProblemSlider client:visible cityName={cityName} />
+    <div id="problem-solutions" class="w-full overflow-hidden">
+      <HorizontalProblemSlider client:visible cityName={cityName} citySlug={slug} />
     </div>
 
     {/* INTERACTIVE 9:16 LIVE DRAG SLIDER */}
@@ -190,7 +267,7 @@ const subLocalities = location.subLocalities || [];
           Live Interactive Handle
         </span>
         <h2 class="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Drag to Compare: <span class="text-[#16A34A]">Traditional Cages vs 100% Invisible Grills</span>
+          Drag to Compare: <span class="text-[#16A34A]">Traditional Cages vs Sleek Invisible Grills</span>
         </h2>
       </div>
       <BeforeAfterSlider client:visible />
@@ -200,13 +277,13 @@ const subLocalities = location.subLocalities || [];
     <section id="corridors" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold tracking-widest uppercase mb-3">
-          Verified Regional Corridors
+          Regional Architectural Corridors
         </span>
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight break-words">
           Active Residential Belts in <span class="text-[#16A34A]">{cityName}</span>
         </h2>
         <p class="mt-3 text-sm sm:text-base text-slate-600">
-          Tailored on-site measurements and certified architectural installations across all premier high-rise and villa communities.
+          Tailored on-site measurements and architectural safety specifications across premier high-rise and residential communities.
         </p>
       </div>
 
@@ -220,12 +297,17 @@ const subLocalities = location.subLocalities || [];
             <!-- Card Image with Gradient Overlay & Badges -->
             <div class="relative w-full h-48 sm:h-52 overflow-hidden bg-slate-100">
               {sub.image ? (
-                <img
+                <OptimizedGrillImage
                   src={sub.image}
                   alt={`${sub.name} - Invisible Safety Grill Installation in ${cityName}`}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  class="w-full h-full"
+                  imageClass="group-hover:scale-105 transition-transform duration-500"
+                  width={400}
+                  height={208}
+                  aspectRatio="4/3"
                   loading="lazy"
-                  decoding="async"
+                  sharpen={true}
                 />
               ) : (
                 <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-500 text-xs">
@@ -233,10 +315,10 @@ const subLocalities = location.subLocalities || [];
                 </div>
               )}
               <!-- Gradient Overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10" />
 
               {sub.tag && (
-                <div class="absolute bottom-2 left-3 right-3 pointer-events-none">
+                <div class="absolute bottom-2 left-3 right-3 pointer-events-none z-10">
                   <span class="inline-block text-[9.5px] font-bold text-emerald-800 bg-white/95 backdrop-blur-md px-2 py-0.5 rounded border border-emerald-200 truncate max-w-full shadow-sm">
                     {sub.tag}
                   </span>
@@ -255,14 +337,14 @@ const subLocalities = location.subLocalities || [];
                 </p>
 
                 <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-semibold text-slate-600">
-                  <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700">SS-316 Marine</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700">SS-316 Option</span>
                   <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700">2" Safe Spacing</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-300 text-[#16A34A]">Verified Site</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-300 text-[#16A34A]">Design Concept</span>
                 </div>
               </div>
 
               <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#16A34A] group-hover:text-emerald-700 transition-colors">
-                <span>View Verified Installations</span>
+                <span>View Design Specifications</span>
                 <span class="w-6 h-6 rounded-full bg-emerald-50 text-[#16A34A] group-hover:bg-[#16A34A] group-hover:text-white flex items-center justify-center transition-all group-hover:translate-x-1">
                   →
                 </span>
@@ -278,9 +360,9 @@ const subLocalities = location.subLocalities || [];
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-7 space-y-6">
           <span class="text-xs uppercase tracking-[0.3em] text-[#16A34A] font-bold block">
-            SS-316 METALLURGY TRUST & GUARANTEES
+            SS-316 & SS-304 METALLURGY SPECIFICATIONS
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
+          <h2 class="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight break-words">
             Specific Weather Shield ({cityName})
           </h2>
           <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -291,7 +373,7 @@ const subLocalities = location.subLocalities || [];
             <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200">
               <span class="text-2xl mt-0.5">💧</span>
               <div>
-                <h4 class="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h4>
+                <h3 class="text-sm font-bold text-slate-900 uppercase">The Environmental Challenge</h3>
                 <p class="text-xs text-slate-600 mt-1">{location.weatherChallenge}</p>
               </div>
             </div>
@@ -299,7 +381,7 @@ const subLocalities = location.subLocalities || [];
             <div class="flex items-start gap-4 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-300">
               <span class="text-2xl mt-0.5">🛡️</span>
               <div>
-                <h4 class="text-sm font-bold text-[#16A34A] uppercase">The Material: Molybdenum-Infused SS-316</h4>
+                <h3 class="text-sm font-bold text-[#16A34A] uppercase">The Material: SS-316 & SS-304 Options</h3>
                 <p class="text-xs text-slate-700 mt-1">{location.engineeringSolution}</p>
               </div>
             </div>
@@ -307,58 +389,63 @@ const subLocalities = location.subLocalities || [];
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
             <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-center">
-              <span class="text-xl sm:text-2xl font-black text-[#16A34A] block">10 YEARS</span>
+              <span class="text-xl sm:text-2xl font-black text-[#16A34A] block">5 YEARS</span>
               <span class="text-[10px] uppercase tracking-wider text-slate-700 font-semibold block mt-0.5">
-                Anti-Rust Replacement Warranty
+                Warranty (Quote Terms)
               </span>
             </div>
 
             <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-              <span class="text-xl sm:text-2xl font-black text-slate-900 block">1 YEAR FREE</span>
+              <span class="text-xl sm:text-2xl font-black text-slate-900 block">PERIODIC</span>
               <span class="text-[10px] uppercase tracking-wider text-slate-600 font-semibold block mt-0.5">
-                Periodic Tension Inspection
+                Tension Inspection Support
               </span>
             </div>
 
             <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-center">
-              <span class="text-xl sm:text-2xl font-black text-[#16A34A] block">400+ KG</span>
+              <span class="text-xl sm:text-2xl font-black text-[#16A34A] block">MULTI-STRAND</span>
               <span class="text-[10px] uppercase tracking-wider text-slate-700 font-semibold block mt-0.5">
-                Cable Breaking Tension Load
+                Stainless Steel Cable
               </span>
             </div>
           </div>
         </div>
 
         <div class="lg:col-span-5 relative">
-          <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
-            <img 
-              src={heroImage} 
-              alt={`D-VIEW SS-316 Weather Shield in ${cityName}`} 
-              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+          <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group aspect-[16/10] sm:h-80 w-full">
+            <OptimizedGrillImage
+              src={heroImage}
+              alt={`D-VIEW SS-316 Weather Shield in ${cityName}`}
+              sizes="(max-width: 1024px) 100vw, 500px"
+              class="w-full h-full"
+              imageClass="group-hover:scale-105 transition-transform duration-700"
+              width={500}
+              height={320}
+              aspectRatio="16/10"
               loading="lazy"
-              decoding="async"
+              sharpen={true}
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
-            <div class="absolute top-4 right-4">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none z-10" />
+            <div class="absolute top-4 right-4 z-10">
               <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-emerald-300 text-[10px] font-bold text-[#16A34A] uppercase tracking-wider shadow-lg">
                 <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse" />
-                ASTM B117 Saline Certified
+                Corrosion-Resistant Metallurgy
               </span>
             </div>
             <div class="absolute bottom-6 left-6 right-6">
               <div class="inline-flex items-center gap-2 bg-[#16A34A] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-2">
-                Marine Metallurgy Armor
+                Corrosion-Resistant Metallurgy
               </div>
-              <h4 class="text-lg font-bold text-white">SS-316 Molybdenum Barrier</h4>
+              <h3 class="text-lg font-bold text-white">Engineered Stainless Cable Barrier</h3>
               <p class="text-xs text-slate-200 mt-1 leading-relaxed">
-                Infused with 2.5% Molybdenum core alloy, preventing salt-spray pitting, river-fog oxidation, and thermal slackening across {cityName}.
+                Multi-strand stainless steel wire rope (SS-316 & SS-304 options), engineered to resist environmental oxidation and maintain tension across {cityName}.
               </p>
               <div class="mt-3 flex items-center gap-2 pt-2 border-t border-white/20 text-[10px] text-slate-200 font-mono">
-                <span class="text-emerald-400">● AISI-316</span>
+                <span class="text-emerald-400">● SS-316 / SS-304</span>
                 <span>•</span>
-                <span>400KG Tensile</span>
+                <span>Multi-Strand</span>
                 <span>•</span>
-                <span>UV-Nylon Core</span>
+                <span>UV Polyamide Sheath</span>
               </div>
             </div>
           </div>
@@ -371,22 +458,22 @@ const subLocalities = location.subLocalities || [];
       <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-emerald-50 to-slate-50 border border-emerald-300 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <span class="text-xs font-bold text-[#16A34A] uppercase tracking-wider">
-            Fast Response in {cityName}
+            Service Coordination for {cityName}
           </span>
           <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
             Need an accurate measurement for your balcony?
           </h3>
           <p class="text-xs sm:text-sm text-slate-600 mt-1">
-            Our local {cityName} technicians arrive with digital laser meters & genuine SS-316 samples within 24 hours.
+            Site visit consultations coordinated upon enquiry, subject to operational scheduling and location availability, with SS-316 & SS-304 material samples.
           </p>
         </div>
         <div class="flex-shrink-0 w-full sm:w-auto">
           <a
-            href={`/contact?city=${slug}`}
-            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white font-extrabold text-sm transition-all shadow-lg hover:-translate-y-0.5"
+            href={`/contact?city=${slug}#book-visit`}
+            class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 sm:px-7 py-3.5 rounded-2xl bg-[#16A34A] hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-lg hover:-translate-y-0.5 text-center"
           >
-            <span>Book Free Site Visit in {cityName}</span>
-            <span>→</span>
+            <span class="text-center">Enquire for Site Visit <span class="hidden sm:inline">in {cityName}</span></span>
+            <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>

@@ -180,12 +180,19 @@ export default function BeforeAfterSlider({
           src={afterImage} 
           alt="After D-VIEW Invisible Safety" 
           className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          style={{ imageRendering: '-webkit-optimize-contrast' as any }}
           draggable={false}
           loading="lazy"
           decoding="async"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/images/balcony-after.jpg')) {
+              target.src = '/images/balcony-after.jpg';
+            }
+          }}
         />
         <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-md border border-emerald-300 text-emerald-800 text-xs px-2.5 py-1 rounded-full font-bold shadow-md z-10 pointer-events-none">
-          AFTER: 100% Safe
+          AFTER: Safe & Open
         </span>
 
         {/* BEFORE IMAGE (Problem - Clipped Top Layer) */}
@@ -201,6 +208,12 @@ export default function BeforeAfterSlider({
             draggable={false}
             loading="lazy"
             decoding="async"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (!target.src.endsWith('/images/balcony-before.jpg')) {
+                target.src = '/images/balcony-before.jpg';
+              }
+            }}
           />
           <span className="absolute top-4 left-4 bg-white/95 backdrop-blur-md border border-rose-300 text-rose-800 text-xs px-2.5 py-1 rounded-full font-bold shadow-md pointer-events-none whitespace-nowrap">
             BEFORE: Danger & Fear
@@ -212,9 +225,32 @@ export default function BeforeAfterSlider({
           className="absolute top-0 bottom-0 w-0.5 bg-white shadow-xl pointer-events-none z-20"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border-2 border-[#16A34A] shadow-2xl transition-transform ${
-            isDragging ? 'scale-110 ring-4 ring-emerald-400/40' : ''
-          }`}>
+          <div
+            role="slider"
+            tabIndex={0}
+            aria-valuenow={Math.round(sliderPos)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Balcony before and after installation comparison slider"
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                setSliderPos((prev) => Math.max(0, prev - 5));
+              } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                setSliderPos((prev) => Math.min(100, prev + 5));
+              } else if (e.key === 'Home') {
+                e.preventDefault();
+                setSliderPos(0);
+              } else if (e.key === 'End') {
+                e.preventDefault();
+                setSliderPos(100);
+              }
+            }}
+            className={`pointer-events-auto absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-slate-900 font-black text-sm flex items-center justify-center border-2 border-[#16A34A] shadow-2xl transition-transform cursor-ew-resize focus:outline-none focus:ring-4 focus:ring-emerald-400/60 ${
+              isDragging ? 'scale-110 ring-4 ring-emerald-400/40' : ''
+            }`}
+          >
             ⇄
           </div>
         </div>
@@ -231,7 +267,7 @@ export default function BeforeAfterSlider({
         <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-left">
           <p className="text-[10px] font-bold text-[#16A34A] uppercase tracking-wide">With D-VIEW</p>
           <p className="text-xs font-semibold text-emerald-900 mt-0.5">
-            100% child-safe SS-316 invisible protection
+            Engineered child-safe invisible protection
           </p>
         </div>
       </div>
