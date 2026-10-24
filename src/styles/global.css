@@ -42,7 +42,7 @@
   }
 }
 
-<<<<<<< HEAD
+
 /* Completely hide right-side scrollbar and sliding bar across the entire website */
 * {
   scrollbar-width: none !important;
@@ -76,12 +76,6 @@ body::-webkit-scrollbar {
 *::-webkit-scrollbar-thumb {
   display: none !important;
   background: transparent !important;
-=======
-/* Completely hide right-side scrollbar across the entire website */
-* {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 }
 
 html,
@@ -214,7 +208,6 @@ input {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
 }
-<<<<<<< HEAD
 
 /* Lightning-fast mobile touch response (removes 300ms tap delay) */
 a,
@@ -224,8 +217,6 @@ select {
   touch-action: manipulation;
 }
 
-/* Zero horizontal page overflow across all viewports */
-=======
 /* ========================================================================= */
 /* SHIMMER PLACEHOLDER FOR ZERO CLS (CUMULATIVE LAYOUT SHIFT = 0)            */
 /* ========================================================================= */
@@ -292,15 +283,12 @@ select {
   will-change: transform;
 }
 
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 html,
 body,
 main {
   overflow-x: hidden !important;
   max-width: 100vw !important;
   width: 100% !important;
-<<<<<<< HEAD
-=======
 }
 
 .safe-bottom-pad {
@@ -366,5 +354,4 @@ main {
 }
 @media (prefers-reduced-motion: reduce) {
   .dview-intro { display: none; }
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 }

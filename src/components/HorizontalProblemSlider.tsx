@@ -189,49 +189,10 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
 }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-<<<<<<< HEAD
   const rafRef = useRef<number | null>(null);
 
   // Smooth 400ms transition with snappy easeOut curve
   const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
-=======
-  const [isPaused, setIsPaused] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const rafRef = useRef<number | null>(null);
-  const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Check prefers-reduced-motion
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(media.matches);
-    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
-    media.addEventListener('change', handler);
-    return () => media.removeEventListener('change', handler);
-  }, []);
-
-  // Track viewport visibility with IntersectionObserver
-  useEffect(() => {
-    if (!sectionRef.current || typeof IntersectionObserver === 'undefined') {
-      setIsInView(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
-  const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
@@ -243,10 +204,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-<<<<<<< HEAD
       // Smooth ease-out cubic curve (duration: 400ms)
-=======
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
       const ease = 1 - Math.pow(1 - progress, 3);
       el.scrollLeft = startLeft + distance * ease;
 
@@ -258,7 +216,34 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     rafRef.current = requestAnimationFrame(animate);
   };
 
-<<<<<<< HEAD
+  const scrollNext = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardEl = el.firstElementChild as HTMLElement | null;
+    const cardWidth = cardEl?.clientWidth || 310;
+    const gap = 24;
+    const step = cardWidth + gap;
+    const singleSetWidth = step * SHOWCASE_8_CARDS.length;
+    if (el.scrollLeft >= singleSetWidth) {
+      el.scrollLeft -= singleSetWidth;
+    }
+    smoothScrollTo(el.scrollLeft + step, 400);
+  };
+
+  const scrollPrev = () => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const cardEl = el.firstElementChild as HTMLElement | null;
+    const cardWidth = cardEl?.clientWidth || 310;
+    const gap = 24;
+    const step = cardWidth + gap;
+    const singleSetWidth = step * SHOWCASE_8_CARDS.length;
+    if (el.scrollLeft <= 25) {
+      el.scrollLeft += singleSetWidth;
+    }
+    smoothScrollTo(el.scrollLeft - step, 400);
+  };
+
   // Strict rules 2 & 3:
   // - 1000ms autoplay interval (maximum 1 second delay)
   // - 400ms smooth transition speed
@@ -267,70 +252,17 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
   // - Clean cleanup on unmount
   useEffect(() => {
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const el = scrollRef.current;
-        const cardEl = el.firstElementChild as HTMLElement | null;
-        const cardWidth = cardEl?.clientWidth || 310;
-        const gap = 24; // gap-5 sm:gap-6
-        const step = cardWidth + gap;
-        const singleSetWidth = step * SHOWCASE_8_CARDS.length;
-
-        // Infinite loop (loop: true): reset scrollLeft silently by 1 set without visual jump
-        if (el.scrollLeft >= singleSetWidth) {
-          el.scrollLeft -= singleSetWidth;
-        }
-
-        smoothScrollTo(el.scrollLeft + step, 400);
-      }
+      scrollNext();
     }, 1000); // Strict rule 2: maximum 1 second delay (1000ms)
 
-=======
-  const scrollNext = () => {
-    if (!scrollRef.current) return;
-    const el = scrollRef.current;
-    const cardWidth = el.firstElementChild?.clientWidth || 310;
-    const step = cardWidth + 24;
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    if (el.scrollLeft >= maxScroll - 25) {
-      smoothScrollTo(0, 350);
-    } else {
-      smoothScrollTo(el.scrollLeft + step, 280);
-    }
-  };
-
-  const scrollPrev = () => {
-    if (!scrollRef.current) return;
-    const el = scrollRef.current;
-    const cardWidth = el.firstElementChild?.clientWidth || 310;
-    const step = cardWidth + 24;
-    if (el.scrollLeft <= 25) {
-      smoothScrollTo(el.scrollWidth - el.clientWidth, 350);
-    } else {
-      smoothScrollTo(el.scrollLeft - step, 280);
-    }
-  };
-
-  // Safe, readable 4500ms auto-sliding interval; paused when off-screen, focused, or reduced motion preferred
-  useEffect(() => {
-    if (isPaused || !isInView || prefersReducedMotion) return;
-
-    const interval = setInterval(() => {
-      scrollNext();
-    }, 4500);
-
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     return () => {
       clearInterval(interval);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-<<<<<<< HEAD
   }, []);
 
   // Triple set of cards for seamless infinite forward looping (loop: true)
   const infiniteCards = [...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS];
-=======
-  }, [isPaused, isInView, prefersReducedMotion]);
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 
   return (
     <section ref={sectionRef} className="w-full overflow-hidden bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative">
@@ -376,42 +308,19 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
           </div>
         </div>
 
-<<<<<<< HEAD
         {/* 12 Horizontal Cards Container with Fast 60fps Auto-Sliding: 1000ms autoplay, 400ms transition, loop: true */}
         <div
           ref={scrollRef}
-          className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {infiniteCards.map((card, idx) => {
-=======
-        {/* 12 Horizontal Cards Container with Accessible Pause and Focus Capture */}
-        <div
-          ref={scrollRef}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocusCapture={() => setIsPaused(true)}
-          onBlurCapture={() => setIsPaused(false)}
-          onTouchStart={() => setIsPaused(true)}
-          onTouchEnd={() => {
-            if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-            pauseTimerRef.current = setTimeout(() => setIsPaused(false), 2500);
-          }}
           className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {SHOWCASE_8_CARDS.map((card, idx) => {
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
+          {infiniteCards.map((card, idx) => {
             const isProblem = card.type === 'problem';
 
             return (
               <div
                 key={`${card.id}-${idx}`}
-<<<<<<< HEAD
-                className={`w-[260px] sm:w-[290px] md:w-[310px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white ${
-=======
                 className={`w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] shrink-0 rounded-2xl overflow-hidden shadow-md flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 bg-white gpu-accel ${
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
                   isProblem
                     ? 'border border-rose-200 hover:border-rose-400 hover:shadow-lg'
                     : 'border border-emerald-200 hover:border-emerald-400 hover:shadow-lg'

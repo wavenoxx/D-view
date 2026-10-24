@@ -18,23 +18,14 @@ export default function LuxuryCitySlider() {
 
   const currentCity = citiesData[currentIndex];
 
-<<<<<<< HEAD
-  // Auto-play interval strictly set to 1 second (1000ms) with infinite loop
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % citiesData.length);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-=======
-  // Strict rule 1: Autoplay enabled with 1000ms delay between slides
+// Strict rule 1: Autoplay enabled with 1000ms delay between slides
   // Strict rule 3: Infinite loop (loop: true)
   // Strict rule 4: disableOnInteraction: false and pauseOnMouseEnter: false
   // Strict rule 5: Clean cleanup of intervals on component unmount
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % citiesData.length);
-    }, 2000);
+    }, 1000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
@@ -47,7 +38,6 @@ export default function LuxuryCitySlider() {
       citiesData[next2]?.localHeroImage || citiesData[next2]?.heroImage,
     ]);
   }, [currentIndex]);
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % citiesData.length);

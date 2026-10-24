@@ -43,11 +43,7 @@ const emotionalCards = [
 export const EmotionalCardSlider = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-<<<<<<< HEAD
-
-  const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
-=======
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   // Eagerly pre-fetch activeIndex + 1 and activeIndex + 2 images
   useEffect(() => {
@@ -66,7 +62,6 @@ export const EmotionalCardSlider = () => {
   };
 
   const smoothScrollTo = (targetLeft: number, duration: number = 450) => {
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
@@ -78,11 +73,7 @@ export const EmotionalCardSlider = () => {
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-<<<<<<< HEAD
-      const ease = 1 - Math.pow(1 - progress, 3);
-=======
-      const ease = cubicBezierEase(progress);
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
+const ease = cubicBezierEase(progress);
       el.scrollLeft = startLeft + distance * ease;
 
       if (progress < 1) {
@@ -93,19 +84,7 @@ export const EmotionalCardSlider = () => {
     rafRef.current = requestAnimationFrame(animate);
   };
 
-<<<<<<< HEAD
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const el = scrollRef.current;
-        const cardEl = el.firstElementChild as HTMLElement | null;
-        const cardWidth = cardEl?.clientWidth || 290;
-        const gap = 16;
-        const step = cardWidth + gap;
-        const singleSetWidth = step * emotionalCards.length;
-
-=======
-  // Strict rules 1-5: Autoplay with 1000ms delay, 450ms cubic-bezier transition,
+// Strict rules 1-5: Autoplay with 1000ms delay, 450ms cubic-bezier transition,
   // infinite loop (loop: true), disableOnInteraction: false, pauseOnMouseEnter: false,
   // and clean cleanup on unmount.
   useEffect(() => {
@@ -119,16 +98,11 @@ export const EmotionalCardSlider = () => {
         const singleSetWidth = step * emotionalCards.length;
 
         // Infinite loop: seamless reset without visual jump
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
         if (el.scrollLeft >= singleSetWidth) {
           el.scrollLeft -= singleSetWidth;
         }
 
-<<<<<<< HEAD
-        smoothScrollTo(el.scrollLeft + step, 400);
-=======
-        smoothScrollTo(el.scrollLeft + step, 450);
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
+smoothScrollTo(el.scrollLeft + step, 450);
       }
     }, 1000); // 1000ms delay between slides
 
@@ -154,27 +128,16 @@ export const EmotionalCardSlider = () => {
         </p>
       </div>
 
-<<<<<<< HEAD
-      {/* Horizontal Swipe Card Carousel: 1000ms auto-sliding, 400ms transition */}
-      <div 
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto no-scrollbar pb-4 pt-1 cursor-grab active:cursor-grabbing select-none"
-=======
-      {/* Responsive Horizontal Swipe Card Carousel: 1.15 on Mobile (<640px), 2.2 on Tablet (640-1024px), 3-4 on Desktop (>1024px) */}
+{/* Responsive Horizontal Swipe Card Carousel: 1.15 on Mobile (<640px), 2.2 on Tablet (640-1024px), 3-4 on Desktop (>1024px) */}
       <div 
         ref={scrollRef}
         className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 pt-1 cursor-grab active:cursor-grabbing select-none"
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {infiniteCards.map((card, idx) => (
           <div 
             key={`${card.id}-${idx}`}
-<<<<<<< HEAD
-            className="flex-shrink-0 w-[290px] md:w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col"
-=======
-            className="flex-shrink-0 w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col gpu-accel"
->>>>>>> c28ba9bbd18f5ce6a6cbd767832c39baa36c422e
+className="flex-shrink-0 w-[calc((100vw-3rem)/1.15)] sm:w-[calc((100%-1.5rem)/2.2)] lg:w-[calc((100%-3rem)/3.2)] xl:w-[calc((100%-4.5rem)/4)] max-w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col gpu-accel"
           >
             {/* 3D Visual Preview with 3:4 Aspect Ratio and OptimizedGrillImage */}
             <div className="relative aspect-[3/4] sm:h-[380px] w-full overflow-hidden">
