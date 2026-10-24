@@ -210,8 +210,8 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     emotionHook: 'Mana Vizag sea coast view invisible grills valla asalu block avvakunda entha luxury ga undo!',
     heroHeadline: 'INVISIBLE GRILLS IN VIZAG',
     heroSubhead: 'Slim stainless steel cables for balconies and windows in Vizag designed for uncompromised ocean views, fresh air and child safety.',
-    heroImage: '/assets/locations/vizag-novotel-straight.jpg',
-    heroPosterImage: '/assets/locations/vizag-novotel-straight.jpg',
+    heroImage: '/images/visakhapatnam-hero.jpg',
+    heroPosterImage: '/images/visakhapatnam-hero.jpg',
     heroImageAlt: 'Penthouse balcony in Visakhapatnam overlooking RK Beach and Beach Road with installed SS-316 invisible safety grills',
     keywordPings: ['Invisible Grills Vizag', 'Balcony Safety Madhurawada', 'SS-316 Stainless Steel', 'Balcony Safety Barrier', 'Rushikonda Ocean Views'],
     subLocalities: [

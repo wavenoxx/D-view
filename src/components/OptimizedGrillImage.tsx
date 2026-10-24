@@ -19,7 +19,7 @@ export interface OptimizedGrillImageProps {
   onClick?: () => void;
 }
 
-export const VERIFIED_GRILL_FALLBACK = '/images/dashboard/dashboard-visakhapatnam.jpg';
+export const VERIFIED_GRILL_FALLBACK = '/images/visakhapatnam-hero.jpg';
 
 /**
  * Eagerly pre-fetches next slide images in the background so rapid sliding never stutters.

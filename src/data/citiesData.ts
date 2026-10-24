@@ -18,8 +18,8 @@ export const citiesData: CityConfig[] = [
     tagline: "Unblocked Vizag Views, Breathtaking & Secure",
     subline: "RK Beach to Kailasagiri - Experience ocean horizon vistas with zero safety compromise.",
     landmark: "RK Beach & Kailasagiri Hilltop View",
-    heroImage: "/assets/locations/vizag-novotel-straight.jpg",
-    localHeroImage: "/assets/locations/vizag-novotel-straight.jpg",
+    heroImage: "/images/visakhapatnam-hero.jpg",
+    localHeroImage: "/images/visakhapatnam-hero.jpg",
     keyAreas: ["Madhurawada (27-Floor High-Rises)", "Yendada", "Rushikonda", "PM Palem", "Anandapuram", "Pendurthi", "Gajuwaka"],
     weatherAngle: "Continuous marine damp humidity and coastal salt-spray require high-grade stainless steel cables. We offer SS-316 and SS-304 options with a 5-year warranty confirmed in your quotation.",
     district: "Visakhapatnam"
