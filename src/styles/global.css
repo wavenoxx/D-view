@@ -180,3 +180,20 @@ input {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
 }
+
+/* Lightning-fast mobile touch response (removes 300ms tap delay) */
+a,
+button,
+input,
+select {
+  touch-action: manipulation;
+}
+
+/* Zero horizontal page overflow across all viewports */
+html,
+body,
+main {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+}

@@ -41,6 +41,56 @@ const emotionalCards = [
 
 export const EmotionalCardSlider = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+
+  const smoothScrollTo = (targetLeft: number, duration: number = 400) => {
+    if (!scrollRef.current) return;
+    const el = scrollRef.current;
+    const startLeft = el.scrollLeft;
+    const distance = targetLeft - startLeft;
+    const startTime = performance.now();
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.scrollLeft = startLeft + distance * ease;
+
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const el = scrollRef.current;
+        const cardEl = el.firstElementChild as HTMLElement | null;
+        const cardWidth = cardEl?.clientWidth || 290;
+        const gap = 16;
+        const step = cardWidth + gap;
+        const singleSetWidth = step * emotionalCards.length;
+
+        if (el.scrollLeft >= singleSetWidth) {
+          el.scrollLeft -= singleSetWidth;
+        }
+
+        smoothScrollTo(el.scrollLeft + step, 400);
+      }
+    }, 1000); // 1000ms delay between slides
+
+    return () => {
+      clearInterval(interval);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const infiniteCards = [...emotionalCards, ...emotionalCards, ...emotionalCards];
 
   return (
     <section className="w-full bg-[#031B15] py-8 px-4 text-white">
@@ -56,15 +106,15 @@ export const EmotionalCardSlider = () => {
         </p>
       </div>
 
-      {/* Horizontal Swipe Card Carousel */}
+      {/* Horizontal Swipe Card Carousel: 1000ms auto-sliding, 400ms transition */}
       <div 
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-4 pt-1"
+        className="flex gap-4 overflow-x-auto no-scrollbar pb-4 pt-1 cursor-grab active:cursor-grabbing select-none"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {emotionalCards.map((card) => (
+        {infiniteCards.map((card, idx) => (
           <div 
-            key={card.id}
+            key={`${card.id}-${idx}`}
             className="flex-shrink-0 w-[290px] md:w-[340px] snap-center rounded-2xl overflow-hidden bg-[#052920] border border-white/10 shadow-xl flex flex-col"
           >
             {/* 3D Visual Preview */}
