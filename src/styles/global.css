@@ -33,6 +33,13 @@
     color: #0F172A;
     overflow-x: hidden;
   }
+
+  /* Crisp High-Clarity Image Rendering for razor-sharp SS-316 cables */
+  img,
+  picture img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+  }
 }
 
 /* Custom Scrollbar */
