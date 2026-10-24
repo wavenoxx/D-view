@@ -181,8 +181,7 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
             {/* 100% Full-bleed background image with unobstructed center */}
             <OptimizedGrillImage
               src={heroPoster}
-<<<<<<< HEAD
-              alt={`D-VIEW Invisible Safety in ${cityName}`}
+              alt={location.heroImageAlt || `D-VIEW Invisible Safety in ${cityName}`}
               aspectRatio="4/5"
               sizes="(max-width: 640px) 95vw, 512px"
               class="w-full h-full"
@@ -191,15 +190,6 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
               height={640}
               priority={true}
               sharpen={true}
-=======
-              alt={location.heroImageAlt || `D-VIEW Invisible Safety in ${cityName}`}
-              class="w-full h-full object-cover object-center rounded-3xl transition-transform duration-500 group-hover:scale-[1.01]"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              width="640"
-              height="800"
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
             />
 
             {/* LOWER THIRD TIGHT GRADIENT & CONTENT ANCHORED AT THE VERY BOTTOM */}
@@ -422,7 +412,6 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
         </div>
 
         <div class="lg:col-span-5 relative">
-<<<<<<< HEAD
           <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group aspect-[16/10] sm:h-80 w-full">
             <OptimizedGrillImage
               src={heroImage}
@@ -433,13 +422,6 @@ const primaryCitySlug = location.slug === 'vijayawada-amaravati' ? 'vijayawada' 
               width={500}
               height={320}
               aspectRatio="16/10"
-=======
-          <div class="relative rounded-3xl overflow-hidden border border-emerald-300 shadow-xl group">
-            <img 
-              src={heroImage} 
-              alt={`D-VIEW Weather Shield in ${cityName}`} 
-              class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
               loading="lazy"
               sharpen={true}
             />

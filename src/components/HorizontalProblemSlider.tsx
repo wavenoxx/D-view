@@ -189,33 +189,10 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
 }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
-<<<<<<< HEAD
-  const rafRef = useRef<number | null>(null);
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-
-  // Eagerly pre-fetch activeIndex + 1 and activeIndex + 2 images
-  useEffect(() => {
-    const next1 = (activeSlideIndex + 1) % SHOWCASE_8_CARDS.length;
-    const next2 = (activeSlideIndex + 2) % SHOWCASE_8_CARDS.length;
-    prefetchGrillImages([
-      SHOWCASE_8_CARDS[next1]?.image,
-      SHOWCASE_8_CARDS[next2]?.image,
-    ]);
-  }, [activeSlideIndex]);
-
-  // Smooth cubic-bezier(0.25, 1, 0.5, 1) easing curve (duration: 450ms)
-  const cubicBezierEase = (t: number): number => {
-    // Exact cubic-bezier(0.25, 1, 0.5, 1) curve for brisk, smooth deceleration
-    const u = 1 - t;
-    return 3 * u * u * t * 1 + 3 * u * t * t * 1 + t * t * t;
-  };
-
-  // High-performance 60fps RAF scroll (450ms transition with smooth cubic-bezier easing)
-  const smoothScrollTo = (targetLeft: number, duration: number = 450) => {
-=======
   const [isPaused, setIsPaused] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const rafRef = useRef<number | null>(null);
   const pauseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check prefers-reduced-motion
@@ -248,7 +225,6 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
 
   // High-performance 60fps RAF scroll (zero lag, snappy easeOutCubic curve)
   const smoothScrollTo = (targetLeft: number, duration: number = 350) => {
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
     if (!scrollRef.current) return;
     const el = scrollRef.current;
     const startLeft = el.scrollLeft;
@@ -260,11 +236,7 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-<<<<<<< HEAD
-      const ease = cubicBezierEase(progress);
-=======
       const ease = 1 - Math.pow(1 - progress, 3);
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
       el.scrollLeft = startLeft + distance * ease;
 
       if (progress < 1) {
@@ -275,45 +247,6 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
     rafRef.current = requestAnimationFrame(animate);
   };
 
-<<<<<<< HEAD
-  // Strict rules 1-5: Autoplay 1000ms delay, 450ms cubic-bezier transition,
-  // infinite loop (loop: true), disableOnInteraction: false, pauseOnMouseEnter: false,
-  // and clean cleanup on unmount.
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveSlideIndex((prev) => (prev + 1) % SHOWCASE_8_CARDS.length);
-
-      if (scrollRef.current) {
-        const el = scrollRef.current;
-        const cardWidth = el.firstElementChild?.clientWidth || 310;
-        const step = cardWidth + 24; // card width + gap
-        const singleSetWidth = step * SHOWCASE_8_CARDS.length;
-
-        // Infinite loop: if we've scrolled past one full set of cards, seamlessly adjust back
-        if (el.scrollLeft >= singleSetWidth) {
-          el.scrollLeft -= singleSetWidth;
-        }
-
-        smoothScrollTo(el.scrollLeft + step, 450);
-      }
-    }, 1000); // Strict rule 1: Autoplay with maximum 1000ms delay between slides
-
-    return () => {
-      clearInterval(interval);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  // Triple set of cards for seamless infinite loop (loop: true)
-  const infiniteCards = [...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS, ...SHOWCASE_8_CARDS];
-
-  return (
-    <section className="w-full bg-slate-50 py-14 px-4 sm:px-6 lg:px-8 text-slate-900 border-y border-slate-200 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Section Header with Fluid Typography */}
-        <div className="mb-8">
-=======
   const scrollNext = () => {
     if (!scrollRef.current) return;
     const el = scrollRef.current;
@@ -347,7 +280,10 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
       scrollNext();
     }, 4500);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [isPaused, isInView, prefersReducedMotion]);
 
   return (
@@ -356,7 +292,6 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
         
         {/* Section Header */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[#16A34A] text-xs font-bold tracking-widest uppercase mb-2 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
@@ -395,12 +330,6 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
           </div>
         </div>
 
-<<<<<<< HEAD
-        {/* Responsive Horizontal Cards: 1.15 cards on Mobile (<640px), 2.2 on Tablet (640-1024px), 3-4 on Desktop (>1024px) */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
-=======
         {/* 12 Horizontal Cards Container with Accessible Pause and Focus Capture */}
         <div
           ref={scrollRef}
@@ -413,11 +342,10 @@ export const HorizontalProblemSlider: React.FC<HorizontalProblemSliderProps> = (
             if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
             pauseTimerRef.current = setTimeout(() => setIsPaused(false), 2500);
           }}
-          className="flex gap-5 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 pt-1 no-scrollbar cursor-grab active:cursor-grabbing select-none"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {infiniteCards.map((card, idx) => {
+          {SHOWCASE_8_CARDS.map((card, idx) => {
             const isProblem = card.type === 'problem';
 
             return (

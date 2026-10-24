@@ -117,19 +117,6 @@ const faqSchema = faqs && faqs.length > 0 ? {
     <meta name="twitter:image:alt" content={title} />
 
     <!-- High-Priority LCP Hero Image Preload for Mobile Core Web Vitals -->
-<<<<<<< HEAD
-    {preloadHeroImage && (
-      <link 
-        rel="preload" 
-        as="image" 
-        href={preloadHeroImage.replace(/\.(jpg|png)$/, '.webp')} 
-        imagesrcset={`${preloadHeroImage.replace(/\.(jpg|png|webp)$/, '')}-480w.webp 480w, ${preloadHeroImage.replace(/\.(jpg|png|webp)$/, '')}-800w.webp 800w, ${preloadHeroImage.replace(/\.(jpg|png)$/, '.webp')} 1200w`}
-        imagesizes="(max-width: 640px) 100vw, 1200px"
-        type="image/webp" 
-        fetchpriority="high" 
-      />
-    )}
-=======
     {preloadMobileHeroImage && preloadHeroImage ? (
       <>
         <link rel="preload" as="image" href={preloadMobileHeroImage} media="(max-width: 768px)" fetchpriority="high" />
@@ -138,7 +125,6 @@ const faqSchema = faqs && faqs.length > 0 ? {
     ) : preloadHeroImage ? (
       <link rel="preload" as="image" href={preloadHeroImage} fetchpriority="high" />
     ) : null}
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
 
     <!-- Google Font: Plus Jakarta Sans (Non-blocking performance load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,10 +143,7 @@ const faqSchema = faqs && faqs.length > 0 ? {
       <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     )}
   </head>
-<<<<<<< HEAD
   <body class="bg-white text-slate-900 antialiased selection:bg-[#16A34A] selection:text-white no-scrollbar">
-=======
-  <body class="bg-white text-slate-900 antialiased selection:bg-[#16A34A] selection:text-white">
     {showIntroAnimation && (
       <div class="dview-intro" aria-hidden="true">
         <div class="dview-intro-inner">
@@ -172,7 +155,6 @@ const faqSchema = faqs && faqs.length > 0 ? {
         </div>
       </div>
     )}
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
 
     <slot />
 

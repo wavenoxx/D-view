@@ -44,18 +44,13 @@ import { ALL_LOCATIONS } from '../../data/locations';
               <div class="relative h-60 overflow-hidden">
                 <OptimizedGrillImage
                   src={loc.heroImage}
-<<<<<<< HEAD
-                  alt={`D-VIEW Invisible Grills ${loc.name}`}
+                  alt={loc.heroImageAlt || `D-VIEW Invisible Grills ${loc.name}`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                   class="w-full h-full"
                   imageClass="group-hover:scale-105 transition-transform duration-500"
                   width={400}
                   height={240}
                   aspectRatio="4/3"
-=======
-                  alt={loc.heroImageAlt || `D-VIEW Invisible Grills ${loc.name}`}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-[1.02]"
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
                   loading="lazy"
                   sharpen={true}
                 />

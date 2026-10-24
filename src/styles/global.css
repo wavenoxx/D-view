@@ -254,7 +254,8 @@ main {
 
 .safe-bottom-pad {
   padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
-=======
+}
+
 /* Homepage-only branded entrance: no JS, no network asset and no blocked interactions. */
 .dview-intro {
   position: fixed;
@@ -314,5 +315,4 @@ main {
 }
 @media (prefers-reduced-motion: reduce) {
   .dview-intro { display: none; }
->>>>>>> 7625487f871dc3d11c1c5a1038e04f6d47e9400e
 }
