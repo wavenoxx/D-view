@@ -57,8 +57,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Coastal Stainless Line SS-316 Option',
     emotionHook: 'Mana Vizag sea coast view invisible grills valla asalu block avvakunda entha luxury ga undo!',
     landmarkDesc: 'Luxury penthouse interior balcony framing RK Beach coastal waves and Kailasagiri hillside through vertical SS-316 cables.',
-    heroImage: '/images/dashboard/dashboard-visakhapatnam.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-visakhapatnam-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-visakhapatnam.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-visakhapatnam-9x16.webp',
     activeBelts: ['Madhurawada (27-Floor High-Rises)', 'Yendada', 'Rushikonda', 'PM Palem', 'Anandapuram', 'Pendurthi', 'Gajuwaka'],
     weatherChallenge: "Vizag's high-salinity salt-air and marine damp humidity rapidly corrode cheap iron or low-grade steel wires within months.",
     weatherSolution: 'SS-316 and SS-304 options engineered for corrosion resistance.',
@@ -122,8 +122,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Godavari Riverfront Corridor',
     emotionHook: 'Pigeon problem lekunda, challani Godavari gaali & arch bridge view asalu aagakunda intiki complete safety!',
     landmarkDesc: 'Modern apartment balcony with floor tiles, railing, and vertical invisible safety wires framing the Godavari Arch Bridge and river cruise boats.',
-    heroImage: '/images/dashboard/dashboard-rajahmundry.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-rajahmundry-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-rajahmundry.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-rajahmundry-9x16.webp',
     activeBelts: ['Morampudi', 'Bommuru', 'Diwancheruvu', 'Lalacheruvu', 'Vemagiri', 'Gadaala Residential Belts'],
     weatherChallenge: 'Daily river vapor mist and heavy pigeon nesting colonies on open balcony ledges.',
     weatherSolution: 'Precision 2-inch SS-316 tensioned cables preventing bird entry while allowing 99% free river cross-ventilation.',
@@ -180,8 +180,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Capital & Krishna Waterfront',
     emotionHook: 'Modern luxury high-rise look ki taggattu, iron bars cage lekunda uncompromised open balcony!',
     landmarkDesc: 'Skyscraper balcony overlooking Krishna River & illuminated Prakasam Barrage lights through vertical SS-316 cables.',
-    heroImage: '/images/dashboard/dashboard-vijayawada.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-vijayawada-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-vijayawada.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-vijayawada-9x16.webp',
     activeBelts: ['Benz Circle', 'Moghalrajpuram', 'Gunadala', 'Kanuru', 'Poranki', 'Amaravati HappyNest (G+18)', 'Tadepalli'],
     weatherChallenge: 'Intense summer thermal expansion and high-velocity wind gusts on skyscraper floors above 15 levels.',
     weatherSolution: 'Multi-strand core cables engineered for uniform tension with thermal compensation.',
@@ -245,8 +245,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Kondaveedu Horizons Belt',
     emotionHook: 'Kondaveedu hill breeze intloki vasthundi, pillalu unna elevations bayam lekunda safe setup!',
     landmarkDesc: 'Luxury apartment balcony framing Kondaveedu ridge skyline and Guntur urban expanse through floor-to-ceiling SS-316 invisible wire cables.',
-    heroImage: '/images/dashboard/dashboard-guntur.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-guntur-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-guntur.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-guntur-9x16.webp',
     activeBelts: ['Brodipet', 'Arundelpet', 'Amaravati Road', 'Namburu', 'Kaza & Tadepalli Growth Corridor'],
     weatherChallenge: 'Heavy dry winds carrying abrasive dust particulates that erode and dull conventional iron bars.',
     weatherSolution: 'Anti-static smooth nylon-12 coated SS-316 cables shed dust effortlessly and maintain durable clarity.',
@@ -303,8 +303,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Deepwater Port & Coastal Corridor',
     emotionHook: 'Uppu gaali thupattu pattakunda, high-grade stainless wire security tho durable protection!',
     landmarkDesc: 'Coastal apartment balcony framing Vakalapudi Lighthouse and palm shoreline with SS-316 wires.',
-    heroImage: '/images/dashboard/dashboard-kakinada.jpg',
-    mobileHeroImage: '/images/dashboard/dashboard-kakinada-9x16.jpg',
+    heroImage: '/images/dashboard/dashboard-kakinada.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-kakinada-9x16.webp',
     activeBelts: ['Sarpavaram', 'Madhavapatnam', 'Ramanayyapeta', 'Vakalapudi', 'Jagannaickpur'],
     weatherChallenge: 'Aggressive industrial port emissions mixed with salty maritime mist causing pitting corrosion.',
     weatherSolution: 'Corrosion-resistant SS-316 and SS-304 stainless steel options engineered for coastal exposure.',
@@ -361,8 +361,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Penna Riverfront Horizon',
     emotionHook: 'Pedda vallu, pillalu unna balcony lo nilabadataniki absolute strong and safe support!',
     landmarkDesc: 'High-rise balcony sunset view over Nellore Barrage and Penna River through vertical safety cables.',
-    heroImage: '/images/dashboard/dashboard-nellore.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-nellore-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-nellore.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-nellore-9x16.webp',
     activeBelts: ['Magunta Layout', 'Balaji Nagar', 'Dargamitta', 'Vedayapalem', 'Podalakur Road', 'Kavali Road'],
     weatherChallenge: 'Continuous seasonal monsoon dampness loosening weak anchor points and corroding inferior wires.',
     weatherSolution: 'Precision aluminum track tensioners anchored deep in structural concrete with non-corrosive fasteners.',
@@ -419,8 +419,8 @@ export const CITIES_SLIDES: LocationSlide[] = [
     badge: 'Prakasam High-Tension SS-316',
     emotionHook: 'Bhagyanagar & Lawyerpet high-rises lo open breeze view asalu block avvakunda pillalu mariyu peddavallaki complete safety!',
     landmarkDesc: 'High-rise apartment balcony overlooking Kurnool Road Ridge and Ongole cityscape through vertical SS-316 invisible safety grills.',
-    heroImage: '/images/dashboard/dashboard-ongole.jpg?v=tier1_fresh',
-    mobileHeroImage: '/images/dashboard/dashboard-ongole-9x16.jpg?v=tier1_fresh',
+    heroImage: '/images/dashboard/dashboard-ongole.webp',
+    mobileHeroImage: '/images/dashboard/dashboard-ongole-9x16.webp',
     activeBelts: ['Bhagyanagar', 'Lawyerpet', 'Kurnool Road Belt', 'Santhapet', 'Mangamuru Road', 'Housing Board Colony'],
     weatherChallenge: 'Inland summer heat and dry highway dust wearing down traditional painted grills and causing frequent rust.',
     weatherSolution: 'Multi-strand wire rope (SS-316 & SS-304 options) coated with UV-resistant transparent nylon sheath and heavy-duty 6063-T6 aluminum tracks.',
@@ -2163,14 +2163,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
         </span>
       </a>
 
-      {/* 2. Floating Quick Call Button (Bottom-Left) */}
+      {/* 2. Floating Quick Call Button (Bottom-Left - Logo Only) */}
       <a
         href="tel:+916281620716"
-        aria-label="Direct Phone Call"
-        className="fixed bottom-6 left-5 sm:left-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-[#101714]/95 backdrop-blur-md border border-[#7CFF3A]/40 text-slate-100 shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:scale-105 active:scale-95 transition-all text-xs font-semibold uppercase tracking-wider group cursor-pointer"
+        aria-label="Call D-VIEW Helpline +91 62816 20716"
+        className="fixed bottom-6 left-5 sm:left-6 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#101714]/95 backdrop-blur-md border border-[#7CFF3A]/40 text-slate-100 shadow-[0_0_20px_rgba(0,0,0,0.8)] hover:scale-110 active:scale-95 transition-all group cursor-pointer"
       >
-        <Phone className="w-4 h-4 text-[#7CFF3A] shrink-0 stroke-[2.5]" />
-        <span className="text-white font-bold tracking-normal">Call Now</span>
+        <Phone className="w-6 h-6 sm:w-7 sm:h-7 text-[#7CFF3A] shrink-0 stroke-[2.2]" />
       </a>
     </aside>
   );
@@ -2412,18 +2411,23 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               {/* MOBILE VIEW: TRUE 100% FULLSCREEN 9:16 IMMERSIVE EXPERIENCE  */}
               {/* ============================================================ */}
               <div className="md:hidden absolute inset-0 w-full h-full">
-                {/* 100% Fullscreen 9:16 Vertical Image covering entire mobile screen edge-to-edge */}
+                {/* 100% Fullscreen 9:16 Vertical Image covering entire mobile screen edge-to-edge (Fast Responsive WebP) */}
                 <picture className="absolute inset-0 w-full h-full">
-                  <source media="(max-width: 768px)" srcSet={slide.mobileHeroImage || slide.heroImage} />
+                  <source
+                    media="(max-width: 768px)"
+                    type="image/webp"
+                    srcSet={`${(slide.mobileHeroImage || slide.heroImage).replace('.webp', '-480w.webp')} 480w, ${(slide.mobileHeroImage || slide.heroImage).replace('.webp', '-800w.webp')} 800w, ${slide.mobileHeroImage || slide.heroImage} 1024w`}
+                    sizes="100vw"
+                  />
                   <img
-                    src={slide.heroImage}
+                    src={slide.mobileHeroImage || slide.heroImage}
                     alt={`D-VIEW Invisible Grills in ${slide.name}`}
                     className="w-full h-full object-cover object-center"
                     loading={idx === 0 ? "eager" : "lazy"}
-                    fetchPriority={idx === 0 ? "high" : "auto"}
-                    decoding="async"
-                    width="720"
-                    height="1280"
+                    fetchPriority={idx === 0 ? "high" : "low"}
+                    decoding={idx === 0 ? "sync" : "async"}
+                    width="576"
+                    height="1024"
                   />
                 </picture>
 
