@@ -1540,7 +1540,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <span>ARCHITECTURAL BALCONY CONCEPTS • CORRIDOR PLANNING</span>
           </div>
           <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold uppercase text-slate-900 tracking-tight">
-            ARCHITECTURAL BALCONY CONCEPTS ACROSS <span className="text-[#16A34A]">REGIONAL CORRIDORS</span>
+            ARCHITECTURAL BALCONY CONCEPTS ACROSS <span className="text-[#16A34A]">ANDHRA PRADESH</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-normal">
             Illustrative design concepts and corridor layout specifications for high-rise apartment balconies and open facades.
@@ -1977,7 +1977,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               </a>
               <div className="pt-2 text-[10px] text-slate-500">
                 <span className="text-slate-800 font-semibold block">📍 Service Coordination:</span>
-                Operating in Bengaluru; regional expansion planning for Andhra Pradesh corridors.
+                Serving Andhra Pradesh: Visakhapatnam, Rajahmundry, Vijayawada, Kakinada, Guntur, Nellore & Ongole.
               </div>
             </div>
           </div>
@@ -1994,7 +1994,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
                 EXPLORE REGIONAL CORRIDORS & CITIES (ANDHRA PRADESH)
               </h4>
               <p className="text-[11px] text-slate-500 mt-1">
-                Enquire to confirm service availability, schedule site measurement, or discuss balcony safety specifications in your area.
+                D-VIEW Solutions provides invisible grill installation and balcony safety services across seven cities in Andhra Pradesh: Visakhapatnam, Rajahmundry, Vijayawada, Kakinada, Guntur, Nellore, and Ongole.
               </p>
             </div>
             <a href="/locations" className="inline-flex items-center gap-1 text-[11px] font-bold text-[#16A34A] hover:underline whitespace-nowrap">
@@ -2085,7 +2085,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <div className="p-3 rounded-xl border border-emerald-300 bg-emerald-50/60 flex flex-col justify-between">
               <div>
                 <span className="font-black text-slate-900 text-[11px] block">Need Free Measurement?</span>
-                <span className="text-[10px] text-slate-600 block mt-0.5">Site visits and consultations coordinated upon enquiry, subject to location availability.</span>
+                <span className="text-[10px] text-slate-600 block mt-0.5">D-VIEW Solutions provides invisible grill installation and balcony safety services across seven cities in Andhra Pradesh.</span>
               </div>
               <a href="tel:+916281620716" className="mt-2 text-[10px] font-black text-[#16A34A] hover:underline flex items-center gap-1">
                 <span>Call Now</span>
@@ -2103,7 +2103,7 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
           {/* Left: Region Flag */}
           <div className="flex items-center gap-2 font-medium text-slate-700">
             <span className="text-base leading-none">🇮🇳</span>
-            <span>India • Bengaluru & AP Corridors</span>
+            <span>India • Andhra Pradesh Installation Hubs</span>
           </div>
 
           {/* Right: Sitemap, Legal & Privacy, Cookies */}
@@ -2195,31 +2195,11 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
             <span className="text-base leading-none">=</span> MENU
           </button>
 
-          {tier === 'tier1' ? (
-            <h1 className="m-0 flex items-center">
-              <a href="/" className="flex items-center gap-3 group">
-                <img 
-                  src="/images/d-view-logo-horizontal.png" 
-                  alt="D-VIEW Invisible Grills & Safety Solutions" 
-                  width="160"
-                  height="40"
-                  decoding="async"
-                  className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
-                />
-                <span className="sr-only xl:not-sr-only xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
-                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
-                    <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                    <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
-                  </span>
-                </span>
-              </a>
-            </h1>
-          ) : (
+          <div className="flex items-center">
             <a href="/" className="flex items-center gap-3 group">
               <img 
                 src="/images/d-view-logo-horizontal.png" 
-                alt="D-VIEW Invisible Grills & Safety Solutions" 
+                alt="D-VIEW Solutions - Invisible Grills in Andhra Pradesh" 
                 width="160"
                 height="40"
                 decoding="async"
@@ -2227,13 +2207,13 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
               />
               <div className="hidden xl:flex items-center pl-3 border-l-2 border-emerald-500/40">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-[10px] xl:text-[11px] font-black uppercase tracking-wider text-[#16A34A] shadow-sm whitespace-nowrap">
-                  <span className="text-[#16A34A] font-extrabold">—</span>
-                  <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS & SAFETY SOLUTIONS</span>
-                  <span className="text-[#16A34A] font-extrabold">—</span>
+                  <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
+                  <span className="text-slate-900 font-extrabold tracking-[0.14em]">INVISIBLE GRILLS IN ANDHRA PRADESH</span>
+                  <span className="text-[#16A34A] font-extrabold" aria-hidden="true">—</span>
                 </span>
               </div>
             </a>
-          )}
+          </div>
         </div>
 
         {/* Middle: 6 Cities Quick Navigation Dropdown */}
@@ -2399,6 +2379,9 @@ export default function DViewWebsite({ initialCitySlug, initialCorridor, tier = 
       {/* ==================================================================== */}
       {tier === 'tier1' && (
         <main className="min-h-screen w-full bg-slate-50">
+          
+          {/* Primary Semantic H1 Heading for Homepage SEO */}
+          <h1 className="sr-only">Invisible Grills in Andhra Pradesh | D-VIEW Solutions</h1>
           
           {/* 6 CITIES SLIDES: 100% IMMERSIVE FULL SCREEN COVERAGE */}
           {CITIES_SLIDES.map((slide, idx) => (

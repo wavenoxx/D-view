@@ -114,7 +114,7 @@ ${name.trim() ? `- Name: ${name.trim()}\n` : ''}${normalizedPhone ? `- Mobile: +
 - Total Area: ${totalArea} sq.ft
 - Material: ${selectedMaterialObj.label}
 
-Please confirm site-visit availability and provide an itemized quotation.`;
+Please schedule my site-visit measurement and provide an itemized quotation.`;
 
     return `https://wa.me/916281620716?text=${encodeURIComponent(message)}`;
   };

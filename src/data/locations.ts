@@ -414,7 +414,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
       },
       {
         question: 'How fast can a site measurement and installation be completed in Vijayawada?',
-        answer: 'Site visit consultations are coordinated upon enquiry, subject to operational scheduling and location availability. Following quotation approval, installation timelines are scheduled.'
+        answer: 'D-VIEW Solutions provides invisible grill installation and balcony safety services across seven cities in Andhra Pradesh. Site measurements in Vijayawada are scheduled within 24 to 48 hours upon enquiry.'
       }
     ],
     
@@ -786,7 +786,7 @@ export const LOCATIONS_DATA: Record<string, LocationData> = {
     faqs: [
       {
         question: 'How fast can invisible grills be installed in Ongole?',
-        answer: 'Site visits in Ongole are coordinated upon enquiry, subject to location and technician availability. Installation timelines are confirmed upon quotation approval.'
+        answer: 'Installation services and doorstep site visits are actively available in Ongole and across all seven cities in Andhra Pradesh within 24 to 48 hours upon enquiry.'
       },
       {
         question: 'Can invisible grills stop pigeons in Ongole apartments?',

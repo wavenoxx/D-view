@@ -42,23 +42,42 @@ const absoluteOgImage = ogImage.startsWith('http')
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
+  "@id": "https://www.dviewsolutions.com/#business",
   "name": "D-VIEW Solutions",
+  "alternateName": "D-View Invisible Grills",
   "logo": "https://www.dviewsolutions.com/images/d-view-logo-horizontal.png",
   "image": "https://www.dviewsolutions.com/assets/locations/rajahmundry.png",
   "telephone": "+916281620716",
   "email": "dviewsolutions32@gmail.com",
   "url": "https://www.dviewsolutions.com/",
   "priceRange": "₹₹",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+916281620716",
+      "contactType": "customer service",
+      "contactOption": "TollFree",
+      "areaServed": "IN-AP",
+      "availableLanguage": ["English", "Telugu", "Hindi"]
+    }
+  ],
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Bengaluru",
-    "addressRegion": "Karnataka",
+    "addressRegion": "Andhra Pradesh",
     "addressCountry": "IN"
   },
   "areaServed": [
-    { "@type": "AdministrativeArea", "name": "Karnataka" }
+    { "@type": "City", "name": "Visakhapatnam" },
+    { "@type": "City", "name": "Rajahmundry" },
+    { "@type": "City", "name": "Vijayawada" },
+    { "@type": "City", "name": "Kakinada" },
+    { "@type": "City", "name": "Guntur" },
+    { "@type": "City", "name": "Nellore" },
+    { "@type": "City", "name": "Ongole" },
+    { "@type": "AdministrativeArea", "name": "Andhra Pradesh" }
   ],
-  "description": description || "Architectural SS-316 & SS-304 invisible safety grills for apartments, balcony child fall safety deterrence, pet security, and pigeon deterrence with 5-year warranty."
+  "serviceType": "Invisible Grills and Balcony Safety Solutions",
+  "description": description || "Architectural SS-316 & SS-304 invisible safety grills for apartments, balcony child fall safety deterrence, pet security, and pigeon deterrence with 5-year warranty across Andhra Pradesh."
 };
 
 const faqSchema = faqs && faqs.length > 0 ? {

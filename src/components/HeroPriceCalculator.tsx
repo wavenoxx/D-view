@@ -93,7 +93,7 @@ export default function HeroPriceCalculator({ citySlug, cityName }: HeroPriceCal
 • Total Area: ${area} Sq.Ft
 • Selected Material: ${selectedMaterial.label}
 
-Please share quotation details and confirm site-visit availability for my location.`;
+Please share quotation details and schedule my site visit measurement.`;
 
     return `https://wa.me/916281620716?text=${encodeURIComponent(text)}`;
   };
@@ -272,7 +272,7 @@ Please share quotation details and confirm site-visit availability for my locati
           </h4>
           
           <p className="text-[10px] sm:text-[11px] text-slate-600 mt-1 leading-relaxed">
-            Final pricing is determined after physical site inspection based on structural anchor tracks, span, and selected material ({selectedMaterial.grade}). Contact us to verify service availability and schedule measurement.
+            Final pricing is determined after physical site inspection based on structural anchor tracks, span, and selected material ({selectedMaterial.grade}). Installation services are available across all seven cities in Andhra Pradesh.
           </p>
         </div>
 
